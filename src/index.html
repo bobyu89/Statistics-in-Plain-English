@@ -246,7 +246,7 @@ function render(){
   const total=B.chapters.length, nd=B.chapters.filter(c=>done.has(c.n)).length;
   const L=[],R=[];
   list.forEach((c,i)=>(i%2?R:L).push(cardHTML(c)));
-  const feat=q?'':`<a class="feature" href="slides.html#ch${next.n}">
+  const feat=q?'':`<a class="feature" href="slides/ch${String(next.n).padStart(2,'0')}.html">
       <span class="note" style="right:110px;top:8px">♪</span><span class="note" style="right:20px;bottom:54px">♫</span>
       <div class="k">NOW LEARNING · CH ${String(next.n).padStart(2,'0')}</div>
       <h3>${esc(next.title_tw)}</h3><p>${esc(next.one_liner)}</p><span class="play"></span>
@@ -260,7 +260,7 @@ function openDrawer(html,wide){$('#dz').innerHTML=html;$('#drawer').classList.to
 function closeDrawer(){$('#drawer').classList.remove('on');$('#scrim').classList.remove('on')}
 function chapter(n){
   const c=B.chapters.find(x=>x.n===n); if(!c)return;
-  openDrawer(SIPE.chapterHTML(c,B,`<a href="slides.html#ch${c.n}">看這一章的簡報</a><a class="alt" href="whiteboard.html#ch${c.n}">在白板上定位</a>`));
+  openDrawer(SIPE.chapterHTML(c,B,`<a href="slides/ch${SIPE.no(c.n)}.html">看這一章的簡報</a><a class="alt" href="whiteboard.html#ch${c.n}">在白板上定位</a>`));
 }
 function compare(){
   const C=B.compare;
@@ -292,7 +292,7 @@ document.addEventListener('click',e=>{
   if(e.target.closest('#nextQ')){e.preventDefault();qi++;setQuiz();showQuiz();return}
   const ch=e.target.closest('[data-ch]'); if(ch){e.preventDefault();chapter(+ch.dataset.ch);return}
   const a=e.target.closest('[data-act]'), card=e.target.closest('.card');
-  if(a&&card){const n=+card.dataset.n; if(a.dataset.act==='toggle'){done.has(n)?done.delete(n):done.add(n);save();render()} else location.href='slides.html#ch'+n; return}
+  if(a&&card){const n=+card.dataset.n; if(a.dataset.act==='toggle'){done.has(n)?done.delete(n):done.add(n);save();render()} else location.href='slides/ch'+String(n).padStart(2,'0')+'.html'; return}
   if(card){chapter(+card.dataset.n)}
 });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape')closeDrawer(); if(e.key==='Enter'&&e.target.classList?.contains('card'))chapter(+e.target.dataset.n) });

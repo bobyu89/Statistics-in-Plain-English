@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Build: content/*.json  ->  index.html, whiteboard.html, slides.html, heptabase/*.md, heptabase-cards.zip
+// Build: content/*.json  ->  index.html, whiteboard.html, slides.html, slides/chNN.html, heptabase/*.md, heptabase-cards.zip
 // Usage: node scripts/build.mjs
 import fs from 'node:fs';
 import path from 'node:path';
@@ -206,12 +206,16 @@ S.push(`<section class="slide slide-10">
     <a class="close-btn" href="whiteboard.html">打開學習白板</a></div></section>`);
 
 const nav = read('src/slides.nav.js');
-fs.writeFileSync(R('slides.html'), `<!DOCTYPE html>
+const menu = (href, cur, home) => `    <a href="${home}">全書簡報(目錄與版本比對)</a>
+${B.parts.map(p => `    <div class="ch-part" style="background:${PCOL[p.id]};">${esc(p.title)}</div>\n` + p.chapters.map(n => B.chapters.find(c => c.n === n)).filter(Boolean).map(c => `    <a href="${href(c)}"${c.n === cur ? ' class="here"' : ''}><b>${no(c.n)}</b>${esc(c.title_tw)}</a>`).join('\n')).join('\n')}`;
+function deck({ file, title, slides, up, menuHTML }) {
+  fs.mkdirSync(path.dirname(R(file)), { recursive: true });
+  fs.writeFileSync(R(file), `<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>白話統計學 · 簡報</title>
+  <title>${esc(title)}</title>
   <!-- Built by scripts/build.mjs from content/. Template: BlockFrame (github.com/zarazhangrui/beautiful-html-templates, MIT). -->
   <style>
 ${css}
@@ -219,12 +223,11 @@ ${css}
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / ${no(S.length)}</div>
-  <a class="nb-label home-link" href="index.html">← 學習計畫</a>
+  <div class="slide-counter" id="slideCounter">01 / ${no(slides.length)}</div>
+  <a class="nb-label home-link" href="${up}index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
-    <a href="#1">封面與版本比對</a>
-${B.parts.map(p => `    <div class="ch-part" style="background:${PCOL[p.id]};">${esc(p.title)}</div>\n` + p.chapters.map(n => B.chapters.find(c => c.n === n)).filter(Boolean).map(c => `    <a href="#ch${c.n}"><b>${no(c.n)}</b>${esc(c.title_tw)}</a>`).join('\n')).join('\n')}
+${menuHTML}
   </nav>
 
   <div class="nav-controls">
@@ -234,7 +237,7 @@ ${B.parts.map(p => `    <div class="ch-part" style="background:${PCOL[p.id]};">$
 
   <div class="slides-container">
 
-${S.join('\n\n')}
+${slides.join('\n\n')}
 
   </div>
 
@@ -245,6 +248,22 @@ ${nav}
 </body>
 </html>
 `);
+}
+// full deck
+deck({ file: 'slides.html', title: '白話統計學 · 簡報', slides: S, up: '', menuHTML: menu(c => `#ch${c.n}`, 0, '#1') });
+// one standalone deck per chapter: slides/chNN.html
+fs.rmSync(R('slides'), { recursive: true, force: true });
+B.chapters.forEach((c, i) => {
+  const own = S.filter(x => x.includes(`data-ch="${c.n}"`)).map(x => x.replaceAll('href="whiteboard.html', 'href="../whiteboard.html'));
+  const prev = B.chapters[i - 1], next = B.chapters[i + 1];
+  own.push(`<section class="slide slide-10" data-ch="${c.n}">
+  <div class="deco-dots-bottom"></div>
+  <div class="close-frame"><div class="deco-star"></div>
+    <h2 class="close-title keepcase">第 ${c.n} 章<br>讀完了</h2>
+    <p class="close-subtitle">${next ? `下一章:${esc(next.title_tw)}` : '全書 15 章到這裡結束。'}</p>
+    <div class="close-row">${prev ? `<a class="close-btn alt" href="ch${no(prev.n)}.html">← 第 ${prev.n} 章</a>` : ''}${next ? `<a class="close-btn" href="ch${no(next.n)}.html">第 ${next.n} 章 →</a>` : `<a class="close-btn" href="../slides.html#ch1">回全書簡報</a>`}<a class="close-btn alt" href="../index.html#ch${c.n}">這一章的講義</a></div></div></section>`);
+  deck({ file: `slides/ch${no(c.n)}.html`, title: `CH${no(c.n)} ${c.title_tw} · 白話統計學`, slides: own, up: '../', menuHTML: menu(x => `ch${no(x.n)}.html`, c.n, '../slides.html') });
+});
 
 // ---------------------------------------------------------------- Heptabase markdown cards
 const H = R('heptabase'); fs.rmSync(H, { recursive: true, force: true }); fs.mkdirSync(path.join(H, 'concepts'), { recursive: true });

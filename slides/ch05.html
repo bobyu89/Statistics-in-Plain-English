@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CH05 標準化與 z 分數 · 白話統計學</title>
+  <!-- Built by scripts/build.mjs from content/. Template: BlockFrame (github.com/zarazhangrui/beautiful-html-templates, MIT). -->
+  <style>
+/* BlockFrame — from github.com/zarazhangrui/beautiful-html-templates (MIT, © 2026 Zara Zhang). Unmodified. */
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@500;700;900&display=swap');
+
+    :root {
+      --pink: #FE90E8;
+      --blue: #C0F7FE;
+      --green: #99E885;
+      --yellow: #F7CB46;
+      --cream: #FFDC8B;
+      --black: #000000;
+      --white: #FFFFFF;
+      --offwhite: #FFFDF5;
+      --border: 4px solid var(--black);
+      --shadow: 8px 8px 0px var(--black);
+      --shadow-sm: 4px 4px 0px var(--black);
+      --radius: 0px;
+      --radius-sm: 4px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background: var(--offwhite);
+      color: var(--black);
+    }
+
+    /* Slide container */
+    .slides-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      padding: 60px;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    /* Dot grid background pattern */
+    .dot-grid {
+      background-image: radial-gradient(circle, var(--black) 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+    }
+
+    /* Navigation */
+    .nav-controls {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .nav-btn {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--black);
+      background: var(--white);
+      cursor: pointer;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--black);
+    }
+
+    .nav-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--black);
+    }
+
+    .slide-counter {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 1000;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 3px solid var(--black);
+      background: var(--white);
+      padding: 10px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ============ UTILITY COMPONENTS ============ */
+
+    .nb-card {
+      border: var(--border);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .nb-card-flat {
+      border: var(--border);
+      background: var(--white);
+    }
+
+    .nb-label {
+      display: inline-block;
+      border: 3px solid var(--black);
+      padding: 6px 16px;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nb-label-pink { background: var(--pink); }
+    .nb-label-blue { background: var(--blue); }
+    .nb-label-green { background: var(--green); }
+    .nb-label-yellow { background: var(--yellow); }
+    .nb-label-cream { background: var(--cream); }
+
+    .nb-btn {
+      display: inline-block;
+      border: 3px solid var(--black);
+      padding: 14px 32px;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      color: var(--black);
+      background: var(--yellow);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nb-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--black);
+    }
+
+    .nb-heading-xl {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 6vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .nb-heading-lg {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 4vw, 64px);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .nb-heading-md {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: clamp(24px, 2.5vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .nb-body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .nb-mono {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Decorative elements */
+    .deco-circle {
+      border-radius: 50%;
+      border: var(--border);
+    }
+
+    .deco-square {
+      border: var(--border);
+    }
+
+    .tilt-left { transform: rotate(-8deg); }
+    .tilt-right { transform: rotate(8deg); }
+
+    .corner-bracket {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--black);
+    }
+    .corner-bracket.tl { border-right: none; border-bottom: none; top: 0; left: 0; }
+    .corner-bracket.tr { border-left: none; border-bottom: none; top: 0; right: 0; }
+    .corner-bracket.bl { border-right: none; border-top: none; bottom: 0; left: 0; }
+    .corner-bracket.br { border-left: none; border-top: none; bottom: 0; right: 0; }
+
+    /* ============ SLIDE 1: TITLE HERO ============ */
+    .slide-1 {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--cream);
+      position: relative;
+    }
+
+    .slide-1 .hero-frame {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      border: var(--border);
+      background: var(--offwhite);
+      padding: 60px;
+      box-shadow: var(--shadow);
+    }
+
+    .slide-1 .hero-label {
+      margin-bottom: 24px;
+    }
+
+    .slide-1 .hero-title {
+      margin-bottom: 32px;
+    }
+
+    .slide-1 .hero-subtitle {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      max-width: 500px;
+    }
+
+    .slide-1 .deco-pink-rect {
+      position: absolute;
+      top: -30px;
+      right: 80px;
+      width: 100px;
+      height: 100px;
+      background: var(--pink);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      transform: rotate(12deg);
+    }
+
+    .slide-1 .deco-green-circle {
+      position: absolute;
+      bottom: 60px;
+      right: 120px;
+      width: 60px;
+      height: 60px;
+      background: var(--green);
+      border: var(--border);
+      border-radius: 50%;
+    }
+
+    .slide-1 .deco-yellow-bar {
+      /* Sits as a tab on the bottom edge of the hero-frame, OUTSIDE
+         the content area so it never collides with the subtitle. */
+      position: absolute;
+      bottom: -18px;
+      left: 80px;
+      width: 140px;
+      height: 36px;
+      background: var(--yellow);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      transform: rotate(-3deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 5;
+    }
+
+    .slide-1 .deco-dots {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      width: 120px;
+      height: 80px;
+      background-image: radial-gradient(circle, var(--black) 2px, transparent 2px);
+      background-size: 20px 20px;
+      opacity: 0.4;
+    }
+
+    /* ============ SLIDE 2: TWO COLUMN INTRO ============ */
+    .slide-2 {
+      background: var(--blue);
+      flex-direction: row;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .slide-2 .col-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .slide-2 .col-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .slide-2 .intro-card {
+      border: var(--border);
+      background: var(--white);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .slide-2 .intro-card h3 {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .slide-2 .intro-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .slide-2 .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 3px solid var(--black);
+      padding: 10px 20px;
+      background: var(--yellow);
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ============ SLIDE 3: THREE FEATURE CARDS ============ */
+    .slide-3 {
+      background: var(--offwhite);
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-3 .slide-header {
+      margin-bottom: 48px;
+    }
+
+    .slide-3 .cards-row {
+      display: flex;
+      gap: 32px;
+      width: 100%;
+    }
+
+    .slide-3 .feature-card {
+      flex: 1;
+      border: var(--border);
+      background: var(--white);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .slide-3 .feature-icon {
+      width: 64px;
+      height: 64px;
+      border: 3px solid var(--black);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .slide-3 .icon-pink { background: var(--pink); }
+    .slide-3 .icon-blue { background: var(--blue); }
+    .slide-3 .icon-green { background: var(--green); }
+
+    .slide-3 .feature-card h3 {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .slide-3 .feature-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .slide-3 .card-deco {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+    }
+
+    /* ============ SLIDE 4: CHART / DATA ============ */
+    .slide-4 {
+      background: var(--green);
+      flex-direction: column;
+      justify-content: center;
+      /* Reserve space for the shadow + the bottom-fixed nav chrome
+         so the chart-frame never butts up against the slide edge. */
+      padding-bottom: 110px;
+    }
+
+    .slide-4 .chart-frame {
+      border: var(--border);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      padding: 32px 40px;
+      width: calc(100% - 16px);
+      max-width: 1200px;
+      margin: 0 auto;
+      /* Cap the frame so it always fits inside the slide content area
+         (slide is 100vh - 60 top - 110 bottom = ~70vh available). */
+      max-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    .slide-4 .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    .slide-4 .chart-legend {
+      display: flex;
+      gap: 16px;
+    }
+
+    .slide-4 .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .slide-4 .legend-swatch {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--black);
+    }
+
+    /* Chart body — chart on the left, stat boxes stacked on the right.
+       This is a flex row that fills the remaining space below the header. */
+    .slide-4 .chart-body {
+      display: flex;
+      gap: 32px;
+      flex: 1 1 auto;
+      min-height: 0;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    /* SVG Chart — fills the left side of chart-body. Width auto-derives
+       from viewBox aspect; flex-1 lets it claim available width. */
+    .chart-svg {
+      display: block;
+      flex: 1 1 auto;
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    /* Data column — vertical stack of stat boxes on the right. */
+    .slide-4 .data-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 0 0 240px;
+      width: 240px;
+      min-width: 0;
+    }
+
+    .slide-4 .data-box {
+      flex: 1 1 0;
+      min-height: 0;
+      border: 3px solid var(--black);
+      background: var(--cream);
+      padding: 18px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .slide-4 .data-box .data-num {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .slide-4 .data-box .data-label {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* ============ SLIDE 5: BIG STATEMENT / QUOTE ============ */
+    .slide-5 {
+      background: var(--pink);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .slide-5 .quote-frame {
+      border: var(--border);
+      background: var(--white);
+      padding: 60px 80px;
+      box-shadow: var(--shadow);
+      max-width: 1000px;
+      position: relative;
+    }
+
+    .slide-5 .quote-text {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .slide-5 .quote-author {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .slide-5 .deco-quote-marks {
+      position: absolute;
+      top: -30px;
+      left: 40px;
+      font-size: 120px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--yellow);
+      -webkit-text-stroke: 3px var(--black);
+    }
+
+    .slide-5 .deco-stripes {
+      position: absolute;
+      bottom: 60px;
+      right: 60px;
+      width: 80px;
+      height: 80px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--black),
+        var(--black) 4px,
+        var(--green) 4px,
+        var(--green) 12px
+      );
+      border: 3px solid var(--black);
+    }
+
+    /* ============ SLIDE 6: SPLIT IMAGE + TEXT ============ */
+    .slide-6 {
+      background: var(--yellow);
+      flex-direction: row;
+      gap: 0;
+      padding: 0;
+    }
+
+    .slide-6 .split-visual {
+      flex: 1;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-6 .split-visual .visual-box {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 1;
+      border: 4px solid var(--white);
+      background: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .slide-6 .split-visual .visual-box::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100%;
+      height: 100%;
+      background: var(--blue);
+      border: 4px solid var(--white);
+      z-index: -1;
+    }
+
+    .slide-6 .split-visual .visual-label {
+      /* Top-right of the dark panel so it never collides with the
+         fixed slide-counter pill at bottom-left of the viewport. */
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      border: 3px solid var(--white);
+      background: var(--green);
+      color: var(--black);
+      padding: 8px 16px;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      transform: rotate(-4deg);
+    }
+
+    .slide-6 .split-content {
+      flex: 1;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 28px;
+      background: var(--offwhite);
+      border-left: var(--border);
+    }
+
+    .slide-6 .content-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .slide-6 .content-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .slide-6 .content-list .list-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* ============ SLIDE 7: TIMELINE / PROCESS ============ */
+    .slide-7 {
+      background: var(--offwhite);
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-7 .slide-header {
+      margin-bottom: 48px;
+    }
+
+    .slide-7 .timeline {
+      display: flex;
+      gap: 0;
+      width: 100%;
+    }
+
+    .slide-7 .timeline-step {
+      flex: 1;
+      border: var(--border);
+      background: var(--white);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      margin-right: -4px;
+    }
+
+    .slide-7 .timeline-step:first-child {
+      background: var(--blue);
+    }
+
+    .slide-7 .timeline-step:nth-child(2) {
+      background: var(--pink);
+    }
+
+    .slide-7 .timeline-step:nth-child(3) {
+      background: var(--green);
+    }
+
+    .slide-7 .timeline-step:nth-child(4) {
+      background: var(--yellow);
+      margin-right: 0;
+    }
+
+    .slide-7 .step-num {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    .slide-7 .step-title {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .slide-7 .step-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .slide-7 .step-connector {
+      position: absolute;
+      top: 50%;
+      right: -28px;
+      width: 28px;
+      height: 4px;
+      background: var(--black);
+      z-index: 10;
+      transform: translateY(-50%);
+    }
+
+    /* ============ SLIDE 8: STATISTICS / NUMBERS ============ */
+    .slide-8 {
+      background: var(--blue);
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-8 .slide-header {
+      margin-bottom: 48px;
+    }
+
+    .slide-8 .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      width: 100%;
+    }
+
+    .slide-8 .stat-card {
+      border: var(--border);
+      background: var(--white);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      position: relative;
+    }
+
+    .slide-8 .stat-card:nth-child(odd) {
+      transform: rotate(-2deg);
+    }
+
+    .slide-8 .stat-card:nth-child(even) {
+      transform: rotate(2deg);
+    }
+
+    .slide-8 .stat-number {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 4vw, 64px);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .slide-8 .stat-label {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-8 .stat-deco {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--black);
+    }
+
+    /* ============ SLIDE 9: TEAM / GRID ============ */
+    .slide-9 {
+      background: var(--cream);
+      flex-direction: column;
+      justify-content: center;
+      /* Extra bottom padding so the second card row clears the fixed
+         slide-counter (bottom-left) and nav-controls (bottom-right). */
+      padding-bottom: 110px;
+    }
+
+    .slide-9 .slide-header {
+      margin-bottom: 32px;
+    }
+
+    .slide-9 .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .slide-9 .team-card {
+      border: var(--border);
+      background: var(--white);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .slide-9 .team-avatar {
+      width: 72px;
+      height: 72px;
+      border: 3px solid var(--black);
+      background: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      text-transform: uppercase;
+    }
+
+    .slide-9 .team-card:nth-child(2) .team-avatar { background: var(--blue); }
+    .slide-9 .team-card:nth-child(3) .team-avatar { background: var(--green); }
+    .slide-9 .team-card:nth-child(4) .team-avatar { background: var(--yellow); }
+    .slide-9 .team-card:nth-child(5) .team-avatar { background: var(--pink); }
+    .slide-9 .team-card:nth-child(6) .team-avatar { background: var(--blue); }
+
+    .slide-9 .team-name {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .slide-9 .team-role {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-9 .team-bio {
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    /* ============ SLIDE 10: CLOSING ============ */
+    .slide-10 {
+      background: var(--black);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .slide-10 .close-frame {
+      border: 4px solid var(--white);
+      background: var(--black);
+      padding: 60px 80px;
+      box-shadow: 12px 12px 0px var(--yellow);
+      position: relative;
+    }
+
+    .slide-10 .close-title {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 5vw, 80px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .slide-10 .close-subtitle {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 40px;
+    }
+
+    .slide-10 .close-btn {
+      display: inline-block;
+      border: 3px solid var(--white);
+      padding: 16px 40px;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      color: var(--black);
+      background: var(--yellow);
+      box-shadow: 6px 6px 0px var(--white);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .slide-10 .close-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0px var(--white);
+    }
+
+    .slide-10 .deco-star {
+      position: absolute;
+      top: -20px;
+      right: 60px;
+      width: 50px;
+      height: 50px;
+      background: var(--pink);
+      border: 3px solid var(--white);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .slide-10 .deco-dots-bottom {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      width: 100px;
+      height: 100px;
+      background-image: radial-gradient(circle, var(--white) 2px, transparent 2px);
+      background-size: 16px 16px;
+      opacity: 0.3;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .slide {
+        padding: 40px;
+      }
+      .slide-2 {
+        flex-direction: column;
+      }
+      .slide-6 {
+        flex-direction: column;
+      }
+      .slide-6 .split-content {
+        border-left: none;
+        border-top: var(--border);
+      }
+      .slide-3 .cards-row {
+        flex-direction: column;
+      }
+      .slide-7 .timeline {
+        flex-direction: column;
+      }
+      .slide-7 .timeline-step {
+        margin-right: 0;
+        margin-bottom: -4px;
+      }
+      .slide-7 .step-connector {
+        display: none;
+      }
+      .slide-8 .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .slide-9 .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .slide-8 .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .slide-9 .team-grid {
+        grid-template-columns: 1fr;
+      }
+      .slide-1 .hero-frame {
+        padding: 32px;
+      }
+      .slide-5 .quote-frame {
+        padding: 32px;
+      }
+    }
+
+/* ---- Additions for this deck. Same tokens, borders, shadows and type as BlockFrame. ---- */
+
+/* CJK glyphs are taller than Latin caps: loosen the tightest display leading. */
+.nb-heading-xl { line-height: 1.08; }
+.nb-heading-lg { line-height: 1.12; }
+.nb-heading-md { line-height: 1.2; }
+.slide-5 .quote-text { line-height: 1.3; }
+.slide-10 .close-title { line-height: 1.1; }
+
+.home-link {
+  position: fixed; top: 20px; right: 24px; z-index: 1000;
+  text-decoration: none; color: var(--black);
+}
+.home-link:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--black); }
+
+/* background modifiers so repeated layouts can cycle the palette */
+.slide.bg-pink { background: var(--pink); }
+.slide.bg-blue { background: var(--blue); }
+.slide.bg-green { background: var(--green); }
+.slide.bg-yellow { background: var(--yellow); }
+.slide.bg-cream { background: var(--cream); }
+.slide.bg-offwhite { background: var(--offwhite); }
+
+/* chapter slides reuse .slide-6 (split) and .slide-2 (two column) */
+.slide-6 .visual-box { flex-direction: column; gap: 14px; padding: 24px; text-align: center; }
+.slide-6 .visual-box .big {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif; font-weight: 900; line-height: 1.05;
+  letter-spacing: -0.02em; color: var(--black); overflow-wrap: anywhere;
+}
+.slide-6 .visual-box .cap {
+  font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 600; font-size: 15px;
+  border: 3px solid var(--black); background: var(--white); padding: 6px 12px; color: var(--black);
+}
+.slide-6 .split-content { gap: 22px; padding-bottom: 96px; }
+.slide-6 .ch-no {
+  position: absolute; left: 40px; bottom: 96px; color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 900; font-size: 120px; line-height: 1; opacity: .16;
+}
+.slide-2 { padding-bottom: 100px; }
+.slide-2 .intro-card h3 { text-transform: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.slide-2 .intro-card h3 small {
+  font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 600; font-size: 13px; letter-spacing: .02em;
+}
+.slide-2 .stat-pill { max-width: 100%; white-space: normal; line-height: 1.4; }
+.slide-2 .warn {
+  border: 3px solid var(--black); background: var(--white); padding: 12px 16px;
+  font-size: 15px; line-height: 1.5; font-weight: 500; max-width: 480px; box-shadow: var(--shadow-sm);
+}
+.slide-2 .warn b { font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 13px; letter-spacing: .08em; display: block; margin-bottom: 2px; }
+
+/* comparison table (new layout, built from nb-card + label grammar) */
+.slide-cmp { background: var(--offwhite); flex-direction: column; justify-content: center; padding-bottom: 100px; }
+.slide-cmp .slide-header { margin-bottom: 28px; }
+.cmp { border: var(--border); background: var(--white); box-shadow: var(--shadow); width: 100%; border-collapse: collapse; }
+.cmp th, .cmp td { border: 3px solid var(--black); padding: 11px 16px; text-align: left; font-size: 16px; line-height: 1.4; font-weight: 500; vertical-align: top; }
+.cmp thead th { font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.cmp thead th:nth-child(2) { background: var(--blue); }
+.cmp thead th:nth-child(3) { background: var(--pink); }
+.cmp thead th:nth-child(4) { background: var(--green); }
+.cmp tbody th { font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 14px; font-weight: 700; background: var(--cream); white-space: nowrap; }
+.cmp td.hl { background: var(--yellow); font-weight: 700; }
+.cmp.dense th, .cmp.dense td { padding: 7px 14px; font-size: 15px; }
+
+/* five-step timeline */
+.slide-7 { padding-bottom: 100px; }
+.slide-7 .timeline-step:nth-child(4) { margin-right: -4px; }
+.slide-7 .timeline-step:nth-child(5) { background: var(--cream); margin-right: 0; }
+.slide-7 .timeline-step:last-child { margin-right: 0; }
+.slide-7 .step-title { text-transform: none; }
+.slide-9 .team-name { text-transform: none; }
+.slide-9 .team-avatar { font-size: 22px; }
+.slide-9 .team-grid.g5 { grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.slide-9 .team-grid.g5 .team-card { padding: 16px; gap: 8px; }
+.slide-9 .team-grid.g5 .team-avatar { width: 52px; height: 52px; font-size: 18px; }
+.slide-9 .team-grid.g5 .team-name { font-size: 17px; }
+.slide-9 .team-grid.g5 .team-card:nth-child(7) .team-avatar { background: var(--green); }
+.slide-9 .team-grid.g5 .team-card:nth-child(8) .team-avatar { background: var(--yellow); }
+.slide-9 .team-grid.g5 .team-card:nth-child(9) .team-avatar { background: var(--pink); }
+.slide-9 .team-grid.g5 .team-card:nth-child(10) .team-avatar { background: var(--blue); }
+.slide-8 { padding-bottom: 100px; }
+.slide-8 .stat-sub { font-size: 14px; line-height: 1.45; font-weight: 500; margin-top: 10px; }
+
+@media (max-width: 1024px) {
+  html, body { overflow: auto; }
+  .slide { position: relative; height: auto; min-height: 100vh; }
+  .slide-9 .team-grid.g5 { grid-template-columns: repeat(2, 1fr); }
+  .cmp th, .cmp td { font-size: 13px; padding: 8px; }
+  .slide-6 .split-visual { min-height: 46vh; }
+}
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide { padding: 44px 60px; }
+  .slide-6 { padding: 0; }
+  .slide-6 .split-content { padding: 44px 60px 90px; gap: 16px; }
+  .slide-3 .slide-header, .slide-7 .slide-header, .slide-8 .slide-header { margin-bottom: 28px; }
+  .slide-9 .slide-header { margin-bottom: 20px; }
+  .slide-9 .team-card { padding: 16px; gap: 6px; }
+  .slide-9 .team-avatar { width: 52px; height: 52px; font-size: 18px; }
+  .cmp th, .cmp td { padding: 8px 14px; font-size: 15px; }
+  .cmp.dense th, .cmp.dense td { padding: 5px 12px; font-size: 14px; }
+}
+
+/* chapter slides: larger reading size (the demo copy is shorter than study notes) */
+.slide-6 .content-list { gap: 18px; }
+.slide-6 .content-list li { font-size: clamp(17px, 1.45vw, 22px); line-height: 1.45; align-items: center; }
+.slide-2 .intro-card h3 { font-size: clamp(20px, 1.7vw, 26px); }
+.slide-2 .intro-card p { font-size: clamp(15px, 1.25vw, 19px); }
+.slide-9 .team-grid.g5 .team-bio { font-size: clamp(13px, 1.05vw, 16px); }
+
+/* statistical symbols are case-sensitive (t, z, r, n vs N): don't uppercase chapter text */
+.keepcase, .slide-2 .intro-card h3, .slide-2 .stat-pill, .cmp td, .slide-9 .team-role { text-transform: none; }
+
+/* chapter figure inside the split panel */
+.slide-6 .visual-box.figure { background: var(--white); aspect-ratio: auto; max-width: 560px; padding: 14px; display: block; }
+.slide-6 .visual-box.figure svg { display: block; width: 100%; height: auto; }
+.slide-6 .fig-cap { margin-top: 44px; max-width: 560px; color: var(--white); font-size: clamp(14px, 1.15vw, 18px); line-height: 1.5; font-weight: 500; text-align: center; position: relative; z-index: 1; }
+.slide-2 .warn { font-size: clamp(14px, 1.1vw, 17px); }
+
+/* ---- chapter structure: TOC, chapter opener, table slide, chapter menu ---- */
+.slide-toc a.team-card { text-decoration: none; color: var(--black); transition: all .15s ease; }
+.slide-toc a.team-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--black); }
+.slide-toc .team-grid.g5 { gap: 12px; }
+.slide-toc .team-grid.g5 .team-card { padding: 12px 14px; gap: 6px; flex-direction: row; flex-wrap: wrap; align-items: center; }
+.slide-toc .team-grid.g5 .team-avatar { width: 40px; height: 40px; font-size: 16px; flex: none; }
+.slide-toc .team-grid.g5 .team-name { font-size: clamp(14px, 1.15vw, 18px); flex: 1; min-width: 0; line-height: 1.25; }
+.slide-toc .team-role { font-size: 12px; width: 100%; }
+.slide-open .hero-frame { max-width: 1000px; }
+.slide-open .hero-title { margin-bottom: 24px; max-width: 78%; }
+.slide-open .hero-subtitle { max-width: 620px; font-size: clamp(16px, 1.4vw, 21px); line-height: 1.55; }
+.slide-open .open-no { position: absolute; right: 48px; bottom: 28px; font-family: 'Inter', sans-serif; font-weight: 900; font-size: clamp(90px, 11vw, 170px); line-height: 1; opacity: .12; }
+.cmp.gen thead th { background: var(--yellow); }
+.cmp.gen thead th:nth-child(2), .cmp.gen thead th:nth-child(3), .cmp.gen thead th:nth-child(4) { background: var(--yellow); }
+.cmp.gen td, .cmp.gen th { font-size: clamp(14px, 1.2vw, 18px); }
+.take-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+.take-row .take { display: flex; gap: 12px; align-items: center; border: 3px solid var(--black); background: var(--white); padding: 10px 14px; box-shadow: var(--shadow-sm); font-size: clamp(13px, 1.05vw, 16px); line-height: 1.4; font-weight: 500; }
+.take-row .list-num { flex: none; width: 32px; height: 32px; border: 3px solid var(--black); background: var(--yellow); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', monospace; font-weight: 700; font-size: 13px; }
+.ch-btn { position: fixed; top: 20px; right: 150px; z-index: 1001; cursor: pointer; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; background: var(--yellow); }
+.ch-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--black); }
+.ch-menu { position: fixed; top: 64px; right: 24px; z-index: 1001; width: min(340px, calc(100vw - 48px)); max-height: calc(100vh - 150px); overflow-y: auto; border: var(--border); background: var(--white); box-shadow: var(--shadow); padding: 8px; }
+.ch-menu[hidden] { display: none; }
+.ch-menu a { display: flex; gap: 10px; align-items: baseline; padding: 7px 10px; text-decoration: none; color: var(--black); font-size: 15px; font-weight: 500; line-height: 1.35; }
+.ch-menu a:hover, .ch-menu a.on { background: var(--offwhite); outline: 3px solid var(--black); }
+.ch-menu a b { font-family: 'Space Grotesk', monospace; font-weight: 700; font-size: 13px; }
+.ch-menu .ch-part { font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; padding: 4px 10px; margin-top: 8px; border: 3px solid var(--black); }
+@media (max-width: 1024px) { .take-row { grid-template-columns: 1fr; } }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-toc .team-grid.g5 .team-card { padding: 9px 12px; }
+  .slide-cmp .slide-header { margin-bottom: 18px; }
+  .take-row { margin-top: 16px; }
+}
+.slide-open .deco-green-circle { display: none; }
+.cmp.gen td, .cmp.gen th { font-size: clamp(15px, 1.35vw, 20px); padding: 12px 16px; }
+.take-row .take { font-size: clamp(14px, 1.15vw, 17px); }
+
+.ch-menu a.here { background: var(--yellow); outline: 3px solid var(--black); }
+.slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.slide-10 .close-btn.alt { background: var(--white); }
+
+  </style>
+</head>
+<body>
+
+  <div class="slide-counter" id="slideCounter">01 / 05</div>
+  <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
+  <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
+  <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
+    <a href="../slides.html">全書簡報(目錄與版本比對)</a>
+    <div class="ch-part" style="background:var(--blue);">描述資料</div>
+    <a href="ch01.html"><b>01</b>引介社會科學研究的原則與術語</a>
+    <a href="ch02.html"><b>02</b>集中趨勢之測量</a>
+    <a href="ch03.html"><b>03</b>變異性之測量</a>
+    <div class="ch-part" style="background:var(--pink);">推論的地基</div>
+    <a href="ch04.html"><b>04</b>常態分布</a>
+    <a href="ch05.html" class="here"><b>05</b>標準化與 z 分數</a>
+    <a href="ch06.html"><b>06</b>標準誤</a>
+    <a href="ch07.html"><b>07</b>統計顯著性、效應量與信賴區間</a>
+    <div class="ch-part" style="background:var(--yellow);">關係與預測</div>
+    <a href="ch08.html"><b>08</b>相關</a>
+    <a href="ch13.html"><b>13</b>迴歸</a>
+    <div class="ch-part" style="background:var(--green);">比較平均數</div>
+    <a href="ch09.html"><b>09</b>t 檢定</a>
+    <a href="ch10.html"><b>10</b>單因子變異數分析</a>
+    <a href="ch11.html"><b>11</b>多因子變異數分析</a>
+    <a href="ch12.html"><b>12</b>重複測量變異數分析</a>
+    <div class="ch-part" style="background:var(--cream);">類別與量表</div>
+    <a href="ch14.html"><b>14</b>卡方獨立性檢定</a>
+    <a href="ch15.html"><b>15</b>資料化約的技術──因素分析與信度分析</a>
+  </nav>
+
+  <div class="nav-controls">
+    <button class="nav-btn" onclick="prevSlide()" aria-label="上一頁">&#8592;</button>
+    <button class="nav-btn" onclick="nextSlide()" aria-label="下一頁">&#8594;</button>
+  </div>
+
+  <div class="slides-container">
+
+<section class="slide slide-1 slide-open" data-ch="5" style="background:var(--pink);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 5 章 · 推論的地基</div>
+    <h1 class="nb-heading-lg hero-title keepcase">標準化與 z 分數</h1>
+    <p class="hero-subtitle">z 分數把原始分數換成「離平均數幾個標準差」,才能跨量尺比較並查出百分位。</p>
+    <div class="open-no">05</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.43–55</div>
+  </div></section>
+
+<section class="slide slide-6" data-ch="5">
+  <div class="split-visual"><div class="ch-no">05</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="原始分數換算成 z 分數" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><text x="20" y="44" font-size="13" font-weight="700" text-anchor="start" fill="#111">原始分數(平均 70、標準差 10)</text><line x1="40" y1="70" x2="480" y2="70" stroke="#111" stroke-width="3"/>
+      <line x1="60" y1="63" x2="60" y2="77" stroke="#111" stroke-width="1.6"/><text x="60" y="94" font-size="13" font-weight="500" text-anchor="middle" fill="#111">50</text><line x1="160" y1="63" x2="160" y2="77" stroke="#111" stroke-width="1.6"/><text x="160" y="94" font-size="13" font-weight="500" text-anchor="middle" fill="#111">60</text><line x1="260" y1="63" x2="260" y2="77" stroke="#111" stroke-width="1.6"/><text x="260" y="94" font-size="13" font-weight="500" text-anchor="middle" fill="#111">70</text><line x1="360" y1="63" x2="360" y2="77" stroke="#111" stroke-width="1.6"/><text x="360" y="94" font-size="13" font-weight="500" text-anchor="middle" fill="#111">80</text><line x1="460" y1="63" x2="460" y2="77" stroke="#111" stroke-width="1.6"/><text x="460" y="94" font-size="13" font-weight="500" text-anchor="middle" fill="#111">90</text>
+      <text x="20" y="134" font-size="13" font-weight="700" text-anchor="start" fill="#111">z 分數(平均 0、標準差 1)</text><line x1="40" y1="160" x2="480" y2="160" stroke="#111" stroke-width="3"/>
+      <line x1="60" y1="153" x2="60" y2="167" stroke="#111" stroke-width="1.6"/><text x="60" y="184" font-size="13" font-weight="500" text-anchor="middle" fill="#111">-2</text><line x1="160" y1="153" x2="160" y2="167" stroke="#111" stroke-width="1.6"/><text x="160" y="184" font-size="13" font-weight="500" text-anchor="middle" fill="#111">-1</text><line x1="260" y1="153" x2="260" y2="167" stroke="#111" stroke-width="1.6"/><text x="260" y="184" font-size="13" font-weight="500" text-anchor="middle" fill="#111">0</text><line x1="360" y1="153" x2="360" y2="167" stroke="#111" stroke-width="1.6"/><text x="360" y="184" font-size="13" font-weight="500" text-anchor="middle" fill="#111">+1</text><line x1="460" y1="153" x2="460" y2="167" stroke="#111" stroke-width="1.6"/><text x="460" y="184" font-size="13" font-weight="500" text-anchor="middle" fill="#111">+2</text>
+      <circle cx="410" cy="70" r="8" fill="#ffc2d6" stroke="#111" stroke-width="1.6"/><circle cx="410" cy="160" r="8" fill="#ffc2d6" stroke="#111" stroke-width="1.6"/>
+      <line x1="410" y1="80" x2="410" y2="148" stroke="#111" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#fa)"/>
+      <text x="424" y="120" font-size="13" font-weight="700" text-anchor="start" fill="#111">85 分</text>
+      <text x="260" y="224" font-size="13" font-weight="500" text-anchor="middle" fill="#444">z = (85 − 70) ÷ 10 = +1.5:比平均高 1.5 個標準差</text></svg></div>
+    <div class="fig-cap">z 分數把任何量尺都換成「離平均幾個標準差」。</div>
+    <div class="visual-label">CH 05 · p.43–55</div></div>
+  <div class="split-content">
+    <div><div class="nb-label keepcase nb-label-pink">推論的地基 · 標準化與 z 分數</div></div>
+    <h2 class="nb-heading-md keepcase">z 分數:共同的量尺</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>z = (X − μ) / σ:離平均數幾個標準差</span></li><li><span class="list-num">02</span><span>標準化後分布的平均數為 0、標準差為 1</span></li><li><span class="list-num">03</span><span>常態時可用 z 表在分數與百分位間互換</span></li><li><span class="list-num">04</span><span>非常態資料改用排序法求百分位</span></li></ul>
+    <div><a class="nb-btn" href="../whiteboard.html#ch5">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-yellow" data-ch="5">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 05 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg keepcase">標準化與 z 分數</h2>
+    <p class="nb-body" style="max-width:480px;">z 分數把原始分數換成「離平均數幾個標準差」,才能跨量尺比較並查出百分位。</p>
+    <div class="warn"><b>比喻 · 換算匯率</b>國文 80 分和數學 70 分不能直接比,就像台幣和日圓。z 分數把它們都換成同一種貨幣:離平均幾個標準差。</div>
+    <div><span class="stat-pill">z 分數(文字式):z = (原始分數 − 平均數) / 標準差</span></div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>z 分數<small>z score</small></h3><p>原始分數與平均數的距離,以標準差為單位表示。</p></div><div class="intro-card"><h3>標準化<small>standardization</small></h3><p>把分布中每個原始分數都轉成 z 分數的過程。</p></div><div class="intro-card"><h3>標準分數<small>standard score</small></h3><p>z 分數的另一個名稱;書中亦作「标准化值」。</p></div></div>
+</section>
+
+<section class="slide slide-cmp" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">常態分布下,z 分數對應的位置</h2></div>
+  <table class="cmp gen"><thead><tr><th>z</th><th>意思</th><th>大約贏過多少人</th></tr></thead><tbody>
+  <tr><th>−1</th><td>比平均低 1 個標準差</td><td>16%</td></tr><tr><th>0</th><td>剛好在平均</td><td>50%</td></tr><tr><th>+1</th><td>比平均高 1 個標準差</td><td>84%</td></tr><tr><th>+2</th><td>比平均高 2 個標準差</td><td>98%</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>z = (分數 − 平均數) ÷ 標準差</span></div><div class="take"><span class="list-num">02</span><span>換成 z 之後,平均數是 0、標準差是 1</span></div><div class="take"><span class="list-num">03</span><span>資料接近常態時,z 可以直接查出百分位</span></div></div></section>
+
+<section class="slide slide-10" data-ch="5">
+  <div class="deco-dots-bottom"></div>
+  <div class="close-frame"><div class="deco-star"></div>
+    <h2 class="close-title keepcase">第 5 章<br>讀完了</h2>
+    <p class="close-subtitle">下一章:標準誤</p>
+    <div class="close-row"><a class="close-btn alt" href="ch04.html">← 第 4 章</a><a class="close-btn" href="ch06.html">第 6 章 →</a><a class="close-btn alt" href="../index.html#ch5">這一章的講義</a></div></div></section>
+
+  </div>
+
+  <script>
+    // BlockFrame's inline navigation, plus #chN / #N deep links.
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('slideCounter');
+    const totalSlides = slides.length;
+
+    function updateSlide() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      const ch = slides[currentSlide].dataset.ch;
+      counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+      document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
+      try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlide();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlide();
+    }
+
+    function fromHash() {
+      const ch = location.hash.match(/^#ch(\d+)$/), num = location.hash.match(/^#(\d+)$/);
+      if (ch) {
+        const i = [...slides].findIndex(s => s.dataset.ch === ch[1]);
+        if (i >= 0) currentSlide = i;
+      } else if (num) {
+        currentSlide = Math.min(totalSlides - 1, Math.max(0, +num[1] - 1));
+      }
+    }
+
+    // Jump a whole chapter: dir = +1 next chapter start, -1 start of this / previous chapter
+    function jumpChapter(dir) {
+      const starts = [...slides].map((s, i) => (s.dataset.ch && (i === 0 || slides[i - 1].dataset.ch !== s.dataset.ch)) ? i : -1).filter(i => i >= 0);
+      const t = dir > 0 ? starts.find(i => i > currentSlide) : [...starts].reverse().find(i => i < currentSlide);
+      if (t !== undefined) { currentSlide = t; updateSlide(); }
+    }
+    const chBtn = document.getElementById('chBtn'), chMenu = document.getElementById('chMenu');
+    function toggleMenu(open) { chMenu.hidden = !open; chBtn.setAttribute('aria-expanded', String(open)); }
+    chBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(chMenu.hidden); });
+    chMenu.addEventListener('click', (e) => { if (e.target.closest('a')) toggleMenu(false); });
+    document.addEventListener('click', (e) => { if (!chMenu.hidden && !e.target.closest('#chMenu')) toggleMenu(false); });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        e.preventDefault();
+        jumpChapter(1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        jumpChapter(-1);
+      } else if (e.key === 'Escape') {
+        toggleMenu(false);
+      }
+    });
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > 50) {
+        prevSlide();
+      }
+    });
+
+    window.addEventListener('hashchange', () => { fromHash(); updateSlide(); });
+    fromHash();
+    updateSlide();
+
+  </script>
+
+</body>
+</html>

@@ -11,6 +11,7 @@ Timothy C. Urdan《Statistics in Plain English》的讀書筆記站。內容來�
 | `index.html` | 首頁「我的學習計畫」:15 章卡片(點開是講義:圖、比喻、三個重點、對照表、公式)、完成進度、搜尋、版本比對、術語表、隨堂小考 |
 | `whiteboard.html` | Heptabase 風格學習白板:章節卡、術語卡、公式卡,可拖曳、縮放、連線 |
 | `slides.html` | BlockFrame 簡報:版本差異、學習地圖、目錄頁、每章四頁(章首、圖解、比喻與術語、對照表)、檢定決策表。← → 翻頁,↑ ↓ 跳章,右上角「章節」選單可直接跳 |
+| `slides/ch01.html` … `ch15.html` | 每章各自獨立的簡報檔(5 頁:章首、圖解、比喻與術語、對照表、結尾),可單獨分享 |
 | `heptabase/`、`heptabase-cards.zip` | 可匯入 Heptabase 的 Markdown 卡片包,匯入步驟見 `heptabase/README.md` |
 
 三個 HTML 都是單一檔案、資料已內嵌,直接用瀏覽器開即可(字體從 Google Fonts 載入)。學習進度與白板排版存在瀏覽器的 localStorage。

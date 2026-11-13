@@ -150,3 +150,7 @@
 .slide-open .deco-green-circle { display: none; }
 .cmp.gen td, .cmp.gen th { font-size: clamp(15px, 1.35vw, 20px); padding: 12px 16px; }
 .take-row .take { font-size: clamp(14px, 1.15vw, 17px); }
+
+.ch-menu a.here { background: var(--yellow); outline: 3px solid var(--black); }
+.slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.slide-10 .close-btn.alt { background: var(--white); }

@@ -221,7 +221,7 @@ function select(id){nodes.forEach(n=>n.el.classList.toggle('sel',n.id===id));sel
 function open(n){
   select(n.kind==='ch'?n.id:(n.ch?'ch'+n.ch:n.id)); nodes.forEach(k=>k.el.classList.toggle('sel',k.id===n.id));
   let html='';
-  if(n.ch){const c=B.chapters.find(x=>x.n===n.ch);html=SIPE.chapterHTML(c,B,`<a href="slides.html#ch${c.n}">看這一章的簡報</a><a class="alt" href="index.html#ch${c.n}">回學習計畫</a>`)}
+  if(n.ch){const c=B.chapters.find(x=>x.n===n.ch);html=SIPE.chapterHTML(c,B,`<a href="slides/ch${no(c.n)}.html">看這一章的簡報</a><a class="alt" href="index.html#ch${c.n}">回學習計畫</a>`)}
   else if(n.memo){html=`<div class="k">MEMO</div><h2>${esc(n.memo.title)}</h2>${n.memo.long||n.memo.html}`}
   $('#dz').innerHTML=html;$('#panel').classList.add('on');$('#panel').scrollTop=0;
 }

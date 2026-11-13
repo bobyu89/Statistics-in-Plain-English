@@ -1221,6 +1221,10 @@
 .cmp.gen td, .cmp.gen th { font-size: clamp(15px, 1.35vw, 20px); padding: 12px 16px; }
 .take-row .take { font-size: clamp(14px, 1.15vw, 17px); }
 
+.ch-menu a.here { background: var(--yellow); outline: 3px solid var(--black); }
+.slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.slide-10 .close-btn.alt { background: var(--white); }
+
   </style>
 </head>
 <body>
@@ -1229,7 +1233,7 @@
   <a class="nb-label home-link" href="index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
-    <a href="#1">封面與版本比對</a>
+    <a href="#1">全書簡報(目錄與版本比對)</a>
     <div class="ch-part" style="background:var(--blue);">描述資料</div>
     <a href="#ch1"><b>01</b>引介社會科學研究的原則與術語</a>
     <a href="#ch2"><b>02</b>集中趨勢之測量</a>
