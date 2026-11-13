@@ -79,7 +79,23 @@ a{color:inherit;text-decoration:none}
 .panel.on{transform:none}
 .x{position:sticky;top:0;float:right;width:38px;height:38px;border-radius:50%;background:#efefed;font-size:16px;z-index:2}
 /*__DETAILCSS__*/
-@media (max-width:720px){.search{width:150px}.hint{display:none}.pillbar .opt{display:none}.panel{padding:20px 16px 60px}}
+.step{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:30;background:var(--ink);color:#fff;border-radius:999px;display:flex;align-items:center;padding:4px;box-shadow:0 10px 22px -12px rgba(0,0,0,.6)}
+.step button{height:38px;min-width:38px;border-radius:999px;font-size:20px;line-height:1}
+.step button:hover{background:#232326}
+.step #sc{font-size:13px;font-weight:600;padding:0 12px;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+@media (max-width:720px),(max-height:520px){
+  .bar{top:10px;left:10px;right:10px;gap:8px}
+  .pillbar strong{display:none}
+  .tools{margin-left:0}
+  .pillbar{height:42px}.pillbar a,.pillbar button{padding:7px 11px}
+  .search{width:auto;flex:1 1 130px;min-width:130px;height:42px;padding:0 12px}
+  .pillbar .opt{display:none}
+  .zoom{left:10px;bottom:10px}
+  .hint{left:50%;right:auto;transform:translateX(-50%);bottom:66px;white-space:nowrap;background:var(--ink);color:#fff;padding:7px 14px;transition:opacity .5s;pointer-events:none;max-width:calc(100vw - 20px);overflow:hidden;text-overflow:ellipsis}
+  .hint.off{opacity:0}
+  .panel{padding:18px 16px 70px;border-left:0}
+  .x{width:42px;height:42px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -97,7 +113,8 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 <div class="zoom"><button id="zi" aria-label="放大">＋</button><span id="zv">100%</span><button id="zo" aria-label="縮小">－</button></div>
-<div class="hint">拖曳空白處平移 · 滾輪縮放 · 拖卡片重排 · 點卡片看全文</div>
+<div class="hint" id="hint">拖曳空白處平移 · 滾輪縮放 · 拖卡片重排 · 點卡片看全文</div>
+<div class="step" aria-label="逐章瀏覽"><button id="sp" aria-label="上一章">‹</button><button id="sc" title="回到這一章">CH 01</button><button id="sn" aria-label="下一章">›</button></div>
 <aside class="panel" id="panel" aria-label="卡片內容"><button class="x" id="close" aria-label="關閉">✕</button><div id="dz" class="dz"></div></aside>
 
 <script>window.BOOK=/*__BOOK__*/null;</script>
@@ -182,22 +199,29 @@ function drawAll(){drawSecs();drawEdges()}
 let V={x:60,y:90,k:.6};
 function apply(){world.style.transform=`translate(${V.x}px,${V.y}px) scale(${V.k})`;stage.style.backgroundSize=`${24*V.k}px ${24*V.k}px`;stage.style.backgroundPosition=`${V.x}px ${V.y}px`;$('#zv').textContent=Math.round(V.k*100)+'%'}
 function zoomAt(cx,cy,f){const k=Math.min(2.2,Math.max(.12,V.k*f));V.x=cx-(cx-V.x)*k/V.k;V.y=cy-(cy-V.y)*k/V.k;V.k=k;apply()}
-function fit(list,maxK){
+const isSmall=()=>innerWidth<720||innerHeight<520;
+function fit(list,maxK,widthOnly){
   const ms=(list||nodes).filter(vis); let x1=1e9,y1=1e9,x2=-1e9,y2=-1e9; ms.forEach(n=>{const b=box(n);x1=Math.min(x1,b.x);y1=Math.min(y1,b.y);x2=Math.max(x2,b.x+b.w);y2=Math.max(y2,b.y+b.h)});
-  const W=innerWidth,H=innerHeight,m=70,top=80; const k=Math.min(maxK||1,(W-m*2)/(x2-x1),(H-top-m)/(y2-y1));
-  V.k=Math.max(.12,k);V.x=(W-(x2-x1)*V.k)/2-x1*V.k;V.y=top+((H-top-m)-(y2-y1)*V.k)/2-y1*V.k;apply();
+  const W=innerWidth,H=innerHeight,small=isSmall(),m=small?14:70,top=small?(W<720?116:66):80,bot=small?74:70; const k=Math.min(maxK||1,(W-m*2)/(x2-x1),widthOnly?9:(H-top-bot)/(y2-y1));
+  V.k=Math.max(.12,k);V.x=(W-(x2-x1)*V.k)/2-x1*V.k;V.y=(y2-y1)*V.k>H-top-bot?top-y1*V.k:top+((H-top-bot)-(y2-y1)*V.k)/2-y1*V.k;apply();
 }
 stage.addEventListener('wheel',e=>{e.preventDefault(); if(e.ctrlKey||e.metaKey||Math.abs(e.deltaY)>=50&&e.deltaX===0&&!e.shiftKey&&e.deltaMode===0&&Number.isInteger(e.deltaY)) zoomAt(e.clientX,e.clientY,Math.exp(-e.deltaY*(e.ctrlKey?.01:.0015))); else{V.x-=e.deltaX;V.y-=e.deltaY;apply()}},{passive:false});
 $('#zi').onclick=()=>zoomAt(innerWidth/2,innerHeight/2,1.25); $('#zo').onclick=()=>zoomAt(innerWidth/2,innerHeight/2,.8);
 
 // ---------- pointer: pan / drag / pinch ----------
-const pts=new Map(); let mode=null,tgt=null,start=null,pinch=null,sel=null,movedPx=0;
+const pts=new Map(); let mode=null,tgt=null,start=null,pinch=null,sel=null,movedPx=0,tapTgt=null,hold=null,isTouch=false;
+const lift=list=>{mode='drag';tgt=list;if(list.length===1)list[0].el.classList.add('drag');stage.classList.remove('pan');try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}};
 stage.addEventListener('pointerdown',e=>{
   if(e.button>0)return; pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); stage.setPointerCapture(e.pointerId);
-  if(pts.size===2){const [a,b]=[...pts.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y)};mode='pinch';return}
-  const el=e.target.closest('.node'), sb=e.target.closest('.sec b'); movedPx=0;
-  if(el){tgt=[byId[el.dataset.id]];mode='drag';el.classList.add('drag')}
-  else if(sb){const pid=sb.parentElement.dataset.part;tgt=nodes.filter(n=>n.part===pid);mode='drag'}
+  clearTimeout(hold);
+  if(pts.size===2){const [a,b]=[...pts.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y)};if(tgt)tgt.forEach(n=>n.el.classList.remove('drag'));tgt=null;tapTgt=null;mode='pinch';return}
+  const el=e.target.closest('.node'), sb=e.target.closest('.sec b'); movedPx=0; tapTgt=null; isTouch=e.pointerType==='touch';
+  const list=el?[byId[el.dataset.id]]:sb?nodes.filter(n=>n.part===sb.parentElement.dataset.part):null;
+  if(list&&isTouch){ // on touch one finger always pans; press and hold to pick a card up
+    mode='pan';stage.classList.add('pan');tapTgt=el?list[0]:null;hold=setTimeout(()=>{if(mode==='pan'&&movedPx<=8){tapTgt=null;lift(list)}},380);
+  }
+  else if(el){tgt=list;mode='drag';el.classList.add('drag')}
+  else if(sb){tgt=list;mode='drag'}
   else{mode='pan';stage.classList.add('pan')}
   start={x:e.clientX,y:e.clientY};
 });
@@ -209,9 +233,11 @@ stage.addEventListener('pointermove',e=>{
   else if(mode==='drag'&&movedPx>4){tgt.forEach(n=>{n.x+=dx/V.k;n.y+=dy/V.k;n.moved=true;place(n)});drawAll()}
 });
 function up(e){
-  pts.delete(e.pointerId); if(mode==='pinch'){mode=pts.size?'pan':null;return}
-  if(mode==='drag'){tgt.forEach(n=>n.el.classList.remove('drag')); if(movedPx<=4&&tgt.length===1)open(tgt[0]); else persist()}
-  if(mode==='pan'&&movedPx<=4)closePanel();
+  clearTimeout(hold); pts.delete(e.pointerId); if(mode==='pinch'){mode=pts.size?'pan':null;return}
+  if(mode==='drag'){tgt.forEach(n=>n.el.classList.remove('drag')); if(movedPx<=4&&tgt.length===1&&!isTouch)open(tgt[0]); else persist()}
+  if(mode==='pan'&&tapTgt&&movedPx<=8)open(tapTgt);
+  else if(mode==='pan'&&movedPx<=4)closePanel();
+  tapTgt=null;
   stage.classList.remove('pan');mode=null;tgt=null;
 }
 stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
@@ -237,7 +263,14 @@ $('#q').oninput=e=>{const q=e.target.value.trim().toLowerCase();const hits=[];no
 addEventListener('resize',()=>apply());
 
 // ---------- init ----------
-function init(){layout(true);const h=location.hash.match(/^#ch(\d+)/);if(h&&byId['ch'+h[1]]){const n=+h[1];fit(nodes.filter(k=>k.ch===n),.95);select('ch'+n)}else fit()}
+let cur=1; const chNums=B.chapters.map(c=>c.n);
+function goCh(n,mark){cur=n;$('#sc').textContent='CH '+no(n);fit(nodes.filter(k=>k.ch===n),.95,isSmall());if(mark)select('ch'+n)}
+$('#sp').onclick=()=>goCh(chNums[(chNums.indexOf(cur)-1+chNums.length)%chNums.length],true);
+$('#sn').onclick=()=>goCh(chNums[(chNums.indexOf(cur)+1)%chNums.length],true);
+$('#sc').onclick=()=>goCh(cur,true);
+function init(){layout(true);const small=isSmall(),h=location.hash.match(/^#ch(\d+)/);
+  if(h&&byId['ch'+h[1]])goCh(+h[1],true); else if(small)goCh(chNums[0],false); else fit();
+  if(small){const t=$('#hint');t.textContent='單指平移 · 雙指縮放 · 點卡片看筆記 · 長按可搬動';setTimeout(()=>t.classList.add('off'),6000)}}
 (document.fonts&&document.fonts.ready?Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,1200))]):Promise.resolve()).then(init);
 window.__wb={nodes,fit,V:()=>V};
 })();
