@@ -4,7 +4,7 @@
   "title_en": "Correlation",
   "pages": "88–103",
   "one_liner": "相關係數說明兩變項關係的方向與強度，r² 是共享變異比例，但相關不是因果。",
-  "summary": "本章從單變項統計進到兩個變項的關係，主角是皮爾森積差相關係數 r。r 介於 −1 與 +1 之間，正負號表示方向，絕對值表示強度；它其實是兩變項 z 分數交乘積的平均，也就是標準化後的共變數。作者強調 r 的限制：它只描述「平均而言」的線性關係，遇到曲線關係或變項分數範圍被截斷時會低估真實關聯，而且相關本身不能證明因果，可能有第三變項在作用。接著說明如何用 t 分布檢定 r 是否顯著異於 0（df = N − 2），以及把 r 平方得到決定係數，解讀為兩變項共享或可被解釋的變異比例。最後簡介變項不是等距或比率尺度時使用的點二系列、phi 與斯皮爾曼等級相關。",
+  "summary": "本章主角是皮爾森積差相關係數 r：介於 −1 與 +1，正負號表示方向，絕對值表示強度；它是兩變項 z 分數交乘積的平均，也就是標準化的共變數。作者強調其限制：r 只描述「平均而言」的線性關係，遇到曲線關係或分數範圍被截斷會低估關聯，而且相關不能證明因果，可能有第三變項作用。接著說明用 t 分布檢定 r 是否顯著異於 0（df = N − 2），以及把 r 平方得到決定係數，即兩變項共享的變異比例。最後簡介點二系列、phi 與斯皮爾曼三種特殊相關。",
   "sections": [
     {
       "heading": "相關的用途：方向與強度",
@@ -55,64 +55,296 @@
     }
   ],
   "concepts": [
-    {"tw": "皮爾森積差相關係數", "cn": "皮尔逊积差相关系数", "en": "Pearson product-moment correlation coefficient", "diff": true, "note": "描述兩個連續變項線性關係方向與強度的統計量 r。"},
-    {"tw": "相關不等於因果", "cn": "因果关系", "en": "causation", "diff": false, "note": "兩變項一起變動，不代表其中一個造成另一個。"},
-    {"tw": "決定係數", "cn": "决定系数", "en": "coefficient of determination", "diff": false, "note": "r 的平方，一變項變異可被另一變項解釋的比例。"},
-    {"tw": "共變數", "cn": "协方差", "en": "covariance", "diff": true, "note": "交乘積的平均；標準化之後就是相關係數。"},
-    {"tw": "共享變異量", "cn": "共享方差", "en": "shared variance", "diff": true, "note": "兩個相關變項彼此重疊的那部分變異。"},
-    {"tw": "曲線關係", "cn": "曲线", "en": "curvilinear", "diff": false, "note": "關係在某段為正、另一段為負，r 會低估其強度。"},
-    {"tw": "全距限縮（截斷範圍）", "cn": "截断范围", "en": "truncated range", "diff": true, "note": "分數擠在頂端或底端，變異不足而壓低相關。"},
-    {"tw": "散布圖", "cn": "散点图", "en": "scattergram", "diff": true, "note": "把每人兩個變項的分數畫成一個點的圖。"},
-    {"tw": "斯皮爾曼等級相關", "cn": "斯皮尔曼ρ系数", "en": "Spearman rho coefficient", "diff": false, "note": "兩個次序變項之間的相關係數。"}
+    {
+      "tw": "皮爾森積差相關係數",
+      "cn": "皮尔逊积差相关系数",
+      "en": "Pearson product-moment correlation coefficient",
+      "diff": true,
+      "note": "描述兩個連續變項線性關係方向與強度的統計量 r。"
+    },
+    {
+      "tw": "相關不等於因果",
+      "cn": "因果关系",
+      "en": "causation",
+      "diff": false,
+      "note": "兩變項一起變動，不代表其中一個造成另一個。"
+    },
+    {
+      "tw": "決定係數",
+      "cn": "决定系数",
+      "en": "coefficient of determination",
+      "diff": false,
+      "note": "r 的平方，一變項變異可被另一變項解釋的比例。"
+    },
+    {
+      "tw": "共變數",
+      "cn": "协方差",
+      "en": "covariance",
+      "diff": true,
+      "note": "交乘積的平均；標準化之後就是相關係數。"
+    },
+    {
+      "tw": "共享變異量",
+      "cn": "共享方差",
+      "en": "shared variance",
+      "diff": true,
+      "note": "兩個相關變項彼此重疊的那部分變異。"
+    },
+    {
+      "tw": "曲線關係",
+      "cn": "曲线",
+      "en": "curvilinear",
+      "diff": false,
+      "note": "關係在某段為正、另一段為負，r 會低估其強度。"
+    },
+    {
+      "tw": "全距限縮（截斷範圍）",
+      "cn": "截断范围",
+      "en": "truncated range",
+      "diff": true,
+      "note": "分數擠在頂端或底端，變異不足而壓低相關。"
+    },
+    {
+      "tw": "散布圖",
+      "cn": "散点图",
+      "en": "scattergram",
+      "diff": true,
+      "note": "把每人兩個變項的分數畫成一個點的圖。"
+    },
+    {
+      "tw": "斯皮爾曼等級相關",
+      "cn": "斯皮尔曼ρ系数",
+      "en": "Spearman rho coefficient",
+      "diff": false,
+      "note": "兩個次序變項之間的相關係數。"
+    }
   ],
   "terms": [
-    {"cn": "因果关系", "tw": "因果關係", "en": "causation", "diff": false},
-    {"cn": "决定系数", "tw": "決定係數", "en": "coefficient of determination", "diff": false},
-    {"cn": "连续变量", "tw": "連續變項", "en": "continuous variables", "diff": true},
-    {"cn": "相关系数", "tw": "相關係數", "en": "correlation coefficient", "diff": false},
-    {"cn": "协方差", "tw": "共變數", "en": "covariance", "diff": true},
-    {"cn": "交叉乘积", "tw": "交乘積", "en": "cross products", "diff": true},
-    {"cn": "曲线", "tw": "曲線（曲線關係）", "en": "curvilinear", "diff": false},
-    {"cn": "自由度", "tw": "自由度", "en": "degrees of freedom", "diff": false},
-    {"cn": "二分变量", "tw": "二分變項", "en": "dichotomous variable", "diff": true},
-    {"cn": "方向", "tw": "方向", "en": "direction", "diff": false},
-    {"cn": "可释方差", "tw": "可解釋變異量", "en": "explained variance", "diff": true},
-    {"cn": "负相关", "tw": "負相關", "en": "negative correlation", "diff": false},
-    {"cn": "皮尔逊积差相关系数", "tw": "皮爾森積差相關係數", "en": "Pearson product-moment correlation coefficient", "diff": true},
-    {"cn": "完全负相关", "tw": "完全負相關", "en": "perfect negative correlation", "diff": false},
-    {"cn": "完全正相关", "tw": "完全正相關", "en": "perfect positive correlation", "diff": false},
-    {"cn": "Φ系数", "tw": "phi 係數（φ 相關）", "en": "phi coefficient", "diff": false},
-    {"cn": "点二列系数", "tw": "點二系列相關係數", "en": "point-biserial coefficient", "diff": true},
-    {"cn": "正相关关系", "tw": "正相關", "en": "positive correlation", "diff": false},
-    {"cn": "散点图", "tw": "散布圖", "en": "scattergram", "diff": true},
-    {"cn": "共享方差", "tw": "共享變異量", "en": "shared variance", "diff": true},
-    {"cn": "斯皮尔曼ρ系数", "tw": "斯皮爾曼等級相關係數（ρ）", "en": "Spearman rho coefficient", "diff": false},
-    {"cn": "强度、量级", "tw": "強度、大小", "en": "strength, magnitude", "diff": true},
-    {"cn": "截断范围", "tw": "全距限縮（截斷範圍）", "en": "truncated range", "diff": true},
-    {"cn": "z分数", "tw": "z 分數", "en": "z score", "diff": false},
-    {"cn": "定距", "tw": "等距（尺度）", "en": "interval", "diff": true},
-    {"cn": "定比", "tw": "比率（尺度）", "en": "ratio", "diff": true},
-    {"cn": "定序", "tw": "次序（尺度）", "en": "ordinal", "diff": true},
-    {"cn": "上限效应", "tw": "天花板效應", "en": "ceiling effect", "diff": true}
+    {
+      "cn": "因果关系",
+      "tw": "因果關係",
+      "en": "causation",
+      "diff": false
+    },
+    {
+      "cn": "决定系数",
+      "tw": "決定係數",
+      "en": "coefficient of determination",
+      "diff": false
+    },
+    {
+      "cn": "连续变量",
+      "tw": "連續變項",
+      "en": "continuous variables",
+      "diff": true
+    },
+    {
+      "cn": "相关系数",
+      "tw": "相關係數",
+      "en": "correlation coefficient",
+      "diff": false
+    },
+    {
+      "cn": "协方差",
+      "tw": "共變數",
+      "en": "covariance",
+      "diff": true
+    },
+    {
+      "cn": "交叉乘积",
+      "tw": "交乘積",
+      "en": "cross products",
+      "diff": true
+    },
+    {
+      "cn": "曲线",
+      "tw": "曲線（曲線關係）",
+      "en": "curvilinear",
+      "diff": false
+    },
+    {
+      "cn": "自由度",
+      "tw": "自由度",
+      "en": "degrees of freedom",
+      "diff": false
+    },
+    {
+      "cn": "二分变量",
+      "tw": "二分變項",
+      "en": "dichotomous variable",
+      "diff": true
+    },
+    {
+      "cn": "方向",
+      "tw": "方向",
+      "en": "direction",
+      "diff": false
+    },
+    {
+      "cn": "可释方差",
+      "tw": "可解釋變異量",
+      "en": "explained variance",
+      "diff": true
+    },
+    {
+      "cn": "负相关",
+      "tw": "負相關",
+      "en": "negative correlation",
+      "diff": false
+    },
+    {
+      "cn": "皮尔逊积差相关系数",
+      "tw": "皮爾森積差相關係數",
+      "en": "Pearson product-moment correlation coefficient",
+      "diff": true
+    },
+    {
+      "cn": "完全负相关",
+      "tw": "完全負相關",
+      "en": "perfect negative correlation",
+      "diff": false
+    },
+    {
+      "cn": "完全正相关",
+      "tw": "完全正相關",
+      "en": "perfect positive correlation",
+      "diff": false
+    },
+    {
+      "cn": "Φ系数",
+      "tw": "phi 係數（φ 相關）",
+      "en": "phi coefficient",
+      "diff": false
+    },
+    {
+      "cn": "点二列系数",
+      "tw": "點二系列相關係數",
+      "en": "point-biserial coefficient",
+      "diff": true
+    },
+    {
+      "cn": "正相关关系",
+      "tw": "正相關",
+      "en": "positive correlation",
+      "diff": false
+    },
+    {
+      "cn": "散点图",
+      "tw": "散布圖",
+      "en": "scattergram",
+      "diff": true
+    },
+    {
+      "cn": "共享方差",
+      "tw": "共享變異量",
+      "en": "shared variance",
+      "diff": true
+    },
+    {
+      "cn": "斯皮尔曼ρ系数",
+      "tw": "斯皮爾曼等級相關係數（ρ）",
+      "en": "Spearman rho coefficient",
+      "diff": false
+    },
+    {
+      "cn": "强度、量级",
+      "tw": "強度、大小",
+      "en": "strength, magnitude",
+      "diff": true
+    },
+    {
+      "cn": "截断范围",
+      "tw": "全距限縮（截斷範圍）",
+      "en": "truncated range",
+      "diff": true
+    },
+    {
+      "cn": "z分数",
+      "tw": "z 分數",
+      "en": "z score",
+      "diff": false
+    },
+    {
+      "cn": "定距",
+      "tw": "等距（尺度）",
+      "en": "interval",
+      "diff": true
+    },
+    {
+      "cn": "定比",
+      "tw": "比率（尺度）",
+      "en": "ratio",
+      "diff": true
+    },
+    {
+      "cn": "定序",
+      "tw": "次序（尺度）",
+      "en": "ordinal",
+      "diff": true
+    },
+    {
+      "cn": "上限效应",
+      "tw": "天花板效應",
+      "en": "ceiling effect",
+      "diff": true
+    }
   ],
   "symbols": [
-    {"sym": "r", "meaning": "樣本的皮爾森相關係數"},
-    {"sym": "ρ", "meaning": "母體相關係數"},
-    {"sym": "s_r", "meaning": "相關係數的標準誤"},
-    {"sym": "r²", "meaning": "決定係數"},
-    {"sym": "df", "meaning": "自由度"},
-    {"sym": "Φ", "meaning": "phi 係數，兩個二分變項之間的相關"}
+    {
+      "sym": "r",
+      "meaning": "樣本的皮爾森相關係數"
+    },
+    {
+      "sym": "ρ",
+      "meaning": "母體相關係數"
+    },
+    {
+      "sym": "s_r",
+      "meaning": "相關係數的標準誤"
+    },
+    {
+      "sym": "r²",
+      "meaning": "決定係數"
+    },
+    {
+      "sym": "df",
+      "meaning": "自由度"
+    },
+    {
+      "sym": "Φ",
+      "meaning": "phi 係數，兩個二分變項之間的相關"
+    }
   ],
   "formulas": [
-    {"name": "皮爾森相關係數（定義式）", "expr": "r = Σ(z_x · z_y) / N", "note": "z 分數交乘積的平均；N 為配對數"},
-    {"name": "相關係數的假設", "expr": "H₀: ρ = 0 ；H₁: ρ ≠ 0", "note": "檢定 r 是否顯著異於 0"},
-    {"name": "相關係數的標準誤", "expr": "s_r = √( (1 − r²) / (N − 2) )", "note": "書中僅供了解，實算用下式"},
-    {"name": "相關係數的 t 檢定", "expr": "t = (r − ρ) / s_r = r · √( (N − 2) / (1 − r²) )，df = N − 2", "note": "虛無假設下 ρ = 0"},
-    {"name": "決定係數", "expr": "r² = r × r", "note": "共享（可解釋）變異的比例"}
+    {
+      "name": "皮爾森相關係數（定義式）",
+      "expr": "r = Σ(z_x · z_y) / N",
+      "note": "z 分數交乘積的平均；N 為配對數"
+    },
+    {
+      "name": "相關係數的假設",
+      "expr": "H₀: ρ = 0 ；H₁: ρ ≠ 0",
+      "note": "檢定 r 是否顯著異於 0"
+    },
+    {
+      "name": "相關係數的標準誤",
+      "expr": "s_r = √( (1 − r²) / (N − 2) )",
+      "note": "書中僅供了解，實算用下式"
+    },
+    {
+      "name": "相關係數的 t 檢定",
+      "expr": "t = (r − ρ) / s_r = r · √( (N − 2) / (1 − r²) )，df = N − 2",
+      "note": "虛無假設下 ρ = 0"
+    },
+    {
+      "name": "決定係數",
+      "expr": "r² = r × r",
+      "note": "共享（可解釋）變異的比例"
+    }
   ],
   "example": {
     "title": "高中生學業成績平均（GPA）與 Naglieri 非語文能力測驗的相關",
-    "takeaway": "作者從加州一所高中取得 314 名十一年級學生的累積 GPA 與 Naglieri 非語文能力測驗分數，SPSS 算得 r=0.4291、p<0.0001，為中等且顯著的正相關。平方後 r²≈0.18，即 GPA 只解釋測驗分數約 18% 的變異，超過 80% 未被解釋，因此作者認為教師評定的成績與標準化能力測驗測到的是相當不同的構念。"
+    "takeaway": "加州一所高中 314 名十一年級學生的累積 GPA 與 Naglieri 非語文能力測驗分數，r=0.4291、p<0.0001，為中等且顯著的正相關。r²≈0.18，GPA 只解釋測驗分數約 18% 的變異，逾 80% 未被解釋，故作者認為教師評分與標準化測驗測到的是不同構念。"
   },
   "pitfalls": [
     "顯著的相關不代表因果，可能有第三變項同時影響兩者（鸛鳥與嬰兒、日照與氣溫）。",
@@ -123,9 +355,18 @@
   "apa": "GPA 與 Naglieri 測驗分數呈中等強度且顯著的正相關，r = .43, p < .001；決定係數 r² = .18，表示測驗分數約 18% 的變異可由 GPA 解釋。（書中指出報告相關時很少附 t 值。）",
   "clinical": "護理人員每月夜班數與疲勞量表分數若 r=0.40，只能說夜班多的人平均較疲勞（共享 16% 變異），不能直接說夜班造成疲勞，年資、家庭照顧負荷都可能是第三變項。",
   "quiz": [
-    {"q": "兩變項的 r 接近 0，可以斷定它們沒有關係嗎？", "a": "不行。r 只衡量線性關係，若關係是先升後降的曲線，或其中一個變項的分數範圍被截斷，r 都會很小，卻不代表兩者真的無關，應先看散布圖。"},
-    {"q": "r = 0.25、N = 100 的相關達顯著，這個關係算強嗎？", "a": "不算強。r² 只有 0.0625，即約 6% 的共享變異；它顯著主要是因為樣本夠大（t=2.56、df=98）。顯著性與關係強度是兩回事。"},
-    {"q": "為什麼說相關係數是「標準化的共變數」？", "a": "共變數是兩變項離均差交乘積的平均，單位受原始量尺影響；先把兩變項轉成 z 分數再求交乘積平均，就消除了單位，結果被限制在 −1 到 +1，這就是 r。"}
+    {
+      "q": "兩變項的 r 接近 0，可以斷定它們沒有關係嗎？",
+      "a": "不行。r 只衡量線性關係，若關係是先升後降的曲線，或其中一個變項的分數範圍被截斷，r 都會很小，卻不代表兩者真的無關，應先看散布圖。"
+    },
+    {
+      "q": "r = 0.25、N = 100 的相關達顯著，這個關係算強嗎？",
+      "a": "不算強。r² 只有 0.0625，即約 6% 的共享變異；它顯著主要是因為樣本夠大（t=2.56、df=98）。顯著性與關係強度是兩回事。"
+    },
+    {
+      "q": "為什麼說相關係數是「標準化的共變數」？",
+      "a": "共變數是兩變項離均差交乘積的平均，單位受原始量尺影響；先把兩變項轉成 z 分數再求交乘積平均，就消除了單位，結果被限制在 −1 到 +1，這就是 r。"
+    }
   ],
   "slide": {
     "headline": "相關：方向、強度與限制",
@@ -135,7 +376,10 @@
       "r² 為決定係數，表示兩變項共享的變異比例",
       "相關非因果；曲線關係與截斷範圍會低估 r"
     ],
-    "stat": {"num": "r²", "label": "共享變異比例"}
+    "stat": {
+      "num": "r²",
+      "label": "共享變異比例"
+    }
   },
   "ocr_notes": [
     "表 8-1 與表 8-3 的「備考時間」欄數字在 OCR 中大多遺失（僅見考試成績 80、85、70、90、85 與 95、95、100、95、100），未納入筆記。",

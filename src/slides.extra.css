@@ -105,3 +105,6 @@
 .slide-2 .intro-card h3 { font-size: clamp(20px, 1.7vw, 26px); }
 .slide-2 .intro-card p { font-size: clamp(15px, 1.25vw, 19px); }
 .slide-9 .team-grid.g5 .team-bio { font-size: clamp(13px, 1.05vw, 16px); }
+
+/* statistical symbols are case-sensitive (t, z, r, n vs N): don't uppercase chapter text */
+.keepcase, .slide-2 .intro-card h3, .slide-2 .stat-pill, .cmp td, .slide-9 .team-role { text-transform: none; }

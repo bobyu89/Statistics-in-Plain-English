@@ -154,8 +154,8 @@ B.chapters.forEach((c, i) => {
     <div class="visual-box"><span class="big" style="font-size:${big(stat.num)}px;">${esc(stat.num)}</span><span class="cap">${esc(stat.label)}</span></div>
     <div class="visual-label">CH ${no(c.n)} · p.${esc(c.pages)}</div></div>
   <div class="split-content">
-    <div><div class="nb-label ${lbl}">${esc(p.title)} · ${esc(c.title_tw)}</div></div>
-    <h2 class="nb-heading-md">${esc(sl.headline || c.title_tw)}</h2>
+    <div><div class="nb-label keepcase ${lbl}">${esc(p.title)} · ${esc(c.title_tw)}</div></div>
+    <h2 class="nb-heading-md keepcase">${esc(sl.headline || c.title_tw)}</h2>
     <ul class="content-list">${(sl.bullets || []).slice(0, 4).map((b, j) => `<li><span class="list-num">${no(j + 1)}</span><span>${esc(b)}</span></li>`).join('')}</ul>
     <div><a class="nb-btn" href="whiteboard.html#ch${c.n}">在白板打開這一章</a></div>
   </div></section>`);
@@ -163,7 +163,7 @@ B.chapters.forEach((c, i) => {
   S.push(`<section class="slide slide-2 ${bg}">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH ${no(c.n)} · 關鍵術語</div></div>
-    <h2 class="nb-heading-lg">${esc(c.title_tw)}</h2>
+    <h2 class="nb-heading-lg keepcase">${esc(c.title_tw)}</h2>
     <p class="nb-body" style="max-width:480px;">${esc(c.one_liner)}</p>
     ${f ? `<div><span class="stat-pill">${esc(f.name)}:${esc(f.expr)}</span></div>` : ''}
     ${(c.pitfalls || [])[0] ? `<div class="warn"><b>常見誤解</b>${esc(c.pitfalls[0])}</div>` : ''}

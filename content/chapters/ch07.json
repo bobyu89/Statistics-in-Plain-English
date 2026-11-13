@@ -4,7 +4,7 @@
   "title_en": "Statistical Significance, Effect Size, and Confidence Intervals",
   "pages": "69–87",
   "one_liner": "判讀結果要三件一起看：p 值是否顯著、效應量多大、信賴區間落在哪。",
-  "summary": "本章說明如何從樣本推論母體。推論統計的核心是機率：任何統計量都有抽樣分布與標準誤，因此可算出「若虛無假設為真，隨機抽樣碰巧得到這個結果」的機率，即 p 值；p 小於事先選定的 α（慣例 0.05）就拒絕虛無假設，稱為統計顯著，但仍可能犯型一錯誤。作者接著指出顯著性檢定對樣本數極敏感：樣本大時微小差異也顯著，樣本小時大差異也不顯著。所以要另外用效應量（以標準差為單位衡量差異，不受樣本數影響）判斷實務上的重要性，並用信賴區間給出母體參數的可能範圍。三者並用，再加上研究者自己的判斷，才是完整的解讀。",
+  "summary": "本章說明如何從樣本推論母體。任何統計量都有抽樣分布與標準誤，因此能算出「虛無假設為真時，單靠抽樣碰巧得到此結果」的機率，即 p 值；p 小於事先選定的 α（慣例 0.05）就拒絕虛無假設，稱為統計顯著，但仍可能犯型一錯誤。顯著性檢定對樣本數極敏感：樣本大時微小差異也顯著，樣本小時大差異也不顯著。所以還要用效應量（以標準差為單位、不受樣本數影響）判斷實務重要性，並用信賴區間估計母體參數的可能範圍。三者並用再加上研究者的判斷，才是完整解讀。",
   "sections": [
     {
       "heading": "敘述統計與推論統計、樣本與母體",
@@ -54,61 +54,271 @@
     }
   ],
   "concepts": [
-    {"tw": "統計顯著性", "cn": "统计显著性", "en": "statistical significance", "diff": false, "note": "碰巧得到此結果的機率小於 α，於是拒絕虛無假設。"},
-    {"tw": "p 值", "cn": "p值", "en": "p value", "diff": false, "note": "虛無假設為真時，單靠抽樣誤差得到這麼大統計值的機率。"},
-    {"tw": "虛無假設", "cn": "零假设", "en": "null hypothesis", "diff": true, "note": "主張母體中沒有差異或沒有關聯的基準假設。"},
-    {"tw": "型一錯誤", "cn": "第I类错误", "en": "Type I error", "diff": true, "note": "虛無假設其實為真，卻被我們拒絕了。"},
-    {"tw": "α 水準（顯著水準）", "cn": "α水平", "en": "alpha level", "diff": true, "note": "事前決定可容忍的型一錯誤機率，慣例 0.05。"},
-    {"tw": "效應量（效果量）", "cn": "效应量", "en": "effect size", "diff": false, "note": "以標準差為單位表示效應大小，不受樣本數影響。"},
-    {"tw": "實務顯著性", "cn": "实际显著性", "en": "practical significance", "diff": true, "note": "結果在真實世界是否重要，屬主觀判斷。"},
-    {"tw": "信賴區間", "cn": "置信区间", "en": "confidence interval", "diff": true, "note": "以一定信心水準（如 95%）涵蓋母體參數的數值範圍。"},
-    {"tw": "隨機抽樣誤差", "cn": "随机抽样误差", "en": "random sampling error", "diff": false, "note": "單純因為抽到哪些人而造成樣本與母體的落差。"}
+    {
+      "tw": "統計顯著性",
+      "cn": "统计显著性",
+      "en": "statistical significance",
+      "diff": false,
+      "note": "碰巧得到此結果的機率小於 α，於是拒絕虛無假設。"
+    },
+    {
+      "tw": "p 值",
+      "cn": "p值",
+      "en": "p value",
+      "diff": false,
+      "note": "虛無假設為真時，單靠抽樣誤差得到這麼大統計值的機率。"
+    },
+    {
+      "tw": "虛無假設",
+      "cn": "零假设",
+      "en": "null hypothesis",
+      "diff": true,
+      "note": "主張母體中沒有差異或沒有關聯的基準假設。"
+    },
+    {
+      "tw": "型一錯誤",
+      "cn": "第I类错误",
+      "en": "Type I error",
+      "diff": true,
+      "note": "虛無假設其實為真，卻被我們拒絕了。"
+    },
+    {
+      "tw": "α 水準（顯著水準）",
+      "cn": "α水平",
+      "en": "alpha level",
+      "diff": true,
+      "note": "事前決定可容忍的型一錯誤機率，慣例 0.05。"
+    },
+    {
+      "tw": "效應量（效果量）",
+      "cn": "效应量",
+      "en": "effect size",
+      "diff": false,
+      "note": "以標準差為單位表示效應大小，不受樣本數影響。"
+    },
+    {
+      "tw": "實務顯著性",
+      "cn": "实际显著性",
+      "en": "practical significance",
+      "diff": true,
+      "note": "結果在真實世界是否重要，屬主觀判斷。"
+    },
+    {
+      "tw": "信賴區間",
+      "cn": "置信区间",
+      "en": "confidence interval",
+      "diff": true,
+      "note": "以一定信心水準（如 95%）涵蓋母體參數的數值範圍。"
+    },
+    {
+      "tw": "隨機抽樣誤差",
+      "cn": "随机抽样误差",
+      "en": "random sampling error",
+      "diff": false,
+      "note": "單純因為抽到哪些人而造成樣本與母體的落差。"
+    }
   ],
   "terms": [
-    {"cn": "α水平", "tw": "α 水準（顯著水準）", "en": "alpha level", "diff": true},
-    {"cn": "替代假设", "tw": "對立假設", "en": "alternative hypothesis", "diff": true},
-    {"cn": "置信区间", "tw": "信賴區間", "en": "confidence interval", "diff": true},
-    {"cn": "描述统计量", "tw": "敘述統計（描述統計）", "en": "descriptive statistics", "diff": true},
-    {"cn": "效应量", "tw": "效應量（效果量）", "en": "effect size", "diff": false},
-    {"cn": "推断统计量", "tw": "推論統計", "en": "inferential statistics", "diff": true},
-    {"cn": "零假设", "tw": "虛無假設", "en": "null hypothesis", "diff": true},
-    {"cn": "单尾", "tw": "單尾", "en": "one-tailed", "diff": false},
-    {"cn": "总体", "tw": "母體", "en": "population", "diff": true},
-    {"cn": "实际显著性", "tw": "實務顯著性（實質顯著性）", "en": "practical significance", "diff": true},
-    {"cn": "p值", "tw": "p 值", "en": "p value", "diff": false},
-    {"cn": "随机机会", "tw": "隨機機遇（機率巧合）", "en": "random chance", "diff": true},
-    {"cn": "随机抽样误差", "tw": "隨機抽樣誤差", "en": "random sampling error", "diff": false},
-    {"cn": "样本", "tw": "樣本", "en": "sample", "diff": false},
-    {"cn": "统计显著性", "tw": "統計顯著性", "en": "statistical significance", "diff": false},
-    {"cn": "双尾", "tw": "雙尾", "en": "two-tailed", "diff": false},
-    {"cn": "第I类错误", "tw": "型一錯誤（第一類型錯誤）", "en": "Type I error", "diff": true},
-    {"cn": "参数", "tw": "母數（參數）", "en": "parameter", "diff": true},
-    {"cn": "均值的标准误", "tw": "平均數的標準誤", "en": "standard error of the mean", "diff": true},
-    {"cn": "样本容量", "tw": "樣本數（樣本大小）", "en": "sample size", "diff": true},
-    {"cn": "单样本t检验", "tw": "單一樣本 t 檢定", "en": "one-sample t test", "diff": true}
+    {
+      "cn": "α水平",
+      "tw": "α 水準（顯著水準）",
+      "en": "alpha level",
+      "diff": true
+    },
+    {
+      "cn": "替代假设",
+      "tw": "對立假設",
+      "en": "alternative hypothesis",
+      "diff": true
+    },
+    {
+      "cn": "置信区间",
+      "tw": "信賴區間",
+      "en": "confidence interval",
+      "diff": true
+    },
+    {
+      "cn": "描述统计量",
+      "tw": "敘述統計（描述統計）",
+      "en": "descriptive statistics",
+      "diff": true
+    },
+    {
+      "cn": "效应量",
+      "tw": "效應量（效果量）",
+      "en": "effect size",
+      "diff": false
+    },
+    {
+      "cn": "推断统计量",
+      "tw": "推論統計",
+      "en": "inferential statistics",
+      "diff": true
+    },
+    {
+      "cn": "零假设",
+      "tw": "虛無假設",
+      "en": "null hypothesis",
+      "diff": true
+    },
+    {
+      "cn": "单尾",
+      "tw": "單尾",
+      "en": "one-tailed",
+      "diff": false
+    },
+    {
+      "cn": "总体",
+      "tw": "母體",
+      "en": "population",
+      "diff": true
+    },
+    {
+      "cn": "实际显著性",
+      "tw": "實務顯著性（實質顯著性）",
+      "en": "practical significance",
+      "diff": true
+    },
+    {
+      "cn": "p值",
+      "tw": "p 值",
+      "en": "p value",
+      "diff": false
+    },
+    {
+      "cn": "随机机会",
+      "tw": "隨機機遇（機率巧合）",
+      "en": "random chance",
+      "diff": true
+    },
+    {
+      "cn": "随机抽样误差",
+      "tw": "隨機抽樣誤差",
+      "en": "random sampling error",
+      "diff": false
+    },
+    {
+      "cn": "样本",
+      "tw": "樣本",
+      "en": "sample",
+      "diff": false
+    },
+    {
+      "cn": "统计显著性",
+      "tw": "統計顯著性",
+      "en": "statistical significance",
+      "diff": false
+    },
+    {
+      "cn": "双尾",
+      "tw": "雙尾",
+      "en": "two-tailed",
+      "diff": false
+    },
+    {
+      "cn": "第I类错误",
+      "tw": "型一錯誤（第一類型錯誤）",
+      "en": "Type I error",
+      "diff": true
+    },
+    {
+      "cn": "参数",
+      "tw": "母數（參數）",
+      "en": "parameter",
+      "diff": true
+    },
+    {
+      "cn": "均值的标准误",
+      "tw": "平均數的標準誤",
+      "en": "standard error of the mean",
+      "diff": true
+    },
+    {
+      "cn": "样本容量",
+      "tw": "樣本數（樣本大小）",
+      "en": "sample size",
+      "diff": true
+    },
+    {
+      "cn": "单样本t检验",
+      "tw": "單一樣本 t 檢定",
+      "en": "one-sample t test",
+      "diff": true
+    }
   ],
   "symbols": [
-    {"sym": "p", "meaning": "p 值，機率"},
-    {"sym": "α", "meaning": "α 水準（顯著水準）"},
-    {"sym": "d", "meaning": "效應量的一種測度"},
-    {"sym": "S", "meaning": "計算效應量時所用的標準差"},
-    {"sym": "∞", "meaning": "無限大（自由度大於 120 時查表用的列）"},
-    {"sym": "s_x̄", "meaning": "用樣本標準差算出的標準誤"},
-    {"sym": "σ_x̄", "meaning": "用母體標準差算出的標準誤"},
-    {"sym": "H₀", "meaning": "虛無假設"},
-    {"sym": "H_A 或 H₁", "meaning": "對立假設"}
+    {
+      "sym": "p",
+      "meaning": "p 值，機率"
+    },
+    {
+      "sym": "α",
+      "meaning": "α 水準（顯著水準）"
+    },
+    {
+      "sym": "d",
+      "meaning": "效應量的一種測度"
+    },
+    {
+      "sym": "S",
+      "meaning": "計算效應量時所用的標準差"
+    },
+    {
+      "sym": "∞",
+      "meaning": "無限大（自由度大於 120 時查表用的列）"
+    },
+    {
+      "sym": "s_x̄",
+      "meaning": "用樣本標準差算出的標準誤"
+    },
+    {
+      "sym": "σ_x̄",
+      "meaning": "用母體標準差算出的標準誤"
+    },
+    {
+      "sym": "H₀",
+      "meaning": "虛無假設"
+    },
+    {
+      "sym": "H_A 或 H₁",
+      "meaning": "對立假設"
+    }
   ],
   "formulas": [
-    {"name": "平均數的標準誤", "expr": "s_x̄ = s / √n", "note": "樣本越大，標準誤越小"},
-    {"name": "單一樣本 t 值", "expr": "t = (X̄ − μ) / s_x̄", "note": "差異以標準誤為單位"},
-    {"name": "效應量 d", "expr": "d = (X̄ − μ) / S，其中 S = s_x̄ × √n", "note": "差異以標準差為單位，與 n 無關"},
-    {"name": "95% 信賴區間", "expr": "CI₉₅ = X̄ ± (t₉₅)(s_x̄)", "note": "t₉₅ 為雙尾 α=0.05 的臨界 t 值"},
-    {"name": "99% 信賴區間", "expr": "CI₉₉ = X̄ ± (t₉₉)(s_x̄)", "note": "t₉₉ 為雙尾 α=0.01 的臨界 t 值"},
-    {"name": "雙尾假設", "expr": "H₀: μ = X̄ ；H_A: μ ≠ X̄", "note": "單尾時對立假設寫成 μ < X̄ 之類的方向式"}
+    {
+      "name": "平均數的標準誤",
+      "expr": "s_x̄ = s / √n",
+      "note": "樣本越大，標準誤越小"
+    },
+    {
+      "name": "單一樣本 t 值",
+      "expr": "t = (X̄ − μ) / s_x̄",
+      "note": "差異以標準誤為單位"
+    },
+    {
+      "name": "效應量 d",
+      "expr": "d = (X̄ − μ) / S，其中 S = s_x̄ × √n",
+      "note": "差異以標準差為單位，與 n 無關"
+    },
+    {
+      "name": "95% 信賴區間",
+      "expr": "CI₉₅ = X̄ ± (t₉₅)(s_x̄)",
+      "note": "t₉₅ 為雙尾 α=0.05 的臨界 t 值"
+    },
+    {
+      "name": "99% 信賴區間",
+      "expr": "CI₉₉ = X̄ ± (t₉₉)(s_x̄)",
+      "note": "t₉₉ 為雙尾 α=0.01 的臨界 t 值"
+    },
+    {
+      "name": "雙尾假設",
+      "expr": "H₀: μ = X̄ ；H_A: μ ≠ X̄",
+      "note": "單尾時對立假設寫成 μ < X̄ 之類的方向式"
+    }
   ],
   "example": {
     "title": "加州高中生「表現目標」動機量表的單一樣本 t 檢定",
-    "takeaway": "作者以 5 題、1–5 分的表現目標量表調查加州高中生，樣本平均 3.04、標準差 0.98、標準誤 0.044，與假定的全美母體平均 3.00 比較。t(489)=1.012、p=0.312，不顯著；95% 信賴區間 2.958–3.132 涵蓋 3.00；效應量 d≈0.05。三項指標一致：加州學生與全美學生在表現目標上沒有實質差別。"
+    "takeaway": "以 5 題、1–5 分的表現目標量表調查加州高中生，樣本平均 3.04、標準差 0.98，與假定的全美平均 3.00 比較。t(489)=1.012、p=0.312，不顯著；95% 信賴區間 2.958–3.132 涵蓋 3.00；效應量 d≈0.05。三項指標一致：加州學生與全美學生沒有實質差別。"
   },
   "pitfalls": [
     "統計顯著不等於實務上重要：樣本很大時，IQ 差 1 分也會顯著。",
@@ -119,9 +329,18 @@
   "apa": "加州高中生在表現目標量表的平均分數（M = 3.04, SD = 0.98）與全美假定平均 3.00 無顯著差異，t(489) = 1.01, p = .31, d = 0.05, 95% CI [2.96, 3.13]。",
   "clinical": "比較新舊敷料的傷口癒合天數時，若收案數千人，差 0.2 天也可能 p<0.05；此時要看效應量與信賴區間，判斷這點差距是否值得改變病房常規與成本。",
   "quiz": [
-    {"q": "兩個研究的平均差與標準差完全相同，為什麼一個顯著、一個不顯著？", "a": "因為樣本數不同。標準誤等於標準差除以樣本數的平方根，樣本大則標準誤小、t 值大、p 值小；效應量 d 不含樣本數，所以兩者 d 相同。"},
-    {"q": "95% 信賴區間不包含虛無假設所設定的母體值，代表什麼？", "a": "代表在 α=0.05 的雙尾檢定下結果達統計顯著，樣本很可能不是來自該假定母體；鞋碼例子的區間 9.88–10.12 不含 9 就是如此。"},
-    {"q": "把 α 從 0.05 改成 0.01 有什麼意義與代價？", "a": "代表願意承擔的型一錯誤機率由 5% 降到 1%，判定更保守；代價是需要更小的 p 值才能拒絕虛無假設，對應的信賴區間也會變寬。"}
+    {
+      "q": "兩個研究的平均差與標準差完全相同，為什麼一個顯著、一個不顯著？",
+      "a": "因為樣本數不同。標準誤等於標準差除以樣本數的平方根，樣本大則標準誤小、t 值大、p 值小；效應量 d 不含樣本數，所以兩者 d 相同。"
+    },
+    {
+      "q": "95% 信賴區間不包含虛無假設所設定的母體值，代表什麼？",
+      "a": "代表在 α=0.05 的雙尾檢定下結果達統計顯著，樣本很可能不是來自該假定母體；鞋碼例子的區間 9.88–10.12 不含 9 就是如此。"
+    },
+    {
+      "q": "把 α 從 0.05 改成 0.01 有什麼意義與代價？",
+      "a": "代表願意承擔的型一錯誤機率由 5% 降到 1%，判定更保守；代價是需要更小的 p 值才能拒絕虛無假設，對應的信賴區間也會變寬。"
+    }
   ],
   "slide": {
     "headline": "顯著性、效應量、信賴區間",
@@ -131,7 +350,10 @@
       "效應量 d 以標準差為單位，不被樣本數放大",
       "信賴區間給出母體參數的範圍，三者要一起解讀"
     ],
-    "stat": {"num": "p < .05", "label": "慣用顯著門檻"}
+    "stat": {
+      "num": "p < .05",
+      "label": "慣用顯著門檻"
+    }
   },
   "ocr_notes": [
     "實例的樣本數：內文 OCR 作 483 名學生，SPSS 表與後續計算作 n=490（df=489），需對原書確認。",
