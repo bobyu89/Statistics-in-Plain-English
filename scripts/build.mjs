@@ -79,6 +79,11 @@ S.push(`<section class="slide slide-1 active">
     <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">Timothy C. Urdan</div>
   </div></section>`);
 
+const PCOL = { A: 'var(--blue)', B: 'var(--pink)', C: 'var(--yellow)', D: 'var(--green)', E: 'var(--cream)' };
+S.push(`<section class="slide slide-9 slide-toc">
+  <div class="slide-header"><div class="nb-label nb-label-yellow">目錄</div><h2 class="nb-heading-lg" style="margin-top:16px;">${B.chapters.length} 章,點一下就跳過去</h2></div>
+  <div class="team-grid g5">${B.chapters.map(c => `<a class="team-card" href="#ch${c.n}"><div class="team-avatar" style="background:${PCOL[partOf(c.n).id]};">${no(c.n)}</div><div class="team-name">${esc(c.title_tw)}</div><div class="team-role keepcase">${esc(partOf(c.n).title)}</div></a>`).join('')}</div></section>`);
+
 if (B.front) S.push(`<section class="slide slide-2">
   <div class="col-left">
     <div class="nb-label nb-label-yellow">這本書怎麼讀</div>
@@ -139,10 +144,19 @@ S.push(`<section class="slide slide-7">
   </div></div></div></section>`);
 }
 
-// chapters: two slides each
+// chapters: four slides each (opener, figure, analogy + terms, table)
 B.chapters.forEach((c, i) => {
   const p = partOf(c.n), sl = c.slide || {}, bg = BG[i % BG.length], lbl = LBL[B.parts.indexOf(p) % LBL.length];
   const stat = sl.stat || { num: 'CH ' + no(c.n), label: c.title_tw };
+  S.push(`<section class="slide slide-1 slide-open" data-ch="${c.n}" style="background:${PCOL[p.id]};">
+  <div class="deco-dots"></div>
+  <div class="hero-frame">${brackets}
+    <div class="nb-label hero-label keepcase">第 ${c.n} 章 · ${esc(p.title)}</div>
+    <h1 class="nb-heading-lg hero-title keepcase">${esc(c.title_tw)}</h1>
+    <p class="hero-subtitle">${esc(c.one_liner)}</p>
+    <div class="open-no">${no(c.n)}</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.${esc(c.pages)}</div>
+  </div></section>`);
   S.push(`<section class="slide slide-6" data-ch="${c.n}">
   <div class="split-visual"><div class="ch-no">${no(c.n)}</div>
     <div class="visual-box figure">${FIGS.svg(c.n)}</div>
@@ -155,7 +169,7 @@ B.chapters.forEach((c, i) => {
     <div><a class="nb-btn" href="whiteboard.html#ch${c.n}">在白板打開這一章</a></div>
   </div></section>`);
   const f = (c.formulas || [])[0];
-  S.push(`<section class="slide slide-2 ${bg}">
+  S.push(`<section class="slide slide-2 ${bg}" data-ch="${c.n}">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH ${no(c.n)} · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">${esc(c.title_tw)}</h2>
@@ -165,6 +179,13 @@ B.chapters.forEach((c, i) => {
   </div>
   <div class="col-right">${(c.concepts || []).slice(0, 3).map(k => `<div class="intro-card"><h3>${esc(k.tw)}<small>${esc(k.en)}</small></h3><p>${esc(k.note)}</p></div>`).join('')}</div>
 </section>`);
+  const tb = c.brief && c.brief.table;
+  if (tb) S.push(`<section class="slide slide-cmp" data-ch="${c.n}">
+  <div class="slide-header"><div class="nb-label ${lbl} keepcase">CH ${no(c.n)} · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">${esc(tb.caption)}</h2></div>
+  <table class="cmp gen"><thead><tr>${tb.head.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>
+  ${tb.rows.map(r => `<tr>${r.map((x, k) => k ? `<td>${esc(x)}</td>` : `<th>${esc(x)}</th>`).join('')}</tr>`).join('')}
+  </tbody></table>
+  <div class="take-row">${c.brief.takeaways.map((t, k) => `<div class="take"><span class="list-num">${no(k + 1)}</span><span>${esc(t)}</span></div>`).join('')}</div></section>`);
 });
 
 S.push(`<section class="slide slide-9">
@@ -200,6 +221,11 @@ ${css}
 
   <div class="slide-counter" id="slideCounter">01 / ${no(S.length)}</div>
   <a class="nb-label home-link" href="index.html">← 學習計畫</a>
+  <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
+  <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
+    <a href="#1">封面與版本比對</a>
+${B.parts.map(p => `    <div class="ch-part" style="background:${PCOL[p.id]};">${esc(p.title)}</div>\n` + p.chapters.map(n => B.chapters.find(c => c.n === n)).filter(Boolean).map(c => `    <a href="#ch${c.n}"><b>${no(c.n)}</b>${esc(c.title_tw)}</a>`).join('\n')).join('\n')}
+  </nav>
 
   <div class="nav-controls">
     <button class="nav-btn" onclick="prevSlide()" aria-label="上一頁">&#8592;</button>

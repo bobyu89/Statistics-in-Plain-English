@@ -1185,12 +1185,72 @@
 .slide-6 .fig-cap { margin-top: 44px; max-width: 560px; color: var(--white); font-size: clamp(14px, 1.15vw, 18px); line-height: 1.5; font-weight: 500; text-align: center; position: relative; z-index: 1; }
 .slide-2 .warn { font-size: clamp(14px, 1.1vw, 17px); }
 
+/* ---- chapter structure: TOC, chapter opener, table slide, chapter menu ---- */
+.slide-toc a.team-card { text-decoration: none; color: var(--black); transition: all .15s ease; }
+.slide-toc a.team-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--black); }
+.slide-toc .team-grid.g5 { gap: 12px; }
+.slide-toc .team-grid.g5 .team-card { padding: 12px 14px; gap: 6px; flex-direction: row; flex-wrap: wrap; align-items: center; }
+.slide-toc .team-grid.g5 .team-avatar { width: 40px; height: 40px; font-size: 16px; flex: none; }
+.slide-toc .team-grid.g5 .team-name { font-size: clamp(14px, 1.15vw, 18px); flex: 1; min-width: 0; line-height: 1.25; }
+.slide-toc .team-role { font-size: 12px; width: 100%; }
+.slide-open .hero-frame { max-width: 1000px; }
+.slide-open .hero-title { margin-bottom: 24px; max-width: 78%; }
+.slide-open .hero-subtitle { max-width: 620px; font-size: clamp(16px, 1.4vw, 21px); line-height: 1.55; }
+.slide-open .open-no { position: absolute; right: 48px; bottom: 28px; font-family: 'Inter', sans-serif; font-weight: 900; font-size: clamp(90px, 11vw, 170px); line-height: 1; opacity: .12; }
+.cmp.gen thead th { background: var(--yellow); }
+.cmp.gen thead th:nth-child(2), .cmp.gen thead th:nth-child(3), .cmp.gen thead th:nth-child(4) { background: var(--yellow); }
+.cmp.gen td, .cmp.gen th { font-size: clamp(14px, 1.2vw, 18px); }
+.take-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+.take-row .take { display: flex; gap: 12px; align-items: center; border: 3px solid var(--black); background: var(--white); padding: 10px 14px; box-shadow: var(--shadow-sm); font-size: clamp(13px, 1.05vw, 16px); line-height: 1.4; font-weight: 500; }
+.take-row .list-num { flex: none; width: 32px; height: 32px; border: 3px solid var(--black); background: var(--yellow); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', monospace; font-weight: 700; font-size: 13px; }
+.ch-btn { position: fixed; top: 20px; right: 150px; z-index: 1001; cursor: pointer; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; background: var(--yellow); }
+.ch-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--black); }
+.ch-menu { position: fixed; top: 64px; right: 24px; z-index: 1001; width: min(340px, calc(100vw - 48px)); max-height: calc(100vh - 150px); overflow-y: auto; border: var(--border); background: var(--white); box-shadow: var(--shadow); padding: 8px; }
+.ch-menu[hidden] { display: none; }
+.ch-menu a { display: flex; gap: 10px; align-items: baseline; padding: 7px 10px; text-decoration: none; color: var(--black); font-size: 15px; font-weight: 500; line-height: 1.35; }
+.ch-menu a:hover, .ch-menu a.on { background: var(--offwhite); outline: 3px solid var(--black); }
+.ch-menu a b { font-family: 'Space Grotesk', monospace; font-weight: 700; font-size: 13px; }
+.ch-menu .ch-part { font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; padding: 4px 10px; margin-top: 8px; border: 3px solid var(--black); }
+@media (max-width: 1024px) { .take-row { grid-template-columns: 1fr; } }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-toc .team-grid.g5 .team-card { padding: 9px 12px; }
+  .slide-cmp .slide-header { margin-bottom: 18px; }
+  .take-row { margin-top: 16px; }
+}
+.slide-open .deco-green-circle { display: none; }
+.cmp.gen td, .cmp.gen th { font-size: clamp(15px, 1.35vw, 20px); padding: 12px 16px; }
+.take-row .take { font-size: clamp(14px, 1.15vw, 17px); }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 40</div>
+  <div class="slide-counter" id="slideCounter">01 / 71</div>
   <a class="nb-label home-link" href="index.html">← 學習計畫</a>
+  <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
+  <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
+    <a href="#1">封面與版本比對</a>
+    <div class="ch-part" style="background:var(--blue);">描述資料</div>
+    <a href="#ch1"><b>01</b>引介社會科學研究的原則與術語</a>
+    <a href="#ch2"><b>02</b>集中趨勢之測量</a>
+    <a href="#ch3"><b>03</b>變異性之測量</a>
+    <div class="ch-part" style="background:var(--pink);">推論的地基</div>
+    <a href="#ch4"><b>04</b>常態分布</a>
+    <a href="#ch5"><b>05</b>標準化與 z 分數</a>
+    <a href="#ch6"><b>06</b>標準誤</a>
+    <a href="#ch7"><b>07</b>統計顯著性、效應量與信賴區間</a>
+    <div class="ch-part" style="background:var(--yellow);">關係與預測</div>
+    <a href="#ch8"><b>08</b>相關</a>
+    <a href="#ch13"><b>13</b>迴歸</a>
+    <div class="ch-part" style="background:var(--green);">比較平均數</div>
+    <a href="#ch9"><b>09</b>t 檢定</a>
+    <a href="#ch10"><b>10</b>單因子變異數分析</a>
+    <a href="#ch11"><b>11</b>多因子變異數分析</a>
+    <a href="#ch12"><b>12</b>重複測量變異數分析</a>
+    <div class="ch-part" style="background:var(--cream);">類別與量表</div>
+    <a href="#ch14"><b>14</b>卡方獨立性檢定</a>
+    <a href="#ch15"><b>15</b>資料化約的技術──因素分析與信度分析</a>
+  </nav>
 
   <div class="nav-controls">
     <button class="nav-btn" onclick="prevSlide()" aria-label="上一頁">&#8592;</button>
@@ -1207,6 +1267,10 @@
     <p class="hero-subtitle">Statistics in Plain English — 把第 3 版逐章讀完,整理成有圖、有比喻的重點筆記,並對照台灣雙葉版的版本差異。</p>
     <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">Timothy C. Urdan</div>
   </div></section>
+
+<section class="slide slide-9 slide-toc">
+  <div class="slide-header"><div class="nb-label nb-label-yellow">目錄</div><h2 class="nb-heading-lg" style="margin-top:16px;">15 章,點一下就跳過去</h2></div>
+  <div class="team-grid g5"><a class="team-card" href="#ch1"><div class="team-avatar" style="background:var(--blue);">01</div><div class="team-name">引介社會科學研究的原則與術語</div><div class="team-role keepcase">描述資料</div></a><a class="team-card" href="#ch2"><div class="team-avatar" style="background:var(--blue);">02</div><div class="team-name">集中趨勢之測量</div><div class="team-role keepcase">描述資料</div></a><a class="team-card" href="#ch3"><div class="team-avatar" style="background:var(--blue);">03</div><div class="team-name">變異性之測量</div><div class="team-role keepcase">描述資料</div></a><a class="team-card" href="#ch4"><div class="team-avatar" style="background:var(--pink);">04</div><div class="team-name">常態分布</div><div class="team-role keepcase">推論的地基</div></a><a class="team-card" href="#ch5"><div class="team-avatar" style="background:var(--pink);">05</div><div class="team-name">標準化與 z 分數</div><div class="team-role keepcase">推論的地基</div></a><a class="team-card" href="#ch6"><div class="team-avatar" style="background:var(--pink);">06</div><div class="team-name">標準誤</div><div class="team-role keepcase">推論的地基</div></a><a class="team-card" href="#ch7"><div class="team-avatar" style="background:var(--pink);">07</div><div class="team-name">統計顯著性、效應量與信賴區間</div><div class="team-role keepcase">推論的地基</div></a><a class="team-card" href="#ch8"><div class="team-avatar" style="background:var(--yellow);">08</div><div class="team-name">相關</div><div class="team-role keepcase">關係與預測</div></a><a class="team-card" href="#ch9"><div class="team-avatar" style="background:var(--green);">09</div><div class="team-name">t 檢定</div><div class="team-role keepcase">比較平均數</div></a><a class="team-card" href="#ch10"><div class="team-avatar" style="background:var(--green);">10</div><div class="team-name">單因子變異數分析</div><div class="team-role keepcase">比較平均數</div></a><a class="team-card" href="#ch11"><div class="team-avatar" style="background:var(--green);">11</div><div class="team-name">多因子變異數分析</div><div class="team-role keepcase">比較平均數</div></a><a class="team-card" href="#ch12"><div class="team-avatar" style="background:var(--green);">12</div><div class="team-name">重複測量變異數分析</div><div class="team-role keepcase">比較平均數</div></a><a class="team-card" href="#ch13"><div class="team-avatar" style="background:var(--yellow);">13</div><div class="team-name">迴歸</div><div class="team-role keepcase">關係與預測</div></a><a class="team-card" href="#ch14"><div class="team-avatar" style="background:var(--cream);">14</div><div class="team-name">卡方獨立性檢定</div><div class="team-role keepcase">類別與量表</div></a><a class="team-card" href="#ch15"><div class="team-avatar" style="background:var(--cream);">15</div><div class="team-name">資料化約的技術──因素分析與信度分析</div><div class="team-role keepcase">類別與量表</div></a></div></section>
 
 <section class="slide slide-2">
   <div class="col-left">
@@ -1261,6 +1325,16 @@
     <div class="data-box"><span class="data-num">CH 02</span><span class="data-label">最短 · 8 頁</span></div>
   </div></div></div></section>
 
+<section class="slide slide-1 slide-open" data-ch="1" style="background:var(--blue);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 1 章 · 描述資料</div>
+    <h1 class="nb-heading-lg hero-title keepcase">引介社會科學研究的原則與術語</h1>
+    <p class="hero-subtitle">先弄清母體與樣本、抽樣、變項尺度與研究設計,才談得上任何統計。</p>
+    <div class="open-no">01</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.1–14</div>
+  </div></section>
+
 <section class="slide slide-6" data-ch="1">
   <div class="split-visual"><div class="ch-no">01</div>
     <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="母體與樣本" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><ellipse cx="130" cy="118" rx="110" ry="86" fill="#bfe6ff" stroke="#111" stroke-width="1.6"/><circle cx="136" cy="187" r="3" fill="#111" opacity=".35"/><circle cx="60" cy="73" r="3" fill="#111" opacity=".35"/><circle cx="214" cy="138" r="3" fill="#111" opacity=".35"/><circle cx="116" cy="131" r="3" fill="#111" opacity=".35"/><circle cx="216" cy="148" r="3" fill="#111" opacity=".35"/><circle cx="198" cy="109" r="3" fill="#111" opacity=".35"/><circle cx="63" cy="134" r="3" fill="#111" opacity=".35"/><circle cx="64" cy="79" r="3" fill="#111" opacity=".35"/><circle cx="141" cy="72" r="3" fill="#111" opacity=".35"/><circle cx="43" cy="129" r="3" fill="#111" opacity=".35"/><circle cx="87" cy="156" r="3" fill="#111" opacity=".35"/><circle cx="199" cy="152" r="3" fill="#111" opacity=".35"/><circle cx="159" cy="81" r="3" fill="#111" opacity=".35"/><circle cx="171" cy="182" r="3" fill="#111" opacity=".35"/><circle cx="176" cy="152" r="3" fill="#111" opacity=".35"/><circle cx="100" cy="124" r="3" fill="#111" opacity=".35"/><circle cx="186" cy="155" r="3" fill="#111" opacity=".35"/><circle cx="134" cy="97" r="3" fill="#111" opacity=".35"/><circle cx="58" cy="75" r="3" fill="#111" opacity=".35"/><circle cx="123" cy="173" r="3" fill="#111" opacity=".35"/><circle cx="98" cy="150" r="3" fill="#111" opacity=".35"/><circle cx="50" cy="113" r="3" fill="#111" opacity=".35"/><circle cx="116" cy="145" r="3" fill="#111" opacity=".35"/><circle cx="183" cy="78" r="3" fill="#111" opacity=".35"/><circle cx="61" cy="167" r="3" fill="#111" opacity=".35"/><circle cx="90" cy="121" r="3" fill="#111" opacity=".35"/><circle cx="128" cy="187" r="3" fill="#111" opacity=".35"/><circle cx="73" cy="91" r="3" fill="#111" opacity=".35"/><circle cx="158" cy="160" r="3" fill="#111" opacity=".35"/><circle cx="132" cy="121" r="3" fill="#111" opacity=".35"/><circle cx="100" cy="59" r="3" fill="#111" opacity=".35"/><circle cx="173" cy="160" r="3" fill="#111" opacity=".35"/><circle cx="125" cy="50" r="3" fill="#111" opacity=".35"/><circle cx="88" cy="151" r="3" fill="#111" opacity=".35"/><circle cx="74" cy="68" r="3" fill="#111" opacity=".35"/><circle cx="64" cy="117" r="3" fill="#111" opacity=".35"/><circle cx="151" cy="49" r="3" fill="#111" opacity=".35"/><circle cx="90" cy="178" r="3" fill="#111" opacity=".35"/><circle cx="143" cy="155" r="3" fill="#111" opacity=".35"/><circle cx="206" cy="99" r="3" fill="#111" opacity=".35"/><circle cx="136" cy="134" r="3" fill="#111" opacity=".35"/><circle cx="107" cy="181" r="3" fill="#111" opacity=".35"/><circle cx="133" cy="85" r="3" fill="#111" opacity=".35"/><circle cx="48" cy="114" r="3" fill="#111" opacity=".35"/><circle cx="83" cy="139" r="3" fill="#111" opacity=".35"/><circle cx="104" cy="144" r="3" fill="#111" opacity=".35"/><circle cx="160" cy="94" r="3" fill="#111" opacity=".35"/><circle cx="96" cy="64" r="3" fill="#111" opacity=".35"/><circle cx="84" cy="132" r="3" fill="#111" opacity=".35"/><circle cx="75" cy="112" r="3" fill="#111" opacity=".35"/><circle cx="178" cy="144" r="3" fill="#111" opacity=".35"/><circle cx="50" cy="131" r="3" fill="#111" opacity=".35"/><circle cx="184" cy="70" r="3" fill="#111" opacity=".35"/><circle cx="139" cy="177" r="3" fill="#111" opacity=".35"/><circle cx="107" cy="108" r="3" fill="#111" opacity=".35"/><circle cx="126" cy="53" r="3" fill="#111" opacity=".35"/><circle cx="49" cy="92" r="3" fill="#111" opacity=".35"/><circle cx="207" cy="140" r="3" fill="#111" opacity=".35"/><circle cx="43" cy="146" r="3" fill="#111" opacity=".35"/><circle cx="166" cy="101" r="3" fill="#111" opacity=".35"/><circle cx="113" cy="183" r="3" fill="#111" opacity=".35"/><circle cx="166" cy="52" r="3" fill="#111" opacity=".35"/><circle cx="146" cy="114" r="3" fill="#111" opacity=".35"/><circle cx="165" cy="95" r="3" fill="#111" opacity=".35"/><circle cx="176" cy="114" r="3" fill="#111" opacity=".35"/><circle cx="207" cy="88" r="3" fill="#111" opacity=".35"/><circle cx="87" cy="75" r="3" fill="#111" opacity=".35"/><circle cx="102" cy="140" r="3" fill="#111" opacity=".35"/><circle cx="139" cy="119" r="3" fill="#111" opacity=".35"/><circle cx="185" cy="165" r="3" fill="#111" opacity=".35"/>
@@ -1277,7 +1351,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch1">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-blue">
+<section class="slide slide-2 bg-blue" data-ch="1">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 01 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">引介社會科學研究的原則與術語</h2>
@@ -1287,6 +1361,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>母體與樣本<small>population and sample</small></h3><p>母體是關心對象的全體,樣本是其中被實際觀察的子集。</p></div><div class="intro-card"><h3>母數與統計量<small>parameter and statistic</small></h3><p>母數描述母體,統計量由樣本算出並用來估計母數。</p></div><div class="intro-card"><h3>概化(類推)<small>generalize / generalizability</small></h3><p>把樣本結果推到母體的能力,取決於樣本像不像母體。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="1">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 01 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">四種測量尺度</h2></div>
+  <table class="cmp gen"><thead><tr><th>尺度</th><th>特性</th><th>例子</th><th>適合的集中趨勢</th></tr></thead><tbody>
+  <tr><th>名義</th><td>只分類別,沒有大小</td><td>血型、性別</td><td>眾數</td></tr><tr><th>次序</th><td>有順序,間距不一定相等</td><td>疼痛分級、名次</td><td>中位數</td></tr><tr><th>等距</th><td>間距相等,沒有絕對零點</td><td>攝氏溫度</td><td>平均數</td></tr><tr><th>比率</th><td>有絕對零點,可以說「幾倍」</td><td>體重、收入</td><td>平均數</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>母體的數值叫母數,樣本的數值叫統計量</span></div><div class="take"><span class="list-num">02</span><span>變項的測量尺度決定能用哪種統計</span></div><div class="take"><span class="list-num">03</span><span>只有隨機分派的實驗才能談因果</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="2" style="background:var(--blue);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 2 章 · 描述資料</div>
+    <h1 class="nb-heading-lg hero-title keepcase">集中趨勢之測量</h1>
+    <p class="hero-subtitle">平均數、中位數、眾數各說一件事;偏態或有離群值時三者會分家。</p>
+    <div class="open-no">02</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.15–22</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="2">
   <div class="split-visual"><div class="ch-no">02</div>
@@ -1302,7 +1393,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch2">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-cream">
+<section class="slide slide-2 bg-cream" data-ch="2">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 02 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">集中趨勢之測量</h2>
@@ -1312,6 +1403,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>平均數<small>mean</small></h3><p>所有取值的算術平均;最常用,但會被極端值拉動。</p></div><div class="intro-card"><h3>中位數<small>median</small></h3><p>排序後正中間的值(第 50 百分位),不受離群值影響。</p></div><div class="intro-card"><h3>眾數<small>mode</small></h3><p>出現次數最多的取值;資訊最少。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">三種集中趨勢比一比</h2></div>
+  <table class="cmp gen"><thead><tr><th>指標</th><th>怎麼算</th><th>優點</th><th>弱點</th></tr></thead><tbody>
+  <tr><th>平均數</th><td>總和 ÷ 個數</td><td>用到全部資料</td><td>容易被極端值拉走</td></tr><tr><th>中位數</th><td>排序後正中間的值</td><td>不怕極端值</td><td>沒用到每個數值的大小</td></tr><tr><th>眾數</th><td>出現最多次的值</td><td>類別資料也能用</td><td>可能不只一個</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>平均數用到每一個數值,但怕極端值</span></div><div class="take"><span class="list-num">02</span><span>中位數是排序後正中間的那一位</span></div><div class="take"><span class="list-num">03</span><span>分布偏斜時三者分家,平均數被長尾拉走</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="3" style="background:var(--blue);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 3 章 · 描述資料</div>
+    <h1 class="nb-heading-lg hero-title keepcase">變異性之測量</h1>
+    <p class="hero-subtitle">平均數要配上標準差才看得出分布樣貌;樣本公式用 n − 1 是為了不低估母體變異。</p>
+    <div class="open-no">03</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.23–34</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="3">
   <div class="split-visual"><div class="ch-no">03</div>
@@ -1330,7 +1438,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch3">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-green">
+<section class="slide slide-2 bg-green" data-ch="3">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 03 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">變異性之測量</h2>
@@ -1340,6 +1448,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>標準差<small>standard deviation</small></h3><p>各取值與平均數之間的典型距離,單位與原始資料相同。</p></div><div class="intro-card"><h3>變異數<small>variance</small></h3><p>離均差平方的平均;單位是平方,多作為其他統計的零件。</p></div><div class="intro-card"><h3>離均差平方和<small>sum of squared deviations (SS)</small></h3><p>每個取值減平均數後平方再全部相加,ANOVA 與迴歸都用它。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="3">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 03 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">四種變異指標</h2></div>
+  <table class="cmp gen"><thead><tr><th>指標</th><th>算法</th><th>提醒</th></tr></thead><tbody>
+  <tr><th>全距</th><td>最大值 − 最小值</td><td>最快,但只看頭尾兩個值</td></tr><tr><th>四分位距</th><td>第 75 百分位 − 第 25 百分位</td><td>不受極端值影響</td></tr><tr><th>變異數</th><td>Σ(X − X̄)² ÷ (n − 1)</td><td>單位是原單位的平方</td></tr><tr><th>標準差</th><td>√變異數</td><td>和原始資料同單位,最常用</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>只報平均數不夠,還要知道資料有多分散</span></div><div class="take"><span class="list-num">02</span><span>變異數是「離平均數距離的平方」的平均</span></div><div class="take"><span class="list-num">03</span><span>標準差開根號回到原單位;樣本要除以 n − 1</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="4" style="background:var(--pink);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 4 章 · 推論的地基</div>
+    <h1 class="nb-heading-lg hero-title keepcase">常態分布</h1>
+    <p class="hero-subtitle">常態分布是計算機率的理論基準;資料或抽樣一旦偏離它,機率就會失準。</p>
+    <div class="open-no">04</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.35–42</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="4">
   <div class="split-visual"><div class="ch-no">04</div>
@@ -1357,7 +1482,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch4">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-pink">
+<section class="slide slide-2 bg-pink" data-ch="4">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 04 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">常態分布</h2>
@@ -1367,6 +1492,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>常態分布<small>normal distribution</small></h3><p>對稱、單峰、三個集中量數重合、兩尾漸近的鐘形理論分布。</p></div><div class="intro-card"><h3>理論分布<small>theoretical distribution</small></h3><p>由機率推導出的理想分布,不是實際蒐集到的資料。</p></div><div class="intro-card"><h3>偏態<small>skew</small></h3><p>分布一側拖出長尾而不對稱;長尾在高分端為正偏,低分端為負偏。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="4">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 04 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">常態分布的經驗法則</h2></div>
+  <table class="cmp gen"><thead><tr><th>範圍</th><th>涵蓋比例</th><th>落在外面的機會</th></tr></thead><tbody>
+  <tr><th>平均數 ± 1 個標準差</th><td>約 68%</td><td>約 3 人有 1 人</td></tr><tr><th>平均數 ± 2 個標準差</th><td>約 95%</td><td>約 20 人有 1 人</td></tr><tr><th>平均數 ± 3 個標準差</th><td>約 99.7%</td><td>約 370 人有 1 人</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>對稱、單峰:平均數 = 中位數 = 眾數</span></div><div class="take"><span class="list-num">02</span><span>曲線下的面積就是機率</span></div><div class="take"><span class="list-num">03</span><span>許多推論統計都假設常態;偏離時機率會失準</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="5" style="background:var(--pink);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 5 章 · 推論的地基</div>
+    <h1 class="nb-heading-lg hero-title keepcase">標準化與 z 分數</h1>
+    <p class="hero-subtitle">z 分數把原始分數換成「離平均數幾個標準差」,才能跨量尺比較並查出百分位。</p>
+    <div class="open-no">05</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.43–55</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="5">
   <div class="split-visual"><div class="ch-no">05</div>
@@ -1387,7 +1529,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch5">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-yellow">
+<section class="slide slide-2 bg-yellow" data-ch="5">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 05 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">標準化與 z 分數</h2>
@@ -1397,6 +1539,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>z 分數<small>z score</small></h3><p>原始分數與平均數的距離,以標準差為單位表示。</p></div><div class="intro-card"><h3>標準化<small>standardization</small></h3><p>把分布中每個原始分數都轉成 z 分數的過程。</p></div><div class="intro-card"><h3>標準分數<small>standard score</small></h3><p>z 分數的另一個名稱;書中亦作「标准化值」。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">常態分布下,z 分數對應的位置</h2></div>
+  <table class="cmp gen"><thead><tr><th>z</th><th>意思</th><th>大約贏過多少人</th></tr></thead><tbody>
+  <tr><th>−1</th><td>比平均低 1 個標準差</td><td>16%</td></tr><tr><th>0</th><td>剛好在平均</td><td>50%</td></tr><tr><th>+1</th><td>比平均高 1 個標準差</td><td>84%</td></tr><tr><th>+2</th><td>比平均高 2 個標準差</td><td>98%</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>z = (分數 − 平均數) ÷ 標準差</span></div><div class="take"><span class="list-num">02</span><span>換成 z 之後,平均數是 0、標準差是 1</span></div><div class="take"><span class="list-num">03</span><span>資料接近常態時,z 可以直接查出百分位</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="6" style="background:var(--pink);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 6 章 · 推論的地基</div>
+    <h1 class="nb-heading-lg hero-title keepcase">標準誤</h1>
+    <p class="hero-subtitle">標準誤是抽樣分布的標準差,量出樣本統計量因隨機抽樣而偏離母體的預期幅度。</p>
+    <div class="open-no">06</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.56–68</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="6">
   <div class="split-visual"><div class="ch-no">06</div>
@@ -1416,7 +1575,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch6">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-blue">
+<section class="slide slide-2 bg-blue" data-ch="6">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 06 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">標準誤</h2>
@@ -1426,6 +1585,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>標準誤<small>standard error</small></h3><p>統計量抽樣分布的標準差,即預期的抽樣誤差大小。</p></div><div class="intro-card"><h3>抽樣分布<small>sampling distribution</small></h3><p>反覆抽取同大小樣本,每次算出的統計量所形成的理論分布。</p></div><div class="intro-card"><h3>平均數的抽樣分布<small>sampling distribution of the mean</small></h3><p>由許多同大小隨機樣本的平均數組成的分布。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="6">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 06 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">標準差 vs 標準誤</h2></div>
+  <table class="cmp gen"><thead><tr><th></th><th>標準差</th><th>標準誤</th></tr></thead><tbody>
+  <tr><th>描述的對象</th><td>個別分數彼此差多少</td><td>樣本平均數彼此差多少</td></tr><tr><th>公式</th><td>s</td><td>s ÷ √n</td></tr><tr><th>樣本變大時</th><td>大致不變</td><td>變小</td></tr><tr><th>用途</th><td>描述資料</td><td>做推論(檢定、信賴區間)</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>標準誤是「樣本平均數」這個統計量的標準差</span></div><div class="take"><span class="list-num">02</span><span>標準誤 = s ÷ √n:樣本越大,標準誤越小</span></div><div class="take"><span class="list-num">03</span><span>中央極限定理:樣本夠大時,樣本平均數的分布會接近常態</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="7" style="background:var(--pink);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 7 章 · 推論的地基</div>
+    <h1 class="nb-heading-lg hero-title keepcase">統計顯著性、效應量與信賴區間</h1>
+    <p class="hero-subtitle">判讀結果要三件一起看：p 值是否顯著、效應量多大、信賴區間落在哪。</p>
+    <div class="open-no">07</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.69–87</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="7">
   <div class="split-visual"><div class="ch-no">07</div>
@@ -1445,7 +1621,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch7">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-cream">
+<section class="slide slide-2 bg-cream" data-ch="7">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 07 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">統計顯著性、效應量與信賴區間</h2>
@@ -1455,6 +1631,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>統計顯著性<small>statistical significance</small></h3><p>碰巧得到此結果的機率小於 α，於是拒絕虛無假設。</p></div><div class="intro-card"><h3>p 值<small>p value</small></h3><p>虛無假設為真時，單靠抽樣誤差得到這麼大統計值的機率。</p></div><div class="intro-card"><h3>虛無假設<small>null hypothesis</small></h3><p>主張母體中沒有差異或沒有關聯的基準假設。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="7">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 07 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">三個工具各回答一個問題</h2></div>
+  <table class="cmp gen"><thead><tr><th>工具</th><th>回答的問題</th><th>怎麼看</th><th>提醒</th></tr></thead><tbody>
+  <tr><th>統計顯著性</th><td>是不是巧合?</td><td>p &lt; α 就拒絕虛無假設</td><td>樣本很大時,很小的差異也會顯著</td></tr><tr><th>效應量</th><td>差多少?</td><td>例:Cohen's d = 平均數的差 ÷ 標準差</td><td>不會因樣本數變大而膨脹</td></tr><tr><th>信賴區間</th><td>真值在哪?</td><td>估計值 ± 臨界值 × 標準誤</td><td>越窄代表估計越精確</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>p 值回答:這個結果可能只是抽樣的巧合嗎?</span></div><div class="take"><span class="list-num">02</span><span>效應量回答:差異到底有多大?</span></div><div class="take"><span class="list-num">03</span><span>信賴區間回答:母體的真實數值大概落在哪?</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="8" style="background:var(--yellow);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 8 章 · 關係與預測</div>
+    <h1 class="nb-heading-lg hero-title keepcase">相關</h1>
+    <p class="hero-subtitle">相關係數說明兩變項關係的方向與強度，r² 是共享變異比例，但相關不是因果。</p>
+    <div class="open-no">08</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.88–103</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="8">
   <div class="split-visual"><div class="ch-no">08</div>
@@ -1469,7 +1662,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch8">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-green">
+<section class="slide slide-2 bg-green" data-ch="8">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 08 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">相關</h2>
@@ -1479,6 +1672,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>皮爾森積差相關係數<small>Pearson product-moment correlation coefficient</small></h3><p>描述兩個連續變項線性關係方向與強度的統計量 r。</p></div><div class="intro-card"><h3>相關不等於因果<small>causation</small></h3><p>兩變項一起變動，不代表其中一個造成另一個。</p></div><div class="intro-card"><h3>決定係數<small>coefficient of determination</small></h3><p>r 的平方，一變項變異可被另一變項解釋的比例。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">四種常見型態</h2></div>
+  <table class="cmp gen"><thead><tr><th>型態</th><th>長相</th><th>例子</th></tr></thead><tbody>
+  <tr><th>正相關</th><td>一起高、一起低</td><td>讀書時數與成績</td></tr><tr><th>負相關</th><td>一個高、另一個低</td><td>缺課次數與成績</td></tr><tr><th>零相關</th><td>看不出直線關係</td><td>鞋子尺寸與成績</td></tr><tr><th>曲線關係</th><td>先升後降;r 會低估</td><td>焦慮程度與表現</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>r 介於 −1 到 +1:符號看方向,絕對值看強度</span></div><div class="take"><span class="list-num">02</span><span>r² 是兩個變項共享的變異比例</span></div><div class="take"><span class="list-num">03</span><span>r 只抓直線關係,也會受極端值與全距受限影響</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="9" style="background:var(--green);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 9 章 · 比較平均數</div>
+    <h1 class="nb-heading-lg hero-title keepcase">t 檢定</h1>
+    <p class="hero-subtitle">t 檢定就是把兩個平均數的差，除以這個差的標準誤，看它是否大到不像巧合。</p>
+    <div class="open-no">09</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.104–117</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="9">
   <div class="split-visual"><div class="ch-no">09</div>
@@ -1497,7 +1707,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch9">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-pink">
+<section class="slide slide-2 bg-pink" data-ch="9">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 09 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">t 檢定</h2>
@@ -1507,6 +1717,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>獨立樣本 t 檢定<small>independent samples t test</small></h3><p>比較兩個互不相干組別在同一變項上的平均數。</p></div><div class="intro-card"><h3>相依（成對）樣本 t 檢定<small>dependent (paired) samples t test</small></h3><p>比較同一群人兩次測量或配對樣本的平均數。</p></div><div class="intro-card"><h3>平均數差異的標準誤<small>standard error of the difference between the means</small></h3><p>反覆抽樣時兩個樣本平均數之間預期的差距。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="9">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 09 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">獨立樣本 vs 相依樣本</h2></div>
+  <table class="cmp gen"><thead><tr><th></th><th>獨立樣本 t 檢定</th><th>相依(成對)樣本 t 檢定</th></tr></thead><tbody>
+  <tr><th>資料</th><td>兩組不同的人</td><td>同一批人量兩次,或配對樣本</td></tr><tr><th>例子</th><td>男生 vs 女生</td><td>前測 vs 後測</td></tr><tr><th>分母</th><td>兩組平均數差異的標準誤</td><td>差異分數的標準誤</td></tr><tr><th>自由度</th><td>n₁ + n₂ − 2</td><td>配對數 − 1</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>獨立樣本:比較兩組不同的人</span></div><div class="take"><span class="list-num">02</span><span>相依樣本:同一批人前後比,或配對的人互比</span></div><div class="take"><span class="list-num">03</span><span>t 越大(差距相對於誤差越大),越可能顯著</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="10" style="background:var(--green);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 10 章 · 比較平均數</div>
+    <h1 class="nb-heading-lg hero-title keepcase">單因子變異數分析</h1>
+    <p class="hero-subtitle">比三組以上平均數時,用組間對組內變異的 F 比率一次檢定,再靠事後比較找出誰不同。</p>
+    <div class="open-no">10</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.118–133</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="10">
   <div class="split-visual"><div class="ch-no">10</div>
@@ -1524,7 +1751,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch10">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-yellow">
+<section class="slide slide-2 bg-yellow" data-ch="10">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 10 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">單因子變異數分析</h2>
@@ -1534,6 +1761,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>F 值<small>F value / F ratio</small></h3><p>組間均方除以誤差均方;組間差異相對於組內雜訊有多大。</p></div><div class="intro-card"><h3>組間與組內變異<small>between-group / within-group</small></h3><p>總變異拆成兩塊:組平均數之間的差異,與同組內個體之間的差異。</p></div><div class="intro-card"><h3>平方和<small>sum of squares</small></h3><p>離差平方的加總;SST = SSb + SSe 是 ANOVA 的關鍵等式。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">ANOVA 把變異切成兩塊</h2></div>
+  <table class="cmp gen"><thead><tr><th>來源</th><th>在量什麼</th><th>自由度</th></tr></thead><tbody>
+  <tr><th>組間</th><td>各組平均數離總平均多遠</td><td>組數 − 1</td></tr><tr><th>組內(誤差)</th><td>每個人離自己那組的平均多遠</td><td>總人數 − 組數</td></tr><tr><th>F</th><td>組間均方 ÷ 組內均方</td><td>用兩個自由度查 F 表</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>F = 組間均方 ÷ 組內均方</span></div><div class="take"><span class="list-num">02</span><span>連做好幾次 t 檢定會讓型一錯誤膨脹,所以改用一次 ANOVA</span></div><div class="take"><span class="list-num">03</span><span>F 顯著只說「至少有一組不同」,要做事後比較才知道是哪幾組</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="11" style="background:var(--green);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 11 章 · 比較平均數</div>
+    <h1 class="nb-heading-lg hero-title keepcase">多因子變異數分析</h1>
+    <p class="hero-subtitle">兩個以上類別自變項同時進模型,可看控制彼此後的主要效果,更能看見交互作用。</p>
+    <div class="open-no">11</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.134–148</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="11">
   <div class="split-visual"><div class="ch-no">11</div>
@@ -1554,7 +1798,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch11">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-blue">
+<section class="slide slide-2 bg-blue" data-ch="11">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 11 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">多因子變異數分析</h2>
@@ -1564,6 +1808,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>交互作用<small>interaction effect</small></h3><p>一個自變項對依變項的影響,隨另一個自變項的水準而改變。</p></div><div class="intro-card"><h3>主要效果<small>main effect</small></h3><p>某一自變項各組之間的依變項平均差異,已控制模型中其他效果。</p></div><div class="intro-card"><h3>多因子變異數分析<small>factorial ANOVA</small></h3><p>含兩個以上類別自變項的變異數分析,如 2 × 4 設計。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">2 × 2 設計一次回答三個問題</h2></div>
+  <table class="cmp gen"><thead><tr><th>效果</th><th>在問什麼</th><th>圖上怎麼看</th></tr></thead><tbody>
+  <tr><th>因子 A 的主要效果</th><td>不管 B,A 的各水準平均有差嗎?</td><td>線的左右兩端平均高度不同</td></tr><tr><th>因子 B 的主要效果</th><td>不管 A,B 的各水準平均有差嗎?</td><td>兩條線的平均高度不同</td></tr><tr><th>A × B 交互作用</th><td>A 的效果在 B 的不同水準下一樣嗎?</td><td>兩條線不平行</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>主要效果:一個因子自己造成的平均差異</span></div><div class="take"><span class="list-num">02</span><span>交互作用:一個因子的效果隨另一個因子而變</span></div><div class="take"><span class="list-num">03</span><span>交互作用顯著時,主要效果要小心解讀</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="12" style="background:var(--green);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 12 章 · 比較平均數</div>
+    <h1 class="nb-heading-lg hero-title keepcase">重複測量變異數分析</h1>
+    <p class="hero-subtitle">同一群人重複測量時,把變異拆成受試者內、受試者間及其交互作用,檢驗平均數是否隨時間變。</p>
+    <div class="open-no">12</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.149–165</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="12">
   <div class="split-visual"><div class="ch-no">12</div>
@@ -1581,7 +1842,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch12">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-cream">
+<section class="slide slide-2 bg-cream" data-ch="12">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 12 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">重複測量變異數分析</h2>
@@ -1591,6 +1852,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>重複測量變異數分析<small>repeated-measures ANOVA</small></h3><p>檢驗同一群人的依變項平均數是否隨時間點或嘗試而改變。</p></div><div class="intro-card"><h3>受試者內效果<small>within-subjects effect</small></h3><p>同一個人不同時間點之間的差異,平均而言是否有系統性改變。</p></div><div class="intro-card"><h3>受試者間效果<small>between-subjects effect</small></h3><p>不同人或不同組別之間的差異,如性別的主要效果。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="12">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 12 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">不同的人 vs 同一批人</h2></div>
+  <table class="cmp gen"><thead><tr><th></th><th>獨立組(單因子 ANOVA)</th><th>重複測量 ANOVA</th></tr></thead><tbody>
+  <tr><th>比較的是</th><td>不同的人</td><td>同一批人的多次測量</td></tr><tr><th>誤差裡有</th><td>個別差異 + 隨機誤差</td><td>扣掉個別差異之後的誤差</td></tr><tr><th>優點</th><td>沒有練習或疲勞效應</td><td>需要的人少、檢定力高</td></tr><tr><th>風險</th><td>需要較多受試者</td><td>順序、練習、疲勞效應</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>同一批人被重複測量,叫受試者內設計</span></div><div class="take"><span class="list-num">02</span><span>個別差異不算進誤差,所以檢定力比較高</span></div><div class="take"><span class="list-num">03</span><span>可以再加入組別,看「時間 × 組別」的交互作用</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="13" style="background:var(--yellow);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 13 章 · 關係與預測</div>
+    <h1 class="nb-heading-lg hero-title keepcase">迴歸</h1>
+    <p class="hero-subtitle">迴歸把相關變成預測:用預測變項估計依變項,並看每個變項的獨特貢獻。</p>
+    <div class="open-no">13</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.166–184</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="13">
   <div class="split-visual"><div class="ch-no">13</div>
@@ -1607,7 +1885,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch13">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-green">
+<section class="slide slide-2 bg-green" data-ch="13">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 13 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">迴歸</h2>
@@ -1617,6 +1895,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>迴歸方程式<small>regression equation</small></h3><p>Ŷ = bX + a,把 X 的值代入就得到 Y 的預測值,也能畫出迴歸線。</p></div><div class="intro-card"><h3>迴歸係數(斜率)<small>regression coefficient / slope</small></h3><p>X 每增加 1 單位,Y 的預測值平均改變多少。</p></div><div class="intro-card"><h3>截距<small>intercept</small></h3><p>迴歸線與 Y 軸的交點,也就是 X = 0 時的預測值。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">迴歸報表怎麼讀</h2></div>
+  <table class="cmp gen"><thead><tr><th>數字</th><th>告訴你什麼</th></tr></thead><tbody>
+  <tr><th>R²</th><td>模型解釋了依變項多少比例的變異</td></tr><tr><th>F 檢定</th><td>整體模型是否顯著</td></tr><tr><th>B(未標準化係數)</th><td>X 每增加 1 單位,Y 的預測值改變多少</td></tr><tr><th>β(標準化係數)</th><td>比較各預測變項的相對強度</td></tr><tr><th>t 與 p</th><td>這個係數是否顯著不為 0</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>簡單迴歸:Ŷ = bX + a,b 是斜率、a 是截距</span></div><div class="take"><span class="list-num">02</span><span>多元迴歸看的是「控制其他變項後」每個預測變項的獨特貢獻</span></div><div class="take"><span class="list-num">03</span><span>R² 是模型解釋的變異比例;能預測不代表有因果</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="14" style="background:var(--cream);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 14 章 · 類別與量表</div>
+    <h1 class="nb-heading-lg hero-title keepcase">卡方獨立性檢定</h1>
+    <p class="hero-subtitle">兩個類別變項有沒有關聯?比較觀察次數與期望次數,用卡方來判斷。</p>
+    <div class="open-no">14</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.185–192</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="14">
   <div class="split-visual"><div class="ch-no">14</div>
@@ -1636,7 +1931,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch14">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-pink">
+<section class="slide slide-2 bg-pink" data-ch="14">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 14 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">卡方獨立性檢定</h2>
@@ -1646,6 +1941,23 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>卡方獨立性檢定<small>chi-square test of independence</small></h3><p>檢驗兩個類別變項的分類彼此獨立還是有關聯。</p></div><div class="intro-card"><h3>觀察次數<small>observed frequencies</small></h3><p>列聯表各細格實際數到的人數。</p></div><div class="intro-card"><h3>期望次數<small>expected frequencies</small></h3><p>若兩變項無關、純憑機率,各細格應該出現的人數。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="14">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 14 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">卡方獨立性檢定四步驟</h2></div>
+  <table class="cmp gen"><thead><tr><th>步驟</th><th>做什麼</th></tr></thead><tbody>
+  <tr><th>1</th><td>把觀察次數排成列聯表</td></tr><tr><th>2</th><td>算出每一格的期望次數</td></tr><tr><th>3</th><td>每一格算 (O − E)² ÷ E,全部加總得到 χ²</td></tr><tr><th>4</th><td>用自由度查表,和臨界值比較</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>用在兩個類別變項的次數資料</span></div><div class="take"><span class="list-num">02</span><span>期望次數 = 列合計 × 行合計 ÷ 總數</span></div><div class="take"><span class="list-num">03</span><span>自由度 = (列數 − 1) × (行數 − 1)</span></div></div></section>
+
+<section class="slide slide-1 slide-open" data-ch="15" style="background:var(--cream);">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label keepcase">第 15 章 · 類別與量表</div>
+    <h1 class="nb-heading-lg hero-title keepcase">資料化約的技術──因素分析與信度分析</h1>
+    <p class="hero-subtitle">因素分析把相關高的題項歸成因素,信度分析再檢查同組題項是否一致。</p>
+    <div class="open-no">15</div>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">p.193–209</div>
+  </div></section>
 
 <section class="slide slide-6" data-ch="15">
   <div class="split-visual"><div class="ch-no">15</div>
@@ -1662,7 +1974,7 @@
     <div><a class="nb-btn" href="whiteboard.html#ch15">在白板打開這一章</a></div>
   </div></section>
 
-<section class="slide slide-2 bg-yellow">
+<section class="slide slide-2 bg-yellow" data-ch="15">
   <div class="col-left">
     <div><div class="nb-label nb-label-yellow">CH 15 · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">資料化約的技術──因素分析與信度分析</h2>
@@ -1672,6 +1984,13 @@
   </div>
   <div class="col-right"><div class="intro-card"><h3>因素分析<small>factor analysis</small></h3><p>依題項間相關的強弱,把一組觀察變項整理、歸類成較少的因素。</p></div><div class="intro-card"><h3>潛在變項(構念)<small>latent variable (construct)</small></h3><p>無法直接測量,只能由一組觀察題項推論出來的概念。</p></div><div class="intro-card"><h3>探索性因素分析<small>exploratory factor analysis (EFA)</small></h3><p>不預設結構,讓資料的相關型態決定題項如何分群。</p></div></div>
 </section>
+
+<section class="slide slide-cmp" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">三種分析各做什麼</h2></div>
+  <table class="cmp gen"><thead><tr><th>分析</th><th>做法</th><th>什麼時候用</th></tr></thead><tbody>
+  <tr><th>探索性因素分析</th><td>讓資料自己分群</td><td>事先沒有明確的構面架構</td></tr><tr><th>驗證性因素分析</th><td>檢驗預設的架構是否成立</td><td>已有理論或前人量表</td></tr><tr><th>信度分析</th><td>計算 Cronbach's α</td><td>確認一組題目能不能加總成一個分數</td></tr>
+  </tbody></table>
+  <div class="take-row"><div class="take"><span class="list-num">01</span><span>因素分析把很多題目濃縮成少數幾個構面</span></div><div class="take"><span class="list-num">02</span><span>因素負荷量是題目和因素的相關;特徵值大於 1 常作為保留門檻</span></div><div class="take"><span class="list-num">03</span><span>Cronbach's α 檢查同一構面題目的內部一致性,.70 以上通常可接受</span></div></div></section>
 
 <section class="slide slide-9">
   <div class="slide-header"><div class="nb-label nb-label-pink">決策表</div><h2 class="nb-heading-lg" style="margin-top:16px;">該用哪個檢定?</h2></div>
@@ -1703,7 +2022,9 @@
       slides.forEach((slide, index) => {
         slide.classList.toggle('active', index === currentSlide);
       });
-      counter.textContent = String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+      const ch = slides[currentSlide].dataset.ch;
+      counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+      document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
     }
 
@@ -1727,6 +2048,18 @@
       }
     }
 
+    // Jump a whole chapter: dir = +1 next chapter start, -1 start of this / previous chapter
+    function jumpChapter(dir) {
+      const starts = [...slides].map((s, i) => (s.dataset.ch && (i === 0 || slides[i - 1].dataset.ch !== s.dataset.ch)) ? i : -1).filter(i => i >= 0);
+      const t = dir > 0 ? starts.find(i => i > currentSlide) : [...starts].reverse().find(i => i < currentSlide);
+      if (t !== undefined) { currentSlide = t; updateSlide(); }
+    }
+    const chBtn = document.getElementById('chBtn'), chMenu = document.getElementById('chMenu');
+    function toggleMenu(open) { chMenu.hidden = !open; chBtn.setAttribute('aria-expanded', String(open)); }
+    chBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(chMenu.hidden); });
+    chMenu.addEventListener('click', (e) => { if (e.target.closest('a')) toggleMenu(false); });
+    document.addEventListener('click', (e) => { if (!chMenu.hidden && !e.target.closest('#chMenu')) toggleMenu(false); });
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
@@ -1735,6 +2068,14 @@
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
         prevSlide();
+      } else if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        e.preventDefault();
+        jumpChapter(1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        jumpChapter(-1);
+      } else if (e.key === 'Escape') {
+        toggleMenu(false);
       }
     });
 

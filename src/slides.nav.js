@@ -8,7 +8,9 @@
       slides.forEach((slide, index) => {
         slide.classList.toggle('active', index === currentSlide);
       });
-      counter.textContent = String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+      const ch = slides[currentSlide].dataset.ch;
+      counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+      document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
     }
 
@@ -32,6 +34,18 @@
       }
     }
 
+    // Jump a whole chapter: dir = +1 next chapter start, -1 start of this / previous chapter
+    function jumpChapter(dir) {
+      const starts = [...slides].map((s, i) => (s.dataset.ch && (i === 0 || slides[i - 1].dataset.ch !== s.dataset.ch)) ? i : -1).filter(i => i >= 0);
+      const t = dir > 0 ? starts.find(i => i > currentSlide) : [...starts].reverse().find(i => i < currentSlide);
+      if (t !== undefined) { currentSlide = t; updateSlide(); }
+    }
+    const chBtn = document.getElementById('chBtn'), chMenu = document.getElementById('chMenu');
+    function toggleMenu(open) { chMenu.hidden = !open; chBtn.setAttribute('aria-expanded', String(open)); }
+    chBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(chMenu.hidden); });
+    chMenu.addEventListener('click', (e) => { if (e.target.closest('a')) toggleMenu(false); });
+    document.addEventListener('click', (e) => { if (!chMenu.hidden && !e.target.closest('#chMenu')) toggleMenu(false); });
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
@@ -40,6 +54,14 @@
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
         prevSlide();
+      } else if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        e.preventDefault();
+        jumpChapter(1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        jumpChapter(-1);
+      } else if (e.key === 'Escape') {
+        toggleMenu(false);
       }
     });
 
