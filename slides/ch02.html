@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1413,6 +1416,19 @@
   <tr><th>平均數</th><td data-label="怎麼算">總和 ÷ 個數</td><td data-label="優點">用到全部資料</td><td data-label="弱點">容易被極端值拉走</td></tr><tr><th>中位數</th><td data-label="怎麼算">排序後正中間的值</td><td data-label="優點">不怕極端值</td><td data-label="弱點">沒用到每個數值的大小</td></tr><tr><th>眾數</th><td data-label="怎麼算">出現最多次的值</td><td data-label="優點">類別資料也能用</td><td data-label="弱點">可能不只一個</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>平均數用到每一個數值,但怕極端值</span></div><div class="take"><span class="list-num">02</span><span>中位數是排序後正中間的那一位</span></div><div class="take"><span class="list-num">03</span><span>分布偏斜時三者分家,平均數被長尾拉走</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="2">
+  <div class="split-visual"><div class="ch-no">02</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="極端值對平均數與中位數的影響" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><line x1="40" y1="190" x2="500" y2="190" stroke="#111" stroke-width="1.6"/><rect x="50" y="164.5" width="30" height="25.5" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="94" y="162.8" width="30" height="27.19999999999999" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="138" y="161.1" width="30" height="28.900000000000006" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="182" y="160.25" width="30" height="29.75" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="226" y="159.4" width="30" height="30.599999999999994" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="270" y="157.7" width="30" height="32.30000000000001" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="314" y="156" width="30" height="34" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="358" y="154.3" width="30" height="35.69999999999999" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="402" y="151.75" width="30" height="38.25" fill="#bfe6ff" stroke="#111" stroke-width="1.3"/><rect x="446" y="37" width="30" height="153" fill="#ffc2d6" stroke="#111" stroke-width="1.3"/>
+      <line x1="40" y1="146.48" x2="500" y2="146.48" stroke="#d6336c" stroke-width="2" stroke-dasharray="6 4"/><text x="46" y="140.48" font-size="13" font-weight="700" text-anchor="start" fill="#d6336c">平均數 51.2(被最右邊那一位拉高)</text>
+      <line x1="40" y1="158.55" x2="500" y2="158.55" stroke="#2a7be4" stroke-width="2" stroke-dasharray="6 4"/><text x="46" y="208" font-size="13" font-weight="700" text-anchor="start" fill="#2a7be4">藍線:中位數 37</text>
+      <text x="465" y="29" font-size="12" font-weight="500" text-anchor="middle" fill="#111">極端值</text><text x="260" y="230" font-size="13" font-weight="500" text-anchor="middle" fill="#444">10 個人的月薪(千元,示意數字):9 個人都低於「平均」</text></svg></div>
+    <div class="fig-cap">一個極端值就能把平均數拉離大多數人,中位數幾乎不動。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-blue keepcase">CH 02 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">極端值對平均數與中位數的影響</h2>
+    <p class="fig2-body">本章介紹描述分布中心的三個量數。平均數是所有取值的算術平均,最常用,但不透露資料多分散,也會被極端值拉走;中位數是第 50 百分位數,把資料對半切開,不受離群值影響;眾數只是出現最多的值,資訊最少,但能看出雙峰或多峰。常態分布下三者重合,偏態分布則各在不同位置:負偏時平均數小於中位數,正偏時相反。作者以 30 名五年級生的評分與各國預期壽命示範,並提醒樣本越小,一個離群值對平均數的影響越大;只看平均數容易忽略變異而流於一概而論。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-green" data-ch="2">
   <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

@@ -263,3 +263,6 @@
   .slide-10 .close-btn { padding: 14px 20px; }
 }
 .slide-7[data-ch] .step-connector { display: none; }
+
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }

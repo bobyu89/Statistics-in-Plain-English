@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1418,6 +1421,20 @@
   <tr><th>−1</th><td data-label="意思">比平均低 1 個標準差</td><td data-label="大約贏過多少人">16%</td></tr><tr><th>0</th><td data-label="意思">剛好在平均</td><td data-label="大約贏過多少人">50%</td></tr><tr><th>+1</th><td data-label="意思">比平均高 1 個標準差</td><td data-label="大約贏過多少人">84%</td></tr><tr><th>+2</th><td data-label="意思">比平均高 2 個標準差</td><td data-label="大約贏過多少人">98%</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>z = (分數 − 平均數) ÷ 標準差</span></div><div class="take"><span class="list-num">02</span><span>換成 z 之後,平均數是 0、標準差是 1</span></div><div class="take"><span class="list-num">03</span><span>資料接近常態時,z 可以直接查出百分位</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="5">
+  <div class="split-visual"><div class="ch-no">05</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="z 分數對應的百分等級" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><path d="M42.20000000000002 170 L42.2 169.4 L46.9 169.3 L51.7 169.1 L56.4 168.9 L61.1 168.6 L65.9 168.3 L70.6 167.9 L75.3 167.4 L80.0 166.8 L84.8 166.2 L89.5 165.4 L94.2 164.5 L99.0 163.4 L103.7 162.1 L108.4 160.7 L113.2 159.1 L117.9 157.2 L122.6 155.1 L127.3 152.8 L132.1 150.1 L136.8 147.2 L141.5 144.0 L146.3 140.6 L151.0 136.8 L155.7 132.7 L160.5 128.3 L165.2 123.7 L169.9 118.8 L174.6 113.7 L179.4 108.4 L184.1 102.9 L188.8 97.3 L193.6 91.7 L198.3 86.0 L203.0 80.4 L207.8 75.0 L212.5 69.7 L217.2 64.6 L221.9 59.9 L226.7 55.6 L231.4 51.7 L236.1 48.2 L240.9 45.4 L245.6 43.1 L250.3 41.4 L255.1 40.4 L259.8 40.0 L264.5 40.3 L269.2 41.3 L274.0 42.9 L278.7 45.1 L283.4 47.9 L288.2 51.3 L292.9 55.2 L297.6 59.5 L302.4 64.2 L307.1 69.2 L311.8 74.5 L316.5 79.9 L321.3 85.5 L326.0 91.2 L326 170 Z" fill="#b9f0b4"/><path d="M326 170 L326.0 91.2 L328.5 94.2 L331.1 97.2 L333.6 100.2 L336.1 103.2 L338.6 106.1 L341.2 109.0 L343.7 111.8 L346.2 114.6 L348.8 117.4 L351.3 120.1 L353.8 122.7 L356.4 125.2 L358.9 127.7 L361.4 130.1 L363.9 132.4 L366.5 134.6 L369.0 136.8 L371.5 138.8 L374.1 140.8 L376.6 142.7 L379.1 144.5 L381.7 146.2 L384.2 147.9 L386.7 149.4 L389.3 150.9 L391.8 152.3 L394.3 153.6 L396.8 154.8 L399.4 156.0 L401.9 157.1 L404.4 158.1 L407.0 159.1 L409.5 160.0 L412.0 160.8 L414.6 161.6 L417.1 162.3 L419.6 163.0 L422.1 163.6 L424.7 164.2 L427.2 164.7 L429.7 165.2 L432.3 165.7 L434.8 166.1 L437.3 166.5 L439.8 166.8 L442.4 167.1 L444.9 167.4 L447.4 167.7 L450.0 167.9 L452.5 168.2 L455.0 168.3 L457.6 168.5 L460.1 168.7 L462.6 168.8 L465.1 169.0 L467.7 169.1 L470.2 169.2 L472.7 169.3 L475.3 169.4 L477.8 169.4 L477.79999999999995 170 Z" fill="#eee"/>
+      <path d="M42.2 169.4 L49.5 169.2 L56.7 168.9 L64.0 168.4 L71.2 167.8 L78.5 167.0 L85.8 166.0 L93.0 164.7 L100.3 163.0 L107.5 161.0 L114.8 158.4 L122.1 155.4 L129.3 151.7 L136.6 147.4 L143.8 142.4 L151.1 136.7 L158.4 130.3 L165.6 123.2 L172.9 115.6 L180.1 107.5 L187.4 99.0 L194.7 90.4 L201.9 81.7 L209.2 73.4 L216.4 65.4 L223.7 58.2 L231.0 52.0 L238.2 46.9 L245.5 43.1 L252.7 40.8 L260.0 40.0 L267.3 40.8 L274.5 43.1 L281.8 46.9 L289.0 52.0 L296.3 58.2 L303.6 65.4 L310.8 73.4 L318.1 81.7 L325.3 90.4 L332.6 99.0 L339.9 107.5 L347.1 115.6 L354.4 123.2 L361.6 130.3 L368.9 136.7 L376.2 142.4 L383.4 147.4 L390.7 151.7 L397.9 155.4 L405.2 158.4 L412.5 161.0 L419.7 163.0 L427.0 164.7 L434.2 166.0 L441.5 167.0 L448.8 167.8 L456.0 168.4 L463.3 168.9 L470.5 169.2 L477.8 169.4" fill="none" stroke="#111" stroke-width="1.8"/><line x1="30" y1="170" x2="490" y2="170" stroke="#111" stroke-width="1.6"/><line x1="326" y1="170" x2="326" y2="34" stroke="#111" stroke-width="2.2"/>
+      <text x="326" y="26" font-size="13" font-weight="700" text-anchor="middle" fill="#111">z = +1</text><text x="233.6" y="130" font-size="18" font-weight="700" text-anchor="middle" fill="#111">約 84%</text><text x="233.6" y="150" font-size="12" font-weight="500" text-anchor="middle" fill="#111">的人低於這個分數</text><text x="405.20000000000005" y="128" font-size="12" font-weight="500" text-anchor="middle" fill="#111">約 16%</text>
+      <text x="128" y="188" font-size="12" font-weight="500" text-anchor="middle" fill="#111">-2</text><text x="194" y="188" font-size="12" font-weight="500" text-anchor="middle" fill="#111">-1</text><text x="260" y="188" font-size="12" font-weight="500" text-anchor="middle" fill="#111">0</text><text x="326" y="188" font-size="12" font-weight="500" text-anchor="middle" fill="#111">+1</text><text x="392" y="188" font-size="12" font-weight="500" text-anchor="middle" fill="#111">+2</text>
+      <text x="260" y="222" font-size="13" font-weight="500" text-anchor="middle" fill="#444">z 分數 + 常態分布表 = 百分等級(z = +1 約是第 84 百分位)</text></svg></div>
+    <div class="fig-cap">把 z 分數對到常態曲線,就知道贏過多少人。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-pink keepcase">CH 05 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">z 分數對應的百分等級</h2>
+    <p class="fig2-body">本章說明如何用平均數與標準差把原始分數轉成標準分數(z 分數)。z 表示該分數高於或低於平均數幾個標準差;整個分布標準化後平均數為 0、標準差為 1,不同量尺的分數因此可以比較。資料為常態時,配合附錄 A 的 z 表還能在原始分數與百分位數之間互換,並算出兩分數之間的比例;作者以 SAT 數學成績(平均數 517、標準差 100)逐步示範。本章也提醒:z 只呈現相對位置,不說明絕對表現;資料非常態時不能用 z 表求百分位,要改用排序法。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-blue" data-ch="5">
   <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1415,6 +1418,23 @@
   <tr><th>比較的是</th><td data-label="獨立組(單因子 ANOVA)">不同的人</td><td data-label="重複測量 ANOVA">同一批人的多次測量</td></tr><tr><th>誤差裡有</th><td data-label="獨立組(單因子 ANOVA)">個別差異 + 隨機誤差</td><td data-label="重複測量 ANOVA">扣掉個別差異之後的誤差</td></tr><tr><th>優點</th><td data-label="獨立組(單因子 ANOVA)">沒有練習或疲勞效應</td><td data-label="重複測量 ANOVA">需要的人少、檢定力高</td></tr><tr><th>風險</th><td data-label="獨立組(單因子 ANOVA)">需要較多受試者</td><td data-label="重複測量 ANOVA">順序、練習、疲勞效應</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>同一批人被重複測量,叫受試者內設計</span></div><div class="take"><span class="list-num">02</span><span>個別差異不算進誤差,所以檢定力比較高</span></div><div class="take"><span class="list-num">03</span><span>可以再加入組別,看「時間 × 組別」的交互作用</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="12">
+  <div class="split-visual"><div class="ch-no">12</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="重複測量把個別差異從誤差中移除" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><text x="120" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#111">獨立組 ANOVA</text><text x="390" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#111">重複測量 ANOVA</text>
+      <rect x="70" y="40" width="100" height="50" fill="#b9f0b4" stroke="#111" stroke-width="1.5"/><text x="120" y="70" font-size="13" font-weight="500" text-anchor="middle" fill="#111">處理效果</text>
+      <rect x="70" y="90" width="100" height="96" fill="#ffc2d6" stroke="#111" stroke-width="1.5"/><text x="120" y="132" font-size="13" font-weight="700" text-anchor="middle" fill="#111">誤差</text><text x="120" y="150" font-size="12" font-weight="500" text-anchor="middle" fill="#111">(含個別差異)</text>
+      <rect x="340" y="40" width="100" height="50" fill="#b9f0b4" stroke="#111" stroke-width="1.5"/><text x="390" y="70" font-size="13" font-weight="500" text-anchor="middle" fill="#111">時間效果</text>
+      <rect x="340" y="90" width="100" height="60" fill="#bfe6ff" stroke="#111" stroke-width="1.5"/><text x="390" y="118" font-size="13" font-weight="700" text-anchor="middle" fill="#111">個別差異</text><text x="390" y="136" font-size="12" font-weight="500" text-anchor="middle" fill="#111">(另外拿掉)</text>
+      <rect x="340" y="150" width="100" height="36" fill="#ffc2d6" stroke="#111" stroke-width="1.5"/><text x="390" y="173" font-size="13" font-weight="700" text-anchor="middle" fill="#111">誤差</text>
+      <line x1="180" y1="138" x2="330" y2="168" stroke="#111" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#fa)"/><text x="256" y="128" font-size="13" font-weight="700" text-anchor="middle" fill="#111">誤差變小</text>
+      <text x="260" y="216" font-size="13" font-weight="500" text-anchor="middle" fill="#444">F 的分母變小了,同樣大小的效果更容易被偵測到</text></svg></div>
+    <div class="fig-cap">同樣的資料,重複測量設計的誤差項比較小。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 12 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">重複測量把個別差異從誤差中移除</h2>
+    <p class="fig2-body">重複測量變異數分析是相依(成對)樣本 t 檢定的延伸:同一組人在同一依變項上被測量兩次以上,檢驗平均數是否隨時間點或嘗試而改變。它多了三項能力:可比較兩個以上時間點、可加入共變項成為重複測量共變數分析、也可加入分組自變項。原理仍是拆解變異:最基本的設計中,變異來自受試者之間、受試者內(時間)及受試者與時間的交互作用,F 是時間的均方除以受試者 × 嘗試交互作用的均方。加入分組變項後,可同時檢驗受試者內效果、受試者間效果,以及各組隨時間變化的型態是否不同。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-green" data-ch="12">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 12 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

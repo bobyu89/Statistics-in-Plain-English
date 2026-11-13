@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1416,6 +1419,19 @@
   <tr><th>資料</th><td data-label="獨立樣本 t 檢定">兩組不同的人</td><td data-label="相依(成對)樣本 t 檢定">同一批人量兩次,或配對樣本</td></tr><tr><th>例子</th><td data-label="獨立樣本 t 檢定">男生 vs 女生</td><td data-label="相依(成對)樣本 t 檢定">前測 vs 後測</td></tr><tr><th>分母</th><td data-label="獨立樣本 t 檢定">兩組平均數差異的標準誤</td><td data-label="相依(成對)樣本 t 檢定">差異分數的標準誤</td></tr><tr><th>自由度</th><td data-label="獨立樣本 t 檢定">n₁ + n₂ − 2</td><td data-label="相依(成對)樣本 t 檢定">配對數 − 1</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>獨立樣本:比較兩組不同的人</span></div><div class="take"><span class="list-num">02</span><span>相依樣本:同一批人前後比,或配對的人互比</span></div><div class="take"><span class="list-num">03</span><span>t 越大(差距相對於誤差越大),越可能顯著</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="9">
+  <div class="split-visual"><div class="ch-no">09</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="獨立樣本與相依樣本" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><rect x="20" y="36" width="200" height="150" rx="12" fill="#fff" stroke="#111" stroke-width="1.4"/><rect x="280" y="36" width="200" height="150" rx="12" fill="#fff" stroke="#111" stroke-width="1.4"/><circle cx="70" cy="84" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="170" cy="114" r="5" fill="#ffc2d6" stroke="#111"/><circle cx="70" cy="116" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="170" cy="132" r="5" fill="#ffc2d6" stroke="#111"/><circle cx="70" cy="65" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="170" cy="111" r="5" fill="#ffc2d6" stroke="#111"/><circle cx="70" cy="67" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="170" cy="80" r="5" fill="#ffc2d6" stroke="#111"/><circle cx="70" cy="114" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="170" cy="131" r="5" fill="#ffc2d6" stroke="#111"/><circle cx="70" cy="121" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="170" cy="98" r="5" fill="#ffc2d6" stroke="#111"/><circle cx="70" cy="112" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="170" cy="119" r="5" fill="#ffc2d6" stroke="#111"/><line x1="330" y1="77.36044766195118" x2="430" y2="49.29434150643647" stroke="#8d8f94" stroke-width="1.3"/><circle cx="330" cy="77" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="430" cy="49" r="5" fill="#ffc2d6" stroke="#111"/><line x1="330" y1="89.56279784999788" x2="430" y2="61.60317484848201" stroke="#8d8f94" stroke-width="1.3"/><circle cx="330" cy="90" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="430" cy="62" r="5" fill="#ffc2d6" stroke="#111"/><line x1="330" y1="108.62684288062155" x2="430" y2="83.55802213586867" stroke="#8d8f94" stroke-width="1.3"/><circle cx="330" cy="109" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="430" cy="84" r="5" fill="#ffc2d6" stroke="#111"/><line x1="330" y1="123.31362367980182" x2="430" y2="88.62529185973108" stroke="#8d8f94" stroke-width="1.3"/><circle cx="330" cy="123" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="430" cy="89" r="5" fill="#ffc2d6" stroke="#111"/><line x1="330" y1="138.6499454099685" x2="430" y2="108.105802224949" stroke="#8d8f94" stroke-width="1.3"/><circle cx="330" cy="139" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="430" cy="108" r="5" fill="#ffc2d6" stroke="#111"/><line x1="330" y1="158.8560660686344" x2="430" y2="136.333191184327" stroke="#8d8f94" stroke-width="1.3"/><circle cx="330" cy="159" r="5" fill="#bfe6ff" stroke="#111"/><circle cx="430" cy="136" r="5" fill="#ffc2d6" stroke="#111"/>
+      <text x="120" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#111">獨立樣本</text><text x="380" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#111">相依(成對)樣本</text>
+      <text x="70" y="204" font-size="12" font-weight="500" text-anchor="middle" fill="#111">A 組</text><text x="170" y="204" font-size="12" font-weight="500" text-anchor="middle" fill="#111">B 組</text><text x="330" y="204" font-size="12" font-weight="500" text-anchor="middle" fill="#111">前測</text><text x="430" y="204" font-size="12" font-weight="500" text-anchor="middle" fill="#111">後測</text>
+      <text x="120" y="228" font-size="12" font-weight="500" text-anchor="middle" fill="#444">兩群不同的人,點與點沒有對應</text><text x="380" y="228" font-size="12" font-weight="500" text-anchor="middle" fill="#444">同一個人連成一條線,看每條線的變化</text></svg></div>
+    <div class="fig-cap">資料怎麼收集,決定用哪一種 t 檢定。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 09 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">獨立樣本與相依樣本</h2>
+    <p class="fig2-body">本章介紹兩種 t 檢定，兩者都比較兩個平均數，也都靠 t 分布求機率；母體標準差未知且樣本不大時，須用隨樣本數改變形狀的 t 分布。獨立樣本 t 檢定比較兩個互不重疊的組別，關鍵是「平均數差異的標準誤」，即反覆抽樣時兩平均數預期的差距，自由度 n₁ + n₂ − 2，並假設兩組變異數相近。相依（成對）樣本 t 檢定比較同一群人的兩次測量或配對樣本，以每對分數的差值計算標準誤，自由度為配對數減 1。樣本大時小差異也顯著，仍要看原始差距與效應量。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-yellow" data-ch="9">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 09 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

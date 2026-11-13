@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1417,6 +1420,20 @@
   <tr><th>統計顯著性</th><td data-label="回答的問題">是不是巧合?</td><td data-label="怎麼看">p &lt; α 就拒絕虛無假設</td><td data-label="提醒">樣本很大時,很小的差異也會顯著</td></tr><tr><th>效應量</th><td data-label="回答的問題">差多少?</td><td data-label="怎麼看">例:Cohen's d = 平均數的差 ÷ 標準差</td><td data-label="提醒">不會因樣本數變大而膨脹</td></tr><tr><th>信賴區間</th><td data-label="回答的問題">真值在哪?</td><td data-label="怎麼看">估計值 ± 臨界值 × 標準誤</td><td data-label="提醒">越窄代表估計越精確</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>p 值回答:這個結果可能只是抽樣的巧合嗎?</span></div><div class="take"><span class="list-num">02</span><span>效應量回答:差異到底有多大?</span></div><div class="take"><span class="list-num">03</span><span>信賴區間回答:母體的真實數值大概落在哪?</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="7">
+  <div class="split-visual"><div class="ch-no">07</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="型一錯誤與型二錯誤" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><text x="245" y="22" font-size="13" font-weight="700" text-anchor="middle" fill="#111">真實情況(我們看不到)</text><text x="245" y="46" font-size="13" font-weight="500" text-anchor="middle" fill="#111">虛無假設為真</text><text x="415" y="46" font-size="13" font-weight="500" text-anchor="middle" fill="#111">虛無假設為假</text>
+      <text x="150" y="92" font-size="13" font-weight="500" text-anchor="end" fill="#111">拒絕虛無假設</text><text x="150" y="154" font-size="13" font-weight="500" text-anchor="end" fill="#111">不拒絕</text><text x="20" y="124" font-size="13" font-weight="700" text-anchor="start" fill="#111">你的決定</text>
+      <rect x="160" y="56" width="170" height="62" fill="#ffc2d6" stroke="#111" stroke-width="1.5"/><text x="245" y="84" font-size="15" font-weight="700" text-anchor="middle" fill="#111">型一錯誤</text><text x="245" y="104" font-size="12" font-weight="500" text-anchor="middle" fill="#111">誤報:機率 = α</text><rect x="330" y="56" width="170" height="62" fill="#b9f0b4" stroke="#111" stroke-width="1.5"/><text x="415" y="84" font-size="15" font-weight="700" text-anchor="middle" fill="#111">正確</text><text x="415" y="104" font-size="12" font-weight="500" text-anchor="middle" fill="#111">檢定力 = 1 − β</text>
+      <rect x="160" y="118" width="170" height="62" fill="#b9f0b4" stroke="#111" stroke-width="1.5"/><text x="245" y="146" font-size="15" font-weight="700" text-anchor="middle" fill="#111">正確</text><text x="245" y="166" font-size="12" font-weight="500" text-anchor="middle" fill="#111"></text><rect x="330" y="118" width="170" height="62" fill="#ffe08a" stroke="#111" stroke-width="1.5"/><text x="415" y="146" font-size="15" font-weight="700" text-anchor="middle" fill="#111">型二錯誤</text><text x="415" y="166" font-size="12" font-weight="500" text-anchor="middle" fill="#111">漏報:機率 = β</text>
+      <text x="260" y="208" font-size="13" font-weight="500" text-anchor="middle" fill="#444">α 訂得越嚴(例如 .01),型一錯誤越少,</text><text x="260" y="226" font-size="13" font-weight="500" text-anchor="middle" fill="#444">但越容易漏掉真正存在的效果(型二錯誤)</text></svg></div>
+    <div class="fig-cap">任何檢定決定都可能犯兩種錯,兩者此消彼長。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-pink keepcase">CH 07 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">型一錯誤與型二錯誤</h2>
+    <p class="fig2-body">本章說明如何從樣本推論母體。任何統計量都有抽樣分布與標準誤，因此能算出「虛無假設為真時，單靠抽樣碰巧得到此結果」的機率，即 p 值；p 小於事先選定的 α（慣例 0.05）就拒絕虛無假設，稱為統計顯著，但仍可能犯型一錯誤。顯著性檢定對樣本數極敏感：樣本大時微小差異也顯著，樣本小時大差異也不顯著。所以還要用效應量（以標準差為單位、不受樣本數影響）判斷實務重要性，並用信賴區間估計母體參數的可能範圍。三者並用再加上研究者的判斷，才是完整解讀。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-green" data-ch="7">
   <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 07 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

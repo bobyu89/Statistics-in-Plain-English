@@ -187,6 +187,16 @@ B.chapters.forEach((c, i) => {
   </tbody></table>
   <div class="take-row">${c.brief.takeaways.map((t, k) => `<div class="take"><span class="list-num">${no(k + 1)}</span><span>${esc(t)}</span></div>`).join('')}</div></section>`);
   const hd = (tag, title) => `<div class="slide-header"><div class="nb-label ${lbl} keepcase">CH ${no(c.n)} · ${tag}</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">${esc(title)}</h2></div>`;
+  const g2 = FIGS.svg2(c.n);
+  if (g2) S.push(`<section class="slide slide-6 slide-fig2" data-ch="${c.n}">
+  <div class="split-visual"><div class="ch-no">${no(c.n)}</div>
+    <div class="visual-box figure">${g2}</div>
+    <div class="fig-cap">${esc(FIGS.caption2(c.n))}</div></div>
+  <div class="split-content">
+    <div><div class="nb-label ${lbl} keepcase">CH ${no(c.n)} · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">${esc((g2.match(/aria-label="([^"]*)"/) || [])[1] || c.title_tw)}</h2>
+    <p class="fig2-body">${esc(c.summary)}</p>
+  </div></section>`);
   const rest = (c.concepts || []).slice(3, 9);
   if (rest.length) S.push(`<section class="slide slide-9 ${BG[(i + 1) % BG.length]}" data-ch="${c.n}">
   ${hd('更多術語', '這一章還會遇到的詞')}

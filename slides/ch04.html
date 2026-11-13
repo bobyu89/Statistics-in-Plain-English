@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1415,6 +1418,17 @@
   <tr><th>平均數 ± 1 個標準差</th><td data-label="涵蓋比例">約 68%</td><td data-label="落在外面的機會">約 3 人有 1 人</td></tr><tr><th>平均數 ± 2 個標準差</th><td data-label="涵蓋比例">約 95%</td><td data-label="落在外面的機會">約 20 人有 1 人</td></tr><tr><th>平均數 ± 3 個標準差</th><td data-label="涵蓋比例">約 99.7%</td><td data-label="落在外面的機會">約 370 人有 1 人</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>對稱、單峰:平均數 = 中位數 = 眾數</span></div><div class="take"><span class="list-num">02</span><span>曲線下的面積就是機率</span></div><div class="take"><span class="list-num">03</span><span>許多推論統計都假設常態;偏離時機率會失準</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="4">
+  <div class="split-visual"><div class="ch-no">04</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="負偏、對稱與正偏" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><path d="M20 150 L20.0 146.4 L22.7 146.0 L25.4 145.5 L28.2 144.9 L30.9 144.3 L33.6 143.6 L36.3 142.8 L39.0 141.9 L41.8 140.9 L44.5 139.9 L47.2 138.7 L49.9 137.4 L52.6 135.9 L55.4 134.4 L58.1 132.6 L60.8 130.7 L63.5 128.6 L66.2 126.4 L69.0 124.0 L71.7 121.3 L74.4 118.5 L77.1 115.4 L79.8 112.2 L82.6 108.7 L85.3 105.1 L88.0 101.3 L90.7 97.3 L93.4 93.2 L96.2 89.0 L98.9 84.8 L101.6 80.6 L104.3 76.5 L107.0 72.6 L109.8 69.0 L112.5 65.8 L115.2 63.1 L117.9 61.2 L120.6 60.1 L123.4 60.1 L126.1 61.4 L128.8 64.1 L131.5 68.3 L134.2 74.3 L137.0 82.0 L139.7 91.3 L142.4 102.2 L145.1 114.1 L147.8 126.3 L150.6 137.6 L153.3 146.4 L156.0 150.0 L156 150 Z" fill="#ffc2d6" stroke="#111" stroke-width="1.5"/><text x="88" y="36" font-size="14" font-weight="700" text-anchor="middle" fill="#111">負偏</text><text x="88" y="176" font-size="12" font-weight="500" text-anchor="middle" fill="#444">長尾在左邊</text><path d="M192 150 L192.0 149.7 L194.7 149.5 L197.4 149.2 L200.2 148.8 L202.9 148.2 L205.6 147.4 L208.3 146.4 L211.0 144.9 L213.8 143.1 L216.5 140.8 L219.2 137.8 L221.9 134.2 L224.6 130.0 L227.4 125.0 L230.1 119.3 L232.8 113.0 L235.5 106.2 L238.2 99.0 L241.0 91.8 L243.7 84.6 L246.4 77.9 L249.1 71.9 L251.8 66.9 L254.6 63.1 L257.3 60.8 L260.0 60.0 L262.7 60.8 L265.4 63.1 L268.2 66.9 L270.9 71.9 L273.6 77.9 L276.3 84.6 L279.0 91.8 L281.8 99.0 L284.5 106.2 L287.2 113.0 L289.9 119.3 L292.6 125.0 L295.4 130.0 L298.1 134.2 L300.8 137.8 L303.5 140.8 L306.2 143.1 L309.0 144.9 L311.7 146.4 L314.4 147.4 L317.1 148.2 L319.8 148.8 L322.6 149.2 L325.3 149.5 L328.0 149.7 L328 150 Z" fill="#ffe08a" stroke="#111" stroke-width="1.5"/><text x="260" y="36" font-size="14" font-weight="700" text-anchor="middle" fill="#111">對稱(常態)</text><text x="260" y="176" font-size="12" font-weight="500" text-anchor="middle" fill="#444">左右一樣</text><path d="M364 150 L364.0 150.0 L366.7 146.4 L369.4 137.6 L372.2 126.3 L374.9 114.1 L377.6 102.2 L380.3 91.3 L383.0 82.0 L385.8 74.3 L388.5 68.3 L391.2 64.1 L393.9 61.4 L396.6 60.1 L399.4 60.1 L402.1 61.2 L404.8 63.1 L407.5 65.8 L410.2 69.0 L413.0 72.6 L415.7 76.5 L418.4 80.6 L421.1 84.8 L423.8 89.0 L426.6 93.2 L429.3 97.3 L432.0 101.3 L434.7 105.1 L437.4 108.7 L440.2 112.2 L442.9 115.4 L445.6 118.5 L448.3 121.3 L451.0 124.0 L453.8 126.4 L456.5 128.6 L459.2 130.7 L461.9 132.6 L464.6 134.4 L467.4 135.9 L470.1 137.4 L472.8 138.7 L475.5 139.9 L478.2 140.9 L481.0 141.9 L483.7 142.8 L486.4 143.6 L489.1 144.3 L491.8 144.9 L494.6 145.5 L497.3 146.0 L500.0 146.4 L500 150 Z" fill="#bfe6ff" stroke="#111" stroke-width="1.5"/><text x="432" y="36" font-size="14" font-weight="700" text-anchor="middle" fill="#111">正偏</text><text x="432" y="176" font-size="12" font-weight="500" text-anchor="middle" fill="#444">長尾在右邊</text>
+      <text x="260" y="208" font-size="13" font-weight="500" text-anchor="middle" fill="#444">偏態看「尾巴」拖向哪一邊;偏得越厲害,</text><text x="260" y="226" font-size="13" font-weight="500" text-anchor="middle" fill="#444">用常態分布算出來的機率就越不準</text></svg></div>
+    <div class="fig-cap">偏態的方向看長尾在哪一邊。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-pink keepcase">CH 04 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">負偏、對稱與正偏</h2>
+    <p class="fig2-body">本章說明常態分布(鐘形曲線)為何是統計學的核心。它是理論分布:對稱、單峰、平均數與中位數及眾數重合,兩尾漸近橫軸。只描述手上的樣本時,分布是否常態並不要緊;但要計算某數值出現的機率,或從樣本推論母體、檢驗虛無假設時,所用的機率都建立在常態假設上。因此分布形狀(偏態、峰度)與抽樣方式(隨機、代表性、便利)都會影響機率是否可信。作者以六年級學生自尊分數的負偏分布示範:常態機率硬套在偏態資料上會失準,但非常態樣本並非毫無價值。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-yellow" data-ch="4">
   <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 04 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1414,6 +1417,21 @@
   <tr><th>探索性因素分析</th><td data-label="做法">讓資料自己分群</td><td data-label="什麼時候用">事先沒有明確的構面架構</td></tr><tr><th>驗證性因素分析</th><td data-label="做法">檢驗預設的架構是否成立</td><td data-label="什麼時候用">已有理論或前人量表</td></tr><tr><th>信度分析</th><td data-label="做法">計算 Cronbach's α</td><td data-label="什麼時候用">確認一組題目能不能加總成一個分數</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>因素分析把很多題目濃縮成少數幾個構面</span></div><div class="take"><span class="list-num">02</span><span>因素負荷量是題目和因素的相關;特徵值大於 1 常作為保留門檻</span></div><div class="take"><span class="list-num">03</span><span>Cronbach's α 檢查同一構面題目的內部一致性,.70 以上通常可接受</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="15">
+  <div class="split-visual"><div class="ch-no">15</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="陡坡圖" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><line x1="60" y1="180" x2="490" y2="180" stroke="#111" stroke-width="1.6"/><line x1="60" y1="180" x2="60" y2="26" stroke="#111" stroke-width="1.6"/><line x1="60" y1="140" x2="490" y2="140" stroke="#d6336c" stroke-width="1.8" stroke-dasharray="6 4"/><text x="486" y="134" font-size="13" font-weight="700" text-anchor="end" fill="#d6336c">特徵值 = 1</text>
+      <polyline points="90,44 150,96 210,148 270,156 330,162 390,166 450,168" fill="none" stroke="#111" stroke-width="2.2"/>
+      <circle cx="90" cy="44" r="6" fill="#b9f0b4" stroke="#111" stroke-width="1.6"/><text x="90" y="198" font-size="12" font-weight="500" text-anchor="middle" fill="#111">1</text><circle cx="150" cy="96" r="6" fill="#b9f0b4" stroke="#111" stroke-width="1.6"/><text x="150" y="198" font-size="12" font-weight="500" text-anchor="middle" fill="#111">2</text><circle cx="210" cy="148" r="6" fill="#fff" stroke="#111" stroke-width="1.6"/><text x="210" y="198" font-size="12" font-weight="500" text-anchor="middle" fill="#111">3</text><circle cx="270" cy="156" r="6" fill="#fff" stroke="#111" stroke-width="1.6"/><text x="270" y="198" font-size="12" font-weight="500" text-anchor="middle" fill="#111">4</text><circle cx="330" cy="162" r="6" fill="#fff" stroke="#111" stroke-width="1.6"/><text x="330" y="198" font-size="12" font-weight="500" text-anchor="middle" fill="#111">5</text><circle cx="390" cy="166" r="6" fill="#fff" stroke="#111" stroke-width="1.6"/><text x="390" y="198" font-size="12" font-weight="500" text-anchor="middle" fill="#111">6</text><circle cx="450" cy="168" r="6" fill="#fff" stroke="#111" stroke-width="1.6"/><text x="450" y="198" font-size="12" font-weight="500" text-anchor="middle" fill="#111">7</text>
+      <text x="30" y="100" font-size="12" font-weight="500" text-anchor="middle" fill="#111">特徵值</text><text x="275" y="216" font-size="12" font-weight="500" text-anchor="middle" fill="#111">因素編號</text>
+      <text x="104" y="48" font-size="13" font-weight="700" text-anchor="start" fill="#111">保留</text><text x="360" y="118" font-size="12" font-weight="500" text-anchor="middle" fill="#111">陡坡之後變平:不保留</text>
+      <text x="275" y="236" font-size="12" font-weight="500" text-anchor="middle" fill="#444">陡坡圖(示意數字):線以上的 2 個因素值得留下</text></svg></div>
+    <div class="fig-cap">用陡坡圖和特徵值決定要保留幾個因素。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-cream keepcase">CH 15 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">陡坡圖</h2>
+    <p class="fig2-body">問卷研究常用好幾個題項去測一個無法直接觀察的構念。本章介紹兩種整理題項的技術,目的在幫讀者看懂文獻而非教操作。探索性因素分析(EFA)依題項間相關的強弱萃取因素:最相關的一群先成為第一個因素,解釋最多變異,其後遞減;再透過轉軸讓因素盡量彼此區隔,並以特徵值、解釋變異比例、因素負荷量與概念是否說得通來決定保留幾個因素。驗證性因素分析(CFA)則先依理論指定結構,再用適配度統計量檢驗模型與資料合不合。因素分好之後,用 Cronbach's α 檢查每組題項的內部一致性。作者以 857 名高中生的九個動機題項貫穿全章:表現與精熟兩個因素清楚可靠,家庭題項則否。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-blue" data-ch="15">
   <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

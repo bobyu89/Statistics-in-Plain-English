@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1416,6 +1419,18 @@
   <tr><th>全距</th><td data-label="算法">最大值 − 最小值</td><td data-label="提醒">最快,但只看頭尾兩個值</td></tr><tr><th>四分位距</th><td data-label="算法">第 75 百分位 − 第 25 百分位</td><td data-label="提醒">不受極端值影響</td></tr><tr><th>變異數</th><td data-label="算法">Σ(X − X̄)² ÷ (n − 1)</td><td data-label="提醒">單位是原單位的平方</td></tr><tr><th>標準差</th><td data-label="算法">√變異數</td><td data-label="提醒">和原始資料同單位,最常用</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>只報平均數不夠,還要知道資料有多分散</span></div><div class="take"><span class="list-num">02</span><span>變異數是「離平均數距離的平方」的平均</span></div><div class="take"><span class="list-num">03</span><span>標準差開根號回到原單位;樣本要除以 n − 1</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="3">
+  <div class="split-visual"><div class="ch-no">03</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="標準差的計算流程" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><rect x="14" y="70" width="84" height="54" rx="10" fill="#bfe6ff" stroke="#111" stroke-width="1.5"/><text x="56" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#111">每個分數</text><line x1="100" y1="97" x2="114" y2="97" stroke="#111" stroke-width="1.6" marker-end="url(#fa)"/><text x="107" y="150" font-size="12" font-weight="500" text-anchor="middle" fill="#111">減平均數</text><line x1="107" y1="136" x2="107" y2="104" stroke="#8d8f94" stroke-width="1"/><rect x="116" y="70" width="84" height="54" rx="10" fill="#e8c6ff" stroke="#111" stroke-width="1.5"/><text x="158" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#111">離均差</text><line x1="202" y1="97" x2="216" y2="97" stroke="#111" stroke-width="1.6" marker-end="url(#fa)"/><text x="209" y="150" font-size="12" font-weight="500" text-anchor="middle" fill="#111">平方</text><line x1="209" y1="136" x2="209" y2="104" stroke="#8d8f94" stroke-width="1"/><rect x="218" y="70" width="84" height="54" rx="10" fill="#ffe08a" stroke="#111" stroke-width="1.5"/><text x="260" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#111">平方和</text><line x1="304" y1="97" x2="318" y2="97" stroke="#111" stroke-width="1.6" marker-end="url(#fa)"/><text x="311" y="150" font-size="12" font-weight="500" text-anchor="middle" fill="#111">除以 n − 1</text><line x1="311" y1="136" x2="311" y2="104" stroke="#8d8f94" stroke-width="1"/><rect x="320" y="70" width="84" height="54" rx="10" fill="#b9f0b4" stroke="#111" stroke-width="1.5"/><text x="362" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#111">變異數</text><line x1="406" y1="97" x2="420" y2="97" stroke="#111" stroke-width="1.6" marker-end="url(#fa)"/><text x="413" y="150" font-size="12" font-weight="500" text-anchor="middle" fill="#111">開根號</text><line x1="413" y1="136" x2="413" y2="104" stroke="#8d8f94" stroke-width="1"/><rect x="422" y="70" width="84" height="54" rx="10" fill="#ffc2d6" stroke="#111" stroke-width="1.5"/><text x="464" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#111">標準差</text>
+      <text x="260" y="34" font-size="15" font-weight="700" text-anchor="middle" fill="#111">標準差是怎麼算出來的</text>
+      <text x="260" y="196" font-size="13" font-weight="500" text-anchor="middle" fill="#444">平方是為了讓正負離均差不會互相抵消;</text><text x="260" y="216" font-size="13" font-weight="500" text-anchor="middle" fill="#444">最後開根號,把單位換回和原始資料一樣</text></svg></div>
+    <div class="fig-cap">從每個分數出發,四步算出標準差。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-blue keepcase">CH 03 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">標準差的計算流程</h2>
+    <p class="fig2-body">只知道平均數與中位數,無從得知資料是擠在一起還是四散。本章介紹三個變異量數:全距只看最大與最小值,容易誤導;變異數是離均差平方的平均,單位是平方,難以直接解讀,主要當其他統計的零件;標準差是變異數開根號,回到原單位,可理解為各取值離平均數的典型距離,最有用。作者說明為何先平方(離均差加總必為零)再開根號,以及樣本公式為何除以 n − 1。最後以 491 名中學生兩道五點量表題示範:全距相同,平均數與標準差卻能分辨兩個分布。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-pink" data-ch="3">
   <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 03 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

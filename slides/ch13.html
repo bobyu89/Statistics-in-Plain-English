@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1414,6 +1417,22 @@
   <tr><th>R²</th><td data-label="告訴你什麼">模型解釋了依變項多少比例的變異</td></tr><tr><th>F 檢定</th><td data-label="告訴你什麼">整體模型是否顯著</td></tr><tr><th>B(未標準化係數)</th><td data-label="告訴你什麼">X 每增加 1 單位,Y 的預測值改變多少</td></tr><tr><th>β(標準化係數)</th><td data-label="告訴你什麼">比較各預測變項的相對強度</td></tr><tr><th>t 與 p</th><td data-label="告訴你什麼">這個係數是否顯著不為 0</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>簡單迴歸:Ŷ = bX + a,b 是斜率、a 是截距</span></div><div class="take"><span class="list-num">02</span><span>多元迴歸看的是「控制其他變項後」每個預測變項的獨特貢獻</span></div><div class="take"><span class="list-num">03</span><span>R² 是模型解釋的變異比例;能預測不代表有因果</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="13">
+  <div class="split-visual"><div class="ch-no">13</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="R² 與預測變項的重疊" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><text x="260" y="26" font-size="15" font-weight="700" text-anchor="middle" fill="#111">依變項 Y 的全部變異</text>
+      <rect x="40" y="42" width="250" height="46" fill="#b9f0b4" stroke="#111" stroke-width="1.5"/><text x="165" y="70" font-size="13" font-weight="700" text-anchor="middle" fill="#111">模型解釋的部分 = R²</text>
+      <rect x="290" y="42" width="190" height="46" fill="#eee" stroke="#111" stroke-width="1.5"/><text x="385" y="70" font-size="13" font-weight="500" text-anchor="middle" fill="#111">殘差(沒解釋到的)</text>
+      <circle cx="170" cy="158" r="50" fill="#bfe6ff" stroke="#111" stroke-width="1.5" opacity=".85"/><circle cx="238" cy="158" r="50" fill="#ffc2d6" stroke="#111" stroke-width="1.5" opacity=".7"/>
+      <text x="140" y="162" font-size="13" font-weight="500" text-anchor="middle" fill="#111">X₁</text><text x="268" y="162" font-size="13" font-weight="500" text-anchor="middle" fill="#111">X₂</text><text x="204" y="162" font-size="11" font-weight="500" text-anchor="middle" fill="#111">重疊</text>
+      <text x="310" y="140" font-size="12" font-weight="500" text-anchor="start" fill="#111">兩個預測變項彼此相關時,</text><text x="310" y="158" font-size="12" font-weight="500" text-anchor="start" fill="#111">重疊的部分不能重複計算;</text><text x="310" y="176" font-size="12" font-weight="700" text-anchor="start" fill="#111">重疊太多 = 多元共線性</text>
+      <text x="260" y="230" font-size="13" font-weight="500" text-anchor="middle" fill="#444">每個迴歸係數只算該變項「獨有」的貢獻</text></svg></div>
+    <div class="fig-cap">R² 是整體解釋力;個別係數只算各自獨有的部分。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-green keepcase">CH 13 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">R² 與預測變項的重疊</h2>
+    <p class="fig2-body">本章從第 8 章的相關與決定係數出發,說明迴歸如何把「兩變項有關」改寫成「已知 X 可預測 Y」。簡單線性迴歸只有一個預測變項,用最小平方法找出讓殘差平方和最小的那條直線,由斜率 b 與截距 a 組成方程式;它提供的資訊其實不比相關係數多。真正的威力在多元迴歸:同時放入多個預測變項,可看整體模型解釋多少變異(R、R²、F 檢定),也能在控制其他變項後檢定每個預測變項的迴歸係數,並用標準化係數 β 比較相對強度。作者以教育年數、工作年資預測月收入,以及預測高中生自我設限策略兩個例子示範,最後提醒迴歸和相關一樣不能證明因果。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-pink" data-ch="13">
   <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

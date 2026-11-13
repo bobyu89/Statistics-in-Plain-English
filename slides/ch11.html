@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1418,6 +1421,22 @@
   <tr><th>因子 A 的主要效果</th><td data-label="在問什麼">不管 B,A 的各水準平均有差嗎?</td><td data-label="圖上怎麼看">線的左右兩端平均高度不同</td></tr><tr><th>因子 B 的主要效果</th><td data-label="在問什麼">不管 A,B 的各水準平均有差嗎?</td><td data-label="圖上怎麼看">兩條線的平均高度不同</td></tr><tr><th>A × B 交互作用</th><td data-label="在問什麼">A 的效果在 B 的不同水準下一樣嗎?</td><td data-label="圖上怎麼看">兩條線不平行</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>主要效果:一個因子自己造成的平均差異</span></div><div class="take"><span class="list-num">02</span><span>交互作用:一個因子的效果隨另一個因子而變</span></div><div class="take"><span class="list-num">03</span><span>交互作用顯著時,主要效果要小心解讀</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="11">
+  <div class="split-visual"><div class="ch-no">11</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2×2 設計的細格平均數" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><text x="238" y="24" font-size="13" font-weight="700" text-anchor="middle" fill="#111">因子 B</text><text x="190" y="48" font-size="13" font-weight="500" text-anchor="middle" fill="#111">B1</text><text x="286" y="48" font-size="13" font-weight="500" text-anchor="middle" fill="#111">B2</text><text x="388" y="48" font-size="12" font-weight="500" text-anchor="middle" fill="#444">列平均</text>
+      <text x="60" y="112" font-size="13" font-weight="700" text-anchor="middle" fill="#111">因子 A</text><text x="134" y="84" font-size="13" font-weight="500" text-anchor="end" fill="#111">A1</text><text x="134" y="130" font-size="13" font-weight="500" text-anchor="end" fill="#111">A2</text><text x="134" y="178" font-size="12" font-weight="500" text-anchor="end" fill="#444">行平均</text>
+      <rect x="142" y="56" width="96" height="46" fill="#bfe6ff" stroke="#111" stroke-width="1.5"/><text x="190" y="85" font-size="16" font-weight="700" text-anchor="middle" fill="#111">10</text><rect x="238" y="56" width="96" height="46" fill="#bfe6ff" stroke="#111" stroke-width="1.5"/><text x="286" y="85" font-size="16" font-weight="700" text-anchor="middle" fill="#111">12</text><rect x="340" y="56" width="96" height="46" fill="#f3f3f3" stroke="#111" stroke-width="1.5"/><text x="388" y="85" font-size="16" font-weight="500" text-anchor="middle" fill="#111">11</text>
+      <rect x="142" y="102" width="96" height="46" fill="#ffc2d6" stroke="#111" stroke-width="1.5"/><text x="190" y="131" font-size="16" font-weight="700" text-anchor="middle" fill="#111">14</text><rect x="238" y="102" width="96" height="46" fill="#ffc2d6" stroke="#111" stroke-width="1.5"/><text x="286" y="131" font-size="16" font-weight="700" text-anchor="middle" fill="#111">24</text><rect x="340" y="102" width="96" height="46" fill="#f3f3f3" stroke="#111" stroke-width="1.5"/><text x="388" y="131" font-size="16" font-weight="500" text-anchor="middle" fill="#111">19</text>
+      <rect x="142" y="150" width="96" height="46" fill="#f3f3f3" stroke="#111" stroke-width="1.5"/><text x="190" y="179" font-size="16" font-weight="500" text-anchor="middle" fill="#111">12</text><rect x="238" y="150" width="96" height="46" fill="#f3f3f3" stroke="#111" stroke-width="1.5"/><text x="286" y="179" font-size="16" font-weight="500" text-anchor="middle" fill="#111">18</text>
+      <text x="446" y="84" font-size="12" font-weight="500" text-anchor="start" fill="#111">← A 的</text><text x="446" y="100" font-size="12" font-weight="500" text-anchor="start" fill="#111">主要效果</text>
+      <text x="260" y="218" font-size="12" font-weight="500" text-anchor="middle" fill="#444">A 的效果在 B1 是 +4、在 B2 是 +12:差距不一樣,就是交互作用(示意數字)</text></svg></div>
+    <div class="fig-cap">看細格平均數,主要效果與交互作用一目了然。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 11 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">2×2 設計的細格平均數</h2>
+    <p class="fig2-body">多因子變異數分析(factorial ANOVA)處理一個連續依變項與兩個以上類別自變項,同樣是拆解依變項的變異。它提供三類結果:各自變項的主要效果、自變項之間的交互作用,以及比較個別細格的單純主要效果。比起分開做幾次單因子分析,它的每個主要效果都已排除模型中其他效果的影響,還能偵測一個自變項的作用是否隨另一個自變項的水準而變。本章並介紹以共變項做統計控制的共變數分析,用 SPSS 報表示範 F 值與 η²,且一再強調交互作用顯著時主要效果要小心解讀。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-cream" data-ch="11">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>

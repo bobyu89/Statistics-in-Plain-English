@@ -1334,11 +1334,14 @@
 }
 .slide-7[data-ch] .step-connector { display: none; }
 
+.slide-fig2 .fig2-body { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; font-weight: 500; }
+@media (max-width: 820px), (max-height: 520px) { .slide-fig2 .fig2-body { font-size: 15px; } }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <div class="slide-counter" id="slideCounter">01 / 12</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1415,6 +1418,22 @@
   <tr><th>組間</th><td data-label="在量什麼">各組平均數離總平均多遠</td><td data-label="自由度">組數 − 1</td></tr><tr><th>組內(誤差)</th><td data-label="在量什麼">每個人離自己那組的平均多遠</td><td data-label="自由度">總人數 − 組數</td></tr><tr><th>F</th><td data-label="在量什麼">組間均方 ÷ 組內均方</td><td data-label="自由度">用兩個自由度查 F 表</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>F = 組間均方 ÷ 組內均方</span></div><div class="take"><span class="list-num">02</span><span>連做好幾次 t 檢定會讓型一錯誤膨脹,所以改用一次 ANOVA</span></div><div class="take"><span class="list-num">03</span><span>F 顯著只說「至少有一組不同」,要做事後比較才知道是哪幾組</span></div></div></section>
+
+<section class="slide slide-6 slide-fig2" data-ch="10">
+  <div class="split-visual"><div class="ch-no">10</div>
+    <div class="visual-box figure"><svg class="fig" viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ANOVA 的變異分割" font-family="Outfit,'Noto Sans TC',system-ui,sans-serif"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs><text x="260" y="26" font-size="15" font-weight="700" text-anchor="middle" fill="#111">總變異 = 組間變異 + 組內變異</text>
+      <rect x="40" y="44" width="440" height="40" fill="#eee" stroke="#111" stroke-width="1.5"/><text x="260" y="69" font-size="13" font-weight="500" text-anchor="middle" fill="#111">總變異(每個人離總平均多遠)</text>
+      <line x1="150" y1="86" x2="150" y2="106" stroke="#111" stroke-width="1.6" marker-end="url(#fa)"/><line x1="370" y1="86" x2="370" y2="106" stroke="#111" stroke-width="1.6" marker-end="url(#fa)"/>
+      <rect x="40" y="110" width="250" height="40" fill="#b9f0b4" stroke="#111" stroke-width="1.5"/><text x="165" y="135" font-size="13" font-weight="700" text-anchor="middle" fill="#111">組間:組平均離總平均</text>
+      <rect x="290" y="110" width="190" height="40" fill="#ffc2d6" stroke="#111" stroke-width="1.5"/><text x="385" y="135" font-size="13" font-weight="700" text-anchor="middle" fill="#111">組內:誤差</text>
+      <text x="165" y="172" font-size="12" font-weight="500" text-anchor="middle" fill="#111">÷ (組數 − 1) = 組間均方</text><text x="385" y="172" font-size="12" font-weight="500" text-anchor="middle" fill="#111">÷ (總人數 − 組數) = 組內均方</text>
+      <text x="260" y="206" font-size="13" font-weight="500" text-anchor="middle" fill="#444">綠色那塊相對於粉紅色越大,F 越大;</text><text x="260" y="226" font-size="13" font-weight="500" text-anchor="middle" fill="#444">F 顯著後,再用事後比較找出是哪兩組不同</text></svg></div>
+    <div class="fig-cap">ANOVA 就是把總變異切成兩塊再相比。</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 10 · 再看一張圖</div></div>
+    <h2 class="nb-heading-md keepcase">ANOVA 的變異分割</h2>
+    <p class="fig2-body">單因子變異數分析(one-way ANOVA)用來比較兩組以上在同一連續依變項上的平均數。兩組時它與獨立樣本 t 檢定結論相同(F 是 t 的平方),但三組以上若做多次 t 檢定,型一錯誤的機會會累積,所以改用 ANOVA。核心是把總變異拆成組間與組內(誤差)兩塊:先算平方和,除以自由度得均方,兩個均方相除即 F 值,再查表判斷顯著性。F 顯著只代表至少有兩組不同,還要用 Tukey HSD 等事後比較或事前比較找出差異所在,並以 η² 說明分組解釋了多少變異。</p>
+  </div></section>
 
 <section class="slide slide-9 bg-blue" data-ch="10">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
