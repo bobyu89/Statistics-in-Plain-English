@@ -208,7 +208,7 @@ h1{font-size:32px;font-weight:500;letter-spacing:-.02em;text-wrap:balance}
   <a style="background:#c8c2ff" href="slides.html" data-tip="簡報">T</a>
   <a style="background:#bfe6ff" href="whiteboard.html" data-tip="學習白板">A</a>
   <button style="background:#ffb3c7" data-open="compare" data-tip="版本比對">⇄</button>
-  <button style="background:#ffe08a" data-open="terms" data-tip="術語對照">字</button>
+  <button style="background:#ffe08a" data-open="terms" data-tip="術語表">字</button>
   <button style="background:#e8c6ff" id="dockQuiz" data-tip="隨堂小考">?</button>
   <a style="background:#b9f0b4" href="heptabase-cards.zip" download data-tip="下載 Heptabase 卡片">↓</a>
   <button style="background:#444;color:#fff" id="resetBtn" data-tip="重設進度">↺</button>
@@ -240,7 +240,7 @@ function cardHTML(c){
 }
 function render(){
   const q=$('#q').value.trim().toLowerCase();
-  const hit=c=>!q||[c.title_tw,c.title_cn,c.title_en,c.one_liner,...(c.concepts||[]).flatMap(k=>[k.tw,k.cn,k.en])].join(' ').toLowerCase().includes(q);
+  const hit=c=>!q||[c.title_tw,c.title_en,c.one_liner,...(c.concepts||[]).flatMap(k=>[k.tw,k.en])].join(' ').toLowerCase().includes(q);
   const list=B.chapters.filter(hit);
   const next=B.chapters.find(c=>!done.has(c.n))||B.chapters[0];
   const total=B.chapters.length, nd=B.chapters.filter(c=>done.has(c.n)).length;
@@ -270,19 +270,18 @@ function compare(){
   <h4>書目對照</h4><div class="tw"><table><tr><th></th>${C.editions.map(e=>`<th>${esc(e.label)}</th>`).join('')}</tr>
   ${C.editionRows.map(r=>`<tr><th>${esc(r.k)}</th>${C.editions.map(e=>`<td>${esc(e[r.f])}</td>`).join('')}</tr>`).join('')}</table></div>
   <h4>主要差異</h4><ul>${C.keyDiffs.map(d=>`<li><b>${esc(d.t)}</b>:${esc(d.d)}</li>`).join('')}</ul>
-  <h4>章節對照</h4><div class="tw"><table><tr><th>簡體 3E</th><th>章名(簡體)</th><th>台灣三版</th><th>章名(台灣)</th><th>差異</th></tr>
-  ${C.chapterMap.map(m=>`<tr><td>${m.cn_n?'第 '+m.cn_n+' 章':'—'}</td><td>${esc(m.cn||'—')}</td><td>${m.tw_n?'第 '+m.tw_n+' 章':'—'}</td><td>${esc(m.tw||'—')}</td><td class="${m.note?'diff':''}">${esc(m.note||'')}</td></tr>`).join('')}</table></div>
-  <h4>附錄對照</h4><div class="tw"><table><tr><th>內容</th><th>簡體 3E</th><th>台灣三版</th></tr>${C.appendices.map(a=>`<tr><td>${esc(a.what)}</td><td>${esc(a.cn)}</td><td>${esc(a.tw)}</td></tr>`).join('')}</table></div>
+  <h4>章節對照</h4><div class="tw"><table><tr><th>章名</th><th>簡體 3E</th><th>台灣三版</th><th>差異</th></tr>
+  ${C.chapterMap.map(m=>`<tr><td><b>${esc(m.tw_name)}</b></td><td>${m.cn_n?'第 '+m.cn_n+' 章':'—'}</td><td>第 ${m.tw_n} 章</td><td class="${m.note?'diff':''}">${esc(m.note||'')}</td></tr>`).join('')}</table></div>
+  <h4>附錄對照</h4><div class="tw"><table><tr><th>內容</th><th>簡體 3E</th><th>台灣三版</th></tr>${C.appendices.map(a=>`<tr><td>${esc(a.what)}</td><td>${esc(a.old)}</td><td>${esc(a.new)}</td></tr>`).join('')}</table></div>
   <p class="srcnote">${esc(C.sourceNote)}</p>
-  <div class="chips"><a href="#" data-open="terms">看術語譯名差異</a></div>`,true);
+`,true);
 }
 function terms(){
-  const T=B.compare.terms;
-  openDrawer(`<div class="k">GLOSSARY DIFF</div><h2>術語譯名對照</h2>
-  <div class="sub">共 ${T.length} 組。黃底代表兩岸譯名不同,讀簡體版時最容易卡住的地方。</div>
-  <div class="tw"><table><tr><th>English</th><th>台灣</th><th>簡體</th><th>章</th></tr>${T.map(t=>`<tr><td>${esc(t.en)}</td><td><b>${esc(t.tw)}</b></td><td class="${t.diff?'diff':''}">${esc(t.cn)}</td><td>${esc(t.ch)}</td></tr>`).join('')}</table></div>
-  <p class="srcnote">${esc(B.compare.termNote)}</p>
-  ${B.back?.symbols?.length?`<h4>全書符號表(${B.back.symbols.length} 個)</h4><div class="tw"><table><tr><th>符號</th><th>台灣用語</th><th>簡體版寫法</th></tr>${B.back.symbols.map(y=>`<tr><td><b>${esc(y.sym)}</b></td><td>${esc(y.meaning_tw)}</td><td>${esc(y.meaning_cn)}</td></tr>`).join('')}</table></div>`:''}`,true);
+  const T=B.glossary;
+  openDrawer(`<div class="k">GLOSSARY</div><h2>術語表</h2>
+  <div class="sub">全書 ${T.length} 個術語,依章節排序。</div>
+  <div class="tw"><table><tr><th>中文</th><th>English</th><th>章</th></tr>${T.map(t=>`<tr><td><b>${esc(t.tw)}</b></td><td>${esc(t.en)}</td><td>${esc(t.ch)}</td></tr>`).join('')}</table></div>
+  ${B.back?.symbols?.length?`<h4>符號表(${B.back.symbols.length} 個)</h4><div class="tw"><table><tr><th>符號</th><th>意思</th></tr>${B.back.symbols.map(y=>`<tr><td><b>${esc(y.sym)}</b></td><td>${esc(y.meaning)}</td></tr>`).join('')}</table></div>`:''}`,true);
 }
 let qi=0; const quizzes=B.chapters.flatMap(c=>(c.quiz||[]).map(z=>({...z,n:c.n})));
 function setQuiz(){ if(!quizzes.length)return; const z=quizzes[qi%quizzes.length]; $('#quizQ').textContent=z.q; $('#quizCh').textContent='CH '+String(z.n).padStart(2,'0'); }

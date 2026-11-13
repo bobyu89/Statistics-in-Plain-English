@@ -1,7 +1,6 @@
 # 相依（成對）樣本 t 檢定
 
 - English:dependent (paired) samples t test
-- 簡體譯名:相依、配对样本t检验(與台灣用語不同)
 - 出處:[[CH09 t 檢定]]
 
 比較同一群人兩次測量或配對樣本的平均數。

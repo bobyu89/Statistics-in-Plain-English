@@ -1,6 +1,5 @@
 {
  "n": 2,
- "title_cn": "中心趋势的测度",
  "title_en": "Measures of Central Tendency",
  "pages": "15–22",
  "one_liner": "平均數、中位數、眾數各說一件事;偏態或有離群值時三者會分家。",
@@ -45,176 +44,122 @@
  "concepts": [
   {
    "tw": "平均數",
-   "cn": "均值",
    "en": "mean",
-   "diff": true,
    "note": "所有取值的算術平均;最常用,但會被極端值拉動。"
   },
   {
    "tw": "中位數",
-   "cn": "中位数",
    "en": "median",
-   "diff": false,
    "note": "排序後正中間的值(第 50 百分位),不受離群值影響。"
   },
   {
    "tw": "眾數",
-   "cn": "众数",
    "en": "mode",
-   "diff": false,
    "note": "出現次數最多的取值;資訊最少。"
   },
   {
    "tw": "偏態",
-   "cn": "偏态",
    "en": "skew",
-   "diff": false,
    "note": "取值擠在一端、另一端拖出尾巴;尾巴朝哪邊就是哪種偏。"
   },
   {
    "tw": "負偏態/正偏態",
-   "cn": "负偏/正偏",
    "en": "negative / positive skew",
-   "diff": false,
    "note": "尾巴在低端為負偏(平均數<中位數),在高端為正偏。"
   },
   {
    "tw": "離群值",
-   "cn": "异常值",
    "en": "outlier",
-   "diff": true,
    "note": "異常大或小的值;樣本越小,對平均數的衝擊越大。"
   },
   {
    "tw": "雙峰/多峰分布",
-   "cn": "双峰/多峰",
    "en": "bimodal / multimodal",
-   "diff": false,
    "note": "有兩個或更多最高次數的取值,常見於意見兩極的題目。"
   },
   {
    "tw": "中位數分割",
-   "cn": "中位数分划",
    "en": "median split",
-   "diff": true,
    "note": "以中位數把樣本切成人數相等的高、低兩組。"
   },
   {
    "tw": "母數與統計量",
-   "cn": "参数和统计量",
    "en": "parameter and statistic",
-   "diff": true,
    "note": "μ 是母體平均數,X̄ 是用來估計它的樣本平均數。"
   }
  ],
  "terms": [
   {
-   "cn": "双峰",
    "tw": "雙峰",
-   "en": "bimodal",
-   "diff": false
+   "en": "bimodal"
   },
   {
-   "cn": "分布",
    "tw": "分布(分配)",
-   "en": "distribution",
-   "diff": false
+   "en": "distribution"
   },
   {
-   "cn": "均值",
    "tw": "平均數",
-   "en": "mean",
-   "diff": true
+   "en": "mean"
   },
   {
-   "cn": "中位数分划",
    "tw": "中位數分割",
-   "en": "median split",
-   "diff": true
+   "en": "median split"
   },
   {
-   "cn": "中位数",
    "tw": "中位數",
-   "en": "median",
-   "diff": false
+   "en": "median"
   },
   {
-   "cn": "众数",
    "tw": "眾數",
-   "en": "mode",
-   "diff": false
+   "en": "mode"
   },
   {
-   "cn": "多峰",
    "tw": "多峰",
-   "en": "multimodal",
-   "diff": false
+   "en": "multimodal"
   },
   {
-   "cn": "负偏",
    "tw": "負偏態",
-   "en": "negative skew",
-   "diff": false
+   "en": "negative skew"
   },
   {
-   "cn": "异常值",
    "tw": "離群值(極端值)",
-   "en": "outliers",
-   "diff": true
+   "en": "outliers"
   },
   {
-   "cn": "正偏",
    "tw": "正偏態",
-   "en": "positive skew",
-   "diff": false
+   "en": "positive skew"
   },
   {
-   "cn": "参数",
    "tw": "母數(參數)",
-   "en": "parameter",
-   "diff": true
+   "en": "parameter"
   },
   {
-   "cn": "总体",
    "tw": "母體",
-   "en": "population",
-   "diff": true
+   "en": "population"
   },
   {
-   "cn": "样本",
    "tw": "樣本",
-   "en": "sample",
-   "diff": false
+   "en": "sample"
   },
   {
-   "cn": "偏态",
    "tw": "偏態",
-   "en": "skew",
-   "diff": false
+   "en": "skew"
   },
   {
-   "cn": "统计量",
    "tw": "統計量",
-   "en": "statistic",
-   "diff": false
+   "en": "statistic"
   },
   {
-   "cn": "中心趋势",
    "tw": "集中趨勢",
-   "en": "central tendency",
-   "diff": true
+   "en": "central tendency"
   },
   {
-   "cn": "组频数分布",
    "tw": "分組次數分配",
-   "en": "grouped frequency distribution",
-   "diff": true
+   "en": "grouped frequency distribution"
   },
   {
-   "cn": "样本容量",
    "tw": "樣本數(樣本大小)",
-   "en": "sample size",
-   "diff": true
+   "en": "sample size"
   }
  ],
  "symbols": [
@@ -302,11 +247,5 @@
    "num": "3.77 < 4",
    "label": "負偏的訊號"
   }
- },
- "ocr_notes": [
-  "表 2-1 公式 OCR 全毀,已依文字說明重建為 X̄ = ΣX / n 與 μ = ΣX / N。",
-  "表 2-2 死刑態度量表 OCR 只留下兩端各 45 人,中間三格的次數(合計 10 人)需對原書。",
-  "第 19 頁談前五名國家彼此差距的一句 OCR 缺漏;圖 2-2 的國名與座標未能辨識。",
-  "術語表定義離群值為「距平均數超過 2 個標準差的極端值」,正文則只說「異常大或小的值」。"
- ]
+ }
 }

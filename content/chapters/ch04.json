@@ -1,6 +1,5 @@
 {
  "n": 4,
- "title_cn": "正态分布",
  "title_en": "The Normal Distribution",
  "pages": "35–42",
  "one_liner": "常態分布是計算機率的理論基準;資料或抽樣一旦偏離它,機率就會失準。",
@@ -52,206 +51,142 @@
  "concepts": [
   {
    "tw": "常態分布",
-   "cn": "正态分布",
    "en": "normal distribution",
-   "diff": true,
    "note": "對稱、單峰、三個集中量數重合、兩尾漸近的鐘形理論分布。"
   },
   {
    "tw": "理論分布",
-   "cn": "理论分布",
    "en": "theoretical distribution",
-   "diff": false,
    "note": "由機率推導出的理想分布,不是實際蒐集到的資料。"
   },
   {
    "tw": "偏態",
-   "cn": "偏度",
    "en": "skew",
-   "diff": true,
    "note": "分布一側拖出長尾而不對稱;長尾在高分端為正偏,低分端為負偏。"
   },
   {
    "tw": "峰度",
-   "cn": "峰度",
    "en": "kurtosis",
-   "diff": false,
    "note": "分布比常態更尖(高狹峰)或更平(低闊峰)的程度。"
   },
   {
    "tw": "隨機抽樣",
-   "cn": "随机抽样",
    "en": "random sampling",
-   "diff": false,
    "note": "每個成員被選中的機會相同,樣本與母體的差異只是隨機的。"
   },
   {
    "tw": "便利抽樣",
-   "cn": "方便抽样",
    "en": "convenience sampling",
-   "diff": true,
    "note": "為了方便而取樣,容易系統性偏向母體的某一端。"
   },
   {
    "tw": "推論統計",
-   "cn": "推断统计量",
    "en": "inferential statistics",
-   "diff": true,
    "note": "用樣本資料推估母體特徵,前提是樣本能代表母體。"
   },
   {
    "tw": "虛無假設",
-   "cn": "零假设",
    "en": "null hypothesis",
-   "diff": true,
    "note": "主張效果為零(例如兩組平均數沒有差異)的假設。"
   },
   {
    "tw": "偏誤樣本",
-   "cn": "有偏",
    "en": "biased",
-   "diff": false,
    "note": "母體某部分被過度代表、另一部分代表不足的樣本。"
   }
  ],
  "terms": [
   {
-   "cn": "渐近",
    "tw": "漸近",
-   "en": "asymptotic",
-   "diff": false
+   "en": "asymptotic"
   },
   {
-   "cn": "钟形曲线",
    "tw": "鐘形曲線",
-   "en": "bell curve",
-   "diff": false
+   "en": "bell curve"
   },
   {
-   "cn": "有偏",
    "tw": "有偏誤(偏差)",
-   "en": "biased",
-   "diff": false
+   "en": "biased"
   },
   {
-   "cn": "方便抽样",
    "tw": "便利抽樣",
-   "en": "convenience sampling",
-   "diff": true
+   "en": "convenience sampling"
   },
   {
-   "cn": "描述统计量",
    "tw": "描述統計(敘述統計)",
-   "en": "descriptive statistics",
-   "diff": true
+   "en": "descriptive statistics"
   },
   {
-   "cn": "推断统计量",
    "tw": "推論統計",
-   "en": "inferential statistics",
-   "diff": true
+   "en": "inferential statistics"
   },
   {
-   "cn": "峰度",
    "tw": "峰度",
-   "en": "kurtosis",
-   "diff": false
+   "en": "kurtosis"
   },
   {
-   "cn": "尖峰",
    "tw": "高狹峰",
-   "en": "leptokurtic",
-   "diff": true
+   "en": "leptokurtic"
   },
   {
-   "cn": "负偏",
    "tw": "負偏(負偏態)",
-   "en": "negatively skewed",
-   "diff": false
+   "en": "negatively skewed"
   },
   {
-   "cn": "正态分布",
    "tw": "常態分布",
-   "en": "normal distribution",
-   "diff": true
+   "en": "normal distribution"
   },
   {
-   "cn": "零假设",
    "tw": "虛無假設",
-   "en": "null hypothesis",
-   "diff": true
+   "en": "null hypothesis"
   },
   {
-   "cn": "扁峰",
    "tw": "低闊峰",
-   "en": "platykurtic",
-   "diff": true
+   "en": "platykurtic"
   },
   {
-   "cn": "总体",
    "tw": "母體",
-   "en": "population",
-   "diff": true
+   "en": "population"
   },
   {
-   "cn": "正偏",
    "tw": "正偏(正偏態)",
-   "en": "positively skewed",
-   "diff": false
+   "en": "positively skewed"
   },
   {
-   "cn": "概率",
    "tw": "機率",
-   "en": "probability",
-   "diff": true
+   "en": "probability"
   },
   {
-   "cn": "随机抽样",
    "tw": "隨機抽樣",
-   "en": "random sampling",
-   "diff": false
+   "en": "random sampling"
   },
   {
-   "cn": "典型抽样",
    "tw": "代表性抽樣",
-   "en": "representative sampling",
-   "diff": true
+   "en": "representative sampling"
   },
   {
-   "cn": "样本",
    "tw": "樣本",
-   "en": "sample",
-   "diff": false
+   "en": "sample"
   },
   {
-   "cn": "偏度",
    "tw": "偏態",
-   "en": "skew",
-   "diff": true
+   "en": "skew"
   },
   {
-   "cn": "对称",
    "tw": "對稱",
-   "en": "symmetrical",
-   "diff": false
+   "en": "symmetrical"
   },
   {
-   "cn": "理论分布",
    "tw": "理論分布",
-   "en": "theoretical distribution",
-   "diff": false
+   "en": "theoretical distribution"
   },
   {
-   "cn": "单峰",
    "tw": "單峰",
-   "en": "unimodal",
-   "diff": false
+   "en": "unimodal"
   },
   {
-   "cn": "概率统计量",
    "tw": "機率統計",
-   "en": "probability statistics",
-   "diff": true
+   "en": "probability statistics"
   }
  ],
  "symbols": [],
@@ -305,12 +240,5 @@
    "num": "68%",
    "label": "落在 ±1 個標準差內"
   }
- },
- "ocr_notes": [
-  "書中 p.37 寫「參見第 4 章對此算法的描述」,依文意應指第 5 章(z 分數),疑為原書或譯本筆誤,請核對。",
-  "p.40 例子中「50% 的數值位於平均數與平均數加 1 個標準差之間」為 OCR 讀數,建議對原書確認此百分比。",
-  "圖 4-4 兩端比例 OCR 為 0.0215 與 0.0213(應同為 0.0215),且全書僅此處出現該圖編號,請對原書確認。",
-  "術語表中「隨機抽樣」條目的詞頭被 OCR 漏掉,只剩定義結尾,已依字母順序補上。",
-  "「概率統計量 probability statistics」只出現在內文、不在術語表,列於 terms 末尾。"
- ]
+ }
 }

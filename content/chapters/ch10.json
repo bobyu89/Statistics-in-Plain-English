@@ -1,6 +1,5 @@
 {
  "n": 10,
- "title_cn": "单因子方差分析",
  "title_en": "One-Way Analysis of Variance",
  "pages": "118–133",
  "one_liner": "比三組以上平均數時,用組間對組內變異的 F 比率一次檢定,再靠事後比較找出誰不同。",
@@ -55,218 +54,150 @@
  "concepts": [
   {
    "tw": "F 值",
-   "cn": "F值",
    "en": "F value / F ratio",
-   "diff": false,
    "note": "組間均方除以誤差均方;組間差異相對於組內雜訊有多大。"
   },
   {
    "tw": "組間與組內變異",
-   "cn": "组间 / 组内",
    "en": "between-group / within-group",
-   "diff": false,
    "note": "總變異拆成兩塊:組平均數之間的差異,與同組內個體之間的差異。"
   },
   {
    "tw": "平方和",
-   "cn": "平方和",
    "en": "sum of squares",
-   "diff": false,
    "note": "離差平方的加總;SST = SSb + SSe 是 ANOVA 的關鍵等式。"
   },
   {
    "tw": "均方",
-   "cn": "均方",
    "en": "mean square",
-   "diff": false,
    "note": "平方和除以自由度,把總量換成平均量後才能相除成 F。"
   },
   {
    "tw": "型一錯誤膨脹",
-   "cn": "第Ⅰ类错误",
    "en": "Type I error inflation",
-   "diff": true,
    "note": "t 檢定做越多次,誤判為顯著的機會越高,這是改用 ANOVA 的理由。"
   },
   {
    "tw": "事後比較",
-   "cn": "事后检验",
    "en": "post hoc tests",
-   "diff": true,
    "note": "F 顯著後逐對比較各組平均數,找出究竟哪幾組不同。"
   },
   {
    "tw": "Tukey HSD",
-   "cn": "Tukey HSD",
    "en": "Tukey honestly significant difference",
-   "diff": false,
    "note": "常用事後比較;兩組平均數差除以 √(MSe/ng),對照學生化全距臨界值。"
   },
   {
    "tw": "事前比較",
-   "cn": "先验对比",
    "en": "a priori contrasts",
-   "diff": true,
    "note": "依假設事先計畫的特定對比,可將數組合併後再比較。"
   },
   {
    "tw": "η² 效應量",
-   "cn": "η平方",
    "en": "eta squared",
-   "diff": false,
    "note": "依變項變異中可由分組解釋的比例,性質等同決定係數。"
   }
  ],
  "terms": [
   {
-   "cn": "先验对比",
    "tw": "事前比較",
-   "en": "a priori contrast",
-   "diff": true
+   "en": "a priori contrast"
   },
   {
-   "cn": "组间",
    "tw": "組間",
-   "en": "between group",
-   "diff": false
+   "en": "between group"
   },
   {
-   "cn": "F值",
    "tw": "F 值",
-   "en": "F value",
-   "diff": false
+   "en": "F value"
   },
   {
-   "cn": "总均值",
    "tw": "總平均數",
-   "en": "grand mean",
-   "diff": true
+   "en": "grand mean"
   },
   {
-   "cn": "组间均方",
    "tw": "組間均方",
-   "en": "mean square between",
-   "diff": false
+   "en": "mean square between"
   },
   {
-   "cn": "均方误",
    "tw": "誤差均方",
-   "en": "mean square error",
-   "diff": true
+   "en": "mean square error"
   },
   {
-   "cn": "组内均方",
    "tw": "組內均方",
-   "en": "mean square within",
-   "diff": false
+   "en": "mean square within"
   },
   {
-   "cn": "单因子方差分析",
    "tw": "單因子變異數分析",
-   "en": "one-way ANOVA",
-   "diff": true
+   "en": "one-way ANOVA"
   },
   {
-   "cn": "事后检验",
    "tw": "事後比較",
-   "en": "post hoc tests",
-   "diff": true
+   "en": "post hoc tests"
   },
   {
-   "cn": "随机误差",
    "tw": "隨機誤差",
-   "en": "random error",
-   "diff": false
+   "en": "random error"
   },
   {
-   "cn": "学生化极差统计量",
    "tw": "學生化全距統計量",
-   "en": "studentized range statistic",
-   "diff": true
+   "en": "studentized range statistic"
   },
   {
-   "cn": "组间平方和",
    "tw": "組間平方和",
-   "en": "sum of squares between",
-   "diff": false
+   "en": "sum of squares between"
   },
   {
-   "cn": "误差平方和",
    "tw": "誤差平方和",
-   "en": "sum of squares error",
-   "diff": false
+   "en": "sum of squares error"
   },
   {
-   "cn": "总平方和",
    "tw": "總平方和",
-   "en": "sum of squares total",
-   "diff": false
+   "en": "sum of squares total"
   },
   {
-   "cn": "Tukey HSD",
    "tw": "Tukey HSD(誠實顯著差異)",
-   "en": "Tukey HSD",
-   "diff": false
+   "en": "Tukey HSD"
   },
   {
-   "cn": "组内",
    "tw": "組內",
-   "en": "within-group",
-   "diff": false
+   "en": "within-group"
   },
   {
-   "cn": "自变量",
    "tw": "自變項",
-   "en": "independent variable",
-   "diff": true
+   "en": "independent variable"
   },
   {
-   "cn": "因变量",
    "tw": "依變項",
-   "en": "dependent variable",
-   "diff": true
+   "en": "dependent variable"
   },
   {
-   "cn": "效应量",
    "tw": "效應量",
-   "en": "effect size",
-   "diff": false
+   "en": "effect size"
   },
   {
-   "cn": "η平方",
    "tw": "η²(eta 平方)",
-   "en": "eta squared",
-   "diff": false
+   "en": "eta squared"
   },
   {
-   "cn": "决定系数",
    "tw": "決定係數",
-   "en": "coefficient of determination",
-   "diff": false
+   "en": "coefficient of determination"
   },
   {
-   "cn": "第Ⅰ类错误",
    "tw": "型一錯誤",
-   "en": "Type I error",
-   "diff": true
+   "en": "Type I error"
   },
   {
-   "cn": "原假设",
    "tw": "虛無假設",
-   "en": "null hypothesis",
-   "diff": true
+   "en": "null hypothesis"
   },
   {
-   "cn": "自由度",
    "tw": "自由度",
-   "en": "degrees of freedom",
-   "diff": false
+   "en": "degrees of freedom"
   },
   {
-   "cn": "临界值",
    "tw": "臨界值",
-   "en": "critical value",
-   "diff": false
+   "en": "critical value"
   }
  ],
  "symbols": [
@@ -393,12 +324,5 @@
    "num": "F = MSb / MSe",
    "label": "組間對組內的比"
   }
- },
- "ocr_notes": [
-  "表 10-5 的原始評分未被 OCR 辨識;由表 10-6 反推為 5 歲組 5,5,4,4,3、8 歲組 5,4,4,3,3、12 歲組 4,3,2,2,1,建議對原書核對。",
-  "書中步驟 4 以四捨五入後的數字相加得 SSb = 8.90(2.65 + 0.55 + 5.7);未四捨五入計算約為 8.93,摘要沿用書中數值。",
-  "行文表述段落中間有一行 OCR 遺失(F(2,12) = 4.94 之前的敘述),示範句為依前後文重寫。",
-  "表 10-4 Tukey 報表的欄位在 OCR 中錯位,平均差 −0.84、0.16、−1.00 與 p 值 .033、.877、.009 係依內文配對。",
-  "符號表中總平均數、F、df、K、N、n 等符號本身未被 OCR 辨識,依定義補上。"
- ]
+ }
 }

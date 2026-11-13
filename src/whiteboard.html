@@ -38,6 +38,8 @@ a{color:inherit;text-decoration:none}
 .node.ch h3{font-size:19px;font-weight:600;line-height:1.25;margin:3px 0 2px;text-wrap:balance}
 .node.ch .en{font-size:12px;color:#8f9197;margin-bottom:8px}
 .node.ch p{font-size:13px;line-height:1.55;color:#3d3e42}
+.node.ch .mini{border:1px solid #ecece8;border-radius:10px;background:#fcfcfa;margin:0 0 8px;padding:4px;pointer-events:none}
+.node.ch .mini svg{display:block;width:100%;height:auto}
 .node.ch .ft{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .node.ch .ft span{font-size:11px;padding:3px 9px;border-radius:999px;background:#f1f1ee}
 .node.ch .ft span.d{background:var(--green)}
@@ -117,10 +119,10 @@ const partOf={}; B.parts.forEach(p=>p.chapters.forEach(n=>partOf[n]=p));
 B.chapters.forEach(c=>{
   const p=partOf[c.n]||B.parts[0];
   add({id:'ch'+c.n,cls:'ch',color:p.color,part:p.id,ch:c.n,kind:'ch',html:
-    `<div class="no">CH ${no(c.n)} · p.${esc(c.pages)}</div><h3>${esc(c.title_tw)}</h3><div class="en">${esc(c.title_en)}</div><p>${esc(c.one_liner)}</p>
+    `<div class="no">CH ${no(c.n)} · p.${esc(c.pages)}</div><h3>${esc(c.title_tw)}</h3><div class="en">${esc(c.title_en)}</div><div class="mini">${FIGS.svg(c.n)}</div><p>${esc(c.one_liner)}</p>
      <div class="ft">${done.has(c.n)?'<span class="d">Completed 👏</span>':''}<span>${(c.concepts||[]).length} 個術語</span><span>${(c.formulas||[]).length} 條公式</span></div>`});
   (c.concepts||[]).slice(0,B.wb?.conceptsPerChapter||6).forEach((k,i)=>add({id:`c${c.n}_${i}`,cls:'cp',color:p.color,part:p.id,ch:c.n,kind:'cp',html:
-    `<b>${esc(k.tw)}</b><i>${esc(k.en)}</i>${k.diff?`<u>簡:${esc(k.cn)}</u>`:''}<p>${esc(k.note)}</p>`}));
+    `<b>${esc(k.tw)}</b><i>${esc(k.en)}</i><p>${esc(k.note)}</p>`}));
   (c.formulas||[]).slice(0,2).forEach((f,i)=>add({id:`f${c.n}_${i}`,cls:'fx',part:p.id,ch:c.n,kind:'fx',html:`<b>${esc(f.name)}</b><code>${esc(f.expr)}</code>`}));
 });
 (B.wb?.memos||[]).forEach((m,i)=>add({id:'memo'+i,cls:'memo '+(m.tone||''),kind:'memo',part:'memo',html:`<h3>${esc(m.title)}</h3>${m.html}`,memo:m}));

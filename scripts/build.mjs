@@ -14,27 +14,29 @@ const no = n => String(n).padStart(2, '0');
 
 // ---------------------------------------------------------------- data
 const B = json('content/base.json');
-const twTitle = Object.fromEntries(B.compare.chapterMap.filter(m => m.cn_n).map(m => [m.cn_n, m.site || m.tw]));
+const BRIEFS = json('content/briefs.json');
+const FIGS = new Function(read('src/figs.js') + '; return FIGS;')();
+const twTitle = Object.fromEntries(B.compare.chapterMap.filter(m => m.cn_n).map(m => [m.cn_n, m.name]));
 B.chapters = fs.readdirSync(R('content/chapters')).filter(f => /^ch\d+\.json$/.test(f)).sort()
-  .map(f => json('content/chapters/' + f)).map(c => ({ ...c, title_tw: twTitle[c.n] || c.title_cn }));
+  .map(f => json('content/chapters/' + f)).map(c => ({ ...c, title_tw: twTitle[c.n] || c.title_en, brief: BRIEFS[c.n] || null }));
 const has = new Set(B.chapters.map(c => c.n));
 B.edges = B.edges.filter(e => has.has(e.from) && has.has(e.to));
 for (const f of ['front', 'back']) if (fs.existsSync(R(`content/chapters/${f}.json`))) B[f] = json(`content/chapters/${f}.json`);
 
-// aggregated glossary (dedupe by English term, keep first chapter)
+// glossary (dedupe by English term)
 const seen = new Map();
 for (const c of B.chapters) for (const t of [...(c.terms || []), ...(c.concepts || [])]) {
   const k = (t.en || t.tw || '').toLowerCase().trim(); if (!k) continue;
   if (seen.has(k)) { const e = seen.get(k); if (!e.chs.includes(c.n)) e.chs.push(c.n); continue; }
-  seen.set(k, { en: t.en, tw: t.tw, cn: t.cn, diff: !!t.diff, chs: [c.n] });
+  seen.set(k, { en: t.en, tw: t.tw, chs: [c.n] });
 }
-B.compare.terms = [...seen.values()].map(t => ({ ...t, ch: t.chs.join(', ') }))
-  .sort((a, b) => (b.diff - a.diff) || a.chs[0] - b.chs[0]);
+B.glossary = [...seen.values()].map(t => ({ en: t.en, tw: t.tw, ch: t.chs.join(', ') }));
+for (const c of B.chapters) delete c.terms;
 
 // whiteboard memos
 const D = B.decision;
 B.wb.memos = [
-  { title: '怎麼用這張白板', tone: '', html: '<ul><li>每個色塊是一個學習階段,箭頭是「先懂 A 才好懂 B」。</li><li>大卡=一章;小卡=關鍵術語(黃標是簡體譯名);虛線卡=公式。</li><li>卡片可以拖;拖色塊標題會整組一起動。位置會記在這台瀏覽器。</li><li>點任何卡片,右側打開整章筆記。</li></ul>' },
+  { title: '怎麼用這張白板', tone: '', html: '<ul><li>每個色塊是一個學習階段,箭頭是「先懂 A 才好懂 B」。</li><li>大卡=一章;小卡=關鍵術語;虛線卡=公式。</li><li>卡片可以拖;拖色塊標題會整組一起動。位置會記在這台瀏覽器。</li><li>點任何卡片,右側打開整章筆記。</li></ul>' },
   { title: '版本差異速記', tone: 'b', html: `<table><tr><th></th><th>簡體版</th><th>台灣三版</th></tr><tr><td>原文</td><td>3E</td><td>5E 架構</td></tr><tr><td>章數</td><td>15</td><td>16</td></tr><tr><td>附錄</td><td>5</td><td>8</td></tr><tr><td>相關</td><td>第 8 章</td><td>第 12 章</td></tr><tr><td>第 14 章</td><td>卡方</td><td>無母數統計</td></tr></table>`,
     long: `<div class="lead">${esc(B.compare.headline)}</div><h4>主要差異</h4><ul>${B.compare.keyDiffs.map(d => `<li><b>${esc(d.t)}</b>:${esc(d.d)}</li>`).join('')}</ul><div class="chips"><a href="index.html#compare">打開完整對照表</a></div>` },
   { title: '該用哪個檢定?', tone: 'g', html: `<table>${D.slice(0, 6).map(d => `<tr><td>${esc(d.q)}</td><td><b>${esc(d.test)}</b></td></tr>`).join('')}</table><p style="margin-top:6px;opacity:.7">點開看完整 ${D.length} 列</p>`,
@@ -47,7 +49,7 @@ const shared = read('src/shared.js');
 const detailCSS = shared.match(/const detailCSS = `([\s\S]*?)`;/)[1];
 const dataJS = JSON.stringify(B).replace(/</g, '\\u003c');
 for (const page of ['index.html', 'whiteboard.html']) {
-  const out = read('src/' + page).replace('/*__BOOK__*/null', () => dataJS).replace('/*__SHARED__*/', () => shared).replace('/*__DETAILCSS__*/', () => detailCSS);
+  const out = read('src/' + page).replace('/*__BOOK__*/null', () => dataJS).replace('/*__SHARED__*/', () => read('src/figs.js') + '\n' + shared).replace('/*__DETAILCSS__*/', () => detailCSS);
   fs.writeFileSync(R(page), out);
 }
 
@@ -73,7 +75,7 @@ S.push(`<section class="slide slide-1 active">
   <div class="hero-frame">${brackets}
     <div class="nb-label hero-label">學習簡報 · ${B.chapters.length} 章全解</div>
     <h1 class="nb-heading-xl hero-title">白話<br>統計學</h1>
-    <p class="hero-subtitle">Statistics in Plain English — 把簡體第 3 版逐章讀完,改寫成台灣用語的重點筆記,並對照台灣雙葉版的差異。</p>
+    <p class="hero-subtitle">Statistics in Plain English — 把第 3 版逐章讀完,整理成有圖、有比喻的重點筆記,並對照台灣雙葉版的版本差異。</p>
     <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">Timothy C. Urdan</div>
   </div></section>`);
 
@@ -82,7 +84,7 @@ if (B.front) S.push(`<section class="slide slide-2">
     <div class="nb-label nb-label-yellow">這本書怎麼讀</div>
     <h2 class="nb-heading-lg">不用<br>從頭讀到尾</h2>
     <p class="nb-body" style="max-width:480px;">${esc(B.front.chapter_structure)}</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;"><span class="stat-pill">${B.chapters.length} 章</span><span class="stat-pill">${B.compare.appendices.filter(a => a.cn !== '—').length} 張附錄表</span><span class="stat-pill">內文 230 頁</span></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;"><span class="stat-pill">${B.chapters.length} 章</span><span class="stat-pill">${B.compare.appendices.filter(a => a.old !== '—').length} 張附錄表</span><span class="stat-pill">內文 230 頁</span></div>
   </div>
   <div class="col-right">${B.front.how_to_use.slice(0, 3).map((t, i) => `<div class="intro-card"><h3>讀法 ${no(i + 1)}</h3><p>${esc(t)}</p></div>`).join('')}</div>
 </section>`);
@@ -105,18 +107,10 @@ S.push(`<section class="slide slide-8">
 
 S.push(`<section class="slide slide-cmp">
   <div class="slide-header"><div class="nb-label nb-label-blue">章節對照</div><h2 class="nb-heading-md" style="margin-top:14px;">簡體版章號 → 台灣三版章號</h2></div>
-  <table class="cmp dense"><thead><tr><th>簡體 3E</th><th>簡體章名</th><th>台灣三版</th><th>台灣章名</th></tr></thead><tbody>
-  ${B.compare.chapterMap.filter(m => m.note && !/擴寫|假設/.test(m.note)).map(m => `<tr><th>${m.cn_n ? 'CH ' + no(m.cn_n) : '—'}</th><td>${esc(m.cn || '(無)')}</td><td class="hl">CH ${no(m.tw_n)}</td><td>${esc(m.tw)}　<span class="nb-mono">${esc(m.note)}</span></td></tr>`).join('')}
+  <table class="cmp dense"><thead><tr><th>章名</th><th>簡體 3E</th><th>台灣三版</th><th>差異</th></tr></thead><tbody>
+  ${B.compare.chapterMap.filter(m => m.note && !/擴寫|假設/.test(m.note)).map(m => `<tr><th>${esc(m.tw_name)}</th><td>${m.cn_n ? 'CH ' + no(m.cn_n) : '(無)'}</td><td class="hl">CH ${no(m.tw_n)}</td><td>${esc(m.note)}</td></tr>`).join('')}
   </tbody></table>
   <p class="nb-mono" style="margin-top:18px;">其餘第 1–7、13、15 章章號相同。</p></section>`);
-
-const diffTerms = B.compare.terms.filter(t => t.diff);
-const pick = ['mean', 'variance', 'population', 'confidence interval', 'normal distribution', 'regression'];
-const termCards = pick.map(k => diffTerms.find(t => (t.en || '').toLowerCase().startsWith(k))).filter(Boolean);
-for (const t of diffTerms) { if (termCards.length >= 6) break; if (!termCards.includes(t)) termCards.push(t); }
-if (termCards.length) S.push(`<section class="slide slide-9">
-  <div class="slide-header"><div class="nb-label nb-label-pink">譯名差異</div><h2 class="nb-heading-lg" style="margin-top:16px;">同一個字,兩種叫法</h2><p class="nb-mono" style="margin-top:10px;">全書整理出 ${B.compare.terms.length} 組術語,其中 ${diffTerms.length} 組兩岸譯名不同。</p></div>
-  <div class="team-grid">${termCards.slice(0, 6).map(t => `<div class="team-card"><div class="team-avatar">${esc([...t.tw][0])}</div><div class="team-name">${esc(t.tw)}</div><div class="team-role">簡體:${esc(t.cn)}</div><div class="team-bio">${esc(t.en)}</div></div>`).join('')}</div></section>`);
 
 S.push(`<section class="slide slide-7">
   <div class="slide-header"><div class="nb-label nb-label-cream">學習地圖</div><h2 class="nb-heading-lg" style="margin-top:16px;">五個階段</h2></div>
@@ -151,7 +145,8 @@ B.chapters.forEach((c, i) => {
   const stat = sl.stat || { num: 'CH ' + no(c.n), label: c.title_tw };
   S.push(`<section class="slide slide-6" data-ch="${c.n}">
   <div class="split-visual"><div class="ch-no">${no(c.n)}</div>
-    <div class="visual-box"><span class="big" style="font-size:${big(stat.num)}px;">${esc(stat.num)}</span><span class="cap">${esc(stat.label)}</span></div>
+    <div class="visual-box figure">${FIGS.svg(c.n)}</div>
+    <div class="fig-cap">${esc(FIGS.caption(c.n))}</div>
     <div class="visual-label">CH ${no(c.n)} · p.${esc(c.pages)}</div></div>
   <div class="split-content">
     <div><div class="nb-label keepcase ${lbl}">${esc(p.title)} · ${esc(c.title_tw)}</div></div>
@@ -165,10 +160,10 @@ B.chapters.forEach((c, i) => {
     <div><div class="nb-label nb-label-yellow">CH ${no(c.n)} · 關鍵術語</div></div>
     <h2 class="nb-heading-lg keepcase">${esc(c.title_tw)}</h2>
     <p class="nb-body" style="max-width:480px;">${esc(c.one_liner)}</p>
+    ${c.brief ? `<div class="warn"><b>比喻 · ${esc(c.brief.analogy_title)}</b>${esc(c.brief.analogy)}</div>` : ''}
     ${f ? `<div><span class="stat-pill">${esc(f.name)}:${esc(f.expr)}</span></div>` : ''}
-    ${(c.pitfalls || [])[0] ? `<div class="warn"><b>常見誤解</b>${esc(c.pitfalls[0])}</div>` : ''}
   </div>
-  <div class="col-right">${(c.concepts || []).slice(0, 3).map(k => `<div class="intro-card"><h3>${esc(k.tw)}<small>${esc(k.en)}${k.diff ? ' · 簡體:' + esc(k.cn) : ''}</small></h3><p>${esc(k.note)}</p></div>`).join('')}</div>
+  <div class="col-right">${(c.concepts || []).slice(0, 3).map(k => `<div class="intro-card"><h3>${esc(k.tw)}<small>${esc(k.en)}</small></h3><p>${esc(k.note)}</p></div>`).join('')}</div>
 </section>`);
 });
 
@@ -243,10 +238,11 @@ for (const c of B.chapters) {
 > ${c.one_liner}
 
 - 英文:${c.title_en}
-- 簡體章名:${c.title_cn}(簡體版 p.${c.pages})
-- 台灣三版:第 ${m.tw_n} 章${m.note ? `(${m.note})` : ''}
+- 頁數:p.${c.pages}
 - 階段:${p.title} — ${p.sub}
 ${prev.length ? `- 先備:${prev.join('、')}\n` : ''}${next.length ? `- 接著讀:${next.join('、')}\n` : ''}
+${c.brief ? `## 比喻:${c.brief.analogy_title}\n\n${c.brief.analogy}\n\n## 三個重點\n\n${c.brief.takeaways.map((t, i) => `${i + 1}. ${t}`).join('\n')}\n\n## ${c.brief.table.caption}\n\n| ${c.brief.table.head.map(h => h || ' ').join(' | ')} |\n|${c.brief.table.head.map(() => '---').join('|')}|\n${c.brief.table.rows.map(r => `| ${r.join(' | ')} |`).join('\n')}` : ''}
+
 ## 本章在說什麼
 
 ${c.summary}
@@ -255,9 +251,9 @@ ${(c.sections || []).map(s => `## ${s.heading}\n\n${s.points.map(x => `- ${x}`).
 
 ## 術語
 
-| 台灣 | 簡體 | English | 白話 |
-|---|---|---|---|
-${(c.concepts || []).map(k => `| [[${fname(k.tw)}]] | ${k.cn} | ${k.en} | ${k.note} |`).join('\n')}
+| 中文 | English | 白話 |
+|---|---|---|
+${(c.concepts || []).map(k => `| [[${fname(k.tw)}]] | ${k.en} | ${k.note} |`).join('\n')}
 
 ${(c.formulas || []).length ? `## 公式\n\n${c.formulas.map(f => `- **${f.name}**:\`${f.expr}\`${f.note ? ` — ${f.note}` : ''}`).join('\n')}` : ''}
 
@@ -275,7 +271,6 @@ ${(c.quiz || []).length ? `## 自我檢核\n\n${c.quiz.map(z => `- **Q:${z.q}**\
 for (const { name, k, chs } of cardNames.values()) W(`concepts/${name}.md`, `# ${k.tw}
 
 - English:${k.en}
-- 簡體譯名:${k.cn}${k.diff ? '(與台灣用語不同)' : ''}
 - 出處:${chs.map(c => `[[${chName(c)}]]`).join('、')}
 
 ${k.note}
@@ -289,7 +284,7 @@ ${B.parts.map(p => `## ${p.title} — ${p.sub}\n\n${p.chapters.map(n => B.chapte
 ## 工具卡
 
 - [[版本比對 簡體版 vs 台灣版]]
-- [[術語譯名對照表]]
+- [[術語表]]
 - [[該用哪個檢定]]
 `);
 W('版本比對 簡體版 vs 台灣版.md', `# 版本比對 簡體版 vs 台灣版
@@ -308,27 +303,25 @@ ${B.compare.keyDiffs.map(d => `- **${d.t}**:${d.d}`).join('\n')}
 
 ## 章節對照
 
-| 簡體 3E | 簡體章名 | 台灣三版 | 台灣章名 | 差異 |
-|---|---|---|---|---|
-${B.compare.chapterMap.map(m => `| ${m.cn_n ? '第 ' + m.cn_n + ' 章' : '—'} | ${m.cn || '—'} | 第 ${m.tw_n} 章 | ${m.tw} | ${m.note} |`).join('\n')}
+| 章名 | 簡體 3E | 台灣三版 | 差異 |
+|---|---|---|---|
+${B.compare.chapterMap.map(m => `| ${m.tw_name} | ${m.cn_n ? '第 ' + m.cn_n + ' 章' : '—'} | 第 ${m.tw_n} 章 | ${m.note} |`).join('\n')}
 
 ## 附錄對照
 
 | 內容 | 簡體 3E | 台灣三版 |
 |---|---|---|
-${B.compare.appendices.map(a => `| ${a.what} | ${a.cn} | ${a.tw} |`).join('\n')}
+${B.compare.appendices.map(a => `| ${a.what} | ${a.old} | ${a.new} |`).join('\n')}
 
 ${B.compare.sourceNote}
 `);
-W('術語譯名對照表.md', `# 術語譯名對照表
+W('術語表.md', `# 術語表
 
-共 ${B.compare.terms.length} 組,其中 ${diffTerms.length} 組兩岸譯名不同(排在前面)。
+共 ${B.glossary.length} 個術語。
 
-| English | 台灣 | 簡體 | 不同? | 章 |
-|---|---|---|---|---|
-${B.compare.terms.map(t => `| ${t.en} | ${t.tw} | ${t.cn} | ${t.diff ? '★' : ''} | ${t.ch} |`).join('\n')}
-
-${B.compare.termNote}
+| 中文 | English | 章 |
+|---|---|---|
+${B.glossary.map(t => `| ${t.tw} | ${t.en} | ${t.ch} |`).join('\n')}
 `);
 W('該用哪個檢定.md', `# 該用哪個檢定
 
@@ -353,4 +346,4 @@ ${B.meta.note}
 `);
 try { fs.rmSync(R('heptabase-cards.zip'), { force: true }); execFileSync('zip', ['-q', '-r', '-X', 'heptabase-cards.zip', 'heptabase'], { cwd: root }); } catch (e) { console.warn('zip skipped:', e.message); }
 
-console.log(`built: ${B.chapters.length} chapters, ${S.length} slides, ${B.compare.terms.length} terms (${diffTerms.length} differ), ${cardNames.size} concept cards`);
+console.log(`built: ${B.chapters.length} chapters, ${S.length} slides, ${B.glossary.length} terms, ${cardNames.size} concept cards`);

@@ -1,6 +1,5 @@
 {
  "n": 5,
- "title_cn": "标准化与z分数",
  "title_en": "Standardization and z Scores",
  "pages": "43–55",
  "one_liner": "z 分數把原始分數換成「離平均數幾個標準差」,才能跨量尺比較並查出百分位。",
@@ -53,103 +52,73 @@
  "concepts": [
   {
    "tw": "z 分數",
-   "cn": "z分数",
    "en": "z score",
-   "diff": false,
    "note": "原始分數與平均數的距離,以標準差為單位表示。"
   },
   {
    "tw": "標準化",
-   "cn": "标准化",
    "en": "standardization",
-   "diff": false,
    "note": "把分布中每個原始分數都轉成 z 分數的過程。"
   },
   {
    "tw": "標準分數",
-   "cn": "标准取值",
    "en": "standard score",
-   "diff": true,
    "note": "z 分數的另一個名稱;書中亦作「标准化值」。"
   },
   {
    "tw": "原始分數",
-   "cn": "原始取值",
    "en": "raw score",
-   "diff": true,
    "note": "變項實際測得、尚未轉換的觀察值。"
   },
   {
    "tw": "百分位數",
-   "cn": "百分位数取值",
    "en": "percentile score",
-   "diff": true,
    "note": "有特定比例的分數落在其下的那個分數,如第 90 百分位。"
   },
   {
    "tw": "標準常態分布",
-   "cn": "标准正态分布",
    "en": "standard normal distribution",
-   "diff": true,
    "note": "平均數 0、標準差 1 的常態分布,z 表即以此為據。"
   },
   {
    "tw": "p 值",
-   "cn": "p值",
    "en": "p value",
-   "diff": false,
    "note": "隨機得到某個統計值(或更極端)的機率;z 越大,p 越小。"
   },
   {
    "tw": "z 表(附錄 A)",
-   "cn": "z分数表",
    "en": "z table",
-   "diff": false,
    "note": "列出常態分布中小於各 z 值的面積比例。"
   }
  ],
  "terms": [
   {
-   "cn": "百分位数取值",
    "tw": "百分位數(百分等級分數)",
-   "en": "percentile scores",
-   "diff": true
+   "en": "percentile scores"
   },
   {
-   "cn": "原始取值",
    "tw": "原始分數",
-   "en": "raw scores",
-   "diff": true
+   "en": "raw scores"
   },
   {
-   "cn": "标准取值",
    "tw": "標準分數",
-   "en": "standard score",
-   "diff": true
+   "en": "standard score"
   },
   {
-   "cn": "标准化",
    "tw": "標準化",
-   "en": "standardization",
-   "diff": false
+   "en": "standardization"
   },
   {
-   "cn": "z分数",
    "tw": "z 分數",
-   "en": "z score",
-   "diff": false
+   "en": "z score"
   },
   {
-   "cn": "标准正态分布",
    "tw": "標準常態分布",
-   "en": "standard normal distribution",
-   "diff": true
+   "en": "standard normal distribution"
   },
   {
-   "cn": "p值",
    "tw": "p 值",
-   "en": "p value",
-   "diff": false
+   "en": "p value"
   }
  ],
  "symbols": [
@@ -243,14 +212,5 @@
    "num": "z = 1.28",
    "label": "第 90 百分位"
   }
- },
- "ocr_notes": [
-  "表 5-1 的公式被 OCR 破壞,已依說明文字重建為 z = (X − μ)/σ 與 z = (X − X̄)/s,請對原書確認排版。",
-  "p.46 OCR 作「最接近 0.90 的值是 0.8897」,z = 1.28 在標準 z 表應為 0.8997,請核對原書。",
-  "p.48 內文寫 z = 0.92 對應 81.86%(尾端 18.14%),但圖 5-3 標示 0.3212 與 0.1788;標準 z 表 z = 0.92 為 0.8212,書中內文與圖不一致,請核對。",
-  "p.45 圖 5-1 最左側比例 OCR 作 0.215,應為 0.0215。",
-  "圖 5-6、5-7、5-8 各長條上的 z 值 OCR 殘缺(正負號與數字不全),摘要只採用內文明確寫出的數值。",
-  "p.45 寫「服從常態分布(第 3 章)」,p.51 寫中位數方法在「第 3 章」;依本書章次應為第 4 章與第 2 章,請核對原書。",
-  "章末符號表的符號本身(z、X、μ、σ)在 OCR 中大多遺失,已依定義補回。"
- ]
+ }
 }

@@ -1,6 +1,5 @@
 {
  "n": 11,
- "title_cn": "因子方差分析",
  "title_en": "Factorial Analysis of Variance",
  "pages": "134–148",
  "one_liner": "兩個以上類別自變項同時進模型,可看控制彼此後的主要效果,更能看見交互作用。",
@@ -56,170 +55,118 @@
  "concepts": [
   {
    "tw": "交互作用",
-   "cn": "交互效应",
    "en": "interaction effect",
-   "diff": true,
    "note": "一個自變項對依變項的影響,隨另一個自變項的水準而改變。"
   },
   {
    "tw": "主要效果",
-   "cn": "主效应",
    "en": "main effect",
-   "diff": true,
    "note": "某一自變項各組之間的依變項平均差異,已控制模型中其他效果。"
   },
   {
    "tw": "多因子變異數分析",
-   "cn": "因子方差分析",
    "en": "factorial ANOVA",
-   "diff": true,
    "note": "含兩個以上類別自變項的變異數分析,如 2 × 4 設計。"
   },
   {
    "tw": "控制(淨)效果",
-   "cn": "偏效应、控制效应",
    "en": "partial and controlled effects",
-   "diff": true,
    "note": "把另一變項可解釋的變異先排除,再看剩下的組間差異。"
   },
   {
    "tw": "單純主要效果",
-   "cn": "简单效应",
    "en": "simple effects",
-   "diff": true,
    "note": "比較個別細格的平均數,用來說明交互作用究竟發生在哪裡。"
   },
   {
    "tw": "共變數分析",
-   "cn": "协方差分析",
    "en": "analysis of covariance (ANCOVA)",
-   "diff": true,
    "note": "加入共變項,排除其解釋的變異後再比較各組平均數。"
   },
   {
    "tw": "細格人數",
-   "cn": "单元容量",
    "en": "cell size",
-   "diff": true,
    "note": "自變項交叉出的每個小組人數;至少 10 人,最好 20 人以上。"
   },
   {
    "tw": "變異數同質性",
-   "cn": "方差齐次性",
    "en": "homogeneity of variance",
-   "diff": true,
    "note": "假設各組組內變異大致相等;各格人數不等時更要檢查。"
   },
   {
    "tw": "調節變項",
-   "cn": "调节因子",
    "en": "moderator",
-   "diff": true,
    "note": "改變另一自變項與依變項之間關係的變項。"
   }
  ],
  "terms": [
   {
-   "cn": "协方差分析",
    "tw": "共變數分析",
-   "en": "analysis of covariance (ANCOVA)",
-   "diff": true
+   "en": "analysis of covariance (ANCOVA)"
   },
   {
-   "cn": "单元容量",
    "tw": "細格人數(細格樣本數)",
-   "en": "cell size",
-   "diff": true
+   "en": "cell size"
   },
   {
-   "cn": "协变量",
    "tw": "共變項(共變量)",
-   "en": "covariate(s)",
-   "diff": true
+   "en": "covariate(s)"
   },
   {
-   "cn": "因子方差分析",
    "tw": "多因子變異數分析",
-   "en": "factorial ANOVA",
-   "diff": true
+   "en": "factorial ANOVA"
   },
   {
-   "cn": "方差齐次性",
    "tw": "變異數同質性",
-   "en": "homogeneity of variance",
-   "diff": true
+   "en": "homogeneity of variance"
   },
   {
-   "cn": "交互效应",
    "tw": "交互作用",
-   "en": "interaction effect",
-   "diff": true
+   "en": "interaction effect"
   },
   {
-   "cn": "主效应",
    "tw": "主要效果",
-   "en": "main effects",
-   "diff": true
+   "en": "main effects"
   },
   {
-   "cn": "调节因子",
    "tw": "調節變項",
-   "en": "moderator",
-   "diff": true
+   "en": "moderator"
   },
   {
-   "cn": "偏效应、控制效应",
    "tw": "淨效果、控制效果",
-   "en": "partial and controlled effects",
-   "diff": true
+   "en": "partial and controlled effects"
   },
   {
-   "cn": "简单效应",
    "tw": "單純主要效果",
-   "en": "simple effects",
-   "diff": true
+   "en": "simple effects"
   },
   {
-   "cn": "调节效应",
    "tw": "調節效果",
-   "en": "moderator effects",
-   "diff": true
+   "en": "moderator effects"
   },
   {
-   "cn": "双向交互效应",
    "tw": "二因子交互作用",
-   "en": "two-way interaction",
-   "diff": true
+   "en": "two-way interaction"
   },
   {
-   "cn": "三向交互效应",
    "tw": "三因子交互作用",
-   "en": "three-way interaction",
-   "diff": true
+   "en": "three-way interaction"
   },
   {
-   "cn": "第三类平方和",
    "tw": "型 III 平方和",
-   "en": "Type III sum of squares",
-   "diff": true
+   "en": "Type III sum of squares"
   },
   {
-   "cn": "校正模型",
    "tw": "校正後的模式",
-   "en": "corrected model",
-   "diff": true
+   "en": "corrected model"
   },
   {
-   "cn": "实际显著",
    "tw": "實務顯著性",
-   "en": "practical significance",
-   "diff": true
+   "en": "practical significance"
   },
   {
-   "cn": "子群组",
    "tw": "次群體(細格)",
-   "en": "subgroup / cell",
-   "diff": true
+   "en": "subgroup / cell"
   }
  ],
  "symbols": [],
@@ -278,11 +225,5 @@
    "num": "2 × 2",
    "label": "兩因子各兩水準"
   }
- },
- "ocr_notes": [
-  "表 11-1 的欄名「東部」被 OCR 漏掉;依內文重建為北/東/西/南:女生 20、15、15、10,男生 25、20、20、25,地區邊際平均 22.5、17.5、17.5、17.5 小時。",
-  "表 11-2 變異數分析表的自由度欄多數遺失(模型 df 推定為 3,各效果為 1,誤差 464),請對原書核對。",
-  "書 143 頁有「自我设限取值方差的 3.6%」字樣,依上下文應指自我效能;書 142 頁「排除了其他因变量的效应」依文意應為自變項,疑為原譯筆誤。",
-  "行文表述中公開(M = 17.17)與私密(M = 15.15)等數值已對照頁面影像確認;書 144–145 頁介紹第二個自變項的數行 OCR 遺失。"
- ]
+ }
 }

@@ -1,6 +1,5 @@
 {
  "n": 3,
- "title_cn": "变异程度的测度",
  "title_en": "Measures of Variability",
  "pages": "23–34",
  "one_liner": "平均數要配上標準差才看得出分布樣貌;樣本公式用 n − 1 是為了不低估母體變異。",
@@ -49,170 +48,118 @@
  "concepts": [
   {
    "tw": "標準差",
-   "cn": "标准差",
    "en": "standard deviation",
-   "diff": false,
    "note": "各取值與平均數之間的典型距離,單位與原始資料相同。"
   },
   {
    "tw": "變異數",
-   "cn": "方差",
    "en": "variance",
-   "diff": true,
    "note": "離均差平方的平均;單位是平方,多作為其他統計的零件。"
   },
   {
    "tw": "離均差平方和",
-   "cn": "离差平方和(平方和)",
    "en": "sum of squared deviations (SS)",
-   "diff": true,
    "note": "每個取值減平均數後平方再全部相加,ANOVA 與迴歸都用它。"
   },
   {
    "tw": "n − 1 校正",
-   "cn": "样本公式的 n−1",
    "en": "n − 1 in the sample formula",
-   "diff": false,
    "note": "用樣本平均數會低估母體變異,縮小分母加以補償。"
   },
   {
    "tw": "全距",
-   "cn": "极差",
    "en": "range",
-   "diff": true,
    "note": "最大值減最小值;只反映兩個極端,容易誤導。"
   },
   {
    "tw": "四分位距",
-   "cn": "四分位差",
    "en": "interquartile range (IQR)",
-   "diff": true,
    "note": "第 75 與第 25 百分位數之差,中間一半資料的寬度。"
   },
   {
    "tw": "離均差",
-   "cn": "离差",
    "en": "deviation",
-   "diff": false,
    "note": "單一取值與平均數的差;全部相加必等於零。"
   },
   {
    "tw": "盒鬚圖",
-   "cn": "箱线图",
    "en": "boxplot",
-   "diff": true,
    "note": "用箱體與鬚線同時呈現中位數、四分位距與全距。"
   },
   {
    "tw": "以樣本統計量估計母數",
-   "cn": "用样本统计量作为总体参数的估计",
    "en": "sample statistics as estimates of parameters",
-   "diff": true,
    "note": "樣本公式的設計目的,是讓算出的值更貼近母體真值。"
   }
  ],
  "terms": [
   {
-   "cn": "箱线图",
    "tw": "盒鬚圖(箱形圖)",
-   "en": "boxplot",
-   "diff": true
+   "en": "boxplot"
   },
   {
-   "cn": "四分位差",
    "tw": "四分位距",
-   "en": "interquartile range (IQR)",
-   "diff": true
+   "en": "interquartile range (IQR)"
   },
   {
-   "cn": "极差",
    "tw": "全距",
-   "en": "range",
-   "diff": true
+   "en": "range"
   },
   {
-   "cn": "离差平方",
    "tw": "離均差平方",
-   "en": "squared deviation",
-   "diff": false
+   "en": "squared deviation"
   },
   {
-   "cn": "标准差",
    "tw": "標準差",
-   "en": "standard deviation",
-   "diff": false
+   "en": "standard deviation"
   },
   {
-   "cn": "离差平方和、平方和",
    "tw": "離均差平方和、平方和",
-   "en": "sum of squared deviations, sum of squares",
-   "diff": false
+   "en": "sum of squared deviations, sum of squares"
   },
   {
-   "cn": "方差",
    "tw": "變異數",
-   "en": "variance",
-   "diff": true
+   "en": "variance"
   },
   {
-   "cn": "变异程度",
    "tw": "變異程度(變異量數)",
-   "en": "variability",
-   "diff": false
+   "en": "variability"
   },
   {
-   "cn": "离差",
    "tw": "離均差(離差)",
-   "en": "deviation",
-   "diff": false
+   "en": "deviation"
   },
   {
-   "cn": "最大值",
    "tw": "最大值",
-   "en": "maximum value",
-   "diff": false
+   "en": "maximum value"
   },
   {
-   "cn": "最小值",
    "tw": "最小值",
-   "en": "minimum value",
-   "diff": false
+   "en": "minimum value"
   },
   {
-   "cn": "百分位数",
    "tw": "百分位數",
-   "en": "percentile",
-   "diff": false
+   "en": "percentile"
   },
   {
-   "cn": "离差值公式",
    "tw": "離均差公式(定義公式)",
-   "en": "deviation score formula",
-   "diff": false
+   "en": "deviation score formula"
   },
   {
-   "cn": "原始值公式",
    "tw": "原始分數公式",
-   "en": "raw score formula",
-   "diff": true
+   "en": "raw score formula"
   },
   {
-   "cn": "反应量表",
    "tw": "反應量表(作答量尺)",
-   "en": "response scale",
-   "diff": false
+   "en": "response scale"
   },
   {
-   "cn": "李克特量表",
    "tw": "李克特量表",
-   "en": "Likert scale",
-   "diff": false
+   "en": "Likert scale"
   },
   {
-   "cn": "样本容量",
    "tw": "樣本數(樣本大小)",
-   "en": "sample size",
-   "diff": true
+   "en": "sample size"
   }
  ],
  "symbols": [
@@ -323,12 +270,5 @@
    "num": "n − 1",
    "label": "樣本變異數的分母"
   }
- },
- "ocr_notes": [
-  "原書第 29 頁自信題的統計量列印為「极差=5—4=1」(已對照頁面影像),但下一頁正文說全距為 4,應為原書誤植,正確為 5 − 1 = 4。",
-  "表 3-1 公式 OCR 毀損,已依正文重建;母體/樣本的變異數與標準差共四式。",
-  "表 3-2 的數值依 OCR 與計算互相印證:√(100/500) = 0.44721、√(100/499) = 0.44766、√(100/10) = 3.16、√(100/9) = 3.33。",
-  "圖 3-3、3-4 各長條對應的選項未能從 OCR 確定(圖 3-3 可辨識 247、139、73、23;圖 3-4 為 115、120、98、81、77),引用個別次數前需對原書。",
-  "第 3 章符號表未列 X̄(樣本平均數),但表 3-1 有使用。"
- ]
+ }
 }

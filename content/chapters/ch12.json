@@ -1,6 +1,5 @@
 {
  "n": 12,
- "title_cn": "复测方差分析",
  "title_en": "Repeated-Measures Analysis of Variance",
  "pages": "149–165",
  "one_liner": "同一群人重複測量時,把變異拆成受試者內、受試者間及其交互作用,檢驗平均數是否隨時間變。",
@@ -57,164 +56,114 @@
  "concepts": [
   {
    "tw": "重複測量變異數分析",
-   "cn": "复测方差分析",
    "en": "repeated-measures ANOVA",
-   "diff": true,
    "note": "檢驗同一群人的依變項平均數是否隨時間點或嘗試而改變。"
   },
   {
    "tw": "受試者內效果",
-   "cn": "对象内效应",
    "en": "within-subjects effect",
-   "diff": true,
    "note": "同一個人不同時間點之間的差異,平均而言是否有系統性改變。"
   },
   {
    "tw": "受試者間效果",
-   "cn": "对象间效应",
    "en": "between-subjects effect",
-   "diff": true,
    "note": "不同人或不同組別之間的差異,如性別的主要效果。"
   },
   {
    "tw": "時間 × 組別交互作用",
-   "cn": "对象内与对象间的交互效应",
    "en": "within-by-between interaction",
-   "diff": true,
    "note": "不同組別隨時間變化的幅度或方向是否不同。"
   },
   {
    "tw": "受試者 × 嘗試交互作用均方",
-   "cn": "主体与试验交互的均方",
    "en": "mean square for subject by trial interaction",
-   "diff": true,
    "note": "每個人變化量的不一致程度,作為 F 值的分母(誤差項)。"
   },
   {
    "tw": "重複測量共變數分析",
-   "cn": "复测协方差分析",
    "en": "repeated-measures ANCOVA",
-   "diff": true,
    "note": "加入共變項,排除其解釋的變異後再檢驗隨時間的變化。"
   },
   {
    "tw": "分組變項",
-   "cn": "分组变量",
    "en": "group variable",
-   "diff": true,
    "note": "模型中的類別自變項,用來比較不同組別。"
   },
   {
    "tw": "時間點/嘗試",
-   "cn": "时点、试验",
    "en": "time, trial",
-   "diff": true,
    "note": "依變項每一次的資料蒐集。"
   },
   {
    "tw": "誠實的座標軸",
-   "cn": "“诚实的”y轴",
    "en": "honest y-axis",
-   "diff": false,
    "note": "縱軸呈現量表完整範圍,才不會把小差異放大成大差異。"
   }
  ],
  "terms": [
   {
-   "cn": "对象间效应",
    "tw": "受試者間效果",
-   "en": "between-subjects effect",
-   "diff": true
+   "en": "between-subjects effect"
   },
   {
-   "cn": "组间效应",
    "tw": "組間效果",
-   "en": "between-groups effects",
-   "diff": true
+   "en": "between-groups effects"
   },
   {
-   "cn": "分组变量",
    "tw": "分組變項",
-   "en": "group variable(s)",
-   "diff": true
+   "en": "group variable(s)"
   },
   {
-   "cn": "试验间差异的均方",
    "tw": "嘗試間差異的均方",
-   "en": "mean square for the differences between the trials",
-   "diff": true
+   "en": "mean square for the differences between the trials"
   },
   {
-   "cn": "主体与试验交互的均方",
    "tw": "受試者 × 嘗試交互作用的均方",
-   "en": "mean square for the subject by trial interaction",
-   "diff": true
+   "en": "mean square for the subject by trial interaction"
   },
   {
-   "cn": "复测方差分析",
    "tw": "重複測量變異數分析",
-   "en": "repeated-measures analysis of variance (ANOVA)",
-   "diff": true
+   "en": "repeated-measures analysis of variance (ANOVA)"
   },
   {
-   "cn": "时点、试验",
    "tw": "時間點、嘗試",
-   "en": "time, trial",
-   "diff": true
+   "en": "time, trial"
   },
   {
-   "cn": "对象内效应",
    "tw": "受試者內效果",
-   "en": "within-subject effect",
-   "diff": true
+   "en": "within-subject effect"
   },
   {
-   "cn": "对象内设计",
    "tw": "受試者內設計",
-   "en": "within-subject design",
-   "diff": true
+   "en": "within-subject design"
   },
   {
-   "cn": "复测协方差分析",
    "tw": "重複測量共變數分析",
-   "en": "repeated-measures ANCOVA",
-   "diff": true
+   "en": "repeated-measures ANCOVA"
   },
   {
-   "cn": "协变量",
    "tw": "共變項(共變量)",
-   "en": "covariate",
-   "diff": true
+   "en": "covariate"
   },
   {
-   "cn": "配对t检验",
    "tw": "相依(成對)樣本 t 檢定",
-   "en": "paired t test",
-   "diff": true
+   "en": "paired t test"
   },
   {
-   "cn": "误差方差",
    "tw": "誤差變異數",
-   "en": "error variance",
-   "diff": true
+   "en": "error variance"
   },
   {
-   "cn": "纵贯研究",
    "tw": "縱貫性研究",
-   "en": "longitudinal study",
-   "diff": true
+   "en": "longitudinal study"
   },
   {
-   "cn": "前测—后测设计",
    "tw": "前測—後測設計",
-   "en": "pretest–posttest design",
-   "diff": false
+   "en": "pretest–posttest design"
   },
   {
-   "cn": "效度",
    "tw": "效度",
-   "en": "validity",
-   "diff": false
+   "en": "validity"
   }
  ],
  "symbols": [
@@ -277,13 +226,5 @@
    "num": "F = MS_T / MS_S×T",
    "label": "時間對交互作用"
   }
- },
- "ocr_notes": [
-  "術語表中「对象内效应(within-subject effect)」的詞條標題被 OCR 漏掉(書 165 頁只剩定義尾句),為依文意推定,請對原書核對。",
-  "表 12-1、12-2 的受試者編號欄與部分分數未辨識完整(表 12-1 第 9 位之前似缺一列);各時間點平均 51.5、61.5 與性別平均 35、52、65、71 取自內文。",
-  "樣本數內文寫 570 名,表 12-3 合計列為 571(女 307、男 264);摘要以「約 570」表示。",
-  "書中行文表述把時點主要效果稱為「对象间」,依分析內容應為受試者內,且 p 值印為 p < 0.001(報表 Sig. 為 0.001);已對照頁面影像,原書即如此。",
-  "量表內文稱 8 分制(1–8),「警世故事」一節卻寫 Y 軸完整範圍為 1 到 7,兩處不一致。",
-  "表 12-3 的自由度欄多數遺失(各效果推定為 1,誤差 567);圖 12-5 的比例標籤錯位,無法確定各區塊對應的百分比。"
- ]
+ }
 }

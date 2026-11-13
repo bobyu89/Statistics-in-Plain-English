@@ -108,3 +108,9 @@
 
 /* statistical symbols are case-sensitive (t, z, r, n vs N): don't uppercase chapter text */
 .keepcase, .slide-2 .intro-card h3, .slide-2 .stat-pill, .cmp td, .slide-9 .team-role { text-transform: none; }
+
+/* chapter figure inside the split panel */
+.slide-6 .visual-box.figure { background: var(--white); aspect-ratio: auto; max-width: 560px; padding: 14px; display: block; }
+.slide-6 .visual-box.figure svg { display: block; width: 100%; height: auto; }
+.slide-6 .fig-cap { margin-top: 44px; max-width: 560px; color: var(--white); font-size: clamp(14px, 1.15vw, 18px); line-height: 1.5; font-weight: 500; text-align: center; position: relative; z-index: 1; }
+.slide-2 .warn { font-size: clamp(14px, 1.1vw, 17px); }

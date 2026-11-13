@@ -1,74 +1,274 @@
 {
-  "appendices": [
-    {"id": "A", "title_cn": "正态分布曲线下z两侧的面积", "title_tw": "常態分布曲線下 z 值兩側的面積", "use": "把原始分數換成 z 分數後,查 z 以下的累積機率(−∞ 到 z);另附 z = 2.0 以上的右尾機率。用於百分等級與 z 檢定。"},
-    {"id": "B", "title_cn": "t分布的临界值", "title_tw": "t 分布的臨界值", "use": "做 t 檢定或算信賴區間時,依自由度與單尾/雙尾 α 水準查臨界 t 值;算出的 t 須大於等於表值才顯著。"},
-    {"id": "C", "title_cn": "F分布的临界值", "title_tw": "F 分布的臨界值", "use": "變異數分析或迴歸的 F 檢定:依分子與分母自由度查臨界 F,細體字為 α = .05、粗體字為 α = .01。"},
-    {"id": "D", "title_cn": "学生化极差统计量的临界值（用于Tukey HSD检验）", "title_tw": "學生化全距統計量的臨界值(用於 Tukey HSD 事後比較)", "use": "ANOVA 顯著後做 Tukey HSD 事後比較時,依誤差自由度與自變項水準數查臨界值,分 α = .05 與 .01 兩表。"},
-    {"id": "E", "title_cn": "卡方分布的临界值", "title_tw": "卡方分布的臨界值", "use": "卡方獨立性檢定:以 df = (R − 1)(C − 1) 與 α 水準查臨界 χ²,例如 df = 2、α = .05 時為 5.99。"}
-  ],
-  "symbols": [
-    {"sym": "Σ", "meaning_cn": "求和", "meaning_tw": "總和(加總)"},
-    {"sym": "X", "meaning_cn": "分布中的单个取值或原始取值", "meaning_tw": "分布中的單一數值或原始分數"},
-    {"sym": "ΣX", "meaning_cn": "X之和；分布中的所有取值加总", "meaning_tw": "X 的總和;分布中所有分數加總"},
-    {"sym": "X̄", "meaning_cn": "样本均值", "meaning_tw": "樣本平均數"},
-    {"sym": "μ", "meaning_cn": "总体均值", "meaning_tw": "母體平均數"},
-    {"sym": "n", "meaning_cn": "样本中的对象个数或取值个数", "meaning_tw": "樣本中的個案數或分數個數"},
-    {"sym": "N", "meaning_cn": "总体中的对象个数或取值个数", "meaning_tw": "母體中的個案數或分數個數"},
-    {"sym": "P₅₀", "meaning_cn": "中位数", "meaning_tw": "中位數"},
-    {"sym": "s²", "meaning_cn": "样本方差", "meaning_tw": "樣本變異數"},
-    {"sym": "s", "meaning_cn": "样本标准差", "meaning_tw": "樣本標準差"},
-    {"sym": "σ²", "meaning_cn": "总体方差", "meaning_tw": "母體變異數"},
-    {"sym": "σ", "meaning_cn": "总体标准差", "meaning_tw": "母體標準差"},
-    {"sym": "SS", "meaning_cn": "平方和或离差平方和", "meaning_tw": "平方和或離均差平方和"},
-    {"sym": "z", "meaning_cn": "标准分数", "meaning_tw": "標準分數"},
-    {"sym": "s_x̄", "meaning_cn": "从样本标准差中估计的均值标准误（即当总体标准差未知时）", "meaning_tw": "由樣本標準差估計的平均數標準誤(母體標準差未知時)"},
-    {"sym": "σ_x̄", "meaning_cn": "总体标准差已知时的均值标准误", "meaning_tw": "母體標準差已知時的平均數標準誤"},
-    {"sym": "p", "meaning_cn": "p值或概率", "meaning_tw": "p 值或機率"},
-    {"sym": "α", "meaning_cn": "α水平", "meaning_tw": "α 水準(顯著水準)"},
-    {"sym": "d", "meaning_cn": "效应量", "meaning_tw": "效應量(效果量)"},
-    {"sym": "S", "meaning_cn": "用于效应量公式的标准差", "meaning_tw": "用於效應量公式的標準差"},
-    {"sym": "∞", "meaning_cn": "无穷大", "meaning_tw": "無限大"},
-    {"sym": "H₀", "meaning_cn": "原假设", "meaning_tw": "虛無假設"},
-    {"sym": "H_A 或 H₁", "meaning_cn": "替代假设", "meaning_tw": "對立假設"},
-    {"sym": "r", "meaning_cn": "样本皮尔逊相关系数", "meaning_tw": "樣本皮爾森相關係數"},
-    {"sym": "ρ", "meaning_cn": "总体相关系数", "meaning_tw": "母體相關係數"},
-    {"sym": "s_r", "meaning_cn": "相关系数的标准误", "meaning_tw": "相關係數的標準誤"},
-    {"sym": "r²", "meaning_cn": "决定系数", "meaning_tw": "決定係數"},
-    {"sym": "df", "meaning_cn": "自由度", "meaning_tw": "自由度"},
-    {"sym": "Φ", "meaning_cn": "Φ系数，两个二值变量之间的相关系数", "meaning_tw": "Φ 係數,兩個二分變項之間的相關係數"},
-    {"sym": "s_(x̄₁−x̄₂)", "meaning_cn": "两个独立样本均值之差的标准误", "meaning_tw": "兩獨立樣本平均數差異的標準誤"},
-    {"sym": "s_D̄", "meaning_cn": "两个相依、对应或配对样本之差的标准误", "meaning_tw": "兩相依(配對)樣本差異的標準誤"},
-    {"sym": "s_D", "meaning_cn": "两个相依或配对样本均值之差的标准差", "meaning_tw": "兩相依(配對)樣本差異分數的標準差"},
-    {"sym": "t", "meaning_cn": "t值", "meaning_tw": "t 值"},
-    {"sym": "MS_w", "meaning_cn": "组内均方", "meaning_tw": "組內均方"},
-    {"sym": "MS_e", "meaning_cn": "均方误（与组内均方相同）", "meaning_tw": "誤差均方(與組內均方相同)"},
-    {"sym": "MS_b", "meaning_cn": "组间均方", "meaning_tw": "組間均方"},
-    {"sym": "SS_e", "meaning_cn": "误差平方和或组内平方和", "meaning_tw": "誤差平方和或組內平方和"},
-    {"sym": "SS_b", "meaning_cn": "组间平方和", "meaning_tw": "組間平方和"},
-    {"sym": "SS_T", "meaning_cn": "总平方和", "meaning_tw": "總平方和"},
-    {"sym": "X̄_T", "meaning_cn": "总均值", "meaning_tw": "總平均數"},
-    {"sym": "F", "meaning_cn": "F值", "meaning_tw": "F 值"},
-    {"sym": "K", "meaning_cn": "组数", "meaning_tw": "組數"},
-    {"sym": "N", "meaning_cn": "所有分组合并后的对象个数", "meaning_tw": "各組合併後的總個案數"},
-    {"sym": "n", "meaning_cn": "（用于计算SS_b的）给定分组的对象个数", "meaning_tw": "(計算 SS_b 時)某一組的個案數"},
-    {"sym": "n_g", "meaning_cn": "（用于Tukey HSD检验的）每组对象个数", "meaning_tw": "(用於 Tukey HSD 檢定)每組的個案數"},
-    {"sym": "MS_(S×T)", "meaning_cn": "对象与试验之间交互效应的均方", "meaning_tw": "受試者與試次交互作用的均方"},
-    {"sym": "MS_T", "meaning_cn": "试验间差异的均方", "meaning_tw": "試次間差異的均方"},
-    {"sym": "Ŷ", "meaning_cn": "因变量Y的预测值", "meaning_tw": "依變項 Y 的預測值"},
-    {"sym": "Y", "meaning_cn": "因变量Y的观测值", "meaning_tw": "依變項 Y 的觀察值"},
-    {"sym": "b", "meaning_cn": "未标准化回归系数", "meaning_tw": "未標準化迴歸係數"},
-    {"sym": "a", "meaning_cn": "截距", "meaning_tw": "截距"},
-    {"sym": "e", "meaning_cn": "误差项", "meaning_tw": "誤差項"},
-    {"sym": "R", "meaning_cn": "多元相关系数", "meaning_tw": "多元相關係數"},
-    {"sym": "R²", "meaning_cn": "回归模型所解释的方差百分比", "meaning_tw": "迴歸模型所解釋的變異百分比"},
-    {"sym": "χ²", "meaning_cn": "卡方统计量", "meaning_tw": "卡方統計量"},
-    {"sym": "O", "meaning_cn": "观测频数", "meaning_tw": "觀察次數"},
-    {"sym": "E", "meaning_cn": "预期频数", "meaning_tw": "期望次數"},
-    {"sym": "R", "meaning_cn": "表示列联表行数的符号", "meaning_tw": "列聯表的列數(橫列)"},
-    {"sym": "C", "meaning_cn": "表示列联表列数的符号", "meaning_tw": "列聯表的行數(直行)"},
-    {"sym": "α", "meaning_cn": "克龙巴赫α系数", "meaning_tw": "Cronbach's α 係數"}
-  ],
-  "translator_note": "譯者彭志文任教於北京郵電大學,2013 年 10 月完稿。他以統計教學者的身分指出:公式化的統計教材常讓數學基礎弱的學生卻步,或淪為死背步驟;他一直想找既少用艱深數學、又能把統計量的構造與解釋邏輯講清楚的教材,認為本書做到了,也適合當其他課程的輔助讀物。後半批評學術翻譯稿酬低、不受重視、粗製濫造的亂象,表明自己獨力且認真翻譯,錯漏請讀者指正,並致謝兩項經費補助。文中未特別討論術語譯名的取捨。",
-  "references_count": 19,
-  "recommended_reading_note": "全書參考文獻共 19 筆,彙整各章推薦讀物,多為 Sage 小冊(迴歸、ANOVA、ANCOVA、因素分析)與行為科學統計教科書,另含作者引用的動機研究論文。"
+ "appendices": [
+  {
+   "id": "A",
+   "title_tw": "常態分布曲線下 z 值兩側的面積",
+   "use": "把原始分數換成 z 分數後,查 z 以下的累積機率(−∞ 到 z);另附 z = 2.0 以上的右尾機率。用於百分等級與 z 檢定。"
+  },
+  {
+   "id": "B",
+   "title_tw": "t 分布的臨界值",
+   "use": "做 t 檢定或算信賴區間時,依自由度與單尾/雙尾 α 水準查臨界 t 值;算出的 t 須大於等於表值才顯著。"
+  },
+  {
+   "id": "C",
+   "title_tw": "F 分布的臨界值",
+   "use": "變異數分析或迴歸的 F 檢定:依分子與分母自由度查臨界 F,細體字為 α = .05、粗體字為 α = .01。"
+  },
+  {
+   "id": "D",
+   "title_tw": "學生化全距統計量的臨界值(用於 Tukey HSD 事後比較)",
+   "use": "ANOVA 顯著後做 Tukey HSD 事後比較時,依誤差自由度與自變項水準數查臨界值,分 α = .05 與 .01 兩表。"
+  },
+  {
+   "id": "E",
+   "title_tw": "卡方分布的臨界值",
+   "use": "卡方獨立性檢定:以 df = (R − 1)(C − 1) 與 α 水準查臨界 χ²,例如 df = 2、α = .05 時為 5.99。"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "Σ",
+   "meaning": "總和(加總)"
+  },
+  {
+   "sym": "X",
+   "meaning": "分布中的單一數值或原始分數"
+  },
+  {
+   "sym": "ΣX",
+   "meaning": "X 的總和;分布中所有分數加總"
+  },
+  {
+   "sym": "X̄",
+   "meaning": "樣本平均數"
+  },
+  {
+   "sym": "μ",
+   "meaning": "母體平均數"
+  },
+  {
+   "sym": "n",
+   "meaning": "樣本中的個案數或分數個數"
+  },
+  {
+   "sym": "N",
+   "meaning": "母體中的個案數或分數個數"
+  },
+  {
+   "sym": "P₅₀",
+   "meaning": "中位數"
+  },
+  {
+   "sym": "s²",
+   "meaning": "樣本變異數"
+  },
+  {
+   "sym": "s",
+   "meaning": "樣本標準差"
+  },
+  {
+   "sym": "σ²",
+   "meaning": "母體變異數"
+  },
+  {
+   "sym": "σ",
+   "meaning": "母體標準差"
+  },
+  {
+   "sym": "SS",
+   "meaning": "平方和或離均差平方和"
+  },
+  {
+   "sym": "z",
+   "meaning": "標準分數"
+  },
+  {
+   "sym": "s_x̄",
+   "meaning": "由樣本標準差估計的平均數標準誤(母體標準差未知時)"
+  },
+  {
+   "sym": "σ_x̄",
+   "meaning": "母體標準差已知時的平均數標準誤"
+  },
+  {
+   "sym": "p",
+   "meaning": "p 值或機率"
+  },
+  {
+   "sym": "α",
+   "meaning": "α 水準(顯著水準)"
+  },
+  {
+   "sym": "d",
+   "meaning": "效應量(效果量)"
+  },
+  {
+   "sym": "S",
+   "meaning": "用於效應量公式的標準差"
+  },
+  {
+   "sym": "∞",
+   "meaning": "無限大"
+  },
+  {
+   "sym": "H₀",
+   "meaning": "虛無假設"
+  },
+  {
+   "sym": "H_A 或 H₁",
+   "meaning": "對立假設"
+  },
+  {
+   "sym": "r",
+   "meaning": "樣本皮爾森相關係數"
+  },
+  {
+   "sym": "ρ",
+   "meaning": "母體相關係數"
+  },
+  {
+   "sym": "s_r",
+   "meaning": "相關係數的標準誤"
+  },
+  {
+   "sym": "r²",
+   "meaning": "決定係數"
+  },
+  {
+   "sym": "df",
+   "meaning": "自由度"
+  },
+  {
+   "sym": "Φ",
+   "meaning": "Φ 係數,兩個二分變項之間的相關係數"
+  },
+  {
+   "sym": "s_(x̄₁−x̄₂)",
+   "meaning": "兩獨立樣本平均數差異的標準誤"
+  },
+  {
+   "sym": "s_D̄",
+   "meaning": "兩相依(配對)樣本差異的標準誤"
+  },
+  {
+   "sym": "s_D",
+   "meaning": "兩相依(配對)樣本差異分數的標準差"
+  },
+  {
+   "sym": "t",
+   "meaning": "t 值"
+  },
+  {
+   "sym": "MS_w",
+   "meaning": "組內均方"
+  },
+  {
+   "sym": "MS_e",
+   "meaning": "誤差均方(與組內均方相同)"
+  },
+  {
+   "sym": "MS_b",
+   "meaning": "組間均方"
+  },
+  {
+   "sym": "SS_e",
+   "meaning": "誤差平方和或組內平方和"
+  },
+  {
+   "sym": "SS_b",
+   "meaning": "組間平方和"
+  },
+  {
+   "sym": "SS_T",
+   "meaning": "總平方和"
+  },
+  {
+   "sym": "X̄_T",
+   "meaning": "總平均數"
+  },
+  {
+   "sym": "F",
+   "meaning": "F 值"
+  },
+  {
+   "sym": "K",
+   "meaning": "組數"
+  },
+  {
+   "sym": "N",
+   "meaning": "各組合併後的總個案數"
+  },
+  {
+   "sym": "n",
+   "meaning": "(計算 SS_b 時)某一組的個案數"
+  },
+  {
+   "sym": "n_g",
+   "meaning": "(用於 Tukey HSD 檢定)每組的個案數"
+  },
+  {
+   "sym": "MS_(S×T)",
+   "meaning": "受試者與試次交互作用的均方"
+  },
+  {
+   "sym": "MS_T",
+   "meaning": "試次間差異的均方"
+  },
+  {
+   "sym": "Ŷ",
+   "meaning": "依變項 Y 的預測值"
+  },
+  {
+   "sym": "Y",
+   "meaning": "依變項 Y 的觀察值"
+  },
+  {
+   "sym": "b",
+   "meaning": "未標準化迴歸係數"
+  },
+  {
+   "sym": "a",
+   "meaning": "截距"
+  },
+  {
+   "sym": "e",
+   "meaning": "誤差項"
+  },
+  {
+   "sym": "R",
+   "meaning": "多元相關係數"
+  },
+  {
+   "sym": "R²",
+   "meaning": "迴歸模型所解釋的變異百分比"
+  },
+  {
+   "sym": "χ²",
+   "meaning": "卡方統計量"
+  },
+  {
+   "sym": "O",
+   "meaning": "觀察次數"
+  },
+  {
+   "sym": "E",
+   "meaning": "期望次數"
+  },
+  {
+   "sym": "R",
+   "meaning": "列聯表的列數(橫列)"
+  },
+  {
+   "sym": "C",
+   "meaning": "列聯表的行數(直行)"
+  },
+  {
+   "sym": "α",
+   "meaning": "Cronbach's α 係數"
+  }
+ ],
+ "translator_note": "譯者彭志文任教於北京郵電大學,2013 年 10 月完稿。他以統計教學者的身分指出:公式化的統計教材常讓數學基礎弱的學生卻步,或淪為死背步驟;他一直想找既少用艱深數學、又能把統計量的構造與解釋邏輯講清楚的教材,認為本書做到了,也適合當其他課程的輔助讀物。後半批評學術翻譯稿酬低、不受重視、粗製濫造的亂象,表明自己獨力且認真翻譯,錯漏請讀者指正,並致謝兩項經費補助。文中未特別討論術語譯名的取捨。",
+ "references_count": 19,
+ "recommended_reading_note": "全書參考文獻共 19 筆,彙整各章推薦讀物,多為 Sage 小冊(迴歸、ANOVA、ANCOVA、因素分析)與行為科學統計教科書,另含作者引用的動機研究論文。"
 }

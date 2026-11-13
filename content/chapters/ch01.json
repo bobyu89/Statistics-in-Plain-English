@@ -1,6 +1,5 @@
 {
  "n": 1,
- "title_cn": "导论：社会科学研究的原理和术语",
  "title_en": "Introduction to Social Science Research Principles and Terminology",
  "pages": "1–14",
  "one_liner": "先弄清母體與樣本、抽樣、變項尺度與研究設計,才談得上任何統計。",
@@ -56,284 +55,194 @@
  "concepts": [
   {
    "tw": "母體與樣本",
-   "cn": "总体和样本",
    "en": "population and sample",
-   "diff": true,
    "note": "母體是關心對象的全體,樣本是其中被實際觀察的子集。"
   },
   {
    "tw": "母數與統計量",
-   "cn": "参数和统计量",
    "en": "parameter and statistic",
-   "diff": true,
    "note": "母數描述母體,統計量由樣本算出並用來估計母數。"
   },
   {
    "tw": "概化(類推)",
-   "cn": "一般化（或普遍性）",
    "en": "generalize / generalizability",
-   "diff": true,
    "note": "把樣本結果推到母體的能力,取決於樣本像不像母體。"
   },
   {
    "tw": "描述統計與推論統計",
-   "cn": "描述统计和推断统计",
    "en": "descriptive and inferential statistics",
-   "diff": true,
    "note": "前者只描述手上資料,後者藉樣本對母體下結論。"
   },
   {
    "tw": "隨機抽樣",
-   "cn": "随机抽样",
    "en": "random sampling",
-   "diff": false,
    "note": "每個母體成員入選機率相等,差異只來自機會。"
   },
   {
    "tw": "測量尺度",
-   "cn": "测量尺度",
    "en": "scales of measurement",
-   "diff": false,
    "note": "名義、次序、等距、比率四級,決定數字帶有多少資訊。"
   },
   {
    "tw": "自變項與依變項",
-   "cn": "自变量和因变量",
    "en": "independent and dependent variables",
-   "diff": true,
    "note": "自變項被假定影響依變項;實驗中自變項由研究者操弄。"
   },
   {
    "tw": "實驗設計與相關性設計",
-   "cn": "实验设计和相关性研究设计",
    "en": "experimental vs. correlational design",
-   "diff": false,
    "note": "前者隨機分派可談因果,後者只能說有無關聯。"
   },
   {
    "tw": "分布",
-   "cn": "分布",
    "en": "distribution",
-   "diff": false,
    "note": "任一變項取值的集合,可用圖表呈現其樣貌。"
   }
  ],
  "terms": [
   {
-   "cn": "卡方分布",
    "tw": "卡方分布",
-   "en": "chi-square distributions",
-   "diff": false
+   "en": "chi-square distributions"
   },
   {
-   "cn": "常数",
    "tw": "常數",
-   "en": "constant",
-   "diff": false
+   "en": "constant"
   },
   {
-   "cn": "方便抽样",
    "tw": "便利抽樣",
-   "en": "convenience sampling",
-   "diff": true
+   "en": "convenience sampling"
   },
   {
-   "cn": "相关性研究设计",
    "tw": "相關性研究設計",
-   "en": "correlational research design",
-   "diff": false
+   "en": "correlational research design"
   },
   {
-   "cn": "因变量",
    "tw": "依變項",
-   "en": "dependent variable",
-   "diff": true
+   "en": "dependent variable"
   },
   {
-   "cn": "描述统计量",
    "tw": "描述統計(敘述統計)",
-   "en": "descriptive statistics",
-   "diff": true
+   "en": "descriptive statistics"
   },
   {
-   "cn": "二值变量",
    "tw": "二分變項",
-   "en": "dichotomous variable",
-   "diff": true
+   "en": "dichotomous variable"
   },
   {
-   "cn": "分布",
    "tw": "分布(分配)",
-   "en": "distribution",
-   "diff": false
+   "en": "distribution"
   },
   {
-   "cn": "实验研究设计",
    "tw": "實驗研究設計",
-   "en": "experimental research design",
-   "diff": false
+   "en": "experimental research design"
   },
   {
-   "cn": "F分布",
    "tw": "F 分布",
-   "en": "F distributions",
-   "diff": false
+   "en": "F distributions"
   },
   {
-   "cn": "频率",
    "tw": "次數(頻率)",
-   "en": "frequency",
-   "diff": true
+   "en": "frequency"
   },
   {
-   "cn": "一般化（或普遍性）",
    "tw": "概化(類推性)",
-   "en": "generalize / generalizability",
-   "diff": true
+   "en": "generalize / generalizability"
   },
   {
-   "cn": "自变量",
    "tw": "自變項",
-   "en": "independent variable",
-   "diff": true
+   "en": "independent variable"
   },
   {
-   "cn": "推断统计量",
    "tw": "推論統計",
-   "en": "inferential statistics",
-   "diff": true
+   "en": "inferential statistics"
   },
   {
-   "cn": "定距或定比变量",
    "tw": "等距或比率變項",
-   "en": "interval or ratio variable",
-   "diff": true
+   "en": "interval or ratio variable"
   },
   {
-   "cn": "均值",
    "tw": "平均數",
-   "en": "mean",
-   "diff": true
+   "en": "mean"
   },
   {
-   "cn": "名义尺度变量（定类变量）",
    "tw": "名義尺度變項(類別變項)",
-   "en": "nominally scaled variable",
-   "diff": true
+   "en": "nominally scaled variable"
   },
   {
-   "cn": "正态分布",
    "tw": "常態分布",
-   "en": "normal distribution",
-   "diff": true
+   "en": "normal distribution"
   },
   {
-   "cn": "定序变量",
    "tw": "次序變項",
-   "en": "ordinal variable",
-   "diff": true
+   "en": "ordinal variable"
   },
   {
-   "cn": "参数",
    "tw": "母數(參數)",
-   "en": "parameter",
-   "diff": true
+   "en": "parameter"
   },
   {
-   "cn": "总体",
    "tw": "母體",
-   "en": "population",
-   "diff": true
+   "en": "population"
   },
   {
-   "cn": "定性（或分类）变量",
    "tw": "質性(類別)變項",
-   "en": "qualitative or categorical variable",
-   "diff": true
+   "en": "qualitative or categorical variable"
   },
   {
-   "cn": "定量（或连续）变量",
    "tw": "量性(連續)變項",
-   "en": "quantitative or continuous variable",
-   "diff": true
+   "en": "quantitative or continuous variable"
   },
   {
-   "cn": "随机分配",
    "tw": "隨機分派",
-   "en": "random assignment",
-   "diff": true
+   "en": "random assignment"
   },
   {
-   "cn": "随机样本（或随机抽样）",
    "tw": "隨機樣本(隨機抽樣)",
-   "en": "random sample / random sampling",
-   "diff": false
+   "en": "random sample / random sampling"
   },
   {
-   "cn": "典型抽样",
    "tw": "代表性抽樣",
-   "en": "representative sampling",
-   "diff": true
+   "en": "representative sampling"
   },
   {
-   "cn": "样本",
    "tw": "樣本",
-   "en": "sample",
-   "diff": false
+   "en": "sample"
   },
   {
-   "cn": "统计量",
    "tw": "統計量",
-   "en": "statistic",
-   "diff": false
+   "en": "statistic"
   },
   {
-   "cn": "t分布",
    "tw": "t 分布",
-   "en": "t distributions",
-   "diff": false
+   "en": "t distributions"
   },
   {
-   "cn": "变量",
    "tw": "變項(變數)",
-   "en": "variable",
-   "diff": true
+   "en": "variable"
   },
   {
-   "cn": "测量尺度",
    "tw": "測量尺度",
-   "en": "scales of measurement",
-   "diff": false
+   "en": "scales of measurement"
   },
   {
-   "cn": "柱状图",
    "tw": "長條圖",
-   "en": "bar graph / column graph",
-   "diff": true
+   "en": "bar graph / column graph"
   },
   {
-   "cn": "饼图",
    "tw": "圓餅圖",
-   "en": "pie chart",
-   "diff": true
+   "en": "pie chart"
   },
   {
-   "cn": "折线图",
    "tw": "折線圖",
-   "en": "line graph",
-   "diff": false
+   "en": "line graph"
   },
   {
-   "cn": "叠加柱状图",
    "tw": "堆疊長條圖",
-   "en": "stacked column graph",
-   "diff": true
+   "en": "stacked column graph"
   },
   {
-   "cn": "频数",
    "tw": "次數",
-   "en": "frequency (f)",
-   "diff": true
+   "en": "frequency (f)"
   }
  ],
  "symbols": [
@@ -389,11 +298,5 @@
    "num": "N vs. n",
    "label": "母體數與樣本數"
   }
- },
- "ocr_notes": [
-  "書中第 5 頁稱比率尺度「包括一個零值(例如攝氏溫度)」;攝氏溫度通常被歸為等距尺度,此為原書說法,引用時宜加註。",
-  "第 7 頁列舉後續章節各分布的那一行 OCR 缺漏(常態、t、F、卡方分布對應章次),F 分布所屬章次需對原書。",
-  "圖 1-5、1-6、1-7 至 1-9 的座標數值 OCR 不完整;文中引用的數字(13 人、31 人、55 人、800→500 等)取自正文敘述。",
-  "術語表用「常数」「频率」,正文用「常量」「频数」,同一英文詞兩種譯法。"
- ]
+ }
 }
