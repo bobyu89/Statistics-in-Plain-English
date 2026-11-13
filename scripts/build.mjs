@@ -195,7 +195,7 @@ B.chapters.forEach((c, i) => {
   <div class="split-content">
     <div><div class="nb-label ${lbl} keepcase">CH ${no(c.n)} · 再看一張圖</div></div>
     <h2 class="nb-heading-md keepcase">${esc((g2.match(/aria-label="([^"]*)"/) || [])[1] || c.title_tw)}</h2>
-    <p class="fig2-body">${esc(c.summary)}</p>
+    <ul class="content-list">${((c.brief && c.brief.fig2_points) || []).map((b, j) => `<li><span class="list-num">${no(j + 1)}</span><span>${esc(b)}</span></li>`).join('')}</ul>
   </div></section>`);
   const rest = (c.concepts || []).slice(3, 9);
   if (rest.length) S.push(`<section class="slide slide-9 ${BG[(i + 1) % BG.length]}" data-ch="${c.n}">
