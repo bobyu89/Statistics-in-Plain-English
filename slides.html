@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>白話統計學 · 簡報</title>
+  <!-- Built by scripts/build.mjs from content/. Template: BlockFrame (github.com/zarazhangrui/beautiful-html-templates, MIT). -->
+  <style>
+/* BlockFrame — from github.com/zarazhangrui/beautiful-html-templates (MIT, © 2026 Zara Zhang). Unmodified. */
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@500;700;900&display=swap');
+
+    :root {
+      --pink: #FE90E8;
+      --blue: #C0F7FE;
+      --green: #99E885;
+      --yellow: #F7CB46;
+      --cream: #FFDC8B;
+      --black: #000000;
+      --white: #FFFFFF;
+      --offwhite: #FFFDF5;
+      --border: 4px solid var(--black);
+      --shadow: 8px 8px 0px var(--black);
+      --shadow-sm: 4px 4px 0px var(--black);
+      --radius: 0px;
+      --radius-sm: 4px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background: var(--offwhite);
+      color: var(--black);
+    }
+
+    /* Slide container */
+    .slides-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      padding: 60px;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    /* Dot grid background pattern */
+    .dot-grid {
+      background-image: radial-gradient(circle, var(--black) 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+    }
+
+    /* Navigation */
+    .nav-controls {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .nav-btn {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--black);
+      background: var(--white);
+      cursor: pointer;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--black);
+    }
+
+    .nav-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--black);
+    }
+
+    .slide-counter {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 1000;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 3px solid var(--black);
+      background: var(--white);
+      padding: 10px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ============ UTILITY COMPONENTS ============ */
+
+    .nb-card {
+      border: var(--border);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .nb-card-flat {
+      border: var(--border);
+      background: var(--white);
+    }
+
+    .nb-label {
+      display: inline-block;
+      border: 3px solid var(--black);
+      padding: 6px 16px;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nb-label-pink { background: var(--pink); }
+    .nb-label-blue { background: var(--blue); }
+    .nb-label-green { background: var(--green); }
+    .nb-label-yellow { background: var(--yellow); }
+    .nb-label-cream { background: var(--cream); }
+
+    .nb-btn {
+      display: inline-block;
+      border: 3px solid var(--black);
+      padding: 14px 32px;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      color: var(--black);
+      background: var(--yellow);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nb-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--black);
+    }
+
+    .nb-heading-xl {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 6vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .nb-heading-lg {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 4vw, 64px);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .nb-heading-md {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: clamp(24px, 2.5vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .nb-body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .nb-mono {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Decorative elements */
+    .deco-circle {
+      border-radius: 50%;
+      border: var(--border);
+    }
+
+    .deco-square {
+      border: var(--border);
+    }
+
+    .tilt-left { transform: rotate(-8deg); }
+    .tilt-right { transform: rotate(8deg); }
+
+    .corner-bracket {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--black);
+    }
+    .corner-bracket.tl { border-right: none; border-bottom: none; top: 0; left: 0; }
+    .corner-bracket.tr { border-left: none; border-bottom: none; top: 0; right: 0; }
+    .corner-bracket.bl { border-right: none; border-top: none; bottom: 0; left: 0; }
+    .corner-bracket.br { border-left: none; border-top: none; bottom: 0; right: 0; }
+
+    /* ============ SLIDE 1: TITLE HERO ============ */
+    .slide-1 {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--cream);
+      position: relative;
+    }
+
+    .slide-1 .hero-frame {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      border: var(--border);
+      background: var(--offwhite);
+      padding: 60px;
+      box-shadow: var(--shadow);
+    }
+
+    .slide-1 .hero-label {
+      margin-bottom: 24px;
+    }
+
+    .slide-1 .hero-title {
+      margin-bottom: 32px;
+    }
+
+    .slide-1 .hero-subtitle {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      max-width: 500px;
+    }
+
+    .slide-1 .deco-pink-rect {
+      position: absolute;
+      top: -30px;
+      right: 80px;
+      width: 100px;
+      height: 100px;
+      background: var(--pink);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      transform: rotate(12deg);
+    }
+
+    .slide-1 .deco-green-circle {
+      position: absolute;
+      bottom: 60px;
+      right: 120px;
+      width: 60px;
+      height: 60px;
+      background: var(--green);
+      border: var(--border);
+      border-radius: 50%;
+    }
+
+    .slide-1 .deco-yellow-bar {
+      /* Sits as a tab on the bottom edge of the hero-frame, OUTSIDE
+         the content area so it never collides with the subtitle. */
+      position: absolute;
+      bottom: -18px;
+      left: 80px;
+      width: 140px;
+      height: 36px;
+      background: var(--yellow);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      transform: rotate(-3deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 5;
+    }
+
+    .slide-1 .deco-dots {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      width: 120px;
+      height: 80px;
+      background-image: radial-gradient(circle, var(--black) 2px, transparent 2px);
+      background-size: 20px 20px;
+      opacity: 0.4;
+    }
+
+    /* ============ SLIDE 2: TWO COLUMN INTRO ============ */
+    .slide-2 {
+      background: var(--blue);
+      flex-direction: row;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .slide-2 .col-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .slide-2 .col-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .slide-2 .intro-card {
+      border: var(--border);
+      background: var(--white);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .slide-2 .intro-card h3 {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .slide-2 .intro-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .slide-2 .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 3px solid var(--black);
+      padding: 10px 20px;
+      background: var(--yellow);
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ============ SLIDE 3: THREE FEATURE CARDS ============ */
+    .slide-3 {
+      background: var(--offwhite);
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-3 .slide-header {
+      margin-bottom: 48px;
+    }
+
+    .slide-3 .cards-row {
+      display: flex;
+      gap: 32px;
+      width: 100%;
+    }
+
+    .slide-3 .feature-card {
+      flex: 1;
+      border: var(--border);
+      background: var(--white);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .slide-3 .feature-icon {
+      width: 64px;
+      height: 64px;
+      border: 3px solid var(--black);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .slide-3 .icon-pink { background: var(--pink); }
+    .slide-3 .icon-blue { background: var(--blue); }
+    .slide-3 .icon-green { background: var(--green); }
+
+    .slide-3 .feature-card h3 {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .slide-3 .feature-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .slide-3 .card-deco {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+    }
+
+    /* ============ SLIDE 4: CHART / DATA ============ */
+    .slide-4 {
+      background: var(--green);
+      flex-direction: column;
+      justify-content: center;
+      /* Reserve space for the shadow + the bottom-fixed nav chrome
+         so the chart-frame never butts up against the slide edge. */
+      padding-bottom: 110px;
+    }
+
+    .slide-4 .chart-frame {
+      border: var(--border);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      padding: 32px 40px;
+      width: calc(100% - 16px);
+      max-width: 1200px;
+      margin: 0 auto;
+      /* Cap the frame so it always fits inside the slide content area
+         (slide is 100vh - 60 top - 110 bottom = ~70vh available). */
+      max-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    .slide-4 .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    .slide-4 .chart-legend {
+      display: flex;
+      gap: 16px;
+    }
+
+    .slide-4 .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .slide-4 .legend-swatch {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--black);
+    }
+
+    /* Chart body — chart on the left, stat boxes stacked on the right.
+       This is a flex row that fills the remaining space below the header. */
+    .slide-4 .chart-body {
+      display: flex;
+      gap: 32px;
+      flex: 1 1 auto;
+      min-height: 0;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    /* SVG Chart — fills the left side of chart-body. Width auto-derives
+       from viewBox aspect; flex-1 lets it claim available width. */
+    .chart-svg {
+      display: block;
+      flex: 1 1 auto;
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    /* Data column — vertical stack of stat boxes on the right. */
+    .slide-4 .data-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 0 0 240px;
+      width: 240px;
+      min-width: 0;
+    }
+
+    .slide-4 .data-box {
+      flex: 1 1 0;
+      min-height: 0;
+      border: 3px solid var(--black);
+      background: var(--cream);
+      padding: 18px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .slide-4 .data-box .data-num {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .slide-4 .data-box .data-label {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* ============ SLIDE 5: BIG STATEMENT / QUOTE ============ */
+    .slide-5 {
+      background: var(--pink);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .slide-5 .quote-frame {
+      border: var(--border);
+      background: var(--white);
+      padding: 60px 80px;
+      box-shadow: var(--shadow);
+      max-width: 1000px;
+      position: relative;
+    }
+
+    .slide-5 .quote-text {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .slide-5 .quote-author {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .slide-5 .deco-quote-marks {
+      position: absolute;
+      top: -30px;
+      left: 40px;
+      font-size: 120px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--yellow);
+      -webkit-text-stroke: 3px var(--black);
+    }
+
+    .slide-5 .deco-stripes {
+      position: absolute;
+      bottom: 60px;
+      right: 60px;
+      width: 80px;
+      height: 80px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--black),
+        var(--black) 4px,
+        var(--green) 4px,
+        var(--green) 12px
+      );
+      border: 3px solid var(--black);
+    }
+
+    /* ============ SLIDE 6: SPLIT IMAGE + TEXT ============ */
+    .slide-6 {
+      background: var(--yellow);
+      flex-direction: row;
+      gap: 0;
+      padding: 0;
+    }
+
+    .slide-6 .split-visual {
+      flex: 1;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-6 .split-visual .visual-box {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 1;
+      border: 4px solid var(--white);
+      background: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .slide-6 .split-visual .visual-box::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100%;
+      height: 100%;
+      background: var(--blue);
+      border: 4px solid var(--white);
+      z-index: -1;
+    }
+
+    .slide-6 .split-visual .visual-label {
+      /* Top-right of the dark panel so it never collides with the
+         fixed slide-counter pill at bottom-left of the viewport. */
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      border: 3px solid var(--white);
+      background: var(--green);
+      color: var(--black);
+      padding: 8px 16px;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      transform: rotate(-4deg);
+    }
+
+    .slide-6 .split-content {
+      flex: 1;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 28px;
+      background: var(--offwhite);
+      border-left: var(--border);
+    }
+
+    .slide-6 .content-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .slide-6 .content-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .slide-6 .content-list .list-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* ============ SLIDE 7: TIMELINE / PROCESS ============ */
+    .slide-7 {
+      background: var(--offwhite);
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-7 .slide-header {
+      margin-bottom: 48px;
+    }
+
+    .slide-7 .timeline {
+      display: flex;
+      gap: 0;
+      width: 100%;
+    }
+
+    .slide-7 .timeline-step {
+      flex: 1;
+      border: var(--border);
+      background: var(--white);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      margin-right: -4px;
+    }
+
+    .slide-7 .timeline-step:first-child {
+      background: var(--blue);
+    }
+
+    .slide-7 .timeline-step:nth-child(2) {
+      background: var(--pink);
+    }
+
+    .slide-7 .timeline-step:nth-child(3) {
+      background: var(--green);
+    }
+
+    .slide-7 .timeline-step:nth-child(4) {
+      background: var(--yellow);
+      margin-right: 0;
+    }
+
+    .slide-7 .step-num {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    .slide-7 .step-title {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .slide-7 .step-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .slide-7 .step-connector {
+      position: absolute;
+      top: 50%;
+      right: -28px;
+      width: 28px;
+      height: 4px;
+      background: var(--black);
+      z-index: 10;
+      transform: translateY(-50%);
+    }
+
+    /* ============ SLIDE 8: STATISTICS / NUMBERS ============ */
+    .slide-8 {
+      background: var(--blue);
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-8 .slide-header {
+      margin-bottom: 48px;
+    }
+
+    .slide-8 .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      width: 100%;
+    }
+
+    .slide-8 .stat-card {
+      border: var(--border);
+      background: var(--white);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      position: relative;
+    }
+
+    .slide-8 .stat-card:nth-child(odd) {
+      transform: rotate(-2deg);
+    }
+
+    .slide-8 .stat-card:nth-child(even) {
+      transform: rotate(2deg);
+    }
+
+    .slide-8 .stat-number {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 4vw, 64px);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .slide-8 .stat-label {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-8 .stat-deco {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--black);
+    }
+
+    /* ============ SLIDE 9: TEAM / GRID ============ */
+    .slide-9 {
+      background: var(--cream);
+      flex-direction: column;
+      justify-content: center;
+      /* Extra bottom padding so the second card row clears the fixed
+         slide-counter (bottom-left) and nav-controls (bottom-right). */
+      padding-bottom: 110px;
+    }
+
+    .slide-9 .slide-header {
+      margin-bottom: 32px;
+    }
+
+    .slide-9 .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .slide-9 .team-card {
+      border: var(--border);
+      background: var(--white);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .slide-9 .team-avatar {
+      width: 72px;
+      height: 72px;
+      border: 3px solid var(--black);
+      background: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      text-transform: uppercase;
+    }
+
+    .slide-9 .team-card:nth-child(2) .team-avatar { background: var(--blue); }
+    .slide-9 .team-card:nth-child(3) .team-avatar { background: var(--green); }
+    .slide-9 .team-card:nth-child(4) .team-avatar { background: var(--yellow); }
+    .slide-9 .team-card:nth-child(5) .team-avatar { background: var(--pink); }
+    .slide-9 .team-card:nth-child(6) .team-avatar { background: var(--blue); }
+
+    .slide-9 .team-name {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .slide-9 .team-role {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-9 .team-bio {
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    /* ============ SLIDE 10: CLOSING ============ */
+    .slide-10 {
+      background: var(--black);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .slide-10 .close-frame {
+      border: 4px solid var(--white);
+      background: var(--black);
+      padding: 60px 80px;
+      box-shadow: 12px 12px 0px var(--yellow);
+      position: relative;
+    }
+
+    .slide-10 .close-title {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 5vw, 80px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .slide-10 .close-subtitle {
+      font-family: 'Space Grotesk', 'Noto Sans TC', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 40px;
+    }
+
+    .slide-10 .close-btn {
+      display: inline-block;
+      border: 3px solid var(--white);
+      padding: 16px 40px;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      color: var(--black);
+      background: var(--yellow);
+      box-shadow: 6px 6px 0px var(--white);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .slide-10 .close-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0px var(--white);
+    }
+
+    .slide-10 .deco-star {
+      position: absolute;
+      top: -20px;
+      right: 60px;
+      width: 50px;
+      height: 50px;
+      background: var(--pink);
+      border: 3px solid var(--white);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .slide-10 .deco-dots-bottom {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      width: 100px;
+      height: 100px;
+      background-image: radial-gradient(circle, var(--white) 2px, transparent 2px);
+      background-size: 16px 16px;
+      opacity: 0.3;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .slide {
+        padding: 40px;
+      }
+      .slide-2 {
+        flex-direction: column;
+      }
+      .slide-6 {
+        flex-direction: column;
+      }
+      .slide-6 .split-content {
+        border-left: none;
+        border-top: var(--border);
+      }
+      .slide-3 .cards-row {
+        flex-direction: column;
+      }
+      .slide-7 .timeline {
+        flex-direction: column;
+      }
+      .slide-7 .timeline-step {
+        margin-right: 0;
+        margin-bottom: -4px;
+      }
+      .slide-7 .step-connector {
+        display: none;
+      }
+      .slide-8 .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .slide-9 .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .slide-8 .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .slide-9 .team-grid {
+        grid-template-columns: 1fr;
+      }
+      .slide-1 .hero-frame {
+        padding: 32px;
+      }
+      .slide-5 .quote-frame {
+        padding: 32px;
+      }
+    }
+
+/* ---- Additions for this deck. Same tokens, borders, shadows and type as BlockFrame. ---- */
+
+/* CJK glyphs are taller than Latin caps: loosen the tightest display leading. */
+.nb-heading-xl { line-height: 1.08; }
+.nb-heading-lg { line-height: 1.12; }
+.nb-heading-md { line-height: 1.2; }
+.slide-5 .quote-text { line-height: 1.3; }
+.slide-10 .close-title { line-height: 1.1; }
+
+.home-link {
+  position: fixed; top: 20px; right: 24px; z-index: 1000;
+  text-decoration: none; color: var(--black);
+}
+.home-link:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--black); }
+
+/* background modifiers so repeated layouts can cycle the palette */
+.slide.bg-pink { background: var(--pink); }
+.slide.bg-blue { background: var(--blue); }
+.slide.bg-green { background: var(--green); }
+.slide.bg-yellow { background: var(--yellow); }
+.slide.bg-cream { background: var(--cream); }
+.slide.bg-offwhite { background: var(--offwhite); }
+
+/* chapter slides reuse .slide-6 (split) and .slide-2 (two column) */
+.slide-6 .visual-box { flex-direction: column; gap: 14px; padding: 24px; text-align: center; }
+.slide-6 .visual-box .big {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif; font-weight: 900; line-height: 1.05;
+  letter-spacing: -0.02em; color: var(--black); overflow-wrap: anywhere;
+}
+.slide-6 .visual-box .cap {
+  font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 600; font-size: 15px;
+  border: 3px solid var(--black); background: var(--white); padding: 6px 12px; color: var(--black);
+}
+.slide-6 .split-content { gap: 22px; padding-bottom: 96px; }
+.slide-6 .ch-no {
+  position: absolute; left: 40px; bottom: 96px; color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 900; font-size: 120px; line-height: 1; opacity: .16;
+}
+.slide-2 { padding-bottom: 100px; }
+.slide-2 .intro-card h3 { text-transform: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.slide-2 .intro-card h3 small {
+  font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 600; font-size: 13px; letter-spacing: .02em;
+}
+.slide-2 .stat-pill { max-width: 100%; white-space: normal; line-height: 1.4; }
+.slide-2 .warn {
+  border: 3px solid var(--black); background: var(--white); padding: 12px 16px;
+  font-size: 15px; line-height: 1.5; font-weight: 500; max-width: 480px; box-shadow: var(--shadow-sm);
+}
+.slide-2 .warn b { font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 13px; letter-spacing: .08em; display: block; margin-bottom: 2px; }
+
+/* comparison table (new layout, built from nb-card + label grammar) */
+.slide-cmp { background: var(--offwhite); flex-direction: column; justify-content: center; padding-bottom: 100px; }
+.slide-cmp .slide-header { margin-bottom: 28px; }
+.cmp { border: var(--border); background: var(--white); box-shadow: var(--shadow); width: 100%; border-collapse: collapse; }
+.cmp th, .cmp td { border: 3px solid var(--black); padding: 11px 16px; text-align: left; font-size: 16px; line-height: 1.4; font-weight: 500; vertical-align: top; }
+.cmp thead th { font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.cmp thead th:nth-child(2) { background: var(--blue); }
+.cmp thead th:nth-child(3) { background: var(--pink); }
+.cmp thead th:nth-child(4) { background: var(--green); }
+.cmp tbody th { font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 14px; font-weight: 700; background: var(--cream); white-space: nowrap; }
+.cmp td.hl { background: var(--yellow); font-weight: 700; }
+.cmp.dense th, .cmp.dense td { padding: 7px 14px; font-size: 15px; }
+
+/* five-step timeline */
+.slide-7 { padding-bottom: 100px; }
+.slide-7 .timeline-step:nth-child(4) { margin-right: -4px; }
+.slide-7 .timeline-step:nth-child(5) { background: var(--cream); margin-right: 0; }
+.slide-7 .timeline-step:last-child { margin-right: 0; }
+.slide-7 .step-title { text-transform: none; }
+.slide-9 .team-name { text-transform: none; }
+.slide-9 .team-avatar { font-size: 22px; }
+.slide-9 .team-grid.g5 { grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.slide-9 .team-grid.g5 .team-card { padding: 16px; gap: 8px; }
+.slide-9 .team-grid.g5 .team-avatar { width: 52px; height: 52px; font-size: 18px; }
+.slide-9 .team-grid.g5 .team-name { font-size: 17px; }
+.slide-9 .team-grid.g5 .team-card:nth-child(7) .team-avatar { background: var(--green); }
+.slide-9 .team-grid.g5 .team-card:nth-child(8) .team-avatar { background: var(--yellow); }
+.slide-9 .team-grid.g5 .team-card:nth-child(9) .team-avatar { background: var(--pink); }
+.slide-9 .team-grid.g5 .team-card:nth-child(10) .team-avatar { background: var(--blue); }
+.slide-8 { padding-bottom: 100px; }
+.slide-8 .stat-sub { font-size: 14px; line-height: 1.45; font-weight: 500; margin-top: 10px; }
+
+@media (max-width: 1024px) {
+  html, body { overflow: auto; }
+  .slide { position: relative; height: auto; min-height: 100vh; }
+  .slide-9 .team-grid.g5 { grid-template-columns: repeat(2, 1fr); }
+  .cmp th, .cmp td { font-size: 13px; padding: 8px; }
+  .slide-6 .split-visual { min-height: 46vh; }
+}
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide { padding: 44px 60px; }
+  .slide-6 { padding: 0; }
+  .slide-6 .split-content { padding: 44px 60px 90px; gap: 16px; }
+  .slide-3 .slide-header, .slide-7 .slide-header, .slide-8 .slide-header { margin-bottom: 28px; }
+  .slide-9 .slide-header { margin-bottom: 20px; }
+  .slide-9 .team-card { padding: 16px; gap: 6px; }
+  .slide-9 .team-avatar { width: 52px; height: 52px; font-size: 18px; }
+  .cmp th, .cmp td { padding: 8px 14px; font-size: 15px; }
+  .cmp.dense th, .cmp.dense td { padding: 5px 12px; font-size: 14px; }
+}
+
+/* chapter slides: larger reading size (the demo copy is shorter than study notes) */
+.slide-6 .content-list { gap: 18px; }
+.slide-6 .content-list li { font-size: clamp(17px, 1.45vw, 22px); line-height: 1.45; align-items: center; }
+.slide-2 .intro-card h3 { font-size: clamp(20px, 1.7vw, 26px); }
+.slide-2 .intro-card p { font-size: clamp(15px, 1.25vw, 19px); }
+.slide-9 .team-grid.g5 .team-bio { font-size: clamp(13px, 1.05vw, 16px); }
+
+  </style>
+</head>
+<body>
+
+  <div class="slide-counter" id="slideCounter">01 / 27</div>
+  <a class="nb-label home-link" href="index.html">← 學習計畫</a>
+
+  <div class="nav-controls">
+    <button class="nav-btn" onclick="prevSlide()" aria-label="上一頁">&#8592;</button>
+    <button class="nav-btn" onclick="nextSlide()" aria-label="下一頁">&#8594;</button>
+  </div>
+
+  <div class="slides-container">
+
+<section class="slide slide-1 active">
+  <div class="deco-dots"></div>
+  <div class="hero-frame"><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <div class="nb-label hero-label">學習簡報 · 8 章全解</div>
+    <h1 class="nb-heading-xl hero-title">白話<br>統計學</h1>
+    <p class="hero-subtitle">Statistics in Plain English — 把簡體第 3 版逐章讀完,改寫成台灣用語的重點筆記,並對照台灣雙葉版的差異。</p>
+    <div class="deco-pink-rect"></div><div class="deco-green-circle"></div><div class="deco-yellow-bar">Timothy C. Urdan</div>
+  </div></section>
+
+<section class="slide slide-2">
+  <div class="col-left">
+    <div class="nb-label nb-label-yellow">這本書怎麼讀</div>
+    <h2 class="nb-heading-lg">不用<br>從頭讀到尾</h2>
+    <p class="nb-body" style="max-width:480px;">每章三部分:1–2 頁的統計量簡介(用途與提供的資訊)、3–8 頁的詳解(用法、公式、優缺點、前提條件)、章末應用與解釋的實例。</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;"><span class="stat-pill">8 章</span><span class="stat-pill">5 張附錄表</span><span class="stat-pill">內文 230 頁</span></div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>讀法 01</h3><p>當作補充讀物:搭配較詳盡的傳統教科書一起讀,不要指望一本學完。</p></div><div class="intro-card"><h3>讀法 02</h3><p>當作複習參考書:學過一兩門統計課的人用來溫習概念。</p></div><div class="intro-card"><h3>讀法 03</h3><p>各取所需:每章先讀 1–2 頁簡介,需要再讀詳解與例子。</p></div></div>
+</section>
+
+<section class="slide slide-cmp">
+  <div class="slide-header"><div class="nb-label nb-label-pink">版本比對</div><h2 class="nb-heading-lg" style="margin-top:16px;">簡體版 ≠ 台灣版</h2></div>
+  <table class="cmp"><thead><tr><th></th><th>簡體版(你手上的)</th><th>台灣一版</th><th>台灣三版(最新)</th></tr></thead><tbody>
+  <tr><th>出版社</th><td>中国人民大学出版社(管理者终身学习叢書)</td><td>雙葉書廊</td><td class="">雙葉書廊</td></tr><tr><th>譯者</th><td>彭志文</td><td>陳信木、翁志遠</td><td class="">陳雅琪、陳信木、翁志遠</td></tr><tr><th>出版</th><td>2013 年 12 月 第 1 版</td><td>2013/01/30(已絕版)</td><td class="">2025/08/27</td></tr><tr><th>對應原文</th><td>英文 Third Edition(版權頁與封面標示)</td><td>英文 3E</td><td class="hl">書店頁未明載;章節與附錄和英文 5E(2022)完全相同</td></tr><tr><th>章數</th><td>15 章</td><td>未查到目錄</td><td class="hl">16 章</td></tr><tr><th>附錄</th><td>5 個(A–E)</td><td>未查到</td><td class="hl">8 個(A–H)</td></tr>
+  </tbody></table></section>
+
+<section class="slide slide-8">
+  <div class="slide-header"><div class="nb-label nb-label-green">差在哪</div><h2 class="nb-heading-lg" style="margin-top:16px;">四個數字看差異</h2></div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-deco" style="background:var(--pink);"></div><div class="stat-number">3E→5E</div><div class="stat-label">原文差兩版</div><div class="stat-sub">簡體版 2013;台灣三版 2025</div></div>
+    <div class="stat-card"><div class="stat-deco" style="background:var(--blue);"></div><div class="stat-number">15→16</div><div class="stat-label">章數</div><div class="stat-sub">新增「個人中心取向的分析」</div></div>
+    <div class="stat-card"><div class="stat-deco" style="background:var(--green);"></div><div class="stat-number">5→8</div><div class="stat-label">附錄表</div><div class="stat-sub">多 Fisher Z、Mann-Whitney U、Wilcoxon</div></div>
+    <div class="stat-card"><div class="stat-deco" style="background:var(--yellow);"></div><div class="stat-number">8→12</div><div class="stat-label">「相關」的章號</div><div class="stat-sub">連帶讓 t 檢定與 ANOVA 各往前一章</div></div>
+  </div></section>
+
+<section class="slide slide-cmp">
+  <div class="slide-header"><div class="nb-label nb-label-blue">章節對照</div><h2 class="nb-heading-md" style="margin-top:14px;">簡體版章號 → 台灣三版章號</h2></div>
+  <table class="cmp dense"><thead><tr><th>簡體 3E</th><th>簡體章名</th><th>台灣三版</th><th>台灣章名</th></tr></thead><tbody>
+  <tr><th>CH 08</th><td>相关性</td><td class="hl">CH 12</td><td>相關　<span class="nb-mono">章序後移 4 章</span></td></tr><tr><th>CH 09</th><td>t 检验</td><td class="hl">CH 08</td><td>t 檢定　<span class="nb-mono">章號 −1</span></td></tr><tr><th>CH 10</th><td>单因子方差分析</td><td class="hl">CH 09</td><td>單因子變異數分析　<span class="nb-mono">章號 −1</span></td></tr><tr><th>CH 11</th><td>因子方差分析</td><td class="hl">CH 10</td><td>多因子變異數分析　<span class="nb-mono">章號 −1</span></td></tr><tr><th>CH 12</th><td>复测方差分析</td><td class="hl">CH 11</td><td>重複測量變異數分析　<span class="nb-mono">章號 −1</span></td></tr><tr><th>CH 14</th><td>卡方独立性检验</td><td class="hl">CH 14</td><td>無母數統計　<span class="nb-mono">範圍擴大</span></td></tr><tr><th>—</th><td>(無)</td><td class="hl">CH 16</td><td>個人中心取向的分析　<span class="nb-mono">簡體版沒有</span></td></tr>
+  </tbody></table>
+  <p class="nb-mono" style="margin-top:18px;">其餘第 1–7、13、15 章章號相同。</p></section>
+
+<section class="slide slide-9">
+  <div class="slide-header"><div class="nb-label nb-label-pink">譯名差異</div><h2 class="nb-heading-lg" style="margin-top:16px;">同一個字,兩種叫法</h2><p class="nb-mono" style="margin-top:10px;">全書整理出 191 組術語,其中 115 組兩岸譯名不同。</p></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">平</div><div class="team-name">平均數</div><div class="team-role">簡體:均值</div><div class="team-bio">mean</div></div><div class="team-card"><div class="team-avatar">變</div><div class="team-name">變異數</div><div class="team-role">簡體:方差</div><div class="team-bio">variance</div></div><div class="team-card"><div class="team-avatar">母</div><div class="team-name">母體</div><div class="team-role">簡體:总体</div><div class="team-bio">population</div></div><div class="team-card"><div class="team-avatar">信</div><div class="team-name">信賴區間</div><div class="team-role">簡體:置信区间</div><div class="team-bio">confidence interval</div></div><div class="team-card"><div class="team-avatar">常</div><div class="team-name">常態分布</div><div class="team-role">簡體:正态分布</div><div class="team-bio">normal distribution</div></div><div class="team-card"><div class="team-avatar">迴</div><div class="team-name">迴歸係數</div><div class="team-role">簡體:回归系数</div><div class="team-bio">regression coefficient</div></div></div></section>
+
+<section class="slide slide-7">
+  <div class="slide-header"><div class="nb-label nb-label-cream">學習地圖</div><h2 class="nb-heading-lg" style="margin-top:16px;">五個階段</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">描述資料</div><div class="step-desc">先把一堆數字說清楚<br>第 1、2、3 章</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">推論的地基</div><div class="step-desc">從樣本跨到母體<br>第 4、5、6、7 章</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">關係與預測</div><div class="step-desc">兩個變項一起看<br>第 8、13 章</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">04</div><div class="step-title">比較平均數</div><div class="step-desc">t 檢定與 ANOVA 家族<br>第 9、10、11、12 章</div></div><div class="timeline-step"><div class="step-num">05</div><div class="step-title">類別與量表</div><div class="step-desc">卡方、因素分析、信度<br>第 14、15 章</div></div></div></section>
+
+<section class="slide slide-4">
+  <div class="slide-header"><div class="nb-label nb-label-blue">篇幅分布</div></div>
+  <div class="chart-frame"><div class="chart-header"><h2 class="nb-heading-md">每一章有幾頁</h2>
+    <div class="chart-legend"><div class="legend-item"><div class="legend-swatch" style="background:#C0F7FE;"></div>描述資料</div><div class="legend-item"><div class="legend-swatch" style="background:#FE90E8;"></div>推論的地基</div><div class="legend-item"><div class="legend-swatch" style="background:#F7CB46;"></div>關係與預測</div><div class="legend-item"><div class="legend-swatch" style="background:#99E885;"></div>比較平均數</div><div class="legend-item"><div class="legend-swatch" style="background:#FFDC8B;"></div>類別與量表</div></div></div>
+  <div class="chart-body"><svg class="chart-svg" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+    <line x1="60" y1="20" x2="60" y2="280" stroke="#000" stroke-width="3"/><line x1="60" y1="280" x2="780" y2="280" stroke="#000" stroke-width="3"/>
+    <line x1="60" y1="228" x2="780" y2="228" stroke="#000" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/><text x="48" y="233" text-anchor="end" font-family="Space Grotesk, monospace" font-size="14" font-weight="600">4</text><line x1="60" y1="176" x2="780" y2="176" stroke="#000" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/><text x="48" y="181" text-anchor="end" font-family="Space Grotesk, monospace" font-size="14" font-weight="600">8</text><line x1="60" y1="124" x2="780" y2="124" stroke="#000" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/><text x="48" y="129" text-anchor="end" font-family="Space Grotesk, monospace" font-size="14" font-weight="600">12</text><line x1="60" y1="72" x2="780" y2="72" stroke="#000" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/><text x="48" y="77" text-anchor="end" font-family="Space Grotesk, monospace" font-size="14" font-weight="600">16</text><line x1="60" y1="20" x2="780" y2="20" stroke="#000" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/><text x="48" y="25" text-anchor="end" font-family="Space Grotesk, monospace" font-size="14" font-weight="600">20</text>
+    <text x="48" y="285" text-anchor="end" font-family="Space Grotesk, monospace" font-size="14" font-weight="600">0</text>
+    <rect x="88" y="98" width="34" height="182" fill="#C0F7FE" stroke="#000" stroke-width="2"/><text x="105" y="90" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" font-weight="700">14</text><text x="105" y="318" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="16" font-weight="700">1</text><rect x="178" y="176" width="34" height="104" fill="#C0F7FE" stroke="#000" stroke-width="2"/><text x="195" y="168" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" font-weight="700">8</text><text x="195" y="318" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="16" font-weight="700">2</text><rect x="268" y="124" width="34" height="156" fill="#C0F7FE" stroke="#000" stroke-width="2"/><text x="285" y="116" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" font-weight="700">12</text><text x="285" y="318" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="16" font-weight="700">3</text><rect x="358" y="33" width="34" height="247" fill="#FE90E8" stroke="#000" stroke-width="2"/><text x="375" y="25" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" font-weight="700">19</text><text x="375" y="318" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="16" font-weight="700">7</text><rect x="448" y="72" width="34" height="208" fill="#F7CB46" stroke="#000" stroke-width="2"/><text x="465" y="64" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" font-weight="700">16</text><text x="465" y="318" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="16" font-weight="700">8</text><rect x="538" y="33" width="34" height="247" fill="#F7CB46" stroke="#000" stroke-width="2"/><text x="555" y="25" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" font-weight="700">19</text><text x="555" y="318" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="16" font-weight="700">13</text><rect x="628" y="176" width="34" height="104" fill="#FFDC8B" stroke="#000" stroke-width="2"/><text x="645" y="168" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" font-weight="700">8</text><text x="645" y="318" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="16" font-weight="700">14</text><rect x="718" y="59" width="34" height="221" fill="#FFDC8B" stroke="#000" stroke-width="2"/><text x="735" y="51" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="14" font-weight="700">17</text><text x="735" y="318" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="16" font-weight="700">15</text>
+    <text x="420" y="350" text-anchor="middle" font-family="Space Grotesk, monospace" font-size="13" font-weight="600">章</text>
+  </svg>
+  <div class="data-column">
+    <div class="data-box"><span class="data-num">113</span><span class="data-label">8 章合計頁數</span></div>
+    <div class="data-box"><span class="data-num">CH 07</span><span class="data-label">最長 · 19 頁</span></div>
+    <div class="data-box"><span class="data-num">CH 02</span><span class="data-label">最短 · 8 頁</span></div>
+  </div></div></div></section>
+
+<section class="slide slide-6" data-ch="1">
+  <div class="split-visual"><div class="ch-no">01</div>
+    <div class="visual-box"><span class="big" style="font-size:60px;">N vs. n</span><span class="cap">母體數與樣本數</span></div>
+    <div class="visual-label">CH 01 · p.1–14</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-blue">描述資料 · 引介社會科學研究的原則與術語</div></div>
+    <h2 class="nb-heading-md">統計之前:先懂研究語言</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>母體→母數;樣本→統計量</span></li><li><span class="list-num">02</span><span>隨機抽樣:人人入選機率相等</span></li><li><span class="list-num">03</span><span>尺度四級:名義、次序、等距、比率</span></li><li><span class="list-num">04</span><span>實驗可談因果,相關只談關聯</span></li></ul>
+    <div><a class="nb-btn" href="whiteboard.html#ch1">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-blue">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 01 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg">引介社會科學研究的原則與術語</h2>
+    <p class="nb-body" style="max-width:480px;">先弄清母體與樣本、抽樣、變項尺度與研究設計,才談得上任何統計。</p>
+    
+    <div class="warn"><b>常見誤解</b>「隨機」不是隨便,而是人人入選機率相等;小樣本即使隨機也可能與母體差很多。</div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>母體與樣本<small>population and sample · 簡體:总体和样本</small></h3><p>母體是關心對象的全體,樣本是其中被實際觀察的子集。</p></div><div class="intro-card"><h3>母數與統計量<small>parameter and statistic · 簡體:参数和统计量</small></h3><p>母數描述母體,統計量由樣本算出並用來估計母數。</p></div><div class="intro-card"><h3>概化(類推)<small>generalize / generalizability · 簡體:一般化（或普遍性）</small></h3><p>把樣本結果推到母體的能力,取決於樣本像不像母體。</p></div></div>
+</section>
+
+<section class="slide slide-6" data-ch="2">
+  <div class="split-visual"><div class="ch-no">02</div>
+    <div class="visual-box"><span class="big" style="font-size:60px;">3.77 &lt; 4</span><span class="cap">負偏的訊號</span></div>
+    <div class="visual-label">CH 02 · p.15–22</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-blue">描述資料 · 集中趨勢之測量</div></div>
+    <h2 class="nb-heading-md">三種「中心」,三種故事</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>平均數:最常用,但怕極端值</span></li><li><span class="list-num">02</span><span>中位數:第 50 百分位,不怕離群值</span></li><li><span class="list-num">03</span><span>眾數:出現最多,可看出雙峰</span></li><li><span class="list-num">04</span><span>負偏:平均數&lt;中位數;正偏相反</span></li></ul>
+    <div><a class="nb-btn" href="whiteboard.html#ch2">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-cream">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 02 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg">集中趨勢之測量</h2>
+    <p class="nb-body" style="max-width:480px;">平均數、中位數、眾數各說一件事;偏態或有離群值時三者會分家。</p>
+    <div><span class="stat-pill">樣本平均數:X̄ = ΣX / n</span></div>
+    <div class="warn"><b>常見誤解</b>平均數不代表「多數人的情況」;分布中可能很少有取值真的落在平均數附近。</div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>平均數<small>mean · 簡體:均值</small></h3><p>所有取值的算術平均;最常用,但會被極端值拉動。</p></div><div class="intro-card"><h3>中位數<small>median</small></h3><p>排序後正中間的值(第 50 百分位),不受離群值影響。</p></div><div class="intro-card"><h3>眾數<small>mode</small></h3><p>出現次數最多的取值;資訊最少。</p></div></div>
+</section>
+
+<section class="slide slide-6" data-ch="3">
+  <div class="split-visual"><div class="ch-no">03</div>
+    <div class="visual-box"><span class="big" style="font-size:84px;">n − 1</span><span class="cap">樣本變異數的分母</span></div>
+    <div class="visual-label">CH 03 · p.23–34</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-blue">描述資料 · 變異性之測量</div></div>
+    <h2 class="nb-heading-md">平均數要配標準差</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>全距只看兩端,容易誤導</span></li><li><span class="list-num">02</span><span>變異數=離均差平方的平均</span></li><li><span class="list-num">03</span><span>標準差=變異數開根號,回到原單位</span></li><li><span class="list-num">04</span><span>樣本公式除以 n − 1,修正低估</span></li></ul>
+    <div><a class="nb-btn" href="whiteboard.html#ch3">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-green">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 03 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg">變異性之測量</h2>
+    <p class="nb-body" style="max-width:480px;">平均數要配上標準差才看得出分布樣貌;樣本公式用 n − 1 是為了不低估母體變異。</p>
+    <div><span class="stat-pill">母體變異數:σ² = Σ(X − μ)² / N</span></div>
+    <div class="warn"><b>常見誤解</b>全距只由兩個極端值決定,98 人同分也可能出現很大的全距。</div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>標準差<small>standard deviation</small></h3><p>各取值與平均數之間的典型距離,單位與原始資料相同。</p></div><div class="intro-card"><h3>變異數<small>variance · 簡體:方差</small></h3><p>離均差平方的平均;單位是平方,多作為其他統計的零件。</p></div><div class="intro-card"><h3>離均差平方和<small>sum of squared deviations (SS) · 簡體:离差平方和(平方和)</small></h3><p>每個取值減平均數後平方再全部相加,ANOVA 與迴歸都用它。</p></div></div>
+</section>
+
+<section class="slide slide-6" data-ch="7">
+  <div class="split-visual"><div class="ch-no">07</div>
+    <div class="visual-box"><span class="big" style="font-size:60px;">p &lt; .05</span><span class="cap">慣用顯著門檻</span></div>
+    <div class="visual-label">CH 07 · p.69–87</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-pink">推論的地基 · 統計顯著性、效應量與信賴區間</div></div>
+    <h2 class="nb-heading-md">顯著性、效應量、信賴區間</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>p 值：虛無假設為真時碰巧得到此結果的機率</span></li><li><span class="list-num">02</span><span>p &lt; α（慣例 0.05）才拒絕虛無假設，仍可能犯型一錯誤</span></li><li><span class="list-num">03</span><span>效應量 d 以標準差為單位，不被樣本數放大</span></li><li><span class="list-num">04</span><span>信賴區間給出母體參數的範圍，三者要一起解讀</span></li></ul>
+    <div><a class="nb-btn" href="whiteboard.html#ch7">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-pink">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 07 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg">統計顯著性、效應量與信賴區間</h2>
+    <p class="nb-body" style="max-width:480px;">判讀結果要三件一起看：p 值是否顯著、效應量多大、信賴區間落在哪。</p>
+    <div><span class="stat-pill">平均數的標準誤:s_x̄ = s / √n</span></div>
+    <div class="warn"><b>常見誤解</b>統計顯著不等於實務上重要：樣本很大時，IQ 差 1 分也會顯著。</div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>統計顯著性<small>statistical significance</small></h3><p>碰巧得到此結果的機率小於 α，於是拒絕虛無假設。</p></div><div class="intro-card"><h3>p 值<small>p value</small></h3><p>虛無假設為真時，單靠抽樣誤差得到這麼大統計值的機率。</p></div><div class="intro-card"><h3>虛無假設<small>null hypothesis · 簡體:零假设</small></h3><p>主張母體中沒有差異或沒有關聯的基準假設。</p></div></div>
+</section>
+
+<section class="slide slide-6" data-ch="8">
+  <div class="split-visual"><div class="ch-no">08</div>
+    <div class="visual-box"><span class="big" style="font-size:84px;">r²</span><span class="cap">共享變異比例</span></div>
+    <div class="visual-label">CH 08 · p.88–103</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-green">關係與預測 · 相關</div></div>
+    <h2 class="nb-heading-md">相關：方向、強度與限制</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>r 介於 −1 與 +1，正負號看方向、絕對值看強度</span></li><li><span class="list-num">02</span><span>r 是 z 分數交乘積的平均，即標準化共變數</span></li><li><span class="list-num">03</span><span>r² 為決定係數，表示兩變項共享的變異比例</span></li><li><span class="list-num">04</span><span>相關非因果；曲線關係與截斷範圍會低估 r</span></li></ul>
+    <div><a class="nb-btn" href="whiteboard.html#ch8">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-yellow">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 08 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg">相關</h2>
+    <p class="nb-body" style="max-width:480px;">相關係數說明兩變項關係的方向與強度，r² 是共享變異比例，但相關不是因果。</p>
+    <div><span class="stat-pill">皮爾森相關係數（定義式）:r = Σ(z_x · z_y) / N</span></div>
+    <div class="warn"><b>常見誤解</b>顯著的相關不代表因果，可能有第三變項同時影響兩者（鸛鳥與嬰兒、日照與氣溫）。</div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>皮爾森積差相關係數<small>Pearson product-moment correlation coefficient · 簡體:皮尔逊积差相关系数</small></h3><p>描述兩個連續變項線性關係方向與強度的統計量 r。</p></div><div class="intro-card"><h3>相關不等於因果<small>causation</small></h3><p>兩變項一起變動，不代表其中一個造成另一個。</p></div><div class="intro-card"><h3>決定係數<small>coefficient of determination</small></h3><p>r 的平方，一變項變異可被另一變項解釋的比例。</p></div></div>
+</section>
+
+<section class="slide slide-6" data-ch="13">
+  <div class="split-visual"><div class="ch-no">13</div>
+    <div class="visual-box"><span class="big" style="font-size:60px;">R² = .896</span><span class="cap">兩變項解釋收入變異</span></div>
+    <div class="visual-label">CH 13 · p.166–184</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-green">關係與預測 · 迴歸</div></div>
+    <h2 class="nb-heading-md">迴歸:從相關走向預測</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>Ŷ = bX + a:斜率看變化量,截距看起點</span></li><li><span class="list-num">02</span><span>最小平方法找出殘差平方和最小的直線</span></li><li><span class="list-num">03</span><span>多元迴歸看整體 R² 與各變項的獨特貢獻</span></li><li><span class="list-num">04</span><span>比強弱看 β;能預測不等於有因果</span></li></ul>
+    <div><a class="nb-btn" href="whiteboard.html#ch13">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-blue">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 13 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg">迴歸</h2>
+    <p class="nb-body" style="max-width:480px;">迴歸把相關變成預測:用預測變項估計依變項,並看每個變項的獨特貢獻。</p>
+    <div><span class="stat-pill">簡單迴歸方程式(預測值):Ŷ = bX + a</span></div>
+    <div class="warn"><b>常見誤解</b>迴歸建立在相關之上,只能說變項如何相關與預測,不能證明誰造成誰。</div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>迴歸方程式<small>regression equation · 簡體:回归方程</small></h3><p>Ŷ = bX + a,把 X 的值代入就得到 Y 的預測值,也能畫出迴歸線。</p></div><div class="intro-card"><h3>迴歸係數(斜率)<small>regression coefficient / slope · 簡體:回归系数</small></h3><p>X 每增加 1 單位,Y 的預測值平均改變多少。</p></div><div class="intro-card"><h3>截距<small>intercept</small></h3><p>迴歸線與 Y 軸的交點,也就是 X = 0 時的預測值。</p></div></div>
+</section>
+
+<section class="slide slide-6" data-ch="14">
+  <div class="split-visual"><div class="ch-no">14</div>
+    <div class="visual-box"><span class="big" style="font-size:42px;">χ² = Σ(O−E)²/E</span><span class="cap">觀察對期望</span></div>
+    <div class="visual-label">CH 14 · p.185–192</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-cream">類別與量表 · 卡方獨立性檢定</div></div>
+    <h2 class="nb-heading-md">卡方:類別變項獨立嗎?</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>資料不符常態假設時可改用無母數統計</span></li><li><span class="list-num">02</span><span>期望次數 = 列合計 × 行合計 ÷ 總人數</span></li><li><span class="list-num">03</span><span>χ² = Σ (O − E)² / E,差距愈大值愈大</span></li><li><span class="list-num">04</span><span>df = (R − 1)(C − 1),查附錄 E 臨界值</span></li></ul>
+    <div><a class="nb-btn" href="whiteboard.html#ch14">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-cream">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 14 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg">卡方獨立性檢定</h2>
+    <p class="nb-body" style="max-width:480px;">兩個類別變項有沒有關聯?比較觀察次數與期望次數,用卡方來判斷。</p>
+    <div><span class="stat-pill">卡方統計量:χ² = Σ [ (O − E)² / E ]</span></div>
+    <div class="warn"><b>常見誤解</b>卡方處理的是類別(名義)變項的次數,不是平均數;連續分數不能直接丟進來。</div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>卡方獨立性檢定<small>chi-square test of independence · 簡體:卡方独立性检验</small></h3><p>檢驗兩個類別變項的分類彼此獨立還是有關聯。</p></div><div class="intro-card"><h3>觀察次數<small>observed frequencies · 簡體:观测频数</small></h3><p>列聯表各細格實際數到的人數。</p></div><div class="intro-card"><h3>期望次數<small>expected frequencies · 簡體:预期频数</small></h3><p>若兩變項無關、純憑機率,各細格應該出現的人數。</p></div></div>
+</section>
+
+<section class="slide slide-6" data-ch="15">
+  <div class="split-visual"><div class="ch-no">15</div>
+    <div class="visual-box"><span class="big" style="font-size:60px;">α &gt; 0.70</span><span class="cap">可接受的信度</span></div>
+    <div class="visual-label">CH 15 · p.193–209</div></div>
+  <div class="split-content">
+    <div><div class="nb-label nb-label-cream">類別與量表 · 資料化約的技術──因素分析與信度分析</div></div>
+    <h2 class="nb-heading-md">因素分析與信度分析</h2>
+    <ul class="content-list"><li><span class="list-num">01</span><span>多題測一構念:題項是觀察變項,構念是潛在變項</span></li><li><span class="list-num">02</span><span>EFA 依相關萃取因素,轉軸讓因素更分明</span></li><li><span class="list-num">03</span><span>留因素看特徵值 &gt; 1、負荷量與概念意義</span></li><li><span class="list-num">04</span><span>Cronbach's α &gt; .70 才算內部一致</span></li></ul>
+    <div><a class="nb-btn" href="whiteboard.html#ch15">在白板打開這一章</a></div>
+  </div></section>
+
+<section class="slide slide-2 bg-green">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow">CH 15 · 關鍵術語</div></div>
+    <h2 class="nb-heading-lg">資料化約的技術──因素分析與信度分析</h2>
+    <p class="nb-body" style="max-width:480px;">因素分析把相關高的題項歸成因素,信度分析再檢查同組題項是否一致。</p>
+    <div><span class="stat-pill">因素分析樣本數經驗法則:所需樣本數 ≈ 30 + 10 × (觀察變項數 − 1)</span></div>
+    <div class="warn"><b>常見誤解</b>特徵值大於 1 的因素不一定有意義,也不一定可靠;還要看概念是否合理以及 α 是否夠高。</div>
+  </div>
+  <div class="col-right"><div class="intro-card"><h3>因素分析<small>factor analysis · 簡體:因子分析</small></h3><p>依題項間相關的強弱,把一組觀察變項整理、歸類成較少的因素。</p></div><div class="intro-card"><h3>潛在變項(構念)<small>latent variable (construct) · 簡體:潜变量(构造)</small></h3><p>無法直接測量,只能由一組觀察題項推論出來的概念。</p></div><div class="intro-card"><h3>探索性因素分析<small>exploratory factor analysis (EFA) · 簡體:探索性因子分析</small></h3><p>不預設結構,讓資料的相關型態決定題項如何分群。</p></div></div>
+</section>
+
+<section class="slide slide-9">
+  <div class="slide-header"><div class="nb-label nb-label-pink">決策表</div><h2 class="nb-heading-lg" style="margin-top:16px;">該用哪個檢定?</h2></div>
+  <div class="team-grid g5"><div class="team-card"><div class="team-avatar">07</div><div class="team-name">單一樣本 t 檢定</div><div class="team-bio">一組樣本 vs 已知母體平均數</div></div><div class="team-card"><div class="team-avatar">09</div><div class="team-name">獨立樣本 t 檢定</div><div class="team-bio">兩組不同的人,比平均數</div></div><div class="team-card"><div class="team-avatar">09</div><div class="team-name">相依(成對)樣本 t 檢定</div><div class="team-bio">同一批人前後測,或配對樣本</div></div><div class="team-card"><div class="team-avatar">10</div><div class="team-name">單因子變異數分析 + 事後比較</div><div class="team-bio">三組以上不同的人,比平均數</div></div><div class="team-card"><div class="team-avatar">11</div><div class="team-name">多因子變異數分析</div><div class="team-bio">兩個以上類別自變項,想看交互作用</div></div><div class="team-card"><div class="team-avatar">12</div><div class="team-name">重複測量變異數分析</div><div class="team-bio">同一批人量三次以上</div></div><div class="team-card"><div class="team-avatar">08</div><div class="team-name">Pearson 相關係數 r</div><div class="team-bio">兩個連續變項有沒有關係</div></div><div class="team-card"><div class="team-avatar">13</div><div class="team-name">簡單/多元迴歸</div><div class="team-bio">用一個或多個變項預測連續結果</div></div><div class="team-card"><div class="team-avatar">14</div><div class="team-name">卡方獨立性檢定</div><div class="team-bio">兩個類別變項有沒有關聯</div></div><div class="team-card"><div class="team-avatar">15</div><div class="team-name">因素分析 + Cronbach's α</div><div class="team-bio">一堆題目想縮成幾個構面、檢查一致性</div></div></div></section>
+
+<section class="slide slide-5">
+  <div class="quote-frame"><div class="deco-quote-marks">"</div><div class="corner-bracket tl"></div><div class="corner-bracket tr"></div><div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+    <p class="quote-text">統計量不會說謊,會出錯的是解讀它的人。</p>
+    <p class="quote-author">— 本書前言的主張(改寫,非原句)</p></div>
+  <div class="deco-stripes"></div></section>
+
+<section class="slide slide-10">
+  <div class="deco-dots-bottom"></div>
+  <div class="close-frame"><div class="deco-star"></div>
+    <h2 class="close-title">讀完了,<br>去白板連起來</h2>
+    <p class="close-subtitle">把 8 章拖成你自己的概念圖,或匯入 Heptabase 繼續長。</p>
+    <a class="close-btn" href="whiteboard.html">打開學習白板</a></div></section>
+
+  </div>
+
+  <script>
+    // BlockFrame's inline navigation, plus #chN / #N deep links.
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('slideCounter');
+    const totalSlides = slides.length;
+
+    function updateSlide() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      counter.textContent = String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+      try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlide();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlide();
+    }
+
+    function fromHash() {
+      const ch = location.hash.match(/^#ch(\d+)$/), num = location.hash.match(/^#(\d+)$/);
+      if (ch) {
+        const i = [...slides].findIndex(s => s.dataset.ch === ch[1]);
+        if (i >= 0) currentSlide = i;
+      } else if (num) {
+        currentSlide = Math.min(totalSlides - 1, Math.max(0, +num[1] - 1));
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      }
+    });
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > 50) {
+        prevSlide();
+      }
+    });
+
+    window.addEventListener('hashchange', () => { fromHash(); updateSlide(); });
+    fromHash();
+    updateSlide();
+
+  </script>
+
+</body>
+</html>
