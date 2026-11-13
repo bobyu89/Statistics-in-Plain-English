@@ -1225,11 +1225,120 @@
 .slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .slide-10 .close-btn.alt { background: var(--white); }
 
+/* ---- extra chapter slides ---- */
+.slide-9 .team-card .team-role { text-transform: none; }
+.slide-9 .team-bio { font-size: clamp(13px, 1.1vw, 17px); line-height: 1.5; }
+.fx-grid .fx-expr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 1.35vw, 21px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; background: var(--cream); border: 3px solid var(--black); padding: 8px 12px; }
+.slide-7 .step-title { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.3; }
+.slide-7 .step-desc { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.55; }
+.slide-3 .feature-card p { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.55; }
+.slide-3 .feature-card { padding: 28px; }
+.slide-3 { padding-bottom: 100px; }
+.slide-quiz .team-name { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.4; font-weight: 700; }
+.slide-quiz details { margin-top: auto; }
+.slide-quiz summary { cursor: pointer; display: inline-block; border: 3px solid var(--black); background: var(--yellow); padding: 6px 14px; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); list-style: none; }
+.slide-quiz summary::-webkit-details-marker { display: none; }
+.slide-quiz details[open] summary { margin-bottom: 10px; }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-3 .feature-card { padding: 20px; }
+  .slide-3 .feature-icon { width: 48px; height: 48px; margin-bottom: 14px; font-size: 22px; }
+  .slide-7 .timeline-step { padding: 20px; }
+  .slide-7 .step-num { font-size: 36px; margin-bottom: 10px; }
+}
+
+/* ================= phones and small tablets: each slide becomes a scrolling page ================= */
+@media (max-width: 820px), (max-height: 520px) {
+  html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .slides-container { width: 100%; height: auto; }
+  .slide { position: relative; width: 100%; height: auto; min-height: 100vh; min-height: 100dvh; padding: 76px 18px 100px; overflow: visible; }
+  .slide.active { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .nb-heading-xl { font-size: 44px; }
+  .nb-heading-lg { font-size: 30px; }
+  .nb-heading-md { font-size: 23px; }
+  .nb-body { font-size: 16px; }
+  .nb-label { font-size: 12px; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+  .slide .slide-header { margin-bottom: 20px !important; }
+  /* chrome */
+  .home-link { top: 12px; right: 12px; }
+  .ch-btn { top: 12px; right: auto; left: 12px; }
+  .ch-menu { top: 52px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 140px); }
+  .slide-counter { left: 12px; bottom: 12px; font-size: 12px; padding: 8px 12px; }
+  .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
+  .nav-btn { width: 44px; height: 44px; }
+  /* decorations that only make sense on a wide canvas */
+  .slide-1 .deco-dots, .slide-1 .deco-pink-rect, .slide-1 .deco-green-circle, .slide-5 .deco-stripes, .slide-10 .deco-dots-bottom, .slide-6 .ch-no, .slide-open .open-no, .slide-3 .card-deco, .step-connector { display: none !important; }
+  .corner-bracket { width: 16px; height: 16px; }
+  /* cover / chapter opener */
+  .slide-1 { justify-content: center !important; }
+  .slide-1 .hero-frame { padding: 28px 20px 40px; max-width: none; box-shadow: var(--shadow-sm); }
+  .slide-open .hero-title { max-width: 100%; margin-bottom: 16px; }
+  .slide-1 .hero-subtitle, .slide-open .hero-subtitle { font-size: 16px; max-width: none; }
+  .slide-1 .deco-yellow-bar { left: 20px; width: auto; padding: 0 14px; }
+  /* split (figure) slide */
+  .slide-6 { padding: 0; }
+  .slide-6 .split-visual { flex: none; padding: 70px 18px 22px; overflow: visible; }
+  .slide-6 .split-visual .visual-label { display: none; }
+  .slide-6 .visual-box.figure { max-width: none; padding: 8px; border-width: 3px; }
+  .slide-6 .fig-cap { margin-top: 14px; font-size: 14px; }
+  .slide-6 .split-content { flex: none; padding: 24px 18px 100px; border-left: none; border-top: var(--border); gap: 16px; }
+  .slide-6 .content-list li { font-size: 16px; align-items: flex-start; }
+  /* two-column slides */
+  .slide-2 { gap: 20px; }
+  .slide-2 .col-left, .slide-2 .col-right { flex: none; gap: 16px; }
+  .slide-2 .intro-card { padding: 18px; }
+  .slide-2 .intro-card h3 { font-size: 19px; }
+  .slide-2 .intro-card p, .slide-2 .warn { font-size: 15px; max-width: none; }
+  /* grids */
+  .slide-9 .team-grid, .slide-9 .team-grid.g5, .slide-8 .stats-grid, .take-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .slide-9 .team-card { padding: 16px; }
+  .slide-9 .team-name { font-size: 18px; }
+  .slide-9 .team-bio { font-size: 15px; }
+  .slide-8 .stat-card { transform: none !important; padding: 20px; }
+  .slide-3 .cards-row { flex-direction: column; gap: 14px; }
+  .slide-3 .feature-card { padding: 18px; box-shadow: var(--shadow-sm); display: flex; gap: 14px; align-items: flex-start; }
+  .slide-3 .feature-icon { width: 40px; height: 40px; font-size: 20px; margin: 0; flex: none; }
+  .slide-3 .feature-card p { font-size: 15px; }
+  .slide-7 .timeline { flex-direction: column; }
+  .slide-7 .timeline-step { margin: 0 0 -4px 0 !important; padding: 18px; }
+  .slide-7 .step-num { font-size: 30px; margin-bottom: 6px; }
+  .fx-grid .fx-expr { font-size: 16px; }
+  /* tables: one card per row */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp { border: none; box-shadow: none; background: none; }
+  .cmp thead { display: none; }
+  .cmp tr { border: var(--border); background: var(--white); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+  .cmp th, .cmp td, .cmp.dense th, .cmp.dense td, .cmp.gen th, .cmp.gen td { border: none; border-bottom: 2px solid var(--black); padding: 9px 14px; font-size: 15px; white-space: normal; }
+  .cmp tr > :last-child { border-bottom: none; }
+  .cmp tbody th { font-size: 16px; background: var(--yellow); }
+  .cmp td[data-label]::before { content: attr(data-label); display: block; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; opacity: .6; margin-bottom: 2px; }
+  .take-row { margin-top: 6px; }
+  /* chart */
+  .slide-4 .chart-frame { max-height: none; width: 100%; padding: 16px; overflow: visible; }
+  .slide-4 .chart-header { flex-direction: column; gap: 10px; }
+  .slide-4 .chart-legend { flex-wrap: wrap; gap: 8px 12px; }
+  .slide-4 .chart-body { flex-direction: column; gap: 14px; }
+  .chart-svg { height: auto; }
+  .slide-4 .data-column { flex: none; width: 100%; flex-direction: row; gap: 8px; }
+  .slide-4 .data-box { padding: 10px 6px; }
+  .slide-4 .data-box .data-num { font-size: 20px; }
+  .slide-4 .data-box .data-label { font-size: 10px; }
+  /* quote + closing */
+  .slide-5 { justify-content: center !important; }
+  .slide-5 .quote-frame { padding: 36px 22px 26px; }
+  .slide-5 .quote-text { font-size: 26px; }
+  .slide-10 { justify-content: center !important; }
+  .slide-10 .close-frame { padding: 32px 20px; box-shadow: 8px 8px 0 var(--yellow); }
+  .slide-10 .close-title { font-size: 34px; }
+  .slide-10 .close-row { flex-direction: column; align-items: stretch; }
+  .slide-10 .close-btn { padding: 14px 20px; }
+}
+.slide-7[data-ch] .step-connector { display: none; }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 05</div>
+  <div class="slide-counter" id="slideCounter">01 / 11</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1302,9 +1411,40 @@
 <section class="slide slide-cmp" data-ch="13">
   <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">迴歸報表怎麼讀</h2></div>
   <table class="cmp gen"><thead><tr><th>數字</th><th>告訴你什麼</th></tr></thead><tbody>
-  <tr><th>R²</th><td>模型解釋了依變項多少比例的變異</td></tr><tr><th>F 檢定</th><td>整體模型是否顯著</td></tr><tr><th>B(未標準化係數)</th><td>X 每增加 1 單位,Y 的預測值改變多少</td></tr><tr><th>β(標準化係數)</th><td>比較各預測變項的相對強度</td></tr><tr><th>t 與 p</th><td>這個係數是否顯著不為 0</td></tr>
+  <tr><th>R²</th><td data-label="告訴你什麼">模型解釋了依變項多少比例的變異</td></tr><tr><th>F 檢定</th><td data-label="告訴你什麼">整體模型是否顯著</td></tr><tr><th>B(未標準化係數)</th><td data-label="告訴你什麼">X 每增加 1 單位,Y 的預測值改變多少</td></tr><tr><th>β(標準化係數)</th><td data-label="告訴你什麼">比較各預測變項的相對強度</td></tr><tr><th>t 與 p</th><td data-label="告訴你什麼">這個係數是否顯著不為 0</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>簡單迴歸:Ŷ = bX + a,b 是斜率、a 是截距</span></div><div class="take"><span class="list-num">02</span><span>多元迴歸看的是「控制其他變項後」每個預測變項的獨特貢獻</span></div><div class="take"><span class="list-num">03</span><span>R² 是模型解釋的變異比例;能預測不代表有因果</span></div></div></section>
+
+<section class="slide slide-9 bg-pink" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">殘差</div><div class="team-role keepcase">residual</div><div class="team-bio">觀察值減預測值的差,就是預測誤差;正值為低估、負值為高估。</div></div><div class="team-card"><div class="team-name">普通最小平方法迴歸</div><div class="team-role keepcase">ordinary least squares regression (OLS)</div><div class="team-bio">挑出使殘差平方和最小的那條直線當作迴歸線。</div></div><div class="team-card"><div class="team-name">多元迴歸(複迴歸)</div><div class="team-role keepcase">multiple regression</div><div class="team-bio">同時用兩個以上預測變項,可看整體解釋力與各自的獨特貢獻。</div></div><div class="team-card"><div class="team-name">多元相關係數與 R²</div><div class="team-role keepcase">multiple correlation coefficient (R), R²</div><div class="team-bio">R 是預測值與觀察值的相關;R² 是模型解釋的變異比例,也是效應量。</div></div><div class="team-card"><div class="team-name">標準化迴歸係數</div><div class="team-role keepcase">standardized regression coefficient (β)</div><div class="team-bio">把係數換成共同的標準分數尺度,才能比較哪個預測變項較強。</div></div><div class="team-card"><div class="team-name">多元共線性</div><div class="team-role keepcase">multicollinearity</div><div class="team-bio">預測變項彼此高度相關,使各自與依變項的獨特關係難以辨識。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">簡單迴歸方程式(預測值)</div><div class="fx-expr">Ŷ = bX + a</div><div class="team-bio">b 為斜率,a 為截距</div></div><div class="team-card"><div class="team-role keepcase">迴歸係數(斜率)</div><div class="fx-expr">b = r × ( s_y / s_x )</div><div class="team-bio">相關係數乘以 Y 與 X 標準差之比</div></div><div class="team-card"><div class="team-role keepcase">截距</div><div class="fx-expr">a = Ȳ − bX̄</div><div class="team-bio">先算出 b 才能算 a</div></div><div class="team-card"><div class="team-role keepcase">預測誤差(殘差)</div><div class="fx-expr">e = Y − Ŷ = Y − (a + bX)</div><div class="team-bio">觀察值減預測值</div></div><div class="team-card"><div class="team-role keepcase">含誤差的迴歸方程式(觀察值)</div><div class="fx-expr">Y = bX + a + e</div><div class="team-bio">描述實際值,把預測誤差算進來</div></div><div class="team-card"><div class="team-role keepcase">兩個預測變項的多元迴歸</div><div class="fx-expr">Ŷ = a + b₁X₁ + b₂X₂</div><div class="team-bio">每個 b 都是控制另一變項後的係數</div></div></div></section>
+
+<section class="slide slide-7" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">簡單迴歸與多元迴歸、可用的變項</div><div class="step-desc">簡單迴歸對應單因子變異數分析:一個預測變項配一個依變項;多元迴歸對應多因子設計,有兩個以上預測變項。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">簡單線性迴歸詳解:方程式、斜率與截距</div><div class="step-desc">迴歸方程式 Ŷ = bX + a:b 是未標準化迴歸係數(斜率),a 是截距,即 X 為 0 時的預測值。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">多元迴歸:共享變異、R² 與迴歸係數</div><div class="step-desc">加入第二個預測變項後方程式變成 Ŷ = a + b₁X₁ + b₂X₂,每個係數都是控制其他預測變項後的關係。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">例子與行文表述:預測自我設限策略</div><div class="step-desc">464 名高中生,以逃避目標、自我效能、性別(男 = 1、女 = 0 的虛擬編碼)與學業平均成績預測自我設限。</div></div></div></section>
+
+<section class="slide slide-2 bg-yellow" data-ch="13">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 13 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">用教育年數與工作年資預測月收入;再以四個變項預測高中生自我設限</h2>
+    <div class="warn"><b>臨床上怎麼想</b>想預測病人住院天數,可同時放入年齡、共病數與入院時功能分數。多元迴歸會告訴你三者合起來解釋多少變異,以及控制年齡與共病後,功能分數是否仍有獨立預測力。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>10 名成人中教育年數與月收入 r = 0.83,得 Ŷ = −3.77 + 0.61X:多讀一年書,預測月收入多 610 美元。加入工作年資後 R = .946、R² = .896,F = 30.095,兩個變項的 β(.676、.485)都顯著。真實資料(n = 464)中,四個變項解釋自我設限約 12% 變異,成績與自我效能負向、逃避目標正向、性別不顯著。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以多元迴歸檢驗自我設限的預測因子,同時投入逃避目標、學業平均成績、性別與自我效能四個變項,合計解釋 11% 的變異。除性別外皆為顯著預測變項:學業成績(β = −.21)與自我效能(β = −.20)為最強的負向預測因子,逃避目標則為正向預測(β = .13)。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>迴歸建立在相關之上,只能說變項如何相關與預測,不能證明誰造成誰。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>截距可能落在不合理的值(如月收入 −3.77 千美元),它只是 X = 0 的預測值,不必當真。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>未標準化係數 B 受測量單位影響,不能直接比大小;比較相對強度要看 β。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>預測變項彼此高度相關(多元共線性)時,各自的獨特貢獻會被吃掉;樣本太小(如書中示範的 10 人)也不適合跑多元迴歸。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-blue" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">書中說簡單線性迴歸「其實不比相關更有用」,那為什麼還要學它?</div><details><summary>看答案</summary><div class="team-bio">因為它把關係寫成可代入的預測方程式,解讀較直觀(X 每增加一單位 Y 變多少),更重要的是它是理解多元迴歸的基礎,後者才能看控制他項後的獨特貢獻。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">多元迴歸中,某預測變項的迴歸係數顯著,這句話完整的意思是什麼?</div><details><summary>看答案</summary><div class="team-bio">指在控制(排除)模型中其他預測變項已解釋的變異之後,這個變項與依變項之間仍有顯著關係,也就是它的斜率顯著不為 0,具有獨特解釋力。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">如果兩個預測變項彼此相關高達 0.90,把兩個都放進模型會發生什麼事?</div><details><summary>看答案</summary><div class="team-bio">它們與依變項重疊的部分大多是共享變異,各自的獨特變異很小,所以第二個變項幾乎不增加解釋力,也難以分辨個別效果,這就是多元共線性。</div></details></div></div></section>
 
 <section class="slide slide-10" data-ch="13">
   <div class="deco-dots-bottom"></div>
@@ -1330,6 +1470,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -1386,13 +1527,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {

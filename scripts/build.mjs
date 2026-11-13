@@ -98,7 +98,7 @@ S.push(`<section class="slide slide-cmp">
   <div class="slide-header"><div class="nb-label nb-label-pink">版本比對</div><h2 class="nb-heading-lg" style="margin-top:16px;">簡體版 ≠ 台灣版</h2></div>
   <table class="cmp"><thead><tr><th></th><th>簡體版(你手上的)</th><th>台灣一版</th><th>台灣三版(最新)</th></tr></thead><tbody>
   ${[['出版社', 'publisher'], ['譯者', 'translator'], ['出版', 'date'], ['對應原文', 'source'], ['章數', 'chapters'], ['附錄', 'appendices']].map(([k, f]) =>
-    `<tr><th>${k}</th><td>${esc(cnE[f])}</td><td>${esc(E[1][f])}</td><td class="${['source', 'chapters', 'appendices'].includes(f) ? 'hl' : ''}">${esc(twE[f])}</td></tr>`).join('')}
+    `<tr><th>${k}</th><td data-label="簡體版">${esc(cnE[f])}</td><td data-label="台灣一版">${esc(E[1][f])}</td><td data-label="台灣三版" class="${['source', 'chapters', 'appendices'].includes(f) ? 'hl' : ''}">${esc(twE[f])}</td></tr>`).join('')}
   </tbody></table></section>`);
 
 S.push(`<section class="slide slide-8">
@@ -113,7 +113,7 @@ S.push(`<section class="slide slide-8">
 S.push(`<section class="slide slide-cmp">
   <div class="slide-header"><div class="nb-label nb-label-blue">章節對照</div><h2 class="nb-heading-md" style="margin-top:14px;">簡體版章號 → 台灣三版章號</h2></div>
   <table class="cmp dense"><thead><tr><th>章名</th><th>簡體 3E</th><th>台灣三版</th><th>差異</th></tr></thead><tbody>
-  ${B.compare.chapterMap.filter(m => m.note && !/擴寫|假設/.test(m.note)).map(m => `<tr><th>${esc(m.tw_name)}</th><td>${m.cn_n ? 'CH ' + no(m.cn_n) : '(無)'}</td><td class="hl">CH ${no(m.tw_n)}</td><td>${esc(m.note)}</td></tr>`).join('')}
+  ${B.compare.chapterMap.filter(m => m.note && !/擴寫|假設/.test(m.note)).map(m => `<tr><th>${esc(m.tw_name)}</th><td data-label="簡體 3E">${m.cn_n ? 'CH ' + no(m.cn_n) : '(無)'}</td><td data-label="台灣三版" class="hl">CH ${no(m.tw_n)}</td><td data-label="差異">${esc(m.note)}</td></tr>`).join('')}
   </tbody></table>
   <p class="nb-mono" style="margin-top:18px;">其餘第 1–7、13、15 章章號相同。</p></section>`);
 
@@ -144,7 +144,7 @@ S.push(`<section class="slide slide-7">
   </div></div></div></section>`);
 }
 
-// chapters: four slides each (opener, figure, analogy + terms, table)
+// chapters: opener, figure, analogy + terms, table, more terms, formulas, sections, example, pitfalls, quiz
 B.chapters.forEach((c, i) => {
   const p = partOf(c.n), sl = c.slide || {}, bg = BG[i % BG.length], lbl = LBL[B.parts.indexOf(p) % LBL.length];
   const stat = sl.stat || { num: 'CH ' + no(c.n), label: c.title_tw };
@@ -183,9 +183,37 @@ B.chapters.forEach((c, i) => {
   if (tb) S.push(`<section class="slide slide-cmp" data-ch="${c.n}">
   <div class="slide-header"><div class="nb-label ${lbl} keepcase">CH ${no(c.n)} · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">${esc(tb.caption)}</h2></div>
   <table class="cmp gen"><thead><tr>${tb.head.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>
-  ${tb.rows.map(r => `<tr>${r.map((x, k) => k ? `<td>${esc(x)}</td>` : `<th>${esc(x)}</th>`).join('')}</tr>`).join('')}
+  ${tb.rows.map(r => `<tr>${r.map((x, k) => k ? `<td data-label="${esc(tb.head[k])}">${esc(x)}</td>` : `<th>${esc(x)}</th>`).join('')}</tr>`).join('')}
   </tbody></table>
   <div class="take-row">${c.brief.takeaways.map((t, k) => `<div class="take"><span class="list-num">${no(k + 1)}</span><span>${esc(t)}</span></div>`).join('')}</div></section>`);
+  const hd = (tag, title) => `<div class="slide-header"><div class="nb-label ${lbl} keepcase">CH ${no(c.n)} · ${tag}</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">${esc(title)}</h2></div>`;
+  const rest = (c.concepts || []).slice(3, 9);
+  if (rest.length) S.push(`<section class="slide slide-9 ${BG[(i + 1) % BG.length]}" data-ch="${c.n}">
+  ${hd('更多術語', '這一章還會遇到的詞')}
+  <div class="team-grid">${rest.map(k => `<div class="team-card"><div class="team-name">${esc(k.tw)}</div><div class="team-role keepcase">${esc(k.en)}</div><div class="team-bio">${esc(k.note)}</div></div>`).join('')}</div></section>`);
+  if ((c.formulas || []).length) S.push(`<section class="slide slide-9 bg-offwhite" data-ch="${c.n}">
+  ${hd('公式', '這一章的公式')}
+  <div class="team-grid fx-grid">${c.formulas.slice(0, 6).map(f => `<div class="team-card"><div class="team-role keepcase">${esc(f.name)}</div><div class="fx-expr">${esc(f.expr)}</div>${f.note ? `<div class="team-bio">${esc(f.note)}</div>` : ''}</div>`).join('')}</div></section>`);
+  const secs = (c.sections || []).slice(0, 4);
+  if (secs.length) S.push(`<section class="slide slide-7" data-ch="${c.n}">
+  ${hd('逐節重點', '照書的順序走一遍')}
+  <div class="timeline">${secs.map((x, k) => `<div class="timeline-step">${k < secs.length - 1 ? '<div class="step-connector"></div>' : ''}<div class="step-num">${no(k + 1)}</div><div class="step-title">${esc(x.heading)}</div><div class="step-desc">${esc(x.points[0])}</div></div>`).join('')}</div></section>`);
+  if (c.example) S.push(`<section class="slide slide-2 ${BG[(i + 2) % BG.length]}" data-ch="${c.n}">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH ${no(c.n)} · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">${esc(c.example.title)}</h2>
+    ${c.clinical ? `<div class="warn"><b>臨床上怎麼想</b>${esc(c.clinical)}</div>` : ''}
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>${esc(c.example.takeaway)}</p></div>
+    ${c.apa ? `<div class="intro-card"><h3>怎麼寫進論文</h3><p>${esc(c.apa)}</p></div>` : ''}
+  </div></section>`);
+  if ((c.pitfalls || []).length) S.push(`<section class="slide slide-3" data-ch="${c.n}">
+  ${hd('常見誤解', '這幾個地方最容易想錯')}
+  <div class="cards-row">${c.pitfalls.slice(0, 4).map((x, k) => `<div class="feature-card"><div class="card-deco"></div><div class="feature-icon ${['icon-pink', 'icon-blue', 'icon-green', 'icon-pink'][k]}">!</div><p>${esc(x)}</p></div>`).join('')}</div></section>`);
+  if ((c.quiz || []).length) S.push(`<section class="slide slide-9 slide-quiz ${BG[(i + 3) % BG.length]}" data-ch="${c.n}">
+  ${hd('自我檢核', '先自己答,再點開看答案')}
+  <div class="team-grid">${c.quiz.slice(0, 3).map((z, k) => `<div class="team-card"><div class="team-avatar">Q${k + 1}</div><div class="team-name">${esc(z.q)}</div><details><summary>看答案</summary><div class="team-bio">${esc(z.a)}</div></details></div>`).join('')}</div></section>`);
 });
 
 S.push(`<section class="slide slide-9">

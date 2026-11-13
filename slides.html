@@ -1225,11 +1225,120 @@
 .slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .slide-10 .close-btn.alt { background: var(--white); }
 
+/* ---- extra chapter slides ---- */
+.slide-9 .team-card .team-role { text-transform: none; }
+.slide-9 .team-bio { font-size: clamp(13px, 1.1vw, 17px); line-height: 1.5; }
+.fx-grid .fx-expr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 1.35vw, 21px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; background: var(--cream); border: 3px solid var(--black); padding: 8px 12px; }
+.slide-7 .step-title { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.3; }
+.slide-7 .step-desc { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.55; }
+.slide-3 .feature-card p { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.55; }
+.slide-3 .feature-card { padding: 28px; }
+.slide-3 { padding-bottom: 100px; }
+.slide-quiz .team-name { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.4; font-weight: 700; }
+.slide-quiz details { margin-top: auto; }
+.slide-quiz summary { cursor: pointer; display: inline-block; border: 3px solid var(--black); background: var(--yellow); padding: 6px 14px; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); list-style: none; }
+.slide-quiz summary::-webkit-details-marker { display: none; }
+.slide-quiz details[open] summary { margin-bottom: 10px; }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-3 .feature-card { padding: 20px; }
+  .slide-3 .feature-icon { width: 48px; height: 48px; margin-bottom: 14px; font-size: 22px; }
+  .slide-7 .timeline-step { padding: 20px; }
+  .slide-7 .step-num { font-size: 36px; margin-bottom: 10px; }
+}
+
+/* ================= phones and small tablets: each slide becomes a scrolling page ================= */
+@media (max-width: 820px), (max-height: 520px) {
+  html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .slides-container { width: 100%; height: auto; }
+  .slide { position: relative; width: 100%; height: auto; min-height: 100vh; min-height: 100dvh; padding: 76px 18px 100px; overflow: visible; }
+  .slide.active { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .nb-heading-xl { font-size: 44px; }
+  .nb-heading-lg { font-size: 30px; }
+  .nb-heading-md { font-size: 23px; }
+  .nb-body { font-size: 16px; }
+  .nb-label { font-size: 12px; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+  .slide .slide-header { margin-bottom: 20px !important; }
+  /* chrome */
+  .home-link { top: 12px; right: 12px; }
+  .ch-btn { top: 12px; right: auto; left: 12px; }
+  .ch-menu { top: 52px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 140px); }
+  .slide-counter { left: 12px; bottom: 12px; font-size: 12px; padding: 8px 12px; }
+  .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
+  .nav-btn { width: 44px; height: 44px; }
+  /* decorations that only make sense on a wide canvas */
+  .slide-1 .deco-dots, .slide-1 .deco-pink-rect, .slide-1 .deco-green-circle, .slide-5 .deco-stripes, .slide-10 .deco-dots-bottom, .slide-6 .ch-no, .slide-open .open-no, .slide-3 .card-deco, .step-connector { display: none !important; }
+  .corner-bracket { width: 16px; height: 16px; }
+  /* cover / chapter opener */
+  .slide-1 { justify-content: center !important; }
+  .slide-1 .hero-frame { padding: 28px 20px 40px; max-width: none; box-shadow: var(--shadow-sm); }
+  .slide-open .hero-title { max-width: 100%; margin-bottom: 16px; }
+  .slide-1 .hero-subtitle, .slide-open .hero-subtitle { font-size: 16px; max-width: none; }
+  .slide-1 .deco-yellow-bar { left: 20px; width: auto; padding: 0 14px; }
+  /* split (figure) slide */
+  .slide-6 { padding: 0; }
+  .slide-6 .split-visual { flex: none; padding: 70px 18px 22px; overflow: visible; }
+  .slide-6 .split-visual .visual-label { display: none; }
+  .slide-6 .visual-box.figure { max-width: none; padding: 8px; border-width: 3px; }
+  .slide-6 .fig-cap { margin-top: 14px; font-size: 14px; }
+  .slide-6 .split-content { flex: none; padding: 24px 18px 100px; border-left: none; border-top: var(--border); gap: 16px; }
+  .slide-6 .content-list li { font-size: 16px; align-items: flex-start; }
+  /* two-column slides */
+  .slide-2 { gap: 20px; }
+  .slide-2 .col-left, .slide-2 .col-right { flex: none; gap: 16px; }
+  .slide-2 .intro-card { padding: 18px; }
+  .slide-2 .intro-card h3 { font-size: 19px; }
+  .slide-2 .intro-card p, .slide-2 .warn { font-size: 15px; max-width: none; }
+  /* grids */
+  .slide-9 .team-grid, .slide-9 .team-grid.g5, .slide-8 .stats-grid, .take-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .slide-9 .team-card { padding: 16px; }
+  .slide-9 .team-name { font-size: 18px; }
+  .slide-9 .team-bio { font-size: 15px; }
+  .slide-8 .stat-card { transform: none !important; padding: 20px; }
+  .slide-3 .cards-row { flex-direction: column; gap: 14px; }
+  .slide-3 .feature-card { padding: 18px; box-shadow: var(--shadow-sm); display: flex; gap: 14px; align-items: flex-start; }
+  .slide-3 .feature-icon { width: 40px; height: 40px; font-size: 20px; margin: 0; flex: none; }
+  .slide-3 .feature-card p { font-size: 15px; }
+  .slide-7 .timeline { flex-direction: column; }
+  .slide-7 .timeline-step { margin: 0 0 -4px 0 !important; padding: 18px; }
+  .slide-7 .step-num { font-size: 30px; margin-bottom: 6px; }
+  .fx-grid .fx-expr { font-size: 16px; }
+  /* tables: one card per row */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp { border: none; box-shadow: none; background: none; }
+  .cmp thead { display: none; }
+  .cmp tr { border: var(--border); background: var(--white); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+  .cmp th, .cmp td, .cmp.dense th, .cmp.dense td, .cmp.gen th, .cmp.gen td { border: none; border-bottom: 2px solid var(--black); padding: 9px 14px; font-size: 15px; white-space: normal; }
+  .cmp tr > :last-child { border-bottom: none; }
+  .cmp tbody th { font-size: 16px; background: var(--yellow); }
+  .cmp td[data-label]::before { content: attr(data-label); display: block; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; opacity: .6; margin-bottom: 2px; }
+  .take-row { margin-top: 6px; }
+  /* chart */
+  .slide-4 .chart-frame { max-height: none; width: 100%; padding: 16px; overflow: visible; }
+  .slide-4 .chart-header { flex-direction: column; gap: 10px; }
+  .slide-4 .chart-legend { flex-wrap: wrap; gap: 8px 12px; }
+  .slide-4 .chart-body { flex-direction: column; gap: 14px; }
+  .chart-svg { height: auto; }
+  .slide-4 .data-column { flex: none; width: 100%; flex-direction: row; gap: 8px; }
+  .slide-4 .data-box { padding: 10px 6px; }
+  .slide-4 .data-box .data-num { font-size: 20px; }
+  .slide-4 .data-box .data-label { font-size: 10px; }
+  /* quote + closing */
+  .slide-5 { justify-content: center !important; }
+  .slide-5 .quote-frame { padding: 36px 22px 26px; }
+  .slide-5 .quote-text { font-size: 26px; }
+  .slide-10 { justify-content: center !important; }
+  .slide-10 .close-frame { padding: 32px 20px; box-shadow: 8px 8px 0 var(--yellow); }
+  .slide-10 .close-title { font-size: 34px; }
+  .slide-10 .close-row { flex-direction: column; align-items: stretch; }
+  .slide-10 .close-btn { padding: 14px 20px; }
+}
+.slide-7[data-ch] .step-connector { display: none; }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 71</div>
+  <div class="slide-counter" id="slideCounter">01 / 160</div>
   <a class="nb-label home-link" href="index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1289,7 +1398,7 @@
 <section class="slide slide-cmp">
   <div class="slide-header"><div class="nb-label nb-label-pink">版本比對</div><h2 class="nb-heading-lg" style="margin-top:16px;">簡體版 ≠ 台灣版</h2></div>
   <table class="cmp"><thead><tr><th></th><th>簡體版(你手上的)</th><th>台灣一版</th><th>台灣三版(最新)</th></tr></thead><tbody>
-  <tr><th>出版社</th><td>中国人民大学出版社(管理者终身学习叢書)</td><td>雙葉書廊</td><td class="">雙葉書廊</td></tr><tr><th>譯者</th><td>彭志文</td><td>陳信木、翁志遠</td><td class="">陳雅琪、陳信木、翁志遠</td></tr><tr><th>出版</th><td>2013 年 12 月 第 1 版</td><td>2013/01/30(已絕版)</td><td class="">2025/08/27</td></tr><tr><th>對應原文</th><td>英文 Third Edition(版權頁與封面標示)</td><td>英文 3E</td><td class="hl">書店頁未明載;章節與附錄和英文 5E(2022)完全相同</td></tr><tr><th>章數</th><td>15 章</td><td>未查到目錄</td><td class="hl">16 章</td></tr><tr><th>附錄</th><td>5 個(A–E)</td><td>未查到</td><td class="hl">8 個(A–H)</td></tr>
+  <tr><th>出版社</th><td data-label="簡體版">中国人民大学出版社(管理者终身学习叢書)</td><td data-label="台灣一版">雙葉書廊</td><td data-label="台灣三版" class="">雙葉書廊</td></tr><tr><th>譯者</th><td data-label="簡體版">彭志文</td><td data-label="台灣一版">陳信木、翁志遠</td><td data-label="台灣三版" class="">陳雅琪、陳信木、翁志遠</td></tr><tr><th>出版</th><td data-label="簡體版">2013 年 12 月 第 1 版</td><td data-label="台灣一版">2013/01/30(已絕版)</td><td data-label="台灣三版" class="">2025/08/27</td></tr><tr><th>對應原文</th><td data-label="簡體版">英文 Third Edition(版權頁與封面標示)</td><td data-label="台灣一版">英文 3E</td><td data-label="台灣三版" class="hl">書店頁未明載;章節與附錄和英文 5E(2022)完全相同</td></tr><tr><th>章數</th><td data-label="簡體版">15 章</td><td data-label="台灣一版">未查到目錄</td><td data-label="台灣三版" class="hl">16 章</td></tr><tr><th>附錄</th><td data-label="簡體版">5 個(A–E)</td><td data-label="台灣一版">未查到</td><td data-label="台灣三版" class="hl">8 個(A–H)</td></tr>
   </tbody></table></section>
 
 <section class="slide slide-8">
@@ -1304,7 +1413,7 @@
 <section class="slide slide-cmp">
   <div class="slide-header"><div class="nb-label nb-label-blue">章節對照</div><h2 class="nb-heading-md" style="margin-top:14px;">簡體版章號 → 台灣三版章號</h2></div>
   <table class="cmp dense"><thead><tr><th>章名</th><th>簡體 3E</th><th>台灣三版</th><th>差異</th></tr></thead><tbody>
-  <tr><th>相關</th><td>CH 08</td><td class="hl">CH 12</td><td>章序後移 4 章</td></tr><tr><th>t 檢定</th><td>CH 09</td><td class="hl">CH 08</td><td>章號 −1</td></tr><tr><th>單因子變異數分析</th><td>CH 10</td><td class="hl">CH 09</td><td>章號 −1</td></tr><tr><th>多因子變異數分析</th><td>CH 11</td><td class="hl">CH 10</td><td>章號 −1</td></tr><tr><th>重複測量變異數分析</th><td>CH 12</td><td class="hl">CH 11</td><td>章號 −1</td></tr><tr><th>無母數統計</th><td>CH 14</td><td class="hl">CH 14</td><td>範圍擴大</td></tr><tr><th>個人中心取向的分析</th><td>(無)</td><td class="hl">CH 16</td><td>簡體版沒有</td></tr>
+  <tr><th>相關</th><td data-label="簡體 3E">CH 08</td><td data-label="台灣三版" class="hl">CH 12</td><td data-label="差異">章序後移 4 章</td></tr><tr><th>t 檢定</th><td data-label="簡體 3E">CH 09</td><td data-label="台灣三版" class="hl">CH 08</td><td data-label="差異">章號 −1</td></tr><tr><th>單因子變異數分析</th><td data-label="簡體 3E">CH 10</td><td data-label="台灣三版" class="hl">CH 09</td><td data-label="差異">章號 −1</td></tr><tr><th>多因子變異數分析</th><td data-label="簡體 3E">CH 11</td><td data-label="台灣三版" class="hl">CH 10</td><td data-label="差異">章號 −1</td></tr><tr><th>重複測量變異數分析</th><td data-label="簡體 3E">CH 12</td><td data-label="台灣三版" class="hl">CH 11</td><td data-label="差異">章號 −1</td></tr><tr><th>無母數統計</th><td data-label="簡體 3E">CH 14</td><td data-label="台灣三版" class="hl">CH 14</td><td data-label="差異">範圍擴大</td></tr><tr><th>個人中心取向的分析</th><td data-label="簡體 3E">(無)</td><td data-label="台灣三版" class="hl">CH 16</td><td data-label="差異">簡體版沒有</td></tr>
   </tbody></table>
   <p class="nb-mono" style="margin-top:18px;">其餘第 1–7、13、15 章章號相同。</p></section>
 
@@ -1369,9 +1478,36 @@
 <section class="slide slide-cmp" data-ch="1">
   <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 01 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">四種測量尺度</h2></div>
   <table class="cmp gen"><thead><tr><th>尺度</th><th>特性</th><th>例子</th><th>適合的集中趨勢</th></tr></thead><tbody>
-  <tr><th>名義</th><td>只分類別,沒有大小</td><td>血型、性別</td><td>眾數</td></tr><tr><th>次序</th><td>有順序,間距不一定相等</td><td>疼痛分級、名次</td><td>中位數</td></tr><tr><th>等距</th><td>間距相等,沒有絕對零點</td><td>攝氏溫度</td><td>平均數</td></tr><tr><th>比率</th><td>有絕對零點,可以說「幾倍」</td><td>體重、收入</td><td>平均數</td></tr>
+  <tr><th>名義</th><td data-label="特性">只分類別,沒有大小</td><td data-label="例子">血型、性別</td><td data-label="適合的集中趨勢">眾數</td></tr><tr><th>次序</th><td data-label="特性">有順序,間距不一定相等</td><td data-label="例子">疼痛分級、名次</td><td data-label="適合的集中趨勢">中位數</td></tr><tr><th>等距</th><td data-label="特性">間距相等,沒有絕對零點</td><td data-label="例子">攝氏溫度</td><td data-label="適合的集中趨勢">平均數</td></tr><tr><th>比率</th><td data-label="特性">有絕對零點,可以說「幾倍」</td><td data-label="例子">體重、收入</td><td data-label="適合的集中趨勢">平均數</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>母體的數值叫母數,樣本的數值叫統計量</span></div><div class="take"><span class="list-num">02</span><span>變項的測量尺度決定能用哪種統計</span></div><div class="take"><span class="list-num">03</span><span>只有隨機分派的實驗才能談因果</span></div></div></section>
+
+<section class="slide slide-9 bg-cream" data-ch="1">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 01 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">描述統計與推論統計</div><div class="team-role keepcase">descriptive and inferential statistics</div><div class="team-bio">前者只描述手上資料,後者藉樣本對母體下結論。</div></div><div class="team-card"><div class="team-name">隨機抽樣</div><div class="team-role keepcase">random sampling</div><div class="team-bio">每個母體成員入選機率相等,差異只來自機會。</div></div><div class="team-card"><div class="team-name">測量尺度</div><div class="team-role keepcase">scales of measurement</div><div class="team-bio">名義、次序、等距、比率四級,決定數字帶有多少資訊。</div></div><div class="team-card"><div class="team-name">自變項與依變項</div><div class="team-role keepcase">independent and dependent variables</div><div class="team-bio">自變項被假定影響依變項;實驗中自變項由研究者操弄。</div></div><div class="team-card"><div class="team-name">實驗設計與相關性設計</div><div class="team-role keepcase">experimental vs. correlational design</div><div class="team-bio">前者隨機分派可談因果,後者只能說有無關聯。</div></div><div class="team-card"><div class="team-name">分布</div><div class="team-role keepcase">distribution</div><div class="team-bio">任一變項取值的集合,可用圖表呈現其樣貌。</div></div></div></section>
+
+<section class="slide slide-7" data-ch="1">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 01 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">母體與樣本、統計量與母數</div><div class="step-desc">母體是研究者關心的那一類對象的全體,樣本是從中取出的子集;由母體算出的值叫母數,由樣本算出的叫統計量。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">抽樣問題</div><div class="step-desc">隨機抽樣指母體中每個成員被選中的機率相等,不是「隨便抽」;好處是樣本與母體的差異來自機會而非系統性偏差。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">變項類型與測量尺度</div><div class="step-desc">變項是有一個以上取值、可被編碼的東西;若樣本中人人取值相同(例如全是男性),它就成了常數。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">研究設計</div><div class="step-desc">實驗設計把樣本分組後比較,例如 40 名學生隨機分派各 20 人使用新舊數學課程,期望其他差異在兩組間平均抵銷。</div></div></div></section>
+
+<section class="slide slide-2 bg-green" data-ch="1">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 01 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">1990–2007 年美國犯罪率的三張圖</h2>
+    <div class="warn"><b>臨床上怎麼想</b>只在單一醫學中心某病房收案的壓力性損傷研究,樣本實際代表的是「該院該病房住院病人」,不是「所有住院病人」;疼痛分數 0–10 屬等距/比率、壓傷分級屬次序、病房別屬名義尺度。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>同一份資料先畫成堆疊長條圖,只看得出總犯罪率由每十萬人近 6,000 件降到不足 4,000 件;改成折線圖分開兩類犯罪,暴力犯罪的變化仍被大刻度壓扁;最後單獨畫暴力犯罪、y 軸改為 0–800,才看清約由 800 降到 500。結論:好圖要讓重點不費力就看見。</p></div>
+    
+  </div></section>
+
+<section class="slide slide-3" data-ch="1">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 01 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>「隨機」不是隨便,而是人人入選機率相等;小樣本即使隨機也可能與母體差很多。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>樣本實際代表的母體可能比研究問題宣稱的窄得多,類推前先問母體怎麼定義。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>相關性研究只能說兩變項有關,不能判定誰造成誰。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>讀圖要看座標軸刻度,刻度不合適會讓重要趨勢消失或被誤讀。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-pink" data-ch="1">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 01 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">研究者只在一家心理衛生機構收了 15 歲個案,卻宣稱在研究「青少年憂鬱盛行率」,問題出在哪裡?</div><details><summary>看答案</summary><div class="team-bio">樣本實際對應的母體(某年該機構接案的 15 歲者)遠窄於研究者宣稱的母體(青少年),且求診者本來就較可能憂鬱,存在系統性差異,結果難以類推。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">富豪排行榜的名次與以英寸測得的身高,在測量尺度上差在哪裡?</div><details><summary>看答案</summary><div class="team-bio">名次是次序尺度,只知道誰先誰後,不知道相鄰名次差多少;身高單位間距相等,屬等距/比率尺度,既能排序也能說出差多少。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">發現員工睡眠時數與生產力高度相關,為何不能斷言「多睡使人更有生產力」?</div><details><summary>看答案</summary><div class="team-bio">這是相關性設計,沒有隨機分派也沒有操弄變項;也可能是工作順利、壓力小才睡得久,因果方向無法由相關資料判定。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="2" style="background:var(--blue);">
   <div class="deco-dots"></div>
@@ -1411,9 +1547,40 @@
 <section class="slide slide-cmp" data-ch="2">
   <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">三種集中趨勢比一比</h2></div>
   <table class="cmp gen"><thead><tr><th>指標</th><th>怎麼算</th><th>優點</th><th>弱點</th></tr></thead><tbody>
-  <tr><th>平均數</th><td>總和 ÷ 個數</td><td>用到全部資料</td><td>容易被極端值拉走</td></tr><tr><th>中位數</th><td>排序後正中間的值</td><td>不怕極端值</td><td>沒用到每個數值的大小</td></tr><tr><th>眾數</th><td>出現最多次的值</td><td>類別資料也能用</td><td>可能不只一個</td></tr>
+  <tr><th>平均數</th><td data-label="怎麼算">總和 ÷ 個數</td><td data-label="優點">用到全部資料</td><td data-label="弱點">容易被極端值拉走</td></tr><tr><th>中位數</th><td data-label="怎麼算">排序後正中間的值</td><td data-label="優點">不怕極端值</td><td data-label="弱點">沒用到每個數值的大小</td></tr><tr><th>眾數</th><td data-label="怎麼算">出現最多次的值</td><td data-label="優點">類別資料也能用</td><td data-label="弱點">可能不只一個</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>平均數用到每一個數值,但怕極端值</span></div><div class="take"><span class="list-num">02</span><span>中位數是排序後正中間的那一位</span></div><div class="take"><span class="list-num">03</span><span>分布偏斜時三者分家,平均數被長尾拉走</span></div></div></section>
+
+<section class="slide slide-9 bg-green" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">偏態</div><div class="team-role keepcase">skew</div><div class="team-bio">取值擠在一端、另一端拖出尾巴;尾巴朝哪邊就是哪種偏。</div></div><div class="team-card"><div class="team-name">負偏態/正偏態</div><div class="team-role keepcase">negative / positive skew</div><div class="team-bio">尾巴在低端為負偏(平均數&lt;中位數),在高端為正偏。</div></div><div class="team-card"><div class="team-name">離群值</div><div class="team-role keepcase">outlier</div><div class="team-bio">異常大或小的值;樣本越小,對平均數的衝擊越大。</div></div><div class="team-card"><div class="team-name">雙峰/多峰分布</div><div class="team-role keepcase">bimodal / multimodal</div><div class="team-bio">有兩個或更多最高次數的取值,常見於意見兩極的題目。</div></div><div class="team-card"><div class="team-name">中位數分割</div><div class="team-role keepcase">median split</div><div class="team-bio">以中位數把樣本切成人數相等的高、低兩組。</div></div><div class="team-card"><div class="team-name">母數與統計量</div><div class="team-role keepcase">parameter and statistic</div><div class="team-bio">μ 是母體平均數,X̄ 是用來估計它的樣本平均數。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">樣本平均數</div><div class="fx-expr">X̄ = ΣX / n</div><div class="team-bio">所有取值相加,除以樣本取值個數</div></div><div class="team-card"><div class="team-role keepcase">母體平均數</div><div class="fx-expr">μ = ΣX / N</div><div class="team-bio">算法相同,只是對象是整個母體</div></div><div class="team-card"><div class="team-role keepcase">中位數(偶數個取值)</div><div class="fx-expr">P₅₀ = (排序後中間兩個取值之和) / 2</div><div class="team-bio">奇數個時直接取正中間那一個</div></div></div></section>
+
+<section class="slide slide-7" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">三個集中趨勢量數是什麼</div><div class="step-desc">平均數把整個分布濃縮成一個數,方便但有代價:它不告訴你取值多分散,也不保證有很多取值真的落在平均數附近。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">怎麼算</div><div class="step-desc">平均數:所有取值相加後除以取值個數(樣本除以 n,母體除以 N)。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">例子:偏態分布中的三個量數</div><div class="step-desc">30 名五年級生以 1–5 分評「學業成績有多重要」,多數選 4 或 5,少數選 1、2,尾巴拖向低分端,是負偏態分布。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">報告寫法與本章提醒</div><div class="step-desc">集中趨勢的報告通常很短:寫出平均數與中位數的數值,再點出兩者關係所反映的分布形狀即可。</div></div></div></section>
+
+<section class="slide slide-2 bg-pink" data-ch="2">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 02 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">五年級生對「成績重要性」的評分與各國預期壽命</h2>
+    <div class="warn"><b>臨床上怎麼想</b>住院天數多半是正偏態:大多數病人住幾天,少數住上百天把平均拉高。報告病房住院天數時,中位數比平均數更能代表「典型病人」,這也是臨床常報中位數與四分位距的原因。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>30 名五年級生的 1–5 分評分呈負偏:眾數 5、中位數 4、平均數 113/30 = 3.77,平均數被低分尾巴拉到中位數之下。預期壽命資料示範離群值效應:13 國時加入烏干達使平均由 78.17 降到 76.21;只有 4 國時由 79.75 降到 72.99。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>此分布的平均數(X̄ = 3.77)略低於中位數(P₅₀ = 4.00),顯示分布呈負偏態。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>平均數不代表「多數人的情況」;分布中可能很少有取值真的落在平均數附近。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>偏態或有離群值時只報平均數會誤導,應同時看中位數。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>小樣本裡一個極端值就能大幅改變平均數。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>只看集中趨勢、不看變異,容易做出一體適用的結論或刻板印象。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-yellow" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">某量表分數平均數 3.77、中位數 4.00,不看圖你能推測分布形狀嗎?</div><details><summary>看答案</summary><div class="team-bio">平均數小於中位數,代表有少數偏低的取值把平均數往下拉,尾巴在低分端,屬於負偏態分布;多數人其實集中在高分端。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">為什麼同一個離群值在 4 國資料中讓平均數掉近 7 歲,在 13 國資料中只掉約 2 歲?</div><details><summary>看答案</summary><div class="team-bio">平均數是所有取值合起來除以個數,個數越少,每一個值占的權重越大;樣本小,單一極端值的影響就被放大,樣本大則被稀釋。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">調查 100 人對死刑的態度,平均數落在量表中間,能說「大家意見中立」嗎?</div><details><summary>看答案</summary><div class="team-bio">不能。書中例子兩端各有 45 人,是雙峰分布,中間幾乎沒人;平均數落在中間只是兩極相抵的結果,要看眾數與次數分配才知道。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="3" style="background:var(--blue);">
   <div class="deco-dots"></div>
@@ -1456,9 +1623,40 @@
 <section class="slide slide-cmp" data-ch="3">
   <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 03 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">四種變異指標</h2></div>
   <table class="cmp gen"><thead><tr><th>指標</th><th>算法</th><th>提醒</th></tr></thead><tbody>
-  <tr><th>全距</th><td>最大值 − 最小值</td><td>最快,但只看頭尾兩個值</td></tr><tr><th>四分位距</th><td>第 75 百分位 − 第 25 百分位</td><td>不受極端值影響</td></tr><tr><th>變異數</th><td>Σ(X − X̄)² ÷ (n − 1)</td><td>單位是原單位的平方</td></tr><tr><th>標準差</th><td>√變異數</td><td>和原始資料同單位,最常用</td></tr>
+  <tr><th>全距</th><td data-label="算法">最大值 − 最小值</td><td data-label="提醒">最快,但只看頭尾兩個值</td></tr><tr><th>四分位距</th><td data-label="算法">第 75 百分位 − 第 25 百分位</td><td data-label="提醒">不受極端值影響</td></tr><tr><th>變異數</th><td data-label="算法">Σ(X − X̄)² ÷ (n − 1)</td><td data-label="提醒">單位是原單位的平方</td></tr><tr><th>標準差</th><td data-label="算法">√變異數</td><td data-label="提醒">和原始資料同單位,最常用</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>只報平均數不夠,還要知道資料有多分散</span></div><div class="take"><span class="list-num">02</span><span>變異數是「離平均數距離的平方」的平均</span></div><div class="take"><span class="list-num">03</span><span>標準差開根號回到原單位;樣本要除以 n − 1</span></div></div></section>
+
+<section class="slide slide-9 bg-pink" data-ch="3">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 03 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">n − 1 校正</div><div class="team-role keepcase">n − 1 in the sample formula</div><div class="team-bio">用樣本平均數會低估母體變異,縮小分母加以補償。</div></div><div class="team-card"><div class="team-name">全距</div><div class="team-role keepcase">range</div><div class="team-bio">最大值減最小值;只反映兩個極端,容易誤導。</div></div><div class="team-card"><div class="team-name">四分位距</div><div class="team-role keepcase">interquartile range (IQR)</div><div class="team-bio">第 75 與第 25 百分位數之差,中間一半資料的寬度。</div></div><div class="team-card"><div class="team-name">離均差</div><div class="team-role keepcase">deviation</div><div class="team-bio">單一取值與平均數的差;全部相加必等於零。</div></div><div class="team-card"><div class="team-name">盒鬚圖</div><div class="team-role keepcase">boxplot</div><div class="team-bio">用箱體與鬚線同時呈現中位數、四分位距與全距。</div></div><div class="team-card"><div class="team-name">以樣本統計量估計母數</div><div class="team-role keepcase">sample statistics as estimates of parameters</div><div class="team-bio">樣本公式的設計目的,是讓算出的值更貼近母體真值。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="3">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 03 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">母體變異數</div><div class="fx-expr">σ² = Σ(X − μ)² / N</div><div class="team-bio">離均差平方和除以母體個數</div></div><div class="team-card"><div class="team-role keepcase">樣本變異數(母體估計)</div><div class="fx-expr">s² = Σ(X − X̄)² / (n − 1)</div><div class="team-bio">分母用 n − 1 以修正低估</div></div><div class="team-card"><div class="team-role keepcase">母體標準差</div><div class="fx-expr">σ = √( Σ(X − μ)² / N )</div><div class="team-bio">母體變異數開根號</div></div><div class="team-card"><div class="team-role keepcase">樣本標準差</div><div class="fx-expr">s = √( Σ(X − X̄)² / (n − 1) )</div><div class="team-bio">樣本變異數開根號,回到原單位</div></div><div class="team-card"><div class="team-role keepcase">離均差平方和</div><div class="fx-expr">SS = Σ(X − X̄)²</div><div class="team-bio">變異數公式的分子,ANOVA 與迴歸的基礎</div></div><div class="team-card"><div class="team-role keepcase">全距與四分位距</div><div class="fx-expr">全距 = 最大值 − 最小值;IQR = P₇₅ − P₂₅</div><div class="team-bio">前者看兩端,後者看中間一半</div></div></div></section>
+
+<section class="slide slide-7" data-ch="3">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 03 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">全距、四分位距、變異數、標準差</div><div class="step-desc">100 名五年級生憂鬱分數的平均數與中位數都是 10,但仍不知道分數是人人相同還是差異極大,這就是需要變異量數的原因。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">為什麼樣本公式除以 n − 1</div><div class="step-desc">母體公式分母用 N;樣本公式分母用 n − 1,因為母體平均數未知,只能用樣本平均數代替。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">拆解公式:離均差、平方和、開根號</div><div class="step-desc">直覺做法是把每個取值減平均數後加總再平均,但平均數是分布的數學中心,正負離均差相加必為零,行不通。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">例子:兩道五點量表題</div><div class="step-desc">自信題(時間夠就能解出最難的題目):n = 491,平均數 4.21,標準差 0.98,變異數 0.96;多數人選 4 或 5,呈負偏。</div></div></div></section>
+
+<section class="slide slide-2 bg-yellow" data-ch="3">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 03 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">491 名中學生的自信題與表現能力題</h2>
+    <div class="warn"><b>臨床上怎麼想</b>兩個病房平均疼痛分數都是 4 分:A 病房標準差 0.5,人人在 4 分上下;B 病房標準差 3,有人 0 分、有人 9 分。平均相同,B 病房卻需個別化止痛評估。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>兩題都是 1–5 分、全距都是 4。自信題平均 4.21、標準差 0.98,表示多數人擠在高分端、彼此差約 1 分;表現能力題平均 2.92、標準差 1.43,表示答案相當平均地散在五個選項。全距分不出兩者,平均數加標準差才能;變異數(0.96、2.04)難以直接解讀。</p></div>
+    
+  </div></section>
+
+<section class="slide slide-3" data-ch="3">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 03 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>全距只由兩個極端值決定,98 人同分也可能出現很大的全距。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>變異數的單位是原單位的平方,不宜直接拿來描述資料有多分散。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>自信題的變異數 0.96 與標準差 0.98 幾乎相等純屬巧合,只有標準差接近 1 時才會如此。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>把標準差說成「平均離差」只是幫助理解的近似說法;真正的平均離差是 Σ|X − 平均數| / N。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-blue" data-ch="3">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 03 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">兩道五點量表題的全距都是 4,為什麼不能說兩題的分散程度一樣?</div><details><summary>看答案</summary><div class="team-bio">全距只看最大與最小值,只要各有至少一人選 1 和 5 就是 4。自信題標準差 0.98、表現能力題 1.43,後者的答案散得多;要看標準差才知道平均離散程度。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">為什麼不能直接把所有離均差加起來再平均,當作變異的指標?</div><details><summary>看答案</summary><div class="team-bio">平均數是分布的數學中心,正負離均差剛好抵銷,總和永遠是零,除以任何 n 都是零。所以要先平方消去負號,求平均後再開根號回到原單位。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">樣本只有 10 人與 500 人時,分母用 n − 1 或 n 的差別有何不同?為什麼要用 n − 1?</div><details><summary>看答案</summary><div class="team-bio">500 人時兩者相差不到 1%,10 人時標準差會大近五分之一。因為用樣本平均數算離均差會低估母體變異,縮小分母可把估計值調大,小樣本尤其需要。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="4" style="background:var(--pink);">
   <div class="deco-dots"></div>
@@ -1500,9 +1698,40 @@
 <section class="slide slide-cmp" data-ch="4">
   <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 04 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">常態分布的經驗法則</h2></div>
   <table class="cmp gen"><thead><tr><th>範圍</th><th>涵蓋比例</th><th>落在外面的機會</th></tr></thead><tbody>
-  <tr><th>平均數 ± 1 個標準差</th><td>約 68%</td><td>約 3 人有 1 人</td></tr><tr><th>平均數 ± 2 個標準差</th><td>約 95%</td><td>約 20 人有 1 人</td></tr><tr><th>平均數 ± 3 個標準差</th><td>約 99.7%</td><td>約 370 人有 1 人</td></tr>
+  <tr><th>平均數 ± 1 個標準差</th><td data-label="涵蓋比例">約 68%</td><td data-label="落在外面的機會">約 3 人有 1 人</td></tr><tr><th>平均數 ± 2 個標準差</th><td data-label="涵蓋比例">約 95%</td><td data-label="落在外面的機會">約 20 人有 1 人</td></tr><tr><th>平均數 ± 3 個標準差</th><td data-label="涵蓋比例">約 99.7%</td><td data-label="落在外面的機會">約 370 人有 1 人</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>對稱、單峰:平均數 = 中位數 = 眾數</span></div><div class="take"><span class="list-num">02</span><span>曲線下的面積就是機率</span></div><div class="take"><span class="list-num">03</span><span>許多推論統計都假設常態;偏離時機率會失準</span></div></div></section>
+
+<section class="slide slide-9 bg-yellow" data-ch="4">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 04 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">峰度</div><div class="team-role keepcase">kurtosis</div><div class="team-bio">分布比常態更尖(高狹峰)或更平(低闊峰)的程度。</div></div><div class="team-card"><div class="team-name">隨機抽樣</div><div class="team-role keepcase">random sampling</div><div class="team-bio">每個成員被選中的機會相同,樣本與母體的差異只是隨機的。</div></div><div class="team-card"><div class="team-name">便利抽樣</div><div class="team-role keepcase">convenience sampling</div><div class="team-bio">為了方便而取樣,容易系統性偏向母體的某一端。</div></div><div class="team-card"><div class="team-name">推論統計</div><div class="team-role keepcase">inferential statistics</div><div class="team-bio">用樣本資料推估母體特徵,前提是樣本能代表母體。</div></div><div class="team-card"><div class="team-name">虛無假設</div><div class="team-role keepcase">null hypothesis</div><div class="team-bio">主張效果為零(例如兩組平均數沒有差異)的假設。</div></div><div class="team-card"><div class="team-name">偏誤樣本</div><div class="team-role keepcase">biased</div><div class="team-bio">母體某部分被過度代表、另一部分代表不足的樣本。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="4">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 04 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">平均數 ±1 個標準差的比例</div><div class="fx-expr">P(μ − σ &lt; X &lt; μ + σ) ≈ 0.68(每側約 0.34)</div><div class="team-bio">常態分布才成立;本章只談比例,沒有列正式公式</div></div><div class="team-card"><div class="team-role keepcase">偏態與集中量數的關係</div><div class="fx-expr">正偏:平均數 &gt; 中位數;負偏:平均數 &lt; 中位數;常態:平均數 = 中位數</div><div class="team-bio">平均數被長尾拉走,中位數不動</div></div></div></section>
+
+<section class="slide slide-7" data-ch="4">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 04 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">常態分布的三個性質</div><div class="step-desc">常態分布畫成次數分布圖時呈鐘形:橫軸是變項數值,縱軸是次數,以智商為例,100 分處最高,往兩側次數遞減。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">為什麼常態分布重要</div><div class="step-desc">只做描述統計(例如 100 位大一生每日平均攝取熱量)時,樣本是否常態無關緊要,因為結論只針對這群人。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">理論分布與抽樣方法</div><div class="step-desc">常態分布是理論分布,實際資料很少完全吻合;許多統計方法卻假設資料為常態,假設不成立時相關機率便不再有效。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">偏態與峰度</div><div class="step-desc">偏態(skew)指數值擠在一端、少數值把尾巴拖向另一端:長尾在高分端為正偏,在低分端為負偏。</div></div></div></section>
+
+<section class="slide slide-2 bg-blue" data-ch="4">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 04 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">六年級學生自尊分數的負偏分布</h2>
+    <div class="warn"><b>臨床上怎麼想</b>住院天數多半呈正偏:多數病人三五天出院,少數重症住上數十天,平均數被拉高。若用「平均數 ±1 個標準差涵蓋 68%」來估床位需求就會失準,此時報告中位數與四分位距較妥當。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>677 名學生以 5 點量表答四題自尊題,平均後得分 1–5。分布負偏,平均數 4.28、標準差 0.72。常態分布預期約 16% 的人高於平均數加 1 個標準差,但 4.28 + 0.72 已是滿分 5,實際上沒有人超過。可見常態機率不能直接套在偏態資料上。</p></div>
+    
+  </div></section>
+
+<section class="slide slide-3" data-ch="4">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 04 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>常態分布是理論模型,真實資料只會近似它;不要未經檢查就假設資料為常態。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>把常態機率套在偏態資料上,會在一端高估、另一端低估實際人數。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>樣本非常態不等於資料無用:可能母體本來就非常態,也可能是抽樣有偏誤,要分辨是哪一種。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>便利樣本的偏誤若與研究變項有關,任何以常態機率做的母體推估都不可信。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-cream" data-ch="4">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 04 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">某量表分數呈負偏,平均數與中位數誰比較大?為什麼?</div><details><summary>看答案</summary><div class="team-bio">中位數較大。負偏表示長尾拖向低分端,少數極低分把平均數往下拉,中位數只看排序位置、不受極端值影響,所以平均數會小於中位數。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">只想描述自己病房 100 位病人的資料時,需要擔心資料不是常態嗎?</div><details><summary>看答案</summary><div class="team-bio">不需要。描述統計只針對這個樣本本身;只有在要計算機率或從樣本推論母體時,常態假設與抽樣是否有偏誤才變得關鍵。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">為什麼抽樣方法會影響常態機率能不能用?</div><details><summary>看答案</summary><div class="team-bio">常態機率除了假設分布形狀,也假設樣本與母體沒有系統性差異。便利抽樣若一再抽到母體的某一端,樣本落在分布高端或低端的機會就不是常態機率所預期的,推估便會失準。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="5" style="background:var(--pink);">
   <div class="deco-dots"></div>
@@ -1547,9 +1776,40 @@
 <section class="slide slide-cmp" data-ch="5">
   <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">常態分布下,z 分數對應的位置</h2></div>
   <table class="cmp gen"><thead><tr><th>z</th><th>意思</th><th>大約贏過多少人</th></tr></thead><tbody>
-  <tr><th>−1</th><td>比平均低 1 個標準差</td><td>16%</td></tr><tr><th>0</th><td>剛好在平均</td><td>50%</td></tr><tr><th>+1</th><td>比平均高 1 個標準差</td><td>84%</td></tr><tr><th>+2</th><td>比平均高 2 個標準差</td><td>98%</td></tr>
+  <tr><th>−1</th><td data-label="意思">比平均低 1 個標準差</td><td data-label="大約贏過多少人">16%</td></tr><tr><th>0</th><td data-label="意思">剛好在平均</td><td data-label="大約贏過多少人">50%</td></tr><tr><th>+1</th><td data-label="意思">比平均高 1 個標準差</td><td data-label="大約贏過多少人">84%</td></tr><tr><th>+2</th><td data-label="意思">比平均高 2 個標準差</td><td data-label="大約贏過多少人">98%</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>z = (分數 − 平均數) ÷ 標準差</span></div><div class="take"><span class="list-num">02</span><span>換成 z 之後,平均數是 0、標準差是 1</span></div><div class="take"><span class="list-num">03</span><span>資料接近常態時,z 可以直接查出百分位</span></div></div></section>
+
+<section class="slide slide-9 bg-blue" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">原始分數</div><div class="team-role keepcase">raw score</div><div class="team-bio">變項實際測得、尚未轉換的觀察值。</div></div><div class="team-card"><div class="team-name">百分位數</div><div class="team-role keepcase">percentile score</div><div class="team-bio">有特定比例的分數落在其下的那個分數,如第 90 百分位。</div></div><div class="team-card"><div class="team-name">標準常態分布</div><div class="team-role keepcase">standard normal distribution</div><div class="team-bio">平均數 0、標準差 1 的常態分布,z 表即以此為據。</div></div><div class="team-card"><div class="team-name">p 值</div><div class="team-role keepcase">p value</div><div class="team-bio">隨機得到某個統計值(或更極端)的機率;z 越大,p 越小。</div></div><div class="team-card"><div class="team-name">z 表(附錄 A)</div><div class="team-role keepcase">z table</div><div class="team-bio">列出常態分布中小於各 z 值的面積比例。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">z 分數(文字式)</div><div class="fx-expr">z = (原始分數 − 平均數) / 標準差</div><div class="team-bio">表 5-1 的文字版本</div></div><div class="team-card"><div class="team-role keepcase">z 分數(母體)</div><div class="fx-expr">z = (X − μ) / σ</div><div class="team-bio">已知母體平均數與標準差時使用</div></div><div class="team-card"><div class="team-role keepcase">z 分數(樣本)</div><div class="fx-expr">z = (X − X̄) / s</div><div class="team-bio">以樣本平均數與樣本標準差計算</div></div><div class="team-card"><div class="team-role keepcase">由 z 換回原始分數</div><div class="fx-expr">X = μ + (z)(σ)</div><div class="team-bio">例:517 + 1.28 × 100 = 645</div></div><div class="team-card"><div class="team-role keepcase">右尾機率</div><div class="fx-expr">p = 1 − (z 表中小於 z 的比例)</div><div class="team-bio">例:z = 0.15 時為 1 − 0.5596 = 0.4404</div></div></div></section>
+
+<section class="slide slide-7" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">為什麼需要標準化</div><div class="step-desc">生物考 65 分(滿分 100)、統計考 42 分(滿分 200),哪科較好?答對比例看是生物,但那忽略了考試難度與全班表現。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">z 分數的計算與解讀</div><div class="step-desc">作法是原始分數減平均數再除以標準差;母體用 μ 與 σ,樣本用 X̄ 與 s。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">用 z 表在原始分數與百分位數之間互換</div><div class="step-desc">附錄 A 以左欄(到小數一位)加頂列(小數第二位)定位 z,表中數字是常態分布中小於該 z 值的比例;1 減去它就是右尾機率(p 值)。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">例子:原始分數與 z 分數對照</div><div class="step-desc">題目「測驗會顯示我有多聰明」(8 點量尺)平均數 5.38、標準差 2.35;最高分 z 僅 1.12,最低分 z 達 −1.86。</div></div></div></section>
+
+<section class="slide slide-2 bg-cream" data-ch="5">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 05 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">SAT 數學成績(μ = 517、σ = 100)的四種 z 分數計算</h2>
+    <div class="warn"><b>臨床上怎麼想</b>兒童生長曲線就是 z 分數的應用:體重 z = −2 代表低於同齡同性別平均 2 個標準差,約第 2 百分位。骨密度的 Z 值、T 值也是同樣邏輯,把檢查結果換成可比較的相對位置。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>第 90 百分位:z = 1.28,X = 517 + 128 = 645。425 分:z = −0.92,約第 18 百分位。417 與 567 分之間(z = −1.00 與 0.50):0.3413 + 0.1915 = 53.28%。567 與 617 分同在平均數右側:0.3413 − 0.1915 = 14.98%。</p></div>
+    
+  </div></section>
+
+<section class="slide slide-3" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>z 分數只說相對位置,不代表絕對表現好壞,還要看比較對象是誰、測驗有多難。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>資料非常態時,不能用 z 表把 z 分數換成百分位,要改用排序法。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>z 表只列正值;負的 z 靠對稱性處理,別把「小於 z 的比例」與「尾端比例」弄反。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>兩分數在平均數兩側時面積相加,在同一側時相減,先畫圖再計算。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-green" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">兩科各比平均數高 5 分,為什麼其中一科的 z 分數可能是另一科的兩倍?</div><details><summary>看答案</summary><div class="team-bio">因為 z 還要除以標準差。同樣高 5 分,標準差 10 的科目只有 z = 0.5,標準差 5 的科目則是 z = 1.0;分數越集中,相同差距代表的相對位置越突出。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">某分布平均數 7.28、標準差 1.33,滿分是 8。為什麼最高分的 z 只有約 0.5?這告訴你什麼?</div><details><summary>看答案</summary><div class="team-bio">因為平均數已經貼近量尺上限,滿分只比平均數多 0.72 分。這顯示分布嚴重負偏,z 分數在平均數兩側範圍不對稱,因此不能拿常態 z 表去換算百分位。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">已知常態分布 μ = 517、σ = 100,如何求 417 到 567 分之間的比例?</div><details><summary>看答案</summary><div class="team-bio">先算 z:417 為 −1.00、567 為 0.50。查表得平均數到兩個 z 的面積為 0.3413 與 0.1915;兩者分居平均數兩側,相加得 53.28%。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="6" style="background:var(--pink);">
   <div class="deco-dots"></div>
@@ -1593,9 +1853,40 @@
 <section class="slide slide-cmp" data-ch="6">
   <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 06 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">標準差 vs 標準誤</h2></div>
   <table class="cmp gen"><thead><tr><th></th><th>標準差</th><th>標準誤</th></tr></thead><tbody>
-  <tr><th>描述的對象</th><td>個別分數彼此差多少</td><td>樣本平均數彼此差多少</td></tr><tr><th>公式</th><td>s</td><td>s ÷ √n</td></tr><tr><th>樣本變大時</th><td>大致不變</td><td>變小</td></tr><tr><th>用途</th><td>描述資料</td><td>做推論(檢定、信賴區間)</td></tr>
+  <tr><th>描述的對象</th><td data-label="標準差">個別分數彼此差多少</td><td data-label="標準誤">樣本平均數彼此差多少</td></tr><tr><th>公式</th><td data-label="標準差">s</td><td data-label="標準誤">s ÷ √n</td></tr><tr><th>樣本變大時</th><td data-label="標準差">大致不變</td><td data-label="標準誤">變小</td></tr><tr><th>用途</th><td data-label="標準差">描述資料</td><td data-label="標準誤">做推論(檢定、信賴區間)</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>標準誤是「樣本平均數」這個統計量的標準差</span></div><div class="take"><span class="list-num">02</span><span>標準誤 = s ÷ √n:樣本越大,標準誤越小</span></div><div class="take"><span class="list-num">03</span><span>中央極限定理:樣本夠大時,樣本平均數的分布會接近常態</span></div></div></section>
+
+<section class="slide slide-9 bg-cream" data-ch="6">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 06 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">平均數的期望值</div><div class="team-role keepcase">expected value of the mean</div><div class="team-bio">抽樣分布的平均數,等於母體平均數。</div></div><div class="team-card"><div class="team-name">中央極限定理</div><div class="team-role keepcase">central limit theorem</div><div class="team-bio">樣本夠大時,不論原分布形狀,平均數的抽樣分布趨近常態。</div></div><div class="team-card"><div class="team-name">t 分布</div><div class="team-role keepcase">t distribution</div><div class="team-bio">形狀隨自由度改變的分布族;母體標準差未知或樣本小時使用。</div></div><div class="team-card"><div class="team-name">自由度</div><div class="team-role keepcase">degrees of freedom</div><div class="team-bio">與樣本數直接相關的數字,用來在 t 表中找對應的列。</div></div><div class="team-card"><div class="team-name">統計顯著</div><div class="team-role keepcase">statistically significant</div><div class="team-bio">樣本現象相對於標準誤夠大,不太可能只是隨機抽樣造成。</div></div><div class="team-card"><div class="team-name">平均數差的抽樣分布</div><div class="team-role keepcase">sampling distribution of the differences between the means</div><div class="team-bio">反覆抽兩組樣本並算平均數之差所形成的分布。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="6">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 06 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">平均數標準誤(母體標準差已知)</div><div class="fx-expr">σ_x̄ = σ / √n</div><div class="team-bio">表 6-2;σ 為母體標準差</div></div><div class="team-card"><div class="team-role keepcase">平均數標準誤(以樣本估計)</div><div class="fx-expr">s_x̄ = s / √n</div><div class="team-bio">表 6-2;s 為樣本標準差,n 為樣本數</div></div><div class="team-card"><div class="team-role keepcase">樣本平均數的 z 分數(σ 已知)</div><div class="fx-expr">z = (X̄ − μ) / σ_x̄</div><div class="team-bio">表 6-3;機率查附錄 A</div></div><div class="team-card"><div class="team-role keepcase">樣本平均數的 t 值(σ 未知)</div><div class="fx-expr">t = (X̄ − μ) / s_x̄</div><div class="team-bio">表 6-3;機率依自由度查附錄 B</div></div><div class="team-card"><div class="team-role keepcase">推論統計量的共同形式</div><div class="fx-expr">統計量 = 樣本統計量的大小 / 標準誤</div><div class="team-bio">例:60 / 10 = 6</div></div></div></section>
+
+<section class="slide slide-7" data-ch="6">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 06 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">標準誤的兩種定義</div><div class="step-desc">技術定義:標準誤是某個統計量(平均數、兩平均數之差、相關係數等)抽樣分布的標準差。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">平均數的抽樣分布與期望值</div><div class="step-desc">想知道美國成年女性平均鞋碼,隨機抽 100 人;再抽另一組 100 人,平均鞋碼多半不同。抽 1000 組,就得到 1000 個平均數組成的分布。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">標準誤的計算與中央極限定理</div><div class="step-desc">研究者通常只有一個樣本,只能把樣本當作母體的最佳猜測,再問:這個猜測預期會差多少?</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">常態分布與 t 分布:z 與 t</div><div class="step-desc">把 z 公式中的原始分數換成樣本平均數、標準差換成標準誤,就能求「抽到某個樣本平均數」的機率。</div></div></div></section>
+
+<section class="slide slide-2 bg-green" data-ch="6">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 06 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">樣本數與標準差如何左右標準誤</h2>
+    <div class="warn"><b>臨床上怎麼想</b>在兩間病房各量 30 位病人的收縮壓,兩個平均值不會一樣,這種樣本間的晃動就是標準誤。每間若改量 300 位,平均值會穩定得多;所以論文報告平均數時附上 SE,是在說明這個估計有多可靠。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>題目「希望在測驗中考好」:小學生 s = 1.38、n = 137,標準誤 0.12;國中生 s = 1.46、n = 546,標準誤 0.06,差別幾乎全來自樣本數。改看小學生語文測驗分數,s = 23.81、n 仍為 137,標準誤升至 2.04:標準差越大,標準誤越大。</p></div>
+    
+  </div></section>
+
+<section class="slide slide-3" data-ch="6">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 06 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>標準誤不是標準差:前者描述樣本統計量的變動,後者描述個別分數的變動。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>抽樣分布是理論上的分布,研究者實際上只有一個樣本,標準誤是估計出來的。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>母體標準差未知或樣本小時應使用 t 分布,不該直接套用常態 z 表。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>樣本越大標準誤越小,越容易顯著;顯著與否因此受樣本數左右。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-pink" data-ch="6">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 06 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">標準差與標準誤描述的對象有何不同?</div><details><summary>看答案</summary><div class="team-bio">標準差描述一個分布中個別分數離平均數的典型距離;標準誤描述抽樣分布中各個樣本平均數離母體平均數的典型距離,也就是用樣本估計母體時預期的誤差。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">樣本平均 65、母體平均 60、s = 10。為什麼 n = 144 時 t = 6.02,n = 25 時只有 2.50?</div><details><summary>看答案</summary><div class="team-bio">差距同為 5,但標準誤是 s / √n:n = 144 時約 0.83,n = 25 時為 2。分母越小 t 越大,所以大樣本下同樣的差距更不像隨機造成。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">中央極限定理為什麼對推論統計很重要?</div><details><summary>看答案</summary><div class="team-bio">計算機率需要抽樣分布為常態。該定理說明只要樣本夠大(約 30 以上),即使原始資料不是常態,平均數的抽樣分布也近似常態,因此仍可用常態或 t 分布求機率。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="7" style="background:var(--pink);">
   <div class="deco-dots"></div>
@@ -1639,9 +1930,40 @@
 <section class="slide slide-cmp" data-ch="7">
   <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 07 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">三個工具各回答一個問題</h2></div>
   <table class="cmp gen"><thead><tr><th>工具</th><th>回答的問題</th><th>怎麼看</th><th>提醒</th></tr></thead><tbody>
-  <tr><th>統計顯著性</th><td>是不是巧合?</td><td>p &lt; α 就拒絕虛無假設</td><td>樣本很大時,很小的差異也會顯著</td></tr><tr><th>效應量</th><td>差多少?</td><td>例:Cohen's d = 平均數的差 ÷ 標準差</td><td>不會因樣本數變大而膨脹</td></tr><tr><th>信賴區間</th><td>真值在哪?</td><td>估計值 ± 臨界值 × 標準誤</td><td>越窄代表估計越精確</td></tr>
+  <tr><th>統計顯著性</th><td data-label="回答的問題">是不是巧合?</td><td data-label="怎麼看">p &lt; α 就拒絕虛無假設</td><td data-label="提醒">樣本很大時,很小的差異也會顯著</td></tr><tr><th>效應量</th><td data-label="回答的問題">差多少?</td><td data-label="怎麼看">例:Cohen's d = 平均數的差 ÷ 標準差</td><td data-label="提醒">不會因樣本數變大而膨脹</td></tr><tr><th>信賴區間</th><td data-label="回答的問題">真值在哪?</td><td data-label="怎麼看">估計值 ± 臨界值 × 標準誤</td><td data-label="提醒">越窄代表估計越精確</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>p 值回答:這個結果可能只是抽樣的巧合嗎?</span></div><div class="take"><span class="list-num">02</span><span>效應量回答:差異到底有多大?</span></div><div class="take"><span class="list-num">03</span><span>信賴區間回答:母體的真實數值大概落在哪?</span></div></div></section>
+
+<section class="slide slide-9 bg-green" data-ch="7">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 07 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">型一錯誤</div><div class="team-role keepcase">Type I error</div><div class="team-bio">虛無假設其實為真，卻被我們拒絕了。</div></div><div class="team-card"><div class="team-name">α 水準（顯著水準）</div><div class="team-role keepcase">alpha level</div><div class="team-bio">事前決定可容忍的型一錯誤機率，慣例 0.05。</div></div><div class="team-card"><div class="team-name">效應量（效果量）</div><div class="team-role keepcase">effect size</div><div class="team-bio">以標準差為單位表示效應大小，不受樣本數影響。</div></div><div class="team-card"><div class="team-name">實務顯著性</div><div class="team-role keepcase">practical significance</div><div class="team-bio">結果在真實世界是否重要，屬主觀判斷。</div></div><div class="team-card"><div class="team-name">信賴區間</div><div class="team-role keepcase">confidence interval</div><div class="team-bio">以一定信心水準（如 95%）涵蓋母體參數的數值範圍。</div></div><div class="team-card"><div class="team-name">隨機抽樣誤差</div><div class="team-role keepcase">random sampling error</div><div class="team-bio">單純因為抽到哪些人而造成樣本與母體的落差。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="7">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 07 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">平均數的標準誤</div><div class="fx-expr">s_x̄ = s / √n</div><div class="team-bio">樣本越大，標準誤越小</div></div><div class="team-card"><div class="team-role keepcase">單一樣本 t 值</div><div class="fx-expr">t = (X̄ − μ) / s_x̄</div><div class="team-bio">差異以標準誤為單位</div></div><div class="team-card"><div class="team-role keepcase">效應量 d</div><div class="fx-expr">d = (X̄ − μ) / S，其中 S = s_x̄ × √n</div><div class="team-bio">差異以標準差為單位，與 n 無關</div></div><div class="team-card"><div class="team-role keepcase">95% 信賴區間</div><div class="fx-expr">CI₉₅ = X̄ ± (t₉₅)(s_x̄)</div><div class="team-bio">t₉₅ 為雙尾 α=0.05 的臨界 t 值</div></div><div class="team-card"><div class="team-role keepcase">99% 信賴區間</div><div class="fx-expr">CI₉₉ = X̄ ± (t₉₉)(s_x̄)</div><div class="team-bio">t₉₉ 為雙尾 α=0.01 的臨界 t 值</div></div><div class="team-card"><div class="team-role keepcase">雙尾假設</div><div class="fx-expr">H₀: μ = X̄ ；H_A: μ ≠ X̄</div><div class="team-bio">單尾時對立假設寫成 μ &lt; X̄ 之類的方向式</div></div></div></section>
+
+<section class="slide slide-7" data-ch="7">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 07 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">敘述統計與推論統計、樣本與母體</div><div class="step-desc">敘述統計只描述手上這批資料；推論統計則用樣本資料去推斷樣本所代表的更大母體。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">機率、假設檢定與型一錯誤</div><div class="step-desc">每個統計量（平均數、r、t、F、迴歸係數）都有抽樣分布與標準誤，據此可算出碰巧得到某統計值的機率。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">效應量：把樣本數的影響拿掉</div><div class="step-desc">檢定統計量多半是「差異 ÷ 標準誤」，樣本越大標準誤越小、統計值越大，所以顯著性高度受樣本數左右。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">信賴區間：母體參數可能落在哪</div><div class="step-desc">信賴區間以樣本統計值為中心，向兩側各加減「臨界 t 值 × 標準誤」，通常算 95% 或 99%。</div></div></div></section>
+
+<section class="slide slide-2 bg-pink" data-ch="7">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 07 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">加州高中生「表現目標」動機量表的單一樣本 t 檢定</h2>
+    <div class="warn"><b>臨床上怎麼想</b>比較新舊敷料的傷口癒合天數時，若收案數千人，差 0.2 天也可能 p&lt;0.05；此時要看效應量與信賴區間，判斷這點差距是否值得改變病房常規與成本。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>以 5 題、1–5 分的表現目標量表調查加州高中生，樣本平均 3.04、標準差 0.98，與假定的全美平均 3.00 比較。t(489)=1.012、p=0.312，不顯著；95% 信賴區間 2.958–3.132 涵蓋 3.00；效應量 d≈0.05。三項指標一致：加州學生與全美學生沒有實質差別。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>加州高中生在表現目標量表的平均分數（M = 3.04, SD = 0.98）與全美假定平均 3.00 無顯著差異，t(489) = 1.01, p = .31, d = 0.05, 95% CI [2.96, 3.13]。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="7">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 07 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>統計顯著不等於實務上重要：樣本很大時，IQ 差 1 分也會顯著。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>不顯著不等於沒有效應：n=4 時 IQ 差 15 分也達不到顯著。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>拒絕虛無假設仍可能是型一錯誤；p 值只是機率，不是證明。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>效應量大小的門檻只是參考，重要與否要看研究情境與利害關係人。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-yellow" data-ch="7">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 07 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">兩個研究的平均差與標準差完全相同，為什麼一個顯著、一個不顯著？</div><details><summary>看答案</summary><div class="team-bio">因為樣本數不同。標準誤等於標準差除以樣本數的平方根，樣本大則標準誤小、t 值大、p 值小；效應量 d 不含樣本數，所以兩者 d 相同。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">95% 信賴區間不包含虛無假設所設定的母體值，代表什麼？</div><details><summary>看答案</summary><div class="team-bio">代表在 α=0.05 的雙尾檢定下結果達統計顯著，樣本很可能不是來自該假定母體；鞋碼例子的區間 9.88–10.12 不含 9 就是如此。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">把 α 從 0.05 改成 0.01 有什麼意義與代價？</div><details><summary>看答案</summary><div class="team-bio">代表願意承擔的型一錯誤機率由 5% 降到 1%，判定更保守；代價是需要更小的 p 值才能拒絕虛無假設，對應的信賴區間也會變寬。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="8" style="background:var(--yellow);">
   <div class="deco-dots"></div>
@@ -1680,9 +2002,40 @@
 <section class="slide slide-cmp" data-ch="8">
   <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">四種常見型態</h2></div>
   <table class="cmp gen"><thead><tr><th>型態</th><th>長相</th><th>例子</th></tr></thead><tbody>
-  <tr><th>正相關</th><td>一起高、一起低</td><td>讀書時數與成績</td></tr><tr><th>負相關</th><td>一個高、另一個低</td><td>缺課次數與成績</td></tr><tr><th>零相關</th><td>看不出直線關係</td><td>鞋子尺寸與成績</td></tr><tr><th>曲線關係</th><td>先升後降;r 會低估</td><td>焦慮程度與表現</td></tr>
+  <tr><th>正相關</th><td data-label="長相">一起高、一起低</td><td data-label="例子">讀書時數與成績</td></tr><tr><th>負相關</th><td data-label="長相">一個高、另一個低</td><td data-label="例子">缺課次數與成績</td></tr><tr><th>零相關</th><td data-label="長相">看不出直線關係</td><td data-label="例子">鞋子尺寸與成績</td></tr><tr><th>曲線關係</th><td data-label="長相">先升後降;r 會低估</td><td data-label="例子">焦慮程度與表現</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>r 介於 −1 到 +1:符號看方向,絕對值看強度</span></div><div class="take"><span class="list-num">02</span><span>r² 是兩個變項共享的變異比例</span></div><div class="take"><span class="list-num">03</span><span>r 只抓直線關係,也會受極端值與全距受限影響</span></div></div></section>
+
+<section class="slide slide-9 bg-pink" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">共變數</div><div class="team-role keepcase">covariance</div><div class="team-bio">交乘積的平均；標準化之後就是相關係數。</div></div><div class="team-card"><div class="team-name">共享變異量</div><div class="team-role keepcase">shared variance</div><div class="team-bio">兩個相關變項彼此重疊的那部分變異。</div></div><div class="team-card"><div class="team-name">曲線關係</div><div class="team-role keepcase">curvilinear</div><div class="team-bio">關係在某段為正、另一段為負，r 會低估其強度。</div></div><div class="team-card"><div class="team-name">全距限縮（截斷範圍）</div><div class="team-role keepcase">truncated range</div><div class="team-bio">分數擠在頂端或底端，變異不足而壓低相關。</div></div><div class="team-card"><div class="team-name">散布圖</div><div class="team-role keepcase">scattergram</div><div class="team-bio">把每人兩個變項的分數畫成一個點的圖。</div></div><div class="team-card"><div class="team-name">斯皮爾曼等級相關</div><div class="team-role keepcase">Spearman rho coefficient</div><div class="team-bio">兩個次序變項之間的相關係數。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">皮爾森相關係數（定義式）</div><div class="fx-expr">r = Σ(z_x · z_y) / N</div><div class="team-bio">z 分數交乘積的平均；N 為配對數</div></div><div class="team-card"><div class="team-role keepcase">相關係數的假設</div><div class="fx-expr">H₀: ρ = 0 ；H₁: ρ ≠ 0</div><div class="team-bio">檢定 r 是否顯著異於 0</div></div><div class="team-card"><div class="team-role keepcase">相關係數的標準誤</div><div class="fx-expr">s_r = √( (1 − r²) / (N − 2) )</div><div class="team-bio">書中僅供了解，實算用下式</div></div><div class="team-card"><div class="team-role keepcase">相關係數的 t 檢定</div><div class="fx-expr">t = (r − ρ) / s_r = r · √( (N − 2) / (1 − r²) )，df = N − 2</div><div class="team-bio">虛無假設下 ρ = 0</div></div><div class="team-card"><div class="team-role keepcase">決定係數</div><div class="fx-expr">r² = r × r</div><div class="team-bio">共享（可解釋）變異的比例</div></div></div></section>
+
+<section class="slide slide-7" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">相關的用途：方向與強度</div><div class="step-desc">皮爾森 r 要求兩個變項都是等距或比率尺度的連續變項，且每位受試者的兩個分數必須成對。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">皮爾森 r 怎麼算、代表什麼</div><div class="step-desc">書中採定義式：先把兩變項都轉成 z 分數，逐人相乘得交乘積，加總後除以配對數 N。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">相關說了什麼、沒說什麼</div><div class="step-desc">相關不等於因果：鸛鳥數量與嬰兒出生數同時上升，其實都源自寒冬這個第三變項。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">顯著性檢定與決定係數</div><div class="step-desc">檢定的虛無假設是母體相關 ρ 等於 0，對立假設是 ρ 不等於 0，使用 t 分布，自由度為 N − 2。</div></div></div></section>
+
+<section class="slide slide-2 bg-yellow" data-ch="8">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 08 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">高中生學業成績平均（GPA）與 Naglieri 非語文能力測驗的相關</h2>
+    <div class="warn"><b>臨床上怎麼想</b>護理人員每月夜班數與疲勞量表分數若 r=0.40，只能說夜班多的人平均較疲勞（共享 16% 變異），不能直接說夜班造成疲勞，年資、家庭照顧負荷都可能是第三變項。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>加州一所高中 314 名十一年級學生的累積 GPA 與 Naglieri 非語文能力測驗分數，r=0.4291、p&lt;0.0001，為中等且顯著的正相關。r²≈0.18，GPA 只解釋測驗分數約 18% 的變異，逾 80% 未被解釋，故作者認為教師評分與標準化測驗測到的是不同構念。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>GPA 與 Naglieri 測驗分數呈中等強度且顯著的正相關，r = .43, p &lt; .001；決定係數 r² = .18，表示測驗分數約 18% 的變異可由 GPA 解釋。（書中指出報告相關時很少附 t 值。）</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>顯著的相關不代表因果，可能有第三變項同時影響兩者（鸛鳥與嬰兒、日照與氣溫）。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>r 只反映直線關係，曲線關係會讓 r 接近 0 而被誤判為無關。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>天花板或地板效應使分數範圍被截斷，會低估真實的相關強度。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>強弱門檻只是經驗法則：酒精與肝病的 r=0.15 也可能非常重要。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-blue" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">兩變項的 r 接近 0，可以斷定它們沒有關係嗎？</div><details><summary>看答案</summary><div class="team-bio">不行。r 只衡量線性關係，若關係是先升後降的曲線，或其中一個變項的分數範圍被截斷，r 都會很小，卻不代表兩者真的無關，應先看散布圖。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">r = 0.25、N = 100 的相關達顯著，這個關係算強嗎？</div><details><summary>看答案</summary><div class="team-bio">不算強。r² 只有 0.0625，即約 6% 的共享變異；它顯著主要是因為樣本夠大（t=2.56、df=98）。顯著性與關係強度是兩回事。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">為什麼說相關係數是「標準化的共變數」？</div><details><summary>看答案</summary><div class="team-bio">共變數是兩變項離均差交乘積的平均，單位受原始量尺影響；先把兩變項轉成 z 分數再求交乘積平均，就消除了單位，結果被限制在 −1 到 +1，這就是 r。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="9" style="background:var(--green);">
   <div class="deco-dots"></div>
@@ -1725,9 +2078,40 @@
 <section class="slide slide-cmp" data-ch="9">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 09 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">獨立樣本 vs 相依樣本</h2></div>
   <table class="cmp gen"><thead><tr><th></th><th>獨立樣本 t 檢定</th><th>相依(成對)樣本 t 檢定</th></tr></thead><tbody>
-  <tr><th>資料</th><td>兩組不同的人</td><td>同一批人量兩次,或配對樣本</td></tr><tr><th>例子</th><td>男生 vs 女生</td><td>前測 vs 後測</td></tr><tr><th>分母</th><td>兩組平均數差異的標準誤</td><td>差異分數的標準誤</td></tr><tr><th>自由度</th><td>n₁ + n₂ − 2</td><td>配對數 − 1</td></tr>
+  <tr><th>資料</th><td data-label="獨立樣本 t 檢定">兩組不同的人</td><td data-label="相依(成對)樣本 t 檢定">同一批人量兩次,或配對樣本</td></tr><tr><th>例子</th><td data-label="獨立樣本 t 檢定">男生 vs 女生</td><td data-label="相依(成對)樣本 t 檢定">前測 vs 後測</td></tr><tr><th>分母</th><td data-label="獨立樣本 t 檢定">兩組平均數差異的標準誤</td><td data-label="相依(成對)樣本 t 檢定">差異分數的標準誤</td></tr><tr><th>自由度</th><td data-label="獨立樣本 t 檢定">n₁ + n₂ − 2</td><td data-label="相依(成對)樣本 t 檢定">配對數 − 1</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>獨立樣本:比較兩組不同的人</span></div><div class="take"><span class="list-num">02</span><span>相依樣本:同一批人前後比,或配對的人互比</span></div><div class="take"><span class="list-num">03</span><span>t 越大(差距相對於誤差越大),越可能顯著</span></div></div></section>
+
+<section class="slide slide-9 bg-yellow" data-ch="9">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 09 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">t 分布</div><div class="team-role keepcase">t distribution</div><div class="team-bio">形狀隨自由度改變的一族分布，樣本小時取代常態分布。</div></div><div class="team-card"><div class="team-name">自由度</div><div class="team-role keepcase">degrees of freedom</div><div class="team-bio">獨立樣本為 n₁+n₂−2，相依樣本為配對數−1。</div></div><div class="team-card"><div class="team-name">自變項與依變項</div><div class="team-role keepcase">independent / dependent variable</div><div class="team-bio">t 檢定的自變項是兩類的類別變項，依變項為連續變項。</div></div><div class="team-card"><div class="team-name">變異數同質性（Levene 檢定）</div><div class="team-role keepcase">Levene's test for equality of variances</div><div class="team-bio">檢查兩組變異數是否相近，決定讀 SPSS 哪一列。</div></div><div class="team-card"><div class="team-name">效應量</div><div class="team-role keepcase">effect size</div><div class="team-bio">把平均數差異換算成標準差單位，判斷實務重要性。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="9">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 09 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">獨立樣本 t 值</div><div class="fx-expr">t = (X̄₁ − X̄₂) / s_(x̄₁−x̄₂)，df = n₁ + n₂ − 2</div><div class="team-bio">觀察差異除以差異的標準誤</div></div><div class="team-card"><div class="team-role keepcase">差異的標準誤（兩組人數相近）</div><div class="fx-expr">s_(x̄₁−x̄₂) = √( s_x̄₁² + s_x̄₂² )</div><div class="team-bio">合併兩組各自的平均數標準誤</div></div><div class="team-card"><div class="team-role keepcase">獨立樣本 t 檢定的效應量</div><div class="fx-expr">d = (X̄₁ − X̄₂) / Ŝ，其中 Ŝ = √n₁ × s_(x̄₁−x̄₂)</div><div class="team-bio">書中例：√50×0.40=2.83，d=0.35</div></div><div class="team-card"><div class="team-role keepcase">相依樣本 t 值</div><div class="fx-expr">t = (X̄ − Ȳ) / s_D̄，df = N − 1</div><div class="team-bio">N 為配對數</div></div><div class="team-card"><div class="team-role keepcase">相依樣本差異的標準誤</div><div class="fx-expr">s_D̄ = s_D / √N</div><div class="team-bio">差值的標準差除以配對數平方根</div></div><div class="team-card"><div class="team-role keepcase">差值的標準差</div><div class="fx-expr">s_D = √( ( ΣD² − (ΣD)² / N ) / (N − 1) )，D = X − Y</div><div class="team-bio">D 為每一對分數的差</div></div></div></section>
+
+<section class="slide slide-7" data-ch="9">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 09 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">什麼是 t 檢定與 t 分布</div><div class="step-desc">日常說法是比較兩個平均數是否顯著不同；較技術的定義是任何利用 t 分布（Student's t）進行的統計檢定。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">獨立樣本 t 檢定詳解</div><div class="step-desc">核心問題：兩樣本平均數的觀察差異，相對於單純抽樣就會出現的預期差異（標準誤）而言夠不夠大。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">相依（成對）樣本 t 檢定詳解</div><div class="step-desc">與獨立樣本的差別在於：這裡比較的是同一批人在兩個變項（如休假前、休假後）上的平均數。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">實例：性別與年級的 GPA 比較</div><div class="step-desc">獨立樣本：六年級男生 361 人平均 6.58、女生 349 人平均 8.14，差 −1.56，標準誤 0.210，t(708)=−7.45。</div></div></div></section>
+
+<section class="slide slide-2 bg-blue" data-ch="9">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 09 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">Midgley 等人縱貫研究的學生 GPA：男女比較與五、六年級比較</h2>
+    <div class="warn"><b>臨床上怎麼想</b>比較實驗病房與對照病房病人的疼痛分數，用獨立樣本 t 檢定；同一批病人衛教前後的自我照顧分數，則用成對樣本 t 檢定，因為每個人自己就是自己的對照。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>獨立樣本：六年級男生（n=361, M=6.58）與女生（n=349, M=8.14），Levene 檢定不顯著，t(708)=−7.45、p&lt;0.001，女生較高。相依樣本：689 名學生五年級 GPA 8.08、六年級 7.35，t(688)=8.19、p&lt;0.001，顯著下降。樣本大，仍須評估實務重要性。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以相依樣本 t 檢定比較學生五年級與六年級的 GPA，差異達顯著，t(688) = 8.19, p &lt; .001；五年級（M = 8.08）高於六年級（M = 7.35）。獨立樣本寫法相同：t(708) = −7.45, p &lt; .001，並附兩組平均數。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="9">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 09 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>同一群人的前後測要用相依樣本 t 檢定，誤用獨立樣本會算錯標準誤與自由度。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>獨立樣本 t 檢定假設兩組變異數相近；違反且人數懸殊時要看調整列或改用無母數方法。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>SPSS 的 p=0.000 不是機率為零，應寫成 p&lt;0.001。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>樣本大時小差異也會顯著，要回頭看原始分數差距與效應量。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-cream" data-ch="9">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 09 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">獨立樣本與相依樣本 t 檢定的自由度為何不同？</div><details><summary>看答案</summary><div class="team-bio">獨立樣本有兩組各自估計平均數，自由度為 n₁+n₂−2；相依樣本實際分析的是一組差值，只估計一個平均差，所以是配對數減 1。例如 689 對分數的 df 為 688。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">「平均數差異的標準誤」為 0.40 是什麼意思？</div><details><summary>看答案</summary><div class="team-bio">表示若母體之間其實沒有差異，反覆隨機各抽 50 人，兩樣本平均數之間平均會相差約 0.40 分。觀察到的差 1.0 是它的 2.5 倍，所以 t=2.50。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">SPSS 的獨立樣本輸出有「變異數相等」與「不相等」兩列，怎麼選？</div><details><summary>看答案</summary><div class="team-bio">先看 Levene 檢定。p 大於 0.05（如書中 p=0.424）表示兩組變異數無顯著差異，讀相等那一列；若顯著，則讀不相等那一列，其自由度已被調小。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="10" style="background:var(--green);">
   <div class="deco-dots"></div>
@@ -1769,9 +2153,40 @@
 <section class="slide slide-cmp" data-ch="10">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">ANOVA 把變異切成兩塊</h2></div>
   <table class="cmp gen"><thead><tr><th>來源</th><th>在量什麼</th><th>自由度</th></tr></thead><tbody>
-  <tr><th>組間</th><td>各組平均數離總平均多遠</td><td>組數 − 1</td></tr><tr><th>組內(誤差)</th><td>每個人離自己那組的平均多遠</td><td>總人數 − 組數</td></tr><tr><th>F</th><td>組間均方 ÷ 組內均方</td><td>用兩個自由度查 F 表</td></tr>
+  <tr><th>組間</th><td data-label="在量什麼">各組平均數離總平均多遠</td><td data-label="自由度">組數 − 1</td></tr><tr><th>組內(誤差)</th><td data-label="在量什麼">每個人離自己那組的平均多遠</td><td data-label="自由度">總人數 − 組數</td></tr><tr><th>F</th><td data-label="在量什麼">組間均方 ÷ 組內均方</td><td data-label="自由度">用兩個自由度查 F 表</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>F = 組間均方 ÷ 組內均方</span></div><div class="take"><span class="list-num">02</span><span>連做好幾次 t 檢定會讓型一錯誤膨脹,所以改用一次 ANOVA</span></div><div class="take"><span class="list-num">03</span><span>F 顯著只說「至少有一組不同」,要做事後比較才知道是哪幾組</span></div></div></section>
+
+<section class="slide slide-9 bg-blue" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">均方</div><div class="team-role keepcase">mean square</div><div class="team-bio">平方和除以自由度,把總量換成平均量後才能相除成 F。</div></div><div class="team-card"><div class="team-name">型一錯誤膨脹</div><div class="team-role keepcase">Type I error inflation</div><div class="team-bio">t 檢定做越多次,誤判為顯著的機會越高,這是改用 ANOVA 的理由。</div></div><div class="team-card"><div class="team-name">事後比較</div><div class="team-role keepcase">post hoc tests</div><div class="team-bio">F 顯著後逐對比較各組平均數,找出究竟哪幾組不同。</div></div><div class="team-card"><div class="team-name">Tukey HSD</div><div class="team-role keepcase">Tukey honestly significant difference</div><div class="team-bio">常用事後比較;兩組平均數差除以 √(MSe/ng),對照學生化全距臨界值。</div></div><div class="team-card"><div class="team-name">事前比較</div><div class="team-role keepcase">a priori contrasts</div><div class="team-bio">依假設事先計畫的特定對比,可將數組合併後再比較。</div></div><div class="team-card"><div class="team-name">η² 效應量</div><div class="team-role keepcase">eta squared</div><div class="team-bio">依變項變異中可由分組解釋的比例,性質等同決定係數。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">F 值</div><div class="fx-expr">F = MSb / MSe</div><div class="team-bio">組間均方除以誤差均方(組內均方)</div></div><div class="team-card"><div class="team-role keepcase">誤差平方和</div><div class="fx-expr">SSe = Σ(X − X̄₁)² + Σ(X − X̄₂)² + … + Σ(X − X̄_k)²</div><div class="team-bio">各組內個別值與該組平均數的離差平方,全部加總</div></div><div class="team-card"><div class="team-role keepcase">組間平方和</div><div class="fx-expr">SSb = Σ[ n (X̄ − X̄_T)² ]</div><div class="team-bio">組平均數減總平均數,平方後乘該組人數再加總</div></div><div class="team-card"><div class="team-role keepcase">總平方和</div><div class="fx-expr">SST = Σ(X − X̄_T)² = SSb + SSe</div><div class="team-bio">ANOVA 拆解變異的核心等式</div></div><div class="team-card"><div class="team-role keepcase">均方</div><div class="fx-expr">MSb = SSb / (K − 1);MSe = SSe / (N − K)</div><div class="team-bio">平方和除以各自的自由度</div></div><div class="team-card"><div class="team-role keepcase">Tukey HSD</div><div class="fx-expr">Tukey HSD = (X̄₁ − X̄₂) / s_x̄,s_x̄ = √( MSe / ng )</div><div class="team-bio">各組人數相同時,每對比較共用同一個標準誤</div></div></div></section>
+
+<section class="slide slide-7" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">何時用單因子 ANOVA、為何不做多次 t 檢定</div><div class="step-desc">需要一個類別(名義)自變項把人分成至少兩個獨立組別,以及一個連續依變項,例如三種洋芋片口味的 1–7 分喜好評分。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">拆解變異:平方和、均方與 F 值</div><div class="step-desc">個別分數與所屬組平均數的差距視為隨機誤差(組內);各組平均數與總平均數的差距則是組間離差,兩者相加等於個別分數到總平均數的總離差。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">事後比較與事前比較</div><div class="step-desc">顯著的 F 只說明至少有兩組平均數不同,沒有指出是哪幾組,必須再做事後比較逐對檢查。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">效應量 η² 與 SPSS 報表</div><div class="step-desc">除了 d 之外,另一種效應量是依變項變異中被自變項解釋的比例,即 η²,概念上與決定係數 r² 相同。</div></div></div></section>
+
+<section class="slide slide-2 bg-cream" data-ch="10">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 10 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">5 歲、8 歲、12 歲孩子對泡泡糖口味冰淇淋的喜好</h2>
+    <div class="warn"><b>臨床上怎麼想</b>比較三種翻身頻率(每 2、3、4 小時)病人的壓傷風險評分時,先用單因子變異數分析看整體是否有差異,顯著後再以 Tukey 找出哪兩種頻率之間不同,而不是直接跑三次 t 檢定。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>三組各 5 人以 1–5 分評分,平均 4.2、3.8、2.4,總平均 3.47。SSe = 10.8、SSb = 8.90,MSe = 0.90、MSb = 4.45,F = 4.94,大於臨界值 3.88。Tukey 值 0.95、4.29、3.33 中只有 5 歲對 12 歲超過 3.77,僅這一對顯著不同。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以單因子變異數分析比較三個年齡組的喜好程度,組間差異達顯著,F(2, 12) = 4.94, p &lt; .05;Tukey 事後比較顯示僅 5 歲組(M = 4.20)顯著高於 12 歲組(M = 2.40)。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>F 顯著只代表至少有兩組平均數不同,不能直接說每一組都不同,必須做事後比較。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>三組以上不要用多次 t 檢定取代 ANOVA,型一錯誤機率會隨檢定次數累積。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>Tukey HSD 的標準誤假設各組人數相等;組別人數不等時應改用其他事後比較。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>統計顯著不等於效果大,還要看 η² 解釋了多少比例的變異。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-green" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">為什麼比較三組平均數時,不建議直接做三次獨立樣本 t 檢定?</div><details><summary>看答案</summary><div class="team-bio">每做一次檢定都有機會把其實不存在的差異誤判為顯著,做三次等於讓型一錯誤的機會累積變大;ANOVA 以單一 F 檢定並把組數納入自由度來控制這個問題。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">計算組間平方和時,為什麼要把每組的離差平方乘上該組人數?</div><details><summary>看答案</summary><div class="team-bio">因為組平均數與總平均數的差距是該組每一個人共同貢獻的,乘上人數才近似反映整組所有成員對組間差異的總貢獻,也才能讓 SSb 與 SSe 相加等於 SST。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">某研究 F 顯著、η² = .13,而三組中有兩組平均數幾乎相同,該如何解讀?</div><details><summary>看答案</summary><div class="team-bio">F 顯著只表示至少一對組別不同,可能是其中一組特別高或低所致;需靠事後比較確認是哪一對,並說明分組約解釋依變項 13% 的變異。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="11" style="background:var(--green);">
   <div class="deco-dots"></div>
@@ -1816,9 +2231,40 @@
 <section class="slide slide-cmp" data-ch="11">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">2 × 2 設計一次回答三個問題</h2></div>
   <table class="cmp gen"><thead><tr><th>效果</th><th>在問什麼</th><th>圖上怎麼看</th></tr></thead><tbody>
-  <tr><th>因子 A 的主要效果</th><td>不管 B,A 的各水準平均有差嗎?</td><td>線的左右兩端平均高度不同</td></tr><tr><th>因子 B 的主要效果</th><td>不管 A,B 的各水準平均有差嗎?</td><td>兩條線的平均高度不同</td></tr><tr><th>A × B 交互作用</th><td>A 的效果在 B 的不同水準下一樣嗎?</td><td>兩條線不平行</td></tr>
+  <tr><th>因子 A 的主要效果</th><td data-label="在問什麼">不管 B,A 的各水準平均有差嗎?</td><td data-label="圖上怎麼看">線的左右兩端平均高度不同</td></tr><tr><th>因子 B 的主要效果</th><td data-label="在問什麼">不管 A,B 的各水準平均有差嗎?</td><td data-label="圖上怎麼看">兩條線的平均高度不同</td></tr><tr><th>A × B 交互作用</th><td data-label="在問什麼">A 的效果在 B 的不同水準下一樣嗎?</td><td data-label="圖上怎麼看">兩條線不平行</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>主要效果:一個因子自己造成的平均差異</span></div><div class="take"><span class="list-num">02</span><span>交互作用:一個因子的效果隨另一個因子而變</span></div><div class="take"><span class="list-num">03</span><span>交互作用顯著時,主要效果要小心解讀</span></div></div></section>
+
+<section class="slide slide-9 bg-cream" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">控制(淨)效果</div><div class="team-role keepcase">partial and controlled effects</div><div class="team-bio">把另一變項可解釋的變異先排除,再看剩下的組間差異。</div></div><div class="team-card"><div class="team-name">單純主要效果</div><div class="team-role keepcase">simple effects</div><div class="team-bio">比較個別細格的平均數,用來說明交互作用究竟發生在哪裡。</div></div><div class="team-card"><div class="team-name">共變數分析</div><div class="team-role keepcase">analysis of covariance (ANCOVA)</div><div class="team-bio">加入共變項,排除其解釋的變異後再比較各組平均數。</div></div><div class="team-card"><div class="team-name">細格人數</div><div class="team-role keepcase">cell size</div><div class="team-bio">自變項交叉出的每個小組人數;至少 10 人,最好 20 人以上。</div></div><div class="team-card"><div class="team-name">變異數同質性</div><div class="team-role keepcase">homogeneity of variance</div><div class="team-bio">假設各組組內變異大致相等;各格人數不等時更要檢查。</div></div><div class="team-card"><div class="team-name">調節變項</div><div class="team-role keepcase">moderator</div><div class="team-bio">改變另一自變項與依變項之間關係的變項。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">各效果的 F 值</div><div class="fx-expr">F_效果 = MS_效果 / MSe</div><div class="team-bio">每個主要效果與交互作用的均方,都除以同一個誤差均方</div></div><div class="team-card"><div class="team-role keepcase">均方</div><div class="fx-expr">MS = SS / df</div><div class="team-bio">例:校正模型 11.402 / 3 = 3.801</div></div><div class="team-card"><div class="team-role keepcase">效果數量</div><div class="fx-expr">2 個自變項 → 2 個主要效果 + 1 個雙向交互作用;3 個自變項 → 3 + 3 + 1(三向)</div><div class="team-bio">自變項越多,交互作用的層次越複雜</div></div></div></section>
+
+<section class="slide slide-7" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">何時使用與先決提醒</div><div class="step-desc">適用於一個等距或比率尺度的依變項,加上兩個以上名義自變項;例如性別(2)× 地區(4)對每週看電視時數,稱為 2 × 4 設計。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">主要效果與統計控制</div><div class="step-desc">多因子分析中的主要效果,是在控制(排除)其他自變項影響之後,某自變項各組在依變項上的平均差異。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">交互作用及其與主要效果的解讀</div><div class="step-desc">交互作用指一個自變項與依變項的關係隨另一自變項的水準而不同;兩個自變項有一個雙向交互作用,三個自變項則多出三個雙向與一個三向。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">單純主要效果與共變數分析</div><div class="step-desc">單純主要效果分析類似事後比較,用來檢驗特定細格平均數之間是否有顯著差異,幫助拆解顯著的交互作用。</div></div></div></section>
+
+<section class="slide slide-2 bg-green" data-ch="11">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 11 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">Burger(1987):有無選擇 × 公開或私密評價對解字謎表現的影響</h2>
+    <div class="warn"><b>臨床上怎麼想</b>衛教方式(影片或口頭)與病人年齡層(青壯或高齡)對服藥遵從度的影響:若影片只對青壯族群有效、對高齡者無效,就是交互作用,此時不能籠統地說影片衛教比較好。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>55 名大學生隨機分到 2 × 2 四組,依變項為兩分鐘內解出的字謎數。四組平均:公開有選擇 19.50、公開無選擇 14.86、私密有選擇 14.92、私密無選擇 15.36。兩個主要效果與交互作用都顯著,但主要效果全由公開且有選擇組的高分造成,須依交互作用解讀。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以 2(有無選擇)× 2(公開或私密)多因子變異數分析檢驗解出的字謎數:選擇主要效果顯著,F(1, 51) = 12.72, p &lt; .001;評價情境主要效果顯著,F(1, 51) = 14.10, p &lt; .001;交互作用亦顯著,F(1, 51) = 17.62, p &lt; .001,僅公開且有選擇組(M = 19.50)明顯高於其他三組。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>交互作用顯著時,只報「某組平均較高」的主要效果可能誤導,要說明該效果在哪些條件下才成立。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>自變項越多細格越多,每格人數不足(少於 10 人)時分析沒有意義。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>樣本大時微小差異也會顯著;η² 只有 .01–.04 時,實務上的重要性有限。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>各細格人數不等又變異不齊時,顯著性檢定的機率值會失準,要先檢查各組標準差。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-pink" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">多因子變異數分析算出的地區主要效果,與單獨對地區做單因子分析的結果有何關鍵差別?</div><details><summary>看答案</summary><div class="team-bio">多因子分析的主要效果已排除模型中其他自變項(如性別)可解釋的變異,因此能分辨地區差異是否只是各地區性別比例不同造成的副產品。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">表 11-1 中哪個現象暗示性別與地區有交互作用?</div><details><summary>看答案</summary><div class="team-bio">北、東、西部男生都比女生多看 5 小時電視,南部卻多 15 小時;性別差距的大小隨地區而變,代表性別與看電視時數的關係受地區調節。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">自我效能的例子中整體模型 p = .001,為何作者仍說不具實務顯著性?</div><details><summary>看答案</summary><div class="team-bio">因為 468 人的大樣本讓小差異也容易顯著,而 η² = .036 表示性別、成績及其交互作用合起來只解釋 3.6% 的變異,效果很小。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="12" style="background:var(--green);">
   <div class="deco-dots"></div>
@@ -1860,9 +2306,40 @@
 <section class="slide slide-cmp" data-ch="12">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 12 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">不同的人 vs 同一批人</h2></div>
   <table class="cmp gen"><thead><tr><th></th><th>獨立組(單因子 ANOVA)</th><th>重複測量 ANOVA</th></tr></thead><tbody>
-  <tr><th>比較的是</th><td>不同的人</td><td>同一批人的多次測量</td></tr><tr><th>誤差裡有</th><td>個別差異 + 隨機誤差</td><td>扣掉個別差異之後的誤差</td></tr><tr><th>優點</th><td>沒有練習或疲勞效應</td><td>需要的人少、檢定力高</td></tr><tr><th>風險</th><td>需要較多受試者</td><td>順序、練習、疲勞效應</td></tr>
+  <tr><th>比較的是</th><td data-label="獨立組(單因子 ANOVA)">不同的人</td><td data-label="重複測量 ANOVA">同一批人的多次測量</td></tr><tr><th>誤差裡有</th><td data-label="獨立組(單因子 ANOVA)">個別差異 + 隨機誤差</td><td data-label="重複測量 ANOVA">扣掉個別差異之後的誤差</td></tr><tr><th>優點</th><td data-label="獨立組(單因子 ANOVA)">沒有練習或疲勞效應</td><td data-label="重複測量 ANOVA">需要的人少、檢定力高</td></tr><tr><th>風險</th><td data-label="獨立組(單因子 ANOVA)">需要較多受試者</td><td data-label="重複測量 ANOVA">順序、練習、疲勞效應</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>同一批人被重複測量,叫受試者內設計</span></div><div class="take"><span class="list-num">02</span><span>個別差異不算進誤差,所以檢定力比較高</span></div><div class="take"><span class="list-num">03</span><span>可以再加入組別,看「時間 × 組別」的交互作用</span></div></div></section>
+
+<section class="slide slide-9 bg-green" data-ch="12">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 12 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">時間 × 組別交互作用</div><div class="team-role keepcase">within-by-between interaction</div><div class="team-bio">不同組別隨時間變化的幅度或方向是否不同。</div></div><div class="team-card"><div class="team-name">受試者 × 嘗試交互作用均方</div><div class="team-role keepcase">mean square for subject by trial interaction</div><div class="team-bio">每個人變化量的不一致程度,作為 F 值的分母(誤差項)。</div></div><div class="team-card"><div class="team-name">重複測量共變數分析</div><div class="team-role keepcase">repeated-measures ANCOVA</div><div class="team-bio">加入共變項,排除其解釋的變異後再檢驗隨時間的變化。</div></div><div class="team-card"><div class="team-name">分組變項</div><div class="team-role keepcase">group variable</div><div class="team-bio">模型中的類別自變項,用來比較不同組別。</div></div><div class="team-card"><div class="team-name">時間點/嘗試</div><div class="team-role keepcase">time, trial</div><div class="team-bio">依變項每一次的資料蒐集。</div></div><div class="team-card"><div class="team-name">誠實的座標軸</div><div class="team-role keepcase">honest y-axis</div><div class="team-bio">縱軸呈現量表完整範圍,才不會把小差異放大成大差異。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="12">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 12 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">重複測量 F 值</div><div class="fx-expr">F = MS_T / MS_S×T</div><div class="team-bio">時間點差異的均方除以受試者 × 嘗試交互作用的均方</div></div><div class="team-card"><div class="team-role keepcase">F 的自由度</div><div class="fx-expr">df = (T − 1),(T − 1)(S − 1)</div><div class="team-bio">T 為嘗試(時間點)數,S 為受試者人數</div></div></div></section>
+
+<section class="slide slide-7" data-ch="12">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 12 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">何時使用:從成對 t 檢定延伸</div><div class="step-desc">最基本的形式是單一組別在單一依變項上有兩次測量,例如同一批三年級生學年初與學年末的數學成績。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">變異如何拆解與 F 值</div><div class="step-desc">以 10 名學生三、四年級的詞彙測驗為例,共 20 個分數:時間 1 平均 51.5、時間 2 平均 61.5,總平均 56.75。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">加入共變項:重複測量共變數分析</div><div class="step-desc">共變項的作用是先吸收依變項的一部分變異,再檢驗剩下的變異中是否仍有受試者內的差異。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">加入分組自變項:受試者間效果與交互作用</div><div class="step-desc">把 10 名學生按性別分組後,男生兩次平均為 35 與 52,女生為 65 與 71;女生兩次都較高,這是受試者間(組間)主要效果。</div></div></div></section>
+
+<section class="slide slide-2 bg-pink" data-ch="12">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 12 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">學生參加標準化測驗(ITBS)前後對測驗效度信念的改變</h2>
+    <div class="warn"><b>臨床上怎麼想</b>追蹤同一批術後病人在第 1、3、7 天的疼痛分數,並比較兩種止痛方案:時間是受試者內因子,方案是受試者間因子;若兩組疼痛下降的速度不同,就是時間 × 組別的交互作用。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>約 570 名學生在測驗前後各填一次效度信念量表,以語文、數學成績為共變項、性別為分組變項。男生平均由 6.29 降到 6.01,女生 5.77 到 5.71 幾乎不變。性別、時間與兩者交互作用都顯著,但 η² 都在 .02 以下:下降只發生在男生,而且效果很小。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以性別為受試者間因子、語文與數學成績為共變項進行重複測量共變數分析:性別主要效果顯著,F(1, 567) = 11.55, p = .001;時間主要效果顯著,F(1, 567) = 10.62, p = .001;性別 × 時間交互作用顯著,F(1, 567) = 4.39, p &lt; .05,女生信念幾乎不變(M = 5.77 → 5.71),男生下降(M = 6.29 → 6.01)。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="12">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 12 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>平均數隨時間改變不一定是處理造成的,疲勞、厭煩或熟悉測驗情境都是可能的替代解釋。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>受試者內效果談的是平均變化;有人升有人降時可能互相抵銷,也可能只由少數人的大幅變化帶動。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>時間 × 組別交互作用顯著時,不能只說整體隨時間改變,要指出是哪一組在變。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>讀圖要看 Y 軸範圍;截短的座標軸會讓實務上很小的差異看起來很大。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-yellow" data-ch="12">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 12 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">重複測量變異數分析比相依樣本 t 檢定多了哪些能力?</div><details><summary>看答案</summary><div class="team-bio">它可以比較兩個以上的時間點,可以加入共變項做統計控制,還能加入分組自變項,同時檢驗組間差異以及各組隨時間變化的型態是否不同。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">最基本的重複測量設計中,F 值的分母是什麼?代表什麼意義?</div><details><summary>看答案</summary><div class="team-bio">分母是受試者 × 嘗試交互作用的均方,反映每個人從一個時間點到另一個時間點的變化量彼此有多不一致,相當於隨機變動的部分。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">測驗效度的例子中,時間主要效果顯著,為何不能直接說學生考完後變得較不相信測驗?</div><details><summary>看答案</summary><div class="team-bio">因為時間 × 性別交互作用也顯著:女生平均幾乎沒有變化,下降主要來自男生;而且 η² 只有約 .018,這個變化在實務上相當小。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="13" style="background:var(--yellow);">
   <div class="deco-dots"></div>
@@ -1903,9 +2380,40 @@
 <section class="slide slide-cmp" data-ch="13">
   <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">迴歸報表怎麼讀</h2></div>
   <table class="cmp gen"><thead><tr><th>數字</th><th>告訴你什麼</th></tr></thead><tbody>
-  <tr><th>R²</th><td>模型解釋了依變項多少比例的變異</td></tr><tr><th>F 檢定</th><td>整體模型是否顯著</td></tr><tr><th>B(未標準化係數)</th><td>X 每增加 1 單位,Y 的預測值改變多少</td></tr><tr><th>β(標準化係數)</th><td>比較各預測變項的相對強度</td></tr><tr><th>t 與 p</th><td>這個係數是否顯著不為 0</td></tr>
+  <tr><th>R²</th><td data-label="告訴你什麼">模型解釋了依變項多少比例的變異</td></tr><tr><th>F 檢定</th><td data-label="告訴你什麼">整體模型是否顯著</td></tr><tr><th>B(未標準化係數)</th><td data-label="告訴你什麼">X 每增加 1 單位,Y 的預測值改變多少</td></tr><tr><th>β(標準化係數)</th><td data-label="告訴你什麼">比較各預測變項的相對強度</td></tr><tr><th>t 與 p</th><td data-label="告訴你什麼">這個係數是否顯著不為 0</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>簡單迴歸:Ŷ = bX + a,b 是斜率、a 是截距</span></div><div class="take"><span class="list-num">02</span><span>多元迴歸看的是「控制其他變項後」每個預測變項的獨特貢獻</span></div><div class="take"><span class="list-num">03</span><span>R² 是模型解釋的變異比例;能預測不代表有因果</span></div></div></section>
+
+<section class="slide slide-9 bg-pink" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">殘差</div><div class="team-role keepcase">residual</div><div class="team-bio">觀察值減預測值的差,就是預測誤差;正值為低估、負值為高估。</div></div><div class="team-card"><div class="team-name">普通最小平方法迴歸</div><div class="team-role keepcase">ordinary least squares regression (OLS)</div><div class="team-bio">挑出使殘差平方和最小的那條直線當作迴歸線。</div></div><div class="team-card"><div class="team-name">多元迴歸(複迴歸)</div><div class="team-role keepcase">multiple regression</div><div class="team-bio">同時用兩個以上預測變項,可看整體解釋力與各自的獨特貢獻。</div></div><div class="team-card"><div class="team-name">多元相關係數與 R²</div><div class="team-role keepcase">multiple correlation coefficient (R), R²</div><div class="team-bio">R 是預測值與觀察值的相關;R² 是模型解釋的變異比例,也是效應量。</div></div><div class="team-card"><div class="team-name">標準化迴歸係數</div><div class="team-role keepcase">standardized regression coefficient (β)</div><div class="team-bio">把係數換成共同的標準分數尺度,才能比較哪個預測變項較強。</div></div><div class="team-card"><div class="team-name">多元共線性</div><div class="team-role keepcase">multicollinearity</div><div class="team-bio">預測變項彼此高度相關,使各自與依變項的獨特關係難以辨識。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">簡單迴歸方程式(預測值)</div><div class="fx-expr">Ŷ = bX + a</div><div class="team-bio">b 為斜率,a 為截距</div></div><div class="team-card"><div class="team-role keepcase">迴歸係數(斜率)</div><div class="fx-expr">b = r × ( s_y / s_x )</div><div class="team-bio">相關係數乘以 Y 與 X 標準差之比</div></div><div class="team-card"><div class="team-role keepcase">截距</div><div class="fx-expr">a = Ȳ − bX̄</div><div class="team-bio">先算出 b 才能算 a</div></div><div class="team-card"><div class="team-role keepcase">預測誤差(殘差)</div><div class="fx-expr">e = Y − Ŷ = Y − (a + bX)</div><div class="team-bio">觀察值減預測值</div></div><div class="team-card"><div class="team-role keepcase">含誤差的迴歸方程式(觀察值)</div><div class="fx-expr">Y = bX + a + e</div><div class="team-bio">描述實際值,把預測誤差算進來</div></div><div class="team-card"><div class="team-role keepcase">兩個預測變項的多元迴歸</div><div class="fx-expr">Ŷ = a + b₁X₁ + b₂X₂</div><div class="team-bio">每個 b 都是控制另一變項後的係數</div></div></div></section>
+
+<section class="slide slide-7" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">簡單迴歸與多元迴歸、可用的變項</div><div class="step-desc">簡單迴歸對應單因子變異數分析:一個預測變項配一個依變項;多元迴歸對應多因子設計,有兩個以上預測變項。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">簡單線性迴歸詳解:方程式、斜率與截距</div><div class="step-desc">迴歸方程式 Ŷ = bX + a:b 是未標準化迴歸係數(斜率),a 是截距,即 X 為 0 時的預測值。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">多元迴歸:共享變異、R² 與迴歸係數</div><div class="step-desc">加入第二個預測變項後方程式變成 Ŷ = a + b₁X₁ + b₂X₂,每個係數都是控制其他預測變項後的關係。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">例子與行文表述:預測自我設限策略</div><div class="step-desc">464 名高中生,以逃避目標、自我效能、性別(男 = 1、女 = 0 的虛擬編碼)與學業平均成績預測自我設限。</div></div></div></section>
+
+<section class="slide slide-2 bg-yellow" data-ch="13">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 13 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">用教育年數與工作年資預測月收入;再以四個變項預測高中生自我設限</h2>
+    <div class="warn"><b>臨床上怎麼想</b>想預測病人住院天數,可同時放入年齡、共病數與入院時功能分數。多元迴歸會告訴你三者合起來解釋多少變異,以及控制年齡與共病後,功能分數是否仍有獨立預測力。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>10 名成人中教育年數與月收入 r = 0.83,得 Ŷ = −3.77 + 0.61X:多讀一年書,預測月收入多 610 美元。加入工作年資後 R = .946、R² = .896,F = 30.095,兩個變項的 β(.676、.485)都顯著。真實資料(n = 464)中,四個變項解釋自我設限約 12% 變異,成績與自我效能負向、逃避目標正向、性別不顯著。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以多元迴歸檢驗自我設限的預測因子,同時投入逃避目標、學業平均成績、性別與自我效能四個變項,合計解釋 11% 的變異。除性別外皆為顯著預測變項:學業成績(β = −.21)與自我效能(β = −.20)為最強的負向預測因子,逃避目標則為正向預測(β = .13)。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>迴歸建立在相關之上,只能說變項如何相關與預測,不能證明誰造成誰。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>截距可能落在不合理的值(如月收入 −3.77 千美元),它只是 X = 0 的預測值,不必當真。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>未標準化係數 B 受測量單位影響,不能直接比大小;比較相對強度要看 β。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>預測變項彼此高度相關(多元共線性)時,各自的獨特貢獻會被吃掉;樣本太小(如書中示範的 10 人)也不適合跑多元迴歸。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-blue" data-ch="13">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 13 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">書中說簡單線性迴歸「其實不比相關更有用」,那為什麼還要學它?</div><details><summary>看答案</summary><div class="team-bio">因為它把關係寫成可代入的預測方程式,解讀較直觀(X 每增加一單位 Y 變多少),更重要的是它是理解多元迴歸的基礎,後者才能看控制他項後的獨特貢獻。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">多元迴歸中,某預測變項的迴歸係數顯著,這句話完整的意思是什麼?</div><details><summary>看答案</summary><div class="team-bio">指在控制(排除)模型中其他預測變項已解釋的變異之後,這個變項與依變項之間仍有顯著關係,也就是它的斜率顯著不為 0,具有獨特解釋力。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">如果兩個預測變項彼此相關高達 0.90,把兩個都放進模型會發生什麼事?</div><details><summary>看答案</summary><div class="team-bio">它們與依變項重疊的部分大多是共享變異,各自的獨特變異很小,所以第二個變項幾乎不增加解釋力,也難以分辨個別效果,這就是多元共線性。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="14" style="background:var(--cream);">
   <div class="deco-dots"></div>
@@ -1949,9 +2457,40 @@
 <section class="slide slide-cmp" data-ch="14">
   <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 14 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">卡方獨立性檢定四步驟</h2></div>
   <table class="cmp gen"><thead><tr><th>步驟</th><th>做什麼</th></tr></thead><tbody>
-  <tr><th>1</th><td>把觀察次數排成列聯表</td></tr><tr><th>2</th><td>算出每一格的期望次數</td></tr><tr><th>3</th><td>每一格算 (O − E)² ÷ E,全部加總得到 χ²</td></tr><tr><th>4</th><td>用自由度查表,和臨界值比較</td></tr>
+  <tr><th>1</th><td data-label="做什麼">把觀察次數排成列聯表</td></tr><tr><th>2</th><td data-label="做什麼">算出每一格的期望次數</td></tr><tr><th>3</th><td data-label="做什麼">每一格算 (O − E)² ÷ E,全部加總得到 χ²</td></tr><tr><th>4</th><td data-label="做什麼">用自由度查表,和臨界值比較</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>用在兩個類別變項的次數資料</span></div><div class="take"><span class="list-num">02</span><span>期望次數 = 列合計 × 行合計 ÷ 總數</span></div><div class="take"><span class="list-num">03</span><span>自由度 = (列數 − 1) × (行數 − 1)</span></div></div></section>
+
+<section class="slide slide-9 bg-yellow" data-ch="14">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 14 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">列聯表</div><div class="team-role keepcase">contingency table</div><div class="team-bio">把兩個類別變項交叉排列、每格放次數的表格。</div></div><div class="team-card"><div class="team-name">無母數統計</div><div class="team-role keepcase">nonparametric statistics</div><div class="team-bio">不依賴常態分布、變異數同質等假設的一組統計方法。</div></div><div class="team-card"><div class="team-name">卡方自由度</div><div class="team-role keepcase">degrees of freedom</div><div class="team-bio">(列數 − 1) × (行數 − 1),用來查卡方臨界值。</div></div><div class="team-card"><div class="team-name">曼-惠特尼 U 檢定</div><div class="team-role keepcase">Mann-Whitney U</div><div class="team-bio">用於次序資料,約等於獨立樣本 t 檢定的無母數版本。</div></div><div class="team-card"><div class="team-name">克-瓦二氏檢定</div><div class="team-role keepcase">Kruskal-Wallis</div><div class="team-bio">用於次序資料,約等於單因子變異數分析的無母數版本。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="14">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 14 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">卡方統計量</div><div class="fx-expr">χ² = Σ [ (O − E)² / E ]</div><div class="team-bio">每個細格算一次再全部加總</div></div><div class="team-card"><div class="team-role keepcase">細格期望次數</div><div class="fx-expr">E = (列合計 / N) × (行合計 / N) × N = (列合計 × 行合計) / N</div><div class="team-bio">例:100 × 65 / 200 = 32.5</div></div><div class="team-card"><div class="team-role keepcase">卡方獨立性檢定自由度</div><div class="fx-expr">df = (R − 1)(C − 1)</div><div class="team-bio">R 為列數、C 為行數;2 × 3 表 df = 2</div></div></div></section>
+
+<section class="slide slide-7" data-ch="14">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 14 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">為什麼需要無母數統計</div><div class="step-desc">母數統計假設資料取自常態母體,但社會科學的母體常偏態、測量困難、研究過程也不完美。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">卡方獨立性檢定詳解:從列聯表到 χ²</div><div class="step-desc">先在列聯表加上列合計、行合計與總數;細格期望次數 = 該列合計 × 該行合計 ÷ 總人數。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">例子:性別與移民世代是否獨立</div><div class="step-desc">若男生數學標準化測驗平均顯著高於女生,先別急著下結論,要檢查分組是否與其他因素糾纏。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">行文表述與總結</div><div class="step-desc">卡方結果的寫法很短:說明檢定目的,報告 χ² 值、自由度與是否顯著,再用一句話解釋。</div></div></div></section>
+
+<section class="slide slide-2 bg-blue" data-ch="14">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 14 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">性別 × 主修科系(虛構)與性別 × 移民世代(SPSS 實例)</h2>
+    <div class="warn"><b>臨床上怎麼想</b>想知道病房別(內科/外科/加護)與是否發生壓力性損傷有無關聯,可排成 3 × 2 列聯表:若各病房發生人數與「純憑機率」的期望人數差距夠大,χ² 就會顯著。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>男女各 100 人選心理、英語、生物:觀察次數男 35/50/15、女 30/25/45,心理與英語期望次數為 32.5、37.5。書中算得 χ² = 22.89,df = 2,遠大於臨界值 5.99,p &lt; .001,科系選擇與性別有關。另一例 913 名學生的性別 × 世代,χ² = 5.19,不顯著,兩者獨立。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以卡方獨立性檢定檢驗男女生在三個移民世代組中的分布是否與其在樣本中的比例相符,結果未達顯著,χ²(2, N = 913) = 5.19,ns,顯示男女生在各世代組中皆未被過度代表。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="14">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 14 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>卡方處理的是類別(名義)變項的次數,不是平均數;連續分數不能直接丟進來。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>期望次數來自行列合計,不是「每格平均分」;男女人數相同時兩列期望值才會一樣。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>卡方不顯著只排除了這一個分組變項的混淆,其他類別或連續變項仍可能是真正原因。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>母數統計並非總是合適,但違反常態假設也不一定讓結果失效,要看嚴重程度。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-cream" data-ch="14">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 14 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">期望次數代表什麼?為什麼書中男生、女生兩列的期望次數完全相同?</div><details><summary>看答案</summary><div class="team-bio">期望次數是假設兩變項互相獨立、只憑行列合計與機率時各格該有的人數。因為樣本中男女各 100 人,列合計相同,所以每個科系的期望人數男女一樣。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">一個 3 × 4 的列聯表做卡方獨立性檢定,自由度是多少?若 χ² 小於臨界值代表什麼?</div><details><summary>看答案</summary><div class="team-bio">df = (3 − 1)(4 − 1) = 6。若觀察到的 χ² 小於該自由度與 α 下的臨界值,就不能拒絕虛無假設,結論是兩個類別變項彼此獨立。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">在數學成績的性別差異例子裡,作者為什麼要先做性別與世代的卡方檢定?</div><details><summary>看答案</summary><div class="team-bio">因為第三代學生成績較低,若女生較集中在第三代,成績的性別差異可能其實是世代造成的。卡方不顯著表示性別與世代獨立,可排除這個混淆來源。</div></details></div></div></section>
 
 <section class="slide slide-1 slide-open" data-ch="15" style="background:var(--cream);">
   <div class="deco-dots"></div>
@@ -1992,9 +2531,40 @@
 <section class="slide slide-cmp" data-ch="15">
   <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">三種分析各做什麼</h2></div>
   <table class="cmp gen"><thead><tr><th>分析</th><th>做法</th><th>什麼時候用</th></tr></thead><tbody>
-  <tr><th>探索性因素分析</th><td>讓資料自己分群</td><td>事先沒有明確的構面架構</td></tr><tr><th>驗證性因素分析</th><td>檢驗預設的架構是否成立</td><td>已有理論或前人量表</td></tr><tr><th>信度分析</th><td>計算 Cronbach's α</td><td>確認一組題目能不能加總成一個分數</td></tr>
+  <tr><th>探索性因素分析</th><td data-label="做法">讓資料自己分群</td><td data-label="什麼時候用">事先沒有明確的構面架構</td></tr><tr><th>驗證性因素分析</th><td data-label="做法">檢驗預設的架構是否成立</td><td data-label="什麼時候用">已有理論或前人量表</td></tr><tr><th>信度分析</th><td data-label="做法">計算 Cronbach's α</td><td data-label="什麼時候用">確認一組題目能不能加總成一個分數</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>因素分析把很多題目濃縮成少數幾個構面</span></div><div class="take"><span class="list-num">02</span><span>因素負荷量是題目和因素的相關;特徵值大於 1 常作為保留門檻</span></div><div class="take"><span class="list-num">03</span><span>Cronbach's α 檢查同一構面題目的內部一致性,.70 以上通常可接受</span></div></div></section>
+
+<section class="slide slide-9 bg-blue" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">因素負荷量</div><div class="team-role keepcase">factor loading</div><div class="team-bio">某題項與某因素之間關聯的強度,解讀方式近似相關係數。</div></div><div class="team-card"><div class="team-name">因素轉軸</div><div class="team-role keepcase">factor rotation</div><div class="team-bio">調整因素使其彼此盡量區隔;分直交(varimax)與斜交兩大類。</div></div><div class="team-card"><div class="team-name">特徵值</div><div class="team-role keepcase">eigenvalue</div><div class="team-bio">衡量一個因素強度、解釋多少題項總變異;通常大於 1 才考慮保留。</div></div><div class="team-card"><div class="team-name">驗證性因素分析</div><div class="team-role keepcase">confirmatory factor analysis (CFA)</div><div class="team-bio">先依理論指定因素結構,再用適配度統計量檢驗與資料合不合。</div></div><div class="team-card"><div class="team-name">Cronbach's α 係數</div><div class="team-role keepcase">Cronbach's alpha</div><div class="team-bio">一組題項內部一致性的指標,一般以大於 0.70 為可接受。</div></div><div class="team-card"><div class="team-name">信度分析</div><div class="team-role keepcase">reliability analysis</div><div class="team-bio">檢查同一量表的題項彼此相關多強、能否可靠地代表同一構念。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">因素分析樣本數經驗法則</div><div class="fx-expr">所需樣本數 ≈ 30 + 10 × (觀察變項數 − 1)</div><div class="team-bio">10 個變項至少 30 + 90 = 120 人</div></div><div class="team-card"><div class="team-role keepcase">保留因素的經驗法則</div><div class="fx-expr">特徵值 &gt; 1.0,且解釋總變異 ≥ 約 10%</div><div class="team-bio">還要概念上說得通</div></div><div class="team-card"><div class="team-role keepcase">可接受信度的經驗法則</div><div class="fx-expr">Cronbach's α &gt; 0.70</div><div class="team-bio">α 受題數與題間相關共同影響</div></div></div></section>
+
+<section class="slide slide-7" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">構念、觀察變項與為何要用多個題項</div><div class="step-desc">題項是可直接測量的觀察變項;它們共同反映的「價值」「工作滿意度」等是不能直接測量的潛在變項。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">探索性因素分析:萃取、負荷量與轉軸</div><div class="step-desc">EFA 先找出相關最強的一群題項組成第一個因素,再找次強的,直到新因素不再明顯增加解釋變異為止。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">具體例子與驗證性因素分析簡介</div><div class="step-desc">九個題項(精熟、表現、家庭各三題)以主成分萃取加直交轉軸,初步得到四個特徵值大於 1 的因素。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">信度分析:Cronbach's α</div><div class="step-desc">Cronbach's α 衡量一組題項的內部一致性,概念上像題項間的平均關聯,最大為 1.0。</div></div></div></section>
+
+<section class="slide slide-2 bg-cream" data-ch="15">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 15 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">857 名高中生的九個動機題項:精熟目標、表現目標、家庭背景</h2>
+    <div class="warn"><b>臨床上怎麼想</b>發展一份護理人員職場疲勞量表時,先用因素分析看題項是否如預期分成「情緒耗竭」「工作負荷」等面向,再對每個面向算 Cronbach's α;若某面向 α 低於 0.70,就要檢討題目。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>精熟題項彼此相關皆高於 0.40,表現題項亦然,家庭題項彼此相關都低於 0.30。EFA 先得四因素(合計解釋約 69% 變異),限定三因素後表現與精熟因素負荷量都在 0.72 以上,家庭題項的「父母輔導作業」只有 0.353。信度分析:表現 α = 0.73、精熟 α = 0.70、家庭 α = 0.27,家庭三題不能當成一個量表。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>對九個題項進行探索性因素分析(主成分萃取、直交轉軸),初步得到四個特徵值大於 1.0 的因素;限定三因素後,表現與精熟因素維持不變,家庭題項合為單一因素。信度分析顯示表現量表(Cronbach's α = .73)與精熟量表(α = .70)內部一致性可接受,家庭題項則否(α = .27)。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>特徵值大於 1 的因素不一定有意義,也不一定可靠;還要看概念是否合理以及 α 是否夠高。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>α 會隨題數增加而升高,題數少時一題不合就會把 α 拉得很低,解讀時要考慮題數。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>直交轉軸假設因素互不相關;社會科學的構念常彼此相關,此時應考慮斜交轉軸。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>Cronbach's α 評的是內部一致性,不是再測信度;兩者回答的問題不同。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-green" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">探索性與驗證性因素分析在出發點上有什麼不同?</div><details><summary>看答案</summary><div class="team-bio">探索性因素分析不預設結構,由題項間的相關強弱決定怎麼分群;驗證性因素分析則先依理論指定哪些題項屬於哪個因素,再用適配度統計量檢驗這個模型與資料是否相符。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">三個家庭題項在三因素解中確實歸成一個因素,為何作者仍說它們不構成量表?</div><details><summary>看答案</summary><div class="team-bio">因為信度分析顯示它們的 Cronbach's α 只有 0.27,刪掉任何一題最高也只到 0.36,代表三題彼此相關都弱,內部一致性不足,無法可靠地代表同一個構念。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">同樣是題項間平均相關 0.5,為什麼 8 題量表的 α 會比 3 題量表高、也比較不怕一題不合?</div><details><summary>看答案</summary><div class="team-bio">α 取決於題數和題間相關。題數多時共同變異累積得多,α 自然較高;而且單一不合群的題項在 8 題中被稀釋,在 3 題中卻會明顯拉低整體平均相關。</div></details></div></div></section>
 
 <section class="slide slide-9">
   <div class="slide-header"><div class="nb-label nb-label-pink">決策表</div><h2 class="nb-heading-lg" style="margin-top:16px;">該用哪個檢定?</h2></div>
@@ -2030,6 +2600,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -2086,13 +2657,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {

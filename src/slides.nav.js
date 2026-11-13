@@ -12,6 +12,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -68,13 +69,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {

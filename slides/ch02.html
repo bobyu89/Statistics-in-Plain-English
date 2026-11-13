@@ -1225,11 +1225,120 @@
 .slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .slide-10 .close-btn.alt { background: var(--white); }
 
+/* ---- extra chapter slides ---- */
+.slide-9 .team-card .team-role { text-transform: none; }
+.slide-9 .team-bio { font-size: clamp(13px, 1.1vw, 17px); line-height: 1.5; }
+.fx-grid .fx-expr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 1.35vw, 21px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; background: var(--cream); border: 3px solid var(--black); padding: 8px 12px; }
+.slide-7 .step-title { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.3; }
+.slide-7 .step-desc { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.55; }
+.slide-3 .feature-card p { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.55; }
+.slide-3 .feature-card { padding: 28px; }
+.slide-3 { padding-bottom: 100px; }
+.slide-quiz .team-name { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.4; font-weight: 700; }
+.slide-quiz details { margin-top: auto; }
+.slide-quiz summary { cursor: pointer; display: inline-block; border: 3px solid var(--black); background: var(--yellow); padding: 6px 14px; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); list-style: none; }
+.slide-quiz summary::-webkit-details-marker { display: none; }
+.slide-quiz details[open] summary { margin-bottom: 10px; }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-3 .feature-card { padding: 20px; }
+  .slide-3 .feature-icon { width: 48px; height: 48px; margin-bottom: 14px; font-size: 22px; }
+  .slide-7 .timeline-step { padding: 20px; }
+  .slide-7 .step-num { font-size: 36px; margin-bottom: 10px; }
+}
+
+/* ================= phones and small tablets: each slide becomes a scrolling page ================= */
+@media (max-width: 820px), (max-height: 520px) {
+  html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .slides-container { width: 100%; height: auto; }
+  .slide { position: relative; width: 100%; height: auto; min-height: 100vh; min-height: 100dvh; padding: 76px 18px 100px; overflow: visible; }
+  .slide.active { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .nb-heading-xl { font-size: 44px; }
+  .nb-heading-lg { font-size: 30px; }
+  .nb-heading-md { font-size: 23px; }
+  .nb-body { font-size: 16px; }
+  .nb-label { font-size: 12px; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+  .slide .slide-header { margin-bottom: 20px !important; }
+  /* chrome */
+  .home-link { top: 12px; right: 12px; }
+  .ch-btn { top: 12px; right: auto; left: 12px; }
+  .ch-menu { top: 52px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 140px); }
+  .slide-counter { left: 12px; bottom: 12px; font-size: 12px; padding: 8px 12px; }
+  .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
+  .nav-btn { width: 44px; height: 44px; }
+  /* decorations that only make sense on a wide canvas */
+  .slide-1 .deco-dots, .slide-1 .deco-pink-rect, .slide-1 .deco-green-circle, .slide-5 .deco-stripes, .slide-10 .deco-dots-bottom, .slide-6 .ch-no, .slide-open .open-no, .slide-3 .card-deco, .step-connector { display: none !important; }
+  .corner-bracket { width: 16px; height: 16px; }
+  /* cover / chapter opener */
+  .slide-1 { justify-content: center !important; }
+  .slide-1 .hero-frame { padding: 28px 20px 40px; max-width: none; box-shadow: var(--shadow-sm); }
+  .slide-open .hero-title { max-width: 100%; margin-bottom: 16px; }
+  .slide-1 .hero-subtitle, .slide-open .hero-subtitle { font-size: 16px; max-width: none; }
+  .slide-1 .deco-yellow-bar { left: 20px; width: auto; padding: 0 14px; }
+  /* split (figure) slide */
+  .slide-6 { padding: 0; }
+  .slide-6 .split-visual { flex: none; padding: 70px 18px 22px; overflow: visible; }
+  .slide-6 .split-visual .visual-label { display: none; }
+  .slide-6 .visual-box.figure { max-width: none; padding: 8px; border-width: 3px; }
+  .slide-6 .fig-cap { margin-top: 14px; font-size: 14px; }
+  .slide-6 .split-content { flex: none; padding: 24px 18px 100px; border-left: none; border-top: var(--border); gap: 16px; }
+  .slide-6 .content-list li { font-size: 16px; align-items: flex-start; }
+  /* two-column slides */
+  .slide-2 { gap: 20px; }
+  .slide-2 .col-left, .slide-2 .col-right { flex: none; gap: 16px; }
+  .slide-2 .intro-card { padding: 18px; }
+  .slide-2 .intro-card h3 { font-size: 19px; }
+  .slide-2 .intro-card p, .slide-2 .warn { font-size: 15px; max-width: none; }
+  /* grids */
+  .slide-9 .team-grid, .slide-9 .team-grid.g5, .slide-8 .stats-grid, .take-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .slide-9 .team-card { padding: 16px; }
+  .slide-9 .team-name { font-size: 18px; }
+  .slide-9 .team-bio { font-size: 15px; }
+  .slide-8 .stat-card { transform: none !important; padding: 20px; }
+  .slide-3 .cards-row { flex-direction: column; gap: 14px; }
+  .slide-3 .feature-card { padding: 18px; box-shadow: var(--shadow-sm); display: flex; gap: 14px; align-items: flex-start; }
+  .slide-3 .feature-icon { width: 40px; height: 40px; font-size: 20px; margin: 0; flex: none; }
+  .slide-3 .feature-card p { font-size: 15px; }
+  .slide-7 .timeline { flex-direction: column; }
+  .slide-7 .timeline-step { margin: 0 0 -4px 0 !important; padding: 18px; }
+  .slide-7 .step-num { font-size: 30px; margin-bottom: 6px; }
+  .fx-grid .fx-expr { font-size: 16px; }
+  /* tables: one card per row */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp { border: none; box-shadow: none; background: none; }
+  .cmp thead { display: none; }
+  .cmp tr { border: var(--border); background: var(--white); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+  .cmp th, .cmp td, .cmp.dense th, .cmp.dense td, .cmp.gen th, .cmp.gen td { border: none; border-bottom: 2px solid var(--black); padding: 9px 14px; font-size: 15px; white-space: normal; }
+  .cmp tr > :last-child { border-bottom: none; }
+  .cmp tbody th { font-size: 16px; background: var(--yellow); }
+  .cmp td[data-label]::before { content: attr(data-label); display: block; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; opacity: .6; margin-bottom: 2px; }
+  .take-row { margin-top: 6px; }
+  /* chart */
+  .slide-4 .chart-frame { max-height: none; width: 100%; padding: 16px; overflow: visible; }
+  .slide-4 .chart-header { flex-direction: column; gap: 10px; }
+  .slide-4 .chart-legend { flex-wrap: wrap; gap: 8px 12px; }
+  .slide-4 .chart-body { flex-direction: column; gap: 14px; }
+  .chart-svg { height: auto; }
+  .slide-4 .data-column { flex: none; width: 100%; flex-direction: row; gap: 8px; }
+  .slide-4 .data-box { padding: 10px 6px; }
+  .slide-4 .data-box .data-num { font-size: 20px; }
+  .slide-4 .data-box .data-label { font-size: 10px; }
+  /* quote + closing */
+  .slide-5 { justify-content: center !important; }
+  .slide-5 .quote-frame { padding: 36px 22px 26px; }
+  .slide-5 .quote-text { font-size: 26px; }
+  .slide-10 { justify-content: center !important; }
+  .slide-10 .close-frame { padding: 32px 20px; box-shadow: 8px 8px 0 var(--yellow); }
+  .slide-10 .close-title { font-size: 34px; }
+  .slide-10 .close-row { flex-direction: column; align-items: stretch; }
+  .slide-10 .close-btn { padding: 14px 20px; }
+}
+.slide-7[data-ch] .step-connector { display: none; }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 05</div>
+  <div class="slide-counter" id="slideCounter">01 / 11</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1301,9 +1410,40 @@
 <section class="slide slide-cmp" data-ch="2">
   <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">三種集中趨勢比一比</h2></div>
   <table class="cmp gen"><thead><tr><th>指標</th><th>怎麼算</th><th>優點</th><th>弱點</th></tr></thead><tbody>
-  <tr><th>平均數</th><td>總和 ÷ 個數</td><td>用到全部資料</td><td>容易被極端值拉走</td></tr><tr><th>中位數</th><td>排序後正中間的值</td><td>不怕極端值</td><td>沒用到每個數值的大小</td></tr><tr><th>眾數</th><td>出現最多次的值</td><td>類別資料也能用</td><td>可能不只一個</td></tr>
+  <tr><th>平均數</th><td data-label="怎麼算">總和 ÷ 個數</td><td data-label="優點">用到全部資料</td><td data-label="弱點">容易被極端值拉走</td></tr><tr><th>中位數</th><td data-label="怎麼算">排序後正中間的值</td><td data-label="優點">不怕極端值</td><td data-label="弱點">沒用到每個數值的大小</td></tr><tr><th>眾數</th><td data-label="怎麼算">出現最多次的值</td><td data-label="優點">類別資料也能用</td><td data-label="弱點">可能不只一個</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>平均數用到每一個數值,但怕極端值</span></div><div class="take"><span class="list-num">02</span><span>中位數是排序後正中間的那一位</span></div><div class="take"><span class="list-num">03</span><span>分布偏斜時三者分家,平均數被長尾拉走</span></div></div></section>
+
+<section class="slide slide-9 bg-green" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">偏態</div><div class="team-role keepcase">skew</div><div class="team-bio">取值擠在一端、另一端拖出尾巴;尾巴朝哪邊就是哪種偏。</div></div><div class="team-card"><div class="team-name">負偏態/正偏態</div><div class="team-role keepcase">negative / positive skew</div><div class="team-bio">尾巴在低端為負偏(平均數&lt;中位數),在高端為正偏。</div></div><div class="team-card"><div class="team-name">離群值</div><div class="team-role keepcase">outlier</div><div class="team-bio">異常大或小的值;樣本越小,對平均數的衝擊越大。</div></div><div class="team-card"><div class="team-name">雙峰/多峰分布</div><div class="team-role keepcase">bimodal / multimodal</div><div class="team-bio">有兩個或更多最高次數的取值,常見於意見兩極的題目。</div></div><div class="team-card"><div class="team-name">中位數分割</div><div class="team-role keepcase">median split</div><div class="team-bio">以中位數把樣本切成人數相等的高、低兩組。</div></div><div class="team-card"><div class="team-name">母數與統計量</div><div class="team-role keepcase">parameter and statistic</div><div class="team-bio">μ 是母體平均數,X̄ 是用來估計它的樣本平均數。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">樣本平均數</div><div class="fx-expr">X̄ = ΣX / n</div><div class="team-bio">所有取值相加,除以樣本取值個數</div></div><div class="team-card"><div class="team-role keepcase">母體平均數</div><div class="fx-expr">μ = ΣX / N</div><div class="team-bio">算法相同,只是對象是整個母體</div></div><div class="team-card"><div class="team-role keepcase">中位數(偶數個取值)</div><div class="fx-expr">P₅₀ = (排序後中間兩個取值之和) / 2</div><div class="team-bio">奇數個時直接取正中間那一個</div></div></div></section>
+
+<section class="slide slide-7" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">三個集中趨勢量數是什麼</div><div class="step-desc">平均數把整個分布濃縮成一個數,方便但有代價:它不告訴你取值多分散,也不保證有很多取值真的落在平均數附近。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">怎麼算</div><div class="step-desc">平均數:所有取值相加後除以取值個數(樣本除以 n,母體除以 N)。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">例子:偏態分布中的三個量數</div><div class="step-desc">30 名五年級生以 1–5 分評「學業成績有多重要」,多數選 4 或 5,少數選 1、2,尾巴拖向低分端,是負偏態分布。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">報告寫法與本章提醒</div><div class="step-desc">集中趨勢的報告通常很短:寫出平均數與中位數的數值,再點出兩者關係所反映的分布形狀即可。</div></div></div></section>
+
+<section class="slide slide-2 bg-pink" data-ch="2">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 02 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">五年級生對「成績重要性」的評分與各國預期壽命</h2>
+    <div class="warn"><b>臨床上怎麼想</b>住院天數多半是正偏態:大多數病人住幾天,少數住上百天把平均拉高。報告病房住院天數時,中位數比平均數更能代表「典型病人」,這也是臨床常報中位數與四分位距的原因。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>30 名五年級生的 1–5 分評分呈負偏:眾數 5、中位數 4、平均數 113/30 = 3.77,平均數被低分尾巴拉到中位數之下。預期壽命資料示範離群值效應:13 國時加入烏干達使平均由 78.17 降到 76.21;只有 4 國時由 79.75 降到 72.99。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>此分布的平均數(X̄ = 3.77)略低於中位數(P₅₀ = 4.00),顯示分布呈負偏態。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>平均數不代表「多數人的情況」;分布中可能很少有取值真的落在平均數附近。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>偏態或有離群值時只報平均數會誤導,應同時看中位數。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>小樣本裡一個極端值就能大幅改變平均數。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>只看集中趨勢、不看變異,容易做出一體適用的結論或刻板印象。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-yellow" data-ch="2">
+  <div class="slide-header"><div class="nb-label nb-label-blue keepcase">CH 02 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">某量表分數平均數 3.77、中位數 4.00,不看圖你能推測分布形狀嗎?</div><details><summary>看答案</summary><div class="team-bio">平均數小於中位數,代表有少數偏低的取值把平均數往下拉,尾巴在低分端,屬於負偏態分布;多數人其實集中在高分端。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">為什麼同一個離群值在 4 國資料中讓平均數掉近 7 歲,在 13 國資料中只掉約 2 歲?</div><details><summary>看答案</summary><div class="team-bio">平均數是所有取值合起來除以個數,個數越少,每一個值占的權重越大;樣本小,單一極端值的影響就被放大,樣本大則被稀釋。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">調查 100 人對死刑的態度,平均數落在量表中間,能說「大家意見中立」嗎?</div><details><summary>看答案</summary><div class="team-bio">不能。書中例子兩端各有 45 人,是雙峰分布,中間幾乎沒人;平均數落在中間只是兩極相抵的結果,要看眾數與次數分配才知道。</div></details></div></div></section>
 
 <section class="slide slide-10" data-ch="2">
   <div class="deco-dots-bottom"></div>
@@ -1329,6 +1469,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -1385,13 +1526,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {

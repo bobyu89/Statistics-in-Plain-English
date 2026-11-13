@@ -1225,11 +1225,120 @@
 .slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .slide-10 .close-btn.alt { background: var(--white); }
 
+/* ---- extra chapter slides ---- */
+.slide-9 .team-card .team-role { text-transform: none; }
+.slide-9 .team-bio { font-size: clamp(13px, 1.1vw, 17px); line-height: 1.5; }
+.fx-grid .fx-expr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 1.35vw, 21px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; background: var(--cream); border: 3px solid var(--black); padding: 8px 12px; }
+.slide-7 .step-title { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.3; }
+.slide-7 .step-desc { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.55; }
+.slide-3 .feature-card p { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.55; }
+.slide-3 .feature-card { padding: 28px; }
+.slide-3 { padding-bottom: 100px; }
+.slide-quiz .team-name { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.4; font-weight: 700; }
+.slide-quiz details { margin-top: auto; }
+.slide-quiz summary { cursor: pointer; display: inline-block; border: 3px solid var(--black); background: var(--yellow); padding: 6px 14px; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); list-style: none; }
+.slide-quiz summary::-webkit-details-marker { display: none; }
+.slide-quiz details[open] summary { margin-bottom: 10px; }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-3 .feature-card { padding: 20px; }
+  .slide-3 .feature-icon { width: 48px; height: 48px; margin-bottom: 14px; font-size: 22px; }
+  .slide-7 .timeline-step { padding: 20px; }
+  .slide-7 .step-num { font-size: 36px; margin-bottom: 10px; }
+}
+
+/* ================= phones and small tablets: each slide becomes a scrolling page ================= */
+@media (max-width: 820px), (max-height: 520px) {
+  html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .slides-container { width: 100%; height: auto; }
+  .slide { position: relative; width: 100%; height: auto; min-height: 100vh; min-height: 100dvh; padding: 76px 18px 100px; overflow: visible; }
+  .slide.active { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .nb-heading-xl { font-size: 44px; }
+  .nb-heading-lg { font-size: 30px; }
+  .nb-heading-md { font-size: 23px; }
+  .nb-body { font-size: 16px; }
+  .nb-label { font-size: 12px; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+  .slide .slide-header { margin-bottom: 20px !important; }
+  /* chrome */
+  .home-link { top: 12px; right: 12px; }
+  .ch-btn { top: 12px; right: auto; left: 12px; }
+  .ch-menu { top: 52px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 140px); }
+  .slide-counter { left: 12px; bottom: 12px; font-size: 12px; padding: 8px 12px; }
+  .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
+  .nav-btn { width: 44px; height: 44px; }
+  /* decorations that only make sense on a wide canvas */
+  .slide-1 .deco-dots, .slide-1 .deco-pink-rect, .slide-1 .deco-green-circle, .slide-5 .deco-stripes, .slide-10 .deco-dots-bottom, .slide-6 .ch-no, .slide-open .open-no, .slide-3 .card-deco, .step-connector { display: none !important; }
+  .corner-bracket { width: 16px; height: 16px; }
+  /* cover / chapter opener */
+  .slide-1 { justify-content: center !important; }
+  .slide-1 .hero-frame { padding: 28px 20px 40px; max-width: none; box-shadow: var(--shadow-sm); }
+  .slide-open .hero-title { max-width: 100%; margin-bottom: 16px; }
+  .slide-1 .hero-subtitle, .slide-open .hero-subtitle { font-size: 16px; max-width: none; }
+  .slide-1 .deco-yellow-bar { left: 20px; width: auto; padding: 0 14px; }
+  /* split (figure) slide */
+  .slide-6 { padding: 0; }
+  .slide-6 .split-visual { flex: none; padding: 70px 18px 22px; overflow: visible; }
+  .slide-6 .split-visual .visual-label { display: none; }
+  .slide-6 .visual-box.figure { max-width: none; padding: 8px; border-width: 3px; }
+  .slide-6 .fig-cap { margin-top: 14px; font-size: 14px; }
+  .slide-6 .split-content { flex: none; padding: 24px 18px 100px; border-left: none; border-top: var(--border); gap: 16px; }
+  .slide-6 .content-list li { font-size: 16px; align-items: flex-start; }
+  /* two-column slides */
+  .slide-2 { gap: 20px; }
+  .slide-2 .col-left, .slide-2 .col-right { flex: none; gap: 16px; }
+  .slide-2 .intro-card { padding: 18px; }
+  .slide-2 .intro-card h3 { font-size: 19px; }
+  .slide-2 .intro-card p, .slide-2 .warn { font-size: 15px; max-width: none; }
+  /* grids */
+  .slide-9 .team-grid, .slide-9 .team-grid.g5, .slide-8 .stats-grid, .take-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .slide-9 .team-card { padding: 16px; }
+  .slide-9 .team-name { font-size: 18px; }
+  .slide-9 .team-bio { font-size: 15px; }
+  .slide-8 .stat-card { transform: none !important; padding: 20px; }
+  .slide-3 .cards-row { flex-direction: column; gap: 14px; }
+  .slide-3 .feature-card { padding: 18px; box-shadow: var(--shadow-sm); display: flex; gap: 14px; align-items: flex-start; }
+  .slide-3 .feature-icon { width: 40px; height: 40px; font-size: 20px; margin: 0; flex: none; }
+  .slide-3 .feature-card p { font-size: 15px; }
+  .slide-7 .timeline { flex-direction: column; }
+  .slide-7 .timeline-step { margin: 0 0 -4px 0 !important; padding: 18px; }
+  .slide-7 .step-num { font-size: 30px; margin-bottom: 6px; }
+  .fx-grid .fx-expr { font-size: 16px; }
+  /* tables: one card per row */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp { border: none; box-shadow: none; background: none; }
+  .cmp thead { display: none; }
+  .cmp tr { border: var(--border); background: var(--white); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+  .cmp th, .cmp td, .cmp.dense th, .cmp.dense td, .cmp.gen th, .cmp.gen td { border: none; border-bottom: 2px solid var(--black); padding: 9px 14px; font-size: 15px; white-space: normal; }
+  .cmp tr > :last-child { border-bottom: none; }
+  .cmp tbody th { font-size: 16px; background: var(--yellow); }
+  .cmp td[data-label]::before { content: attr(data-label); display: block; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; opacity: .6; margin-bottom: 2px; }
+  .take-row { margin-top: 6px; }
+  /* chart */
+  .slide-4 .chart-frame { max-height: none; width: 100%; padding: 16px; overflow: visible; }
+  .slide-4 .chart-header { flex-direction: column; gap: 10px; }
+  .slide-4 .chart-legend { flex-wrap: wrap; gap: 8px 12px; }
+  .slide-4 .chart-body { flex-direction: column; gap: 14px; }
+  .chart-svg { height: auto; }
+  .slide-4 .data-column { flex: none; width: 100%; flex-direction: row; gap: 8px; }
+  .slide-4 .data-box { padding: 10px 6px; }
+  .slide-4 .data-box .data-num { font-size: 20px; }
+  .slide-4 .data-box .data-label { font-size: 10px; }
+  /* quote + closing */
+  .slide-5 { justify-content: center !important; }
+  .slide-5 .quote-frame { padding: 36px 22px 26px; }
+  .slide-5 .quote-text { font-size: 26px; }
+  .slide-10 { justify-content: center !important; }
+  .slide-10 .close-frame { padding: 32px 20px; box-shadow: 8px 8px 0 var(--yellow); }
+  .slide-10 .close-title { font-size: 34px; }
+  .slide-10 .close-row { flex-direction: column; align-items: stretch; }
+  .slide-10 .close-btn { padding: 14px 20px; }
+}
+.slide-7[data-ch] .step-connector { display: none; }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 05</div>
+  <div class="slide-counter" id="slideCounter">01 / 11</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1300,9 +1409,40 @@
 <section class="slide slide-cmp" data-ch="8">
   <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">四種常見型態</h2></div>
   <table class="cmp gen"><thead><tr><th>型態</th><th>長相</th><th>例子</th></tr></thead><tbody>
-  <tr><th>正相關</th><td>一起高、一起低</td><td>讀書時數與成績</td></tr><tr><th>負相關</th><td>一個高、另一個低</td><td>缺課次數與成績</td></tr><tr><th>零相關</th><td>看不出直線關係</td><td>鞋子尺寸與成績</td></tr><tr><th>曲線關係</th><td>先升後降;r 會低估</td><td>焦慮程度與表現</td></tr>
+  <tr><th>正相關</th><td data-label="長相">一起高、一起低</td><td data-label="例子">讀書時數與成績</td></tr><tr><th>負相關</th><td data-label="長相">一個高、另一個低</td><td data-label="例子">缺課次數與成績</td></tr><tr><th>零相關</th><td data-label="長相">看不出直線關係</td><td data-label="例子">鞋子尺寸與成績</td></tr><tr><th>曲線關係</th><td data-label="長相">先升後降;r 會低估</td><td data-label="例子">焦慮程度與表現</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>r 介於 −1 到 +1:符號看方向,絕對值看強度</span></div><div class="take"><span class="list-num">02</span><span>r² 是兩個變項共享的變異比例</span></div><div class="take"><span class="list-num">03</span><span>r 只抓直線關係,也會受極端值與全距受限影響</span></div></div></section>
+
+<section class="slide slide-9 bg-pink" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">共變數</div><div class="team-role keepcase">covariance</div><div class="team-bio">交乘積的平均；標準化之後就是相關係數。</div></div><div class="team-card"><div class="team-name">共享變異量</div><div class="team-role keepcase">shared variance</div><div class="team-bio">兩個相關變項彼此重疊的那部分變異。</div></div><div class="team-card"><div class="team-name">曲線關係</div><div class="team-role keepcase">curvilinear</div><div class="team-bio">關係在某段為正、另一段為負，r 會低估其強度。</div></div><div class="team-card"><div class="team-name">全距限縮（截斷範圍）</div><div class="team-role keepcase">truncated range</div><div class="team-bio">分數擠在頂端或底端，變異不足而壓低相關。</div></div><div class="team-card"><div class="team-name">散布圖</div><div class="team-role keepcase">scattergram</div><div class="team-bio">把每人兩個變項的分數畫成一個點的圖。</div></div><div class="team-card"><div class="team-name">斯皮爾曼等級相關</div><div class="team-role keepcase">Spearman rho coefficient</div><div class="team-bio">兩個次序變項之間的相關係數。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">皮爾森相關係數（定義式）</div><div class="fx-expr">r = Σ(z_x · z_y) / N</div><div class="team-bio">z 分數交乘積的平均；N 為配對數</div></div><div class="team-card"><div class="team-role keepcase">相關係數的假設</div><div class="fx-expr">H₀: ρ = 0 ；H₁: ρ ≠ 0</div><div class="team-bio">檢定 r 是否顯著異於 0</div></div><div class="team-card"><div class="team-role keepcase">相關係數的標準誤</div><div class="fx-expr">s_r = √( (1 − r²) / (N − 2) )</div><div class="team-bio">書中僅供了解，實算用下式</div></div><div class="team-card"><div class="team-role keepcase">相關係數的 t 檢定</div><div class="fx-expr">t = (r − ρ) / s_r = r · √( (N − 2) / (1 − r²) )，df = N − 2</div><div class="team-bio">虛無假設下 ρ = 0</div></div><div class="team-card"><div class="team-role keepcase">決定係數</div><div class="fx-expr">r² = r × r</div><div class="team-bio">共享（可解釋）變異的比例</div></div></div></section>
+
+<section class="slide slide-7" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">相關的用途：方向與強度</div><div class="step-desc">皮爾森 r 要求兩個變項都是等距或比率尺度的連續變項，且每位受試者的兩個分數必須成對。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">皮爾森 r 怎麼算、代表什麼</div><div class="step-desc">書中採定義式：先把兩變項都轉成 z 分數，逐人相乘得交乘積，加總後除以配對數 N。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">相關說了什麼、沒說什麼</div><div class="step-desc">相關不等於因果：鸛鳥數量與嬰兒出生數同時上升，其實都源自寒冬這個第三變項。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">顯著性檢定與決定係數</div><div class="step-desc">檢定的虛無假設是母體相關 ρ 等於 0，對立假設是 ρ 不等於 0，使用 t 分布，自由度為 N − 2。</div></div></div></section>
+
+<section class="slide slide-2 bg-yellow" data-ch="8">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 08 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">高中生學業成績平均（GPA）與 Naglieri 非語文能力測驗的相關</h2>
+    <div class="warn"><b>臨床上怎麼想</b>護理人員每月夜班數與疲勞量表分數若 r=0.40，只能說夜班多的人平均較疲勞（共享 16% 變異），不能直接說夜班造成疲勞，年資、家庭照顧負荷都可能是第三變項。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>加州一所高中 314 名十一年級學生的累積 GPA 與 Naglieri 非語文能力測驗分數，r=0.4291、p&lt;0.0001，為中等且顯著的正相關。r²≈0.18，GPA 只解釋測驗分數約 18% 的變異，逾 80% 未被解釋，故作者認為教師評分與標準化測驗測到的是不同構念。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>GPA 與 Naglieri 測驗分數呈中等強度且顯著的正相關，r = .43, p &lt; .001；決定係數 r² = .18，表示測驗分數約 18% 的變異可由 GPA 解釋。（書中指出報告相關時很少附 t 值。）</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>顯著的相關不代表因果，可能有第三變項同時影響兩者（鸛鳥與嬰兒、日照與氣溫）。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>r 只反映直線關係，曲線關係會讓 r 接近 0 而被誤判為無關。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>天花板或地板效應使分數範圍被截斷，會低估真實的相關強度。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>強弱門檻只是經驗法則：酒精與肝病的 r=0.15 也可能非常重要。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-blue" data-ch="8">
+  <div class="slide-header"><div class="nb-label nb-label-green keepcase">CH 08 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">兩變項的 r 接近 0，可以斷定它們沒有關係嗎？</div><details><summary>看答案</summary><div class="team-bio">不行。r 只衡量線性關係，若關係是先升後降的曲線，或其中一個變項的分數範圍被截斷，r 都會很小，卻不代表兩者真的無關，應先看散布圖。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">r = 0.25、N = 100 的相關達顯著，這個關係算強嗎？</div><details><summary>看答案</summary><div class="team-bio">不算強。r² 只有 0.0625，即約 6% 的共享變異；它顯著主要是因為樣本夠大（t=2.56、df=98）。顯著性與關係強度是兩回事。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">為什麼說相關係數是「標準化的共變數」？</div><details><summary>看答案</summary><div class="team-bio">共變數是兩變項離均差交乘積的平均，單位受原始量尺影響；先把兩變項轉成 z 分數再求交乘積平均，就消除了單位，結果被限制在 −1 到 +1，這就是 r。</div></details></div></div></section>
 
 <section class="slide slide-10" data-ch="8">
   <div class="deco-dots-bottom"></div>
@@ -1328,6 +1468,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -1384,13 +1525,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {

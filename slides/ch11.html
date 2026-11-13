@@ -1225,11 +1225,120 @@
 .slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .slide-10 .close-btn.alt { background: var(--white); }
 
+/* ---- extra chapter slides ---- */
+.slide-9 .team-card .team-role { text-transform: none; }
+.slide-9 .team-bio { font-size: clamp(13px, 1.1vw, 17px); line-height: 1.5; }
+.fx-grid .fx-expr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 1.35vw, 21px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; background: var(--cream); border: 3px solid var(--black); padding: 8px 12px; }
+.slide-7 .step-title { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.3; }
+.slide-7 .step-desc { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.55; }
+.slide-3 .feature-card p { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.55; }
+.slide-3 .feature-card { padding: 28px; }
+.slide-3 { padding-bottom: 100px; }
+.slide-quiz .team-name { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.4; font-weight: 700; }
+.slide-quiz details { margin-top: auto; }
+.slide-quiz summary { cursor: pointer; display: inline-block; border: 3px solid var(--black); background: var(--yellow); padding: 6px 14px; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); list-style: none; }
+.slide-quiz summary::-webkit-details-marker { display: none; }
+.slide-quiz details[open] summary { margin-bottom: 10px; }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-3 .feature-card { padding: 20px; }
+  .slide-3 .feature-icon { width: 48px; height: 48px; margin-bottom: 14px; font-size: 22px; }
+  .slide-7 .timeline-step { padding: 20px; }
+  .slide-7 .step-num { font-size: 36px; margin-bottom: 10px; }
+}
+
+/* ================= phones and small tablets: each slide becomes a scrolling page ================= */
+@media (max-width: 820px), (max-height: 520px) {
+  html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .slides-container { width: 100%; height: auto; }
+  .slide { position: relative; width: 100%; height: auto; min-height: 100vh; min-height: 100dvh; padding: 76px 18px 100px; overflow: visible; }
+  .slide.active { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .nb-heading-xl { font-size: 44px; }
+  .nb-heading-lg { font-size: 30px; }
+  .nb-heading-md { font-size: 23px; }
+  .nb-body { font-size: 16px; }
+  .nb-label { font-size: 12px; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+  .slide .slide-header { margin-bottom: 20px !important; }
+  /* chrome */
+  .home-link { top: 12px; right: 12px; }
+  .ch-btn { top: 12px; right: auto; left: 12px; }
+  .ch-menu { top: 52px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 140px); }
+  .slide-counter { left: 12px; bottom: 12px; font-size: 12px; padding: 8px 12px; }
+  .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
+  .nav-btn { width: 44px; height: 44px; }
+  /* decorations that only make sense on a wide canvas */
+  .slide-1 .deco-dots, .slide-1 .deco-pink-rect, .slide-1 .deco-green-circle, .slide-5 .deco-stripes, .slide-10 .deco-dots-bottom, .slide-6 .ch-no, .slide-open .open-no, .slide-3 .card-deco, .step-connector { display: none !important; }
+  .corner-bracket { width: 16px; height: 16px; }
+  /* cover / chapter opener */
+  .slide-1 { justify-content: center !important; }
+  .slide-1 .hero-frame { padding: 28px 20px 40px; max-width: none; box-shadow: var(--shadow-sm); }
+  .slide-open .hero-title { max-width: 100%; margin-bottom: 16px; }
+  .slide-1 .hero-subtitle, .slide-open .hero-subtitle { font-size: 16px; max-width: none; }
+  .slide-1 .deco-yellow-bar { left: 20px; width: auto; padding: 0 14px; }
+  /* split (figure) slide */
+  .slide-6 { padding: 0; }
+  .slide-6 .split-visual { flex: none; padding: 70px 18px 22px; overflow: visible; }
+  .slide-6 .split-visual .visual-label { display: none; }
+  .slide-6 .visual-box.figure { max-width: none; padding: 8px; border-width: 3px; }
+  .slide-6 .fig-cap { margin-top: 14px; font-size: 14px; }
+  .slide-6 .split-content { flex: none; padding: 24px 18px 100px; border-left: none; border-top: var(--border); gap: 16px; }
+  .slide-6 .content-list li { font-size: 16px; align-items: flex-start; }
+  /* two-column slides */
+  .slide-2 { gap: 20px; }
+  .slide-2 .col-left, .slide-2 .col-right { flex: none; gap: 16px; }
+  .slide-2 .intro-card { padding: 18px; }
+  .slide-2 .intro-card h3 { font-size: 19px; }
+  .slide-2 .intro-card p, .slide-2 .warn { font-size: 15px; max-width: none; }
+  /* grids */
+  .slide-9 .team-grid, .slide-9 .team-grid.g5, .slide-8 .stats-grid, .take-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .slide-9 .team-card { padding: 16px; }
+  .slide-9 .team-name { font-size: 18px; }
+  .slide-9 .team-bio { font-size: 15px; }
+  .slide-8 .stat-card { transform: none !important; padding: 20px; }
+  .slide-3 .cards-row { flex-direction: column; gap: 14px; }
+  .slide-3 .feature-card { padding: 18px; box-shadow: var(--shadow-sm); display: flex; gap: 14px; align-items: flex-start; }
+  .slide-3 .feature-icon { width: 40px; height: 40px; font-size: 20px; margin: 0; flex: none; }
+  .slide-3 .feature-card p { font-size: 15px; }
+  .slide-7 .timeline { flex-direction: column; }
+  .slide-7 .timeline-step { margin: 0 0 -4px 0 !important; padding: 18px; }
+  .slide-7 .step-num { font-size: 30px; margin-bottom: 6px; }
+  .fx-grid .fx-expr { font-size: 16px; }
+  /* tables: one card per row */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp { border: none; box-shadow: none; background: none; }
+  .cmp thead { display: none; }
+  .cmp tr { border: var(--border); background: var(--white); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+  .cmp th, .cmp td, .cmp.dense th, .cmp.dense td, .cmp.gen th, .cmp.gen td { border: none; border-bottom: 2px solid var(--black); padding: 9px 14px; font-size: 15px; white-space: normal; }
+  .cmp tr > :last-child { border-bottom: none; }
+  .cmp tbody th { font-size: 16px; background: var(--yellow); }
+  .cmp td[data-label]::before { content: attr(data-label); display: block; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; opacity: .6; margin-bottom: 2px; }
+  .take-row { margin-top: 6px; }
+  /* chart */
+  .slide-4 .chart-frame { max-height: none; width: 100%; padding: 16px; overflow: visible; }
+  .slide-4 .chart-header { flex-direction: column; gap: 10px; }
+  .slide-4 .chart-legend { flex-wrap: wrap; gap: 8px 12px; }
+  .slide-4 .chart-body { flex-direction: column; gap: 14px; }
+  .chart-svg { height: auto; }
+  .slide-4 .data-column { flex: none; width: 100%; flex-direction: row; gap: 8px; }
+  .slide-4 .data-box { padding: 10px 6px; }
+  .slide-4 .data-box .data-num { font-size: 20px; }
+  .slide-4 .data-box .data-label { font-size: 10px; }
+  /* quote + closing */
+  .slide-5 { justify-content: center !important; }
+  .slide-5 .quote-frame { padding: 36px 22px 26px; }
+  .slide-5 .quote-text { font-size: 26px; }
+  .slide-10 { justify-content: center !important; }
+  .slide-10 .close-frame { padding: 32px 20px; box-shadow: 8px 8px 0 var(--yellow); }
+  .slide-10 .close-title { font-size: 34px; }
+  .slide-10 .close-row { flex-direction: column; align-items: stretch; }
+  .slide-10 .close-btn { padding: 14px 20px; }
+}
+.slide-7[data-ch] .step-connector { display: none; }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 05</div>
+  <div class="slide-counter" id="slideCounter">01 / 11</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1306,9 +1415,40 @@
 <section class="slide slide-cmp" data-ch="11">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">2 × 2 設計一次回答三個問題</h2></div>
   <table class="cmp gen"><thead><tr><th>效果</th><th>在問什麼</th><th>圖上怎麼看</th></tr></thead><tbody>
-  <tr><th>因子 A 的主要效果</th><td>不管 B,A 的各水準平均有差嗎?</td><td>線的左右兩端平均高度不同</td></tr><tr><th>因子 B 的主要效果</th><td>不管 A,B 的各水準平均有差嗎?</td><td>兩條線的平均高度不同</td></tr><tr><th>A × B 交互作用</th><td>A 的效果在 B 的不同水準下一樣嗎?</td><td>兩條線不平行</td></tr>
+  <tr><th>因子 A 的主要效果</th><td data-label="在問什麼">不管 B,A 的各水準平均有差嗎?</td><td data-label="圖上怎麼看">線的左右兩端平均高度不同</td></tr><tr><th>因子 B 的主要效果</th><td data-label="在問什麼">不管 A,B 的各水準平均有差嗎?</td><td data-label="圖上怎麼看">兩條線的平均高度不同</td></tr><tr><th>A × B 交互作用</th><td data-label="在問什麼">A 的效果在 B 的不同水準下一樣嗎?</td><td data-label="圖上怎麼看">兩條線不平行</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>主要效果:一個因子自己造成的平均差異</span></div><div class="take"><span class="list-num">02</span><span>交互作用:一個因子的效果隨另一個因子而變</span></div><div class="take"><span class="list-num">03</span><span>交互作用顯著時,主要效果要小心解讀</span></div></div></section>
+
+<section class="slide slide-9 bg-cream" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">控制(淨)效果</div><div class="team-role keepcase">partial and controlled effects</div><div class="team-bio">把另一變項可解釋的變異先排除,再看剩下的組間差異。</div></div><div class="team-card"><div class="team-name">單純主要效果</div><div class="team-role keepcase">simple effects</div><div class="team-bio">比較個別細格的平均數,用來說明交互作用究竟發生在哪裡。</div></div><div class="team-card"><div class="team-name">共變數分析</div><div class="team-role keepcase">analysis of covariance (ANCOVA)</div><div class="team-bio">加入共變項,排除其解釋的變異後再比較各組平均數。</div></div><div class="team-card"><div class="team-name">細格人數</div><div class="team-role keepcase">cell size</div><div class="team-bio">自變項交叉出的每個小組人數;至少 10 人,最好 20 人以上。</div></div><div class="team-card"><div class="team-name">變異數同質性</div><div class="team-role keepcase">homogeneity of variance</div><div class="team-bio">假設各組組內變異大致相等;各格人數不等時更要檢查。</div></div><div class="team-card"><div class="team-name">調節變項</div><div class="team-role keepcase">moderator</div><div class="team-bio">改變另一自變項與依變項之間關係的變項。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">各效果的 F 值</div><div class="fx-expr">F_效果 = MS_效果 / MSe</div><div class="team-bio">每個主要效果與交互作用的均方,都除以同一個誤差均方</div></div><div class="team-card"><div class="team-role keepcase">均方</div><div class="fx-expr">MS = SS / df</div><div class="team-bio">例:校正模型 11.402 / 3 = 3.801</div></div><div class="team-card"><div class="team-role keepcase">效果數量</div><div class="fx-expr">2 個自變項 → 2 個主要效果 + 1 個雙向交互作用;3 個自變項 → 3 + 3 + 1(三向)</div><div class="team-bio">自變項越多,交互作用的層次越複雜</div></div></div></section>
+
+<section class="slide slide-7" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">何時使用與先決提醒</div><div class="step-desc">適用於一個等距或比率尺度的依變項,加上兩個以上名義自變項;例如性別(2)× 地區(4)對每週看電視時數,稱為 2 × 4 設計。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">主要效果與統計控制</div><div class="step-desc">多因子分析中的主要效果,是在控制(排除)其他自變項影響之後,某自變項各組在依變項上的平均差異。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">交互作用及其與主要效果的解讀</div><div class="step-desc">交互作用指一個自變項與依變項的關係隨另一自變項的水準而不同;兩個自變項有一個雙向交互作用,三個自變項則多出三個雙向與一個三向。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">單純主要效果與共變數分析</div><div class="step-desc">單純主要效果分析類似事後比較,用來檢驗特定細格平均數之間是否有顯著差異,幫助拆解顯著的交互作用。</div></div></div></section>
+
+<section class="slide slide-2 bg-green" data-ch="11">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 11 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">Burger(1987):有無選擇 × 公開或私密評價對解字謎表現的影響</h2>
+    <div class="warn"><b>臨床上怎麼想</b>衛教方式(影片或口頭)與病人年齡層(青壯或高齡)對服藥遵從度的影響:若影片只對青壯族群有效、對高齡者無效,就是交互作用,此時不能籠統地說影片衛教比較好。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>55 名大學生隨機分到 2 × 2 四組,依變項為兩分鐘內解出的字謎數。四組平均:公開有選擇 19.50、公開無選擇 14.86、私密有選擇 14.92、私密無選擇 15.36。兩個主要效果與交互作用都顯著,但主要效果全由公開且有選擇組的高分造成,須依交互作用解讀。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以 2(有無選擇)× 2(公開或私密)多因子變異數分析檢驗解出的字謎數:選擇主要效果顯著,F(1, 51) = 12.72, p &lt; .001;評價情境主要效果顯著,F(1, 51) = 14.10, p &lt; .001;交互作用亦顯著,F(1, 51) = 17.62, p &lt; .001,僅公開且有選擇組(M = 19.50)明顯高於其他三組。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>交互作用顯著時,只報「某組平均較高」的主要效果可能誤導,要說明該效果在哪些條件下才成立。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>自變項越多細格越多,每格人數不足(少於 10 人)時分析沒有意義。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>樣本大時微小差異也會顯著;η² 只有 .01–.04 時,實務上的重要性有限。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>各細格人數不等又變異不齊時,顯著性檢定的機率值會失準,要先檢查各組標準差。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-pink" data-ch="11">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 11 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">多因子變異數分析算出的地區主要效果,與單獨對地區做單因子分析的結果有何關鍵差別?</div><details><summary>看答案</summary><div class="team-bio">多因子分析的主要效果已排除模型中其他自變項(如性別)可解釋的變異,因此能分辨地區差異是否只是各地區性別比例不同造成的副產品。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">表 11-1 中哪個現象暗示性別與地區有交互作用?</div><details><summary>看答案</summary><div class="team-bio">北、東、西部男生都比女生多看 5 小時電視,南部卻多 15 小時;性別差距的大小隨地區而變,代表性別與看電視時數的關係受地區調節。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">自我效能的例子中整體模型 p = .001,為何作者仍說不具實務顯著性?</div><details><summary>看答案</summary><div class="team-bio">因為 468 人的大樣本讓小差異也容易顯著,而 η² = .036 表示性別、成績及其交互作用合起來只解釋 3.6% 的變異,效果很小。</div></details></div></div></section>
 
 <section class="slide slide-10" data-ch="11">
   <div class="deco-dots-bottom"></div>
@@ -1334,6 +1474,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -1390,13 +1531,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {

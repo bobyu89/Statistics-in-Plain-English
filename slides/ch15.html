@@ -1225,11 +1225,120 @@
 .slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .slide-10 .close-btn.alt { background: var(--white); }
 
+/* ---- extra chapter slides ---- */
+.slide-9 .team-card .team-role { text-transform: none; }
+.slide-9 .team-bio { font-size: clamp(13px, 1.1vw, 17px); line-height: 1.5; }
+.fx-grid .fx-expr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 1.35vw, 21px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; background: var(--cream); border: 3px solid var(--black); padding: 8px 12px; }
+.slide-7 .step-title { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.3; }
+.slide-7 .step-desc { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.55; }
+.slide-3 .feature-card p { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.55; }
+.slide-3 .feature-card { padding: 28px; }
+.slide-3 { padding-bottom: 100px; }
+.slide-quiz .team-name { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.4; font-weight: 700; }
+.slide-quiz details { margin-top: auto; }
+.slide-quiz summary { cursor: pointer; display: inline-block; border: 3px solid var(--black); background: var(--yellow); padding: 6px 14px; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); list-style: none; }
+.slide-quiz summary::-webkit-details-marker { display: none; }
+.slide-quiz details[open] summary { margin-bottom: 10px; }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-3 .feature-card { padding: 20px; }
+  .slide-3 .feature-icon { width: 48px; height: 48px; margin-bottom: 14px; font-size: 22px; }
+  .slide-7 .timeline-step { padding: 20px; }
+  .slide-7 .step-num { font-size: 36px; margin-bottom: 10px; }
+}
+
+/* ================= phones and small tablets: each slide becomes a scrolling page ================= */
+@media (max-width: 820px), (max-height: 520px) {
+  html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .slides-container { width: 100%; height: auto; }
+  .slide { position: relative; width: 100%; height: auto; min-height: 100vh; min-height: 100dvh; padding: 76px 18px 100px; overflow: visible; }
+  .slide.active { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .nb-heading-xl { font-size: 44px; }
+  .nb-heading-lg { font-size: 30px; }
+  .nb-heading-md { font-size: 23px; }
+  .nb-body { font-size: 16px; }
+  .nb-label { font-size: 12px; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+  .slide .slide-header { margin-bottom: 20px !important; }
+  /* chrome */
+  .home-link { top: 12px; right: 12px; }
+  .ch-btn { top: 12px; right: auto; left: 12px; }
+  .ch-menu { top: 52px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 140px); }
+  .slide-counter { left: 12px; bottom: 12px; font-size: 12px; padding: 8px 12px; }
+  .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
+  .nav-btn { width: 44px; height: 44px; }
+  /* decorations that only make sense on a wide canvas */
+  .slide-1 .deco-dots, .slide-1 .deco-pink-rect, .slide-1 .deco-green-circle, .slide-5 .deco-stripes, .slide-10 .deco-dots-bottom, .slide-6 .ch-no, .slide-open .open-no, .slide-3 .card-deco, .step-connector { display: none !important; }
+  .corner-bracket { width: 16px; height: 16px; }
+  /* cover / chapter opener */
+  .slide-1 { justify-content: center !important; }
+  .slide-1 .hero-frame { padding: 28px 20px 40px; max-width: none; box-shadow: var(--shadow-sm); }
+  .slide-open .hero-title { max-width: 100%; margin-bottom: 16px; }
+  .slide-1 .hero-subtitle, .slide-open .hero-subtitle { font-size: 16px; max-width: none; }
+  .slide-1 .deco-yellow-bar { left: 20px; width: auto; padding: 0 14px; }
+  /* split (figure) slide */
+  .slide-6 { padding: 0; }
+  .slide-6 .split-visual { flex: none; padding: 70px 18px 22px; overflow: visible; }
+  .slide-6 .split-visual .visual-label { display: none; }
+  .slide-6 .visual-box.figure { max-width: none; padding: 8px; border-width: 3px; }
+  .slide-6 .fig-cap { margin-top: 14px; font-size: 14px; }
+  .slide-6 .split-content { flex: none; padding: 24px 18px 100px; border-left: none; border-top: var(--border); gap: 16px; }
+  .slide-6 .content-list li { font-size: 16px; align-items: flex-start; }
+  /* two-column slides */
+  .slide-2 { gap: 20px; }
+  .slide-2 .col-left, .slide-2 .col-right { flex: none; gap: 16px; }
+  .slide-2 .intro-card { padding: 18px; }
+  .slide-2 .intro-card h3 { font-size: 19px; }
+  .slide-2 .intro-card p, .slide-2 .warn { font-size: 15px; max-width: none; }
+  /* grids */
+  .slide-9 .team-grid, .slide-9 .team-grid.g5, .slide-8 .stats-grid, .take-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .slide-9 .team-card { padding: 16px; }
+  .slide-9 .team-name { font-size: 18px; }
+  .slide-9 .team-bio { font-size: 15px; }
+  .slide-8 .stat-card { transform: none !important; padding: 20px; }
+  .slide-3 .cards-row { flex-direction: column; gap: 14px; }
+  .slide-3 .feature-card { padding: 18px; box-shadow: var(--shadow-sm); display: flex; gap: 14px; align-items: flex-start; }
+  .slide-3 .feature-icon { width: 40px; height: 40px; font-size: 20px; margin: 0; flex: none; }
+  .slide-3 .feature-card p { font-size: 15px; }
+  .slide-7 .timeline { flex-direction: column; }
+  .slide-7 .timeline-step { margin: 0 0 -4px 0 !important; padding: 18px; }
+  .slide-7 .step-num { font-size: 30px; margin-bottom: 6px; }
+  .fx-grid .fx-expr { font-size: 16px; }
+  /* tables: one card per row */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp { border: none; box-shadow: none; background: none; }
+  .cmp thead { display: none; }
+  .cmp tr { border: var(--border); background: var(--white); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+  .cmp th, .cmp td, .cmp.dense th, .cmp.dense td, .cmp.gen th, .cmp.gen td { border: none; border-bottom: 2px solid var(--black); padding: 9px 14px; font-size: 15px; white-space: normal; }
+  .cmp tr > :last-child { border-bottom: none; }
+  .cmp tbody th { font-size: 16px; background: var(--yellow); }
+  .cmp td[data-label]::before { content: attr(data-label); display: block; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; opacity: .6; margin-bottom: 2px; }
+  .take-row { margin-top: 6px; }
+  /* chart */
+  .slide-4 .chart-frame { max-height: none; width: 100%; padding: 16px; overflow: visible; }
+  .slide-4 .chart-header { flex-direction: column; gap: 10px; }
+  .slide-4 .chart-legend { flex-wrap: wrap; gap: 8px 12px; }
+  .slide-4 .chart-body { flex-direction: column; gap: 14px; }
+  .chart-svg { height: auto; }
+  .slide-4 .data-column { flex: none; width: 100%; flex-direction: row; gap: 8px; }
+  .slide-4 .data-box { padding: 10px 6px; }
+  .slide-4 .data-box .data-num { font-size: 20px; }
+  .slide-4 .data-box .data-label { font-size: 10px; }
+  /* quote + closing */
+  .slide-5 { justify-content: center !important; }
+  .slide-5 .quote-frame { padding: 36px 22px 26px; }
+  .slide-5 .quote-text { font-size: 26px; }
+  .slide-10 { justify-content: center !important; }
+  .slide-10 .close-frame { padding: 32px 20px; box-shadow: 8px 8px 0 var(--yellow); }
+  .slide-10 .close-title { font-size: 34px; }
+  .slide-10 .close-row { flex-direction: column; align-items: stretch; }
+  .slide-10 .close-btn { padding: 14px 20px; }
+}
+.slide-7[data-ch] .step-connector { display: none; }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 05</div>
+  <div class="slide-counter" id="slideCounter">01 / 11</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1302,9 +1411,40 @@
 <section class="slide slide-cmp" data-ch="15">
   <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">三種分析各做什麼</h2></div>
   <table class="cmp gen"><thead><tr><th>分析</th><th>做法</th><th>什麼時候用</th></tr></thead><tbody>
-  <tr><th>探索性因素分析</th><td>讓資料自己分群</td><td>事先沒有明確的構面架構</td></tr><tr><th>驗證性因素分析</th><td>檢驗預設的架構是否成立</td><td>已有理論或前人量表</td></tr><tr><th>信度分析</th><td>計算 Cronbach's α</td><td>確認一組題目能不能加總成一個分數</td></tr>
+  <tr><th>探索性因素分析</th><td data-label="做法">讓資料自己分群</td><td data-label="什麼時候用">事先沒有明確的構面架構</td></tr><tr><th>驗證性因素分析</th><td data-label="做法">檢驗預設的架構是否成立</td><td data-label="什麼時候用">已有理論或前人量表</td></tr><tr><th>信度分析</th><td data-label="做法">計算 Cronbach's α</td><td data-label="什麼時候用">確認一組題目能不能加總成一個分數</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>因素分析把很多題目濃縮成少數幾個構面</span></div><div class="take"><span class="list-num">02</span><span>因素負荷量是題目和因素的相關;特徵值大於 1 常作為保留門檻</span></div><div class="take"><span class="list-num">03</span><span>Cronbach's α 檢查同一構面題目的內部一致性,.70 以上通常可接受</span></div></div></section>
+
+<section class="slide slide-9 bg-blue" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">因素負荷量</div><div class="team-role keepcase">factor loading</div><div class="team-bio">某題項與某因素之間關聯的強度,解讀方式近似相關係數。</div></div><div class="team-card"><div class="team-name">因素轉軸</div><div class="team-role keepcase">factor rotation</div><div class="team-bio">調整因素使其彼此盡量區隔;分直交(varimax)與斜交兩大類。</div></div><div class="team-card"><div class="team-name">特徵值</div><div class="team-role keepcase">eigenvalue</div><div class="team-bio">衡量一個因素強度、解釋多少題項總變異;通常大於 1 才考慮保留。</div></div><div class="team-card"><div class="team-name">驗證性因素分析</div><div class="team-role keepcase">confirmatory factor analysis (CFA)</div><div class="team-bio">先依理論指定因素結構,再用適配度統計量檢驗與資料合不合。</div></div><div class="team-card"><div class="team-name">Cronbach's α 係數</div><div class="team-role keepcase">Cronbach's alpha</div><div class="team-bio">一組題項內部一致性的指標,一般以大於 0.70 為可接受。</div></div><div class="team-card"><div class="team-name">信度分析</div><div class="team-role keepcase">reliability analysis</div><div class="team-bio">檢查同一量表的題項彼此相關多強、能否可靠地代表同一構念。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">因素分析樣本數經驗法則</div><div class="fx-expr">所需樣本數 ≈ 30 + 10 × (觀察變項數 − 1)</div><div class="team-bio">10 個變項至少 30 + 90 = 120 人</div></div><div class="team-card"><div class="team-role keepcase">保留因素的經驗法則</div><div class="fx-expr">特徵值 &gt; 1.0,且解釋總變異 ≥ 約 10%</div><div class="team-bio">還要概念上說得通</div></div><div class="team-card"><div class="team-role keepcase">可接受信度的經驗法則</div><div class="fx-expr">Cronbach's α &gt; 0.70</div><div class="team-bio">α 受題數與題間相關共同影響</div></div></div></section>
+
+<section class="slide slide-7" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">構念、觀察變項與為何要用多個題項</div><div class="step-desc">題項是可直接測量的觀察變項;它們共同反映的「價值」「工作滿意度」等是不能直接測量的潛在變項。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">探索性因素分析:萃取、負荷量與轉軸</div><div class="step-desc">EFA 先找出相關最強的一群題項組成第一個因素,再找次強的,直到新因素不再明顯增加解釋變異為止。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">具體例子與驗證性因素分析簡介</div><div class="step-desc">九個題項(精熟、表現、家庭各三題)以主成分萃取加直交轉軸,初步得到四個特徵值大於 1 的因素。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">信度分析:Cronbach's α</div><div class="step-desc">Cronbach's α 衡量一組題項的內部一致性,概念上像題項間的平均關聯,最大為 1.0。</div></div></div></section>
+
+<section class="slide slide-2 bg-cream" data-ch="15">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 15 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">857 名高中生的九個動機題項:精熟目標、表現目標、家庭背景</h2>
+    <div class="warn"><b>臨床上怎麼想</b>發展一份護理人員職場疲勞量表時,先用因素分析看題項是否如預期分成「情緒耗竭」「工作負荷」等面向,再對每個面向算 Cronbach's α;若某面向 α 低於 0.70,就要檢討題目。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>精熟題項彼此相關皆高於 0.40,表現題項亦然,家庭題項彼此相關都低於 0.30。EFA 先得四因素(合計解釋約 69% 變異),限定三因素後表現與精熟因素負荷量都在 0.72 以上,家庭題項的「父母輔導作業」只有 0.353。信度分析:表現 α = 0.73、精熟 α = 0.70、家庭 α = 0.27,家庭三題不能當成一個量表。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>對九個題項進行探索性因素分析(主成分萃取、直交轉軸),初步得到四個特徵值大於 1.0 的因素;限定三因素後,表現與精熟因素維持不變,家庭題項合為單一因素。信度分析顯示表現量表(Cronbach's α = .73)與精熟量表(α = .70)內部一致性可接受,家庭題項則否(α = .27)。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>特徵值大於 1 的因素不一定有意義,也不一定可靠;還要看概念是否合理以及 α 是否夠高。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>α 會隨題數增加而升高,題數少時一題不合就會把 α 拉得很低,解讀時要考慮題數。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>直交轉軸假設因素互不相關;社會科學的構念常彼此相關,此時應考慮斜交轉軸。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>Cronbach's α 評的是內部一致性,不是再測信度;兩者回答的問題不同。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-green" data-ch="15">
+  <div class="slide-header"><div class="nb-label nb-label-cream keepcase">CH 15 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">探索性與驗證性因素分析在出發點上有什麼不同?</div><details><summary>看答案</summary><div class="team-bio">探索性因素分析不預設結構,由題項間的相關強弱決定怎麼分群;驗證性因素分析則先依理論指定哪些題項屬於哪個因素,再用適配度統計量檢驗這個模型與資料是否相符。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">三個家庭題項在三因素解中確實歸成一個因素,為何作者仍說它們不構成量表?</div><details><summary>看答案</summary><div class="team-bio">因為信度分析顯示它們的 Cronbach's α 只有 0.27,刪掉任何一題最高也只到 0.36,代表三題彼此相關都弱,內部一致性不足,無法可靠地代表同一個構念。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">同樣是題項間平均相關 0.5,為什麼 8 題量表的 α 會比 3 題量表高、也比較不怕一題不合?</div><details><summary>看答案</summary><div class="team-bio">α 取決於題數和題間相關。題數多時共同變異累積得多,α 自然較高;而且單一不合群的題項在 8 題中被稀釋,在 3 題中卻會明顯拉低整體平均相關。</div></details></div></div></section>
 
 <section class="slide slide-10" data-ch="15">
   <div class="deco-dots-bottom"></div>
@@ -1330,6 +1470,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -1386,13 +1527,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {

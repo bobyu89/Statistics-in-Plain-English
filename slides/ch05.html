@@ -1225,11 +1225,120 @@
 .slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .slide-10 .close-btn.alt { background: var(--white); }
 
+/* ---- extra chapter slides ---- */
+.slide-9 .team-card .team-role { text-transform: none; }
+.slide-9 .team-bio { font-size: clamp(13px, 1.1vw, 17px); line-height: 1.5; }
+.fx-grid .fx-expr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 1.35vw, 21px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; background: var(--cream); border: 3px solid var(--black); padding: 8px 12px; }
+.slide-7 .step-title { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.3; }
+.slide-7 .step-desc { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.55; }
+.slide-3 .feature-card p { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.55; }
+.slide-3 .feature-card { padding: 28px; }
+.slide-3 { padding-bottom: 100px; }
+.slide-quiz .team-name { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.4; font-weight: 700; }
+.slide-quiz details { margin-top: auto; }
+.slide-quiz summary { cursor: pointer; display: inline-block; border: 3px solid var(--black); background: var(--yellow); padding: 6px 14px; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); list-style: none; }
+.slide-quiz summary::-webkit-details-marker { display: none; }
+.slide-quiz details[open] summary { margin-bottom: 10px; }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-3 .feature-card { padding: 20px; }
+  .slide-3 .feature-icon { width: 48px; height: 48px; margin-bottom: 14px; font-size: 22px; }
+  .slide-7 .timeline-step { padding: 20px; }
+  .slide-7 .step-num { font-size: 36px; margin-bottom: 10px; }
+}
+
+/* ================= phones and small tablets: each slide becomes a scrolling page ================= */
+@media (max-width: 820px), (max-height: 520px) {
+  html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .slides-container { width: 100%; height: auto; }
+  .slide { position: relative; width: 100%; height: auto; min-height: 100vh; min-height: 100dvh; padding: 76px 18px 100px; overflow: visible; }
+  .slide.active { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .nb-heading-xl { font-size: 44px; }
+  .nb-heading-lg { font-size: 30px; }
+  .nb-heading-md { font-size: 23px; }
+  .nb-body { font-size: 16px; }
+  .nb-label { font-size: 12px; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+  .slide .slide-header { margin-bottom: 20px !important; }
+  /* chrome */
+  .home-link { top: 12px; right: 12px; }
+  .ch-btn { top: 12px; right: auto; left: 12px; }
+  .ch-menu { top: 52px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 140px); }
+  .slide-counter { left: 12px; bottom: 12px; font-size: 12px; padding: 8px 12px; }
+  .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
+  .nav-btn { width: 44px; height: 44px; }
+  /* decorations that only make sense on a wide canvas */
+  .slide-1 .deco-dots, .slide-1 .deco-pink-rect, .slide-1 .deco-green-circle, .slide-5 .deco-stripes, .slide-10 .deco-dots-bottom, .slide-6 .ch-no, .slide-open .open-no, .slide-3 .card-deco, .step-connector { display: none !important; }
+  .corner-bracket { width: 16px; height: 16px; }
+  /* cover / chapter opener */
+  .slide-1 { justify-content: center !important; }
+  .slide-1 .hero-frame { padding: 28px 20px 40px; max-width: none; box-shadow: var(--shadow-sm); }
+  .slide-open .hero-title { max-width: 100%; margin-bottom: 16px; }
+  .slide-1 .hero-subtitle, .slide-open .hero-subtitle { font-size: 16px; max-width: none; }
+  .slide-1 .deco-yellow-bar { left: 20px; width: auto; padding: 0 14px; }
+  /* split (figure) slide */
+  .slide-6 { padding: 0; }
+  .slide-6 .split-visual { flex: none; padding: 70px 18px 22px; overflow: visible; }
+  .slide-6 .split-visual .visual-label { display: none; }
+  .slide-6 .visual-box.figure { max-width: none; padding: 8px; border-width: 3px; }
+  .slide-6 .fig-cap { margin-top: 14px; font-size: 14px; }
+  .slide-6 .split-content { flex: none; padding: 24px 18px 100px; border-left: none; border-top: var(--border); gap: 16px; }
+  .slide-6 .content-list li { font-size: 16px; align-items: flex-start; }
+  /* two-column slides */
+  .slide-2 { gap: 20px; }
+  .slide-2 .col-left, .slide-2 .col-right { flex: none; gap: 16px; }
+  .slide-2 .intro-card { padding: 18px; }
+  .slide-2 .intro-card h3 { font-size: 19px; }
+  .slide-2 .intro-card p, .slide-2 .warn { font-size: 15px; max-width: none; }
+  /* grids */
+  .slide-9 .team-grid, .slide-9 .team-grid.g5, .slide-8 .stats-grid, .take-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .slide-9 .team-card { padding: 16px; }
+  .slide-9 .team-name { font-size: 18px; }
+  .slide-9 .team-bio { font-size: 15px; }
+  .slide-8 .stat-card { transform: none !important; padding: 20px; }
+  .slide-3 .cards-row { flex-direction: column; gap: 14px; }
+  .slide-3 .feature-card { padding: 18px; box-shadow: var(--shadow-sm); display: flex; gap: 14px; align-items: flex-start; }
+  .slide-3 .feature-icon { width: 40px; height: 40px; font-size: 20px; margin: 0; flex: none; }
+  .slide-3 .feature-card p { font-size: 15px; }
+  .slide-7 .timeline { flex-direction: column; }
+  .slide-7 .timeline-step { margin: 0 0 -4px 0 !important; padding: 18px; }
+  .slide-7 .step-num { font-size: 30px; margin-bottom: 6px; }
+  .fx-grid .fx-expr { font-size: 16px; }
+  /* tables: one card per row */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp { border: none; box-shadow: none; background: none; }
+  .cmp thead { display: none; }
+  .cmp tr { border: var(--border); background: var(--white); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+  .cmp th, .cmp td, .cmp.dense th, .cmp.dense td, .cmp.gen th, .cmp.gen td { border: none; border-bottom: 2px solid var(--black); padding: 9px 14px; font-size: 15px; white-space: normal; }
+  .cmp tr > :last-child { border-bottom: none; }
+  .cmp tbody th { font-size: 16px; background: var(--yellow); }
+  .cmp td[data-label]::before { content: attr(data-label); display: block; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; opacity: .6; margin-bottom: 2px; }
+  .take-row { margin-top: 6px; }
+  /* chart */
+  .slide-4 .chart-frame { max-height: none; width: 100%; padding: 16px; overflow: visible; }
+  .slide-4 .chart-header { flex-direction: column; gap: 10px; }
+  .slide-4 .chart-legend { flex-wrap: wrap; gap: 8px 12px; }
+  .slide-4 .chart-body { flex-direction: column; gap: 14px; }
+  .chart-svg { height: auto; }
+  .slide-4 .data-column { flex: none; width: 100%; flex-direction: row; gap: 8px; }
+  .slide-4 .data-box { padding: 10px 6px; }
+  .slide-4 .data-box .data-num { font-size: 20px; }
+  .slide-4 .data-box .data-label { font-size: 10px; }
+  /* quote + closing */
+  .slide-5 { justify-content: center !important; }
+  .slide-5 .quote-frame { padding: 36px 22px 26px; }
+  .slide-5 .quote-text { font-size: 26px; }
+  .slide-10 { justify-content: center !important; }
+  .slide-10 .close-frame { padding: 32px 20px; box-shadow: 8px 8px 0 var(--yellow); }
+  .slide-10 .close-title { font-size: 34px; }
+  .slide-10 .close-row { flex-direction: column; align-items: stretch; }
+  .slide-10 .close-btn { padding: 14px 20px; }
+}
+.slide-7[data-ch] .step-connector { display: none; }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 05</div>
+  <div class="slide-counter" id="slideCounter">01 / 11</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1306,9 +1415,40 @@
 <section class="slide slide-cmp" data-ch="5">
   <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">常態分布下,z 分數對應的位置</h2></div>
   <table class="cmp gen"><thead><tr><th>z</th><th>意思</th><th>大約贏過多少人</th></tr></thead><tbody>
-  <tr><th>−1</th><td>比平均低 1 個標準差</td><td>16%</td></tr><tr><th>0</th><td>剛好在平均</td><td>50%</td></tr><tr><th>+1</th><td>比平均高 1 個標準差</td><td>84%</td></tr><tr><th>+2</th><td>比平均高 2 個標準差</td><td>98%</td></tr>
+  <tr><th>−1</th><td data-label="意思">比平均低 1 個標準差</td><td data-label="大約贏過多少人">16%</td></tr><tr><th>0</th><td data-label="意思">剛好在平均</td><td data-label="大約贏過多少人">50%</td></tr><tr><th>+1</th><td data-label="意思">比平均高 1 個標準差</td><td data-label="大約贏過多少人">84%</td></tr><tr><th>+2</th><td data-label="意思">比平均高 2 個標準差</td><td data-label="大約贏過多少人">98%</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>z = (分數 − 平均數) ÷ 標準差</span></div><div class="take"><span class="list-num">02</span><span>換成 z 之後,平均數是 0、標準差是 1</span></div><div class="take"><span class="list-num">03</span><span>資料接近常態時,z 可以直接查出百分位</span></div></div></section>
+
+<section class="slide slide-9 bg-blue" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">原始分數</div><div class="team-role keepcase">raw score</div><div class="team-bio">變項實際測得、尚未轉換的觀察值。</div></div><div class="team-card"><div class="team-name">百分位數</div><div class="team-role keepcase">percentile score</div><div class="team-bio">有特定比例的分數落在其下的那個分數,如第 90 百分位。</div></div><div class="team-card"><div class="team-name">標準常態分布</div><div class="team-role keepcase">standard normal distribution</div><div class="team-bio">平均數 0、標準差 1 的常態分布,z 表即以此為據。</div></div><div class="team-card"><div class="team-name">p 值</div><div class="team-role keepcase">p value</div><div class="team-bio">隨機得到某個統計值(或更極端)的機率;z 越大,p 越小。</div></div><div class="team-card"><div class="team-name">z 表(附錄 A)</div><div class="team-role keepcase">z table</div><div class="team-bio">列出常態分布中小於各 z 值的面積比例。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">z 分數(文字式)</div><div class="fx-expr">z = (原始分數 − 平均數) / 標準差</div><div class="team-bio">表 5-1 的文字版本</div></div><div class="team-card"><div class="team-role keepcase">z 分數(母體)</div><div class="fx-expr">z = (X − μ) / σ</div><div class="team-bio">已知母體平均數與標準差時使用</div></div><div class="team-card"><div class="team-role keepcase">z 分數(樣本)</div><div class="fx-expr">z = (X − X̄) / s</div><div class="team-bio">以樣本平均數與樣本標準差計算</div></div><div class="team-card"><div class="team-role keepcase">由 z 換回原始分數</div><div class="fx-expr">X = μ + (z)(σ)</div><div class="team-bio">例:517 + 1.28 × 100 = 645</div></div><div class="team-card"><div class="team-role keepcase">右尾機率</div><div class="fx-expr">p = 1 − (z 表中小於 z 的比例)</div><div class="team-bio">例:z = 0.15 時為 1 − 0.5596 = 0.4404</div></div></div></section>
+
+<section class="slide slide-7" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">為什麼需要標準化</div><div class="step-desc">生物考 65 分(滿分 100)、統計考 42 分(滿分 200),哪科較好?答對比例看是生物,但那忽略了考試難度與全班表現。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">z 分數的計算與解讀</div><div class="step-desc">作法是原始分數減平均數再除以標準差;母體用 μ 與 σ,樣本用 X̄ 與 s。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">用 z 表在原始分數與百分位數之間互換</div><div class="step-desc">附錄 A 以左欄(到小數一位)加頂列(小數第二位)定位 z,表中數字是常態分布中小於該 z 值的比例;1 減去它就是右尾機率(p 值)。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">例子:原始分數與 z 分數對照</div><div class="step-desc">題目「測驗會顯示我有多聰明」(8 點量尺)平均數 5.38、標準差 2.35;最高分 z 僅 1.12,最低分 z 達 −1.86。</div></div></div></section>
+
+<section class="slide slide-2 bg-cream" data-ch="5">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 05 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">SAT 數學成績(μ = 517、σ = 100)的四種 z 分數計算</h2>
+    <div class="warn"><b>臨床上怎麼想</b>兒童生長曲線就是 z 分數的應用:體重 z = −2 代表低於同齡同性別平均 2 個標準差,約第 2 百分位。骨密度的 Z 值、T 值也是同樣邏輯,把檢查結果換成可比較的相對位置。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>第 90 百分位:z = 1.28,X = 517 + 128 = 645。425 分:z = −0.92,約第 18 百分位。417 與 567 分之間(z = −1.00 與 0.50):0.3413 + 0.1915 = 53.28%。567 與 617 分同在平均數右側:0.3413 − 0.1915 = 14.98%。</p></div>
+    
+  </div></section>
+
+<section class="slide slide-3" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>z 分數只說相對位置,不代表絕對表現好壞,還要看比較對象是誰、測驗有多難。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>資料非常態時,不能用 z 表把 z 分數換成百分位,要改用排序法。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>z 表只列正值;負的 z 靠對稱性處理,別把「小於 z 的比例」與「尾端比例」弄反。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>兩分數在平均數兩側時面積相加,在同一側時相減,先畫圖再計算。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-green" data-ch="5">
+  <div class="slide-header"><div class="nb-label nb-label-pink keepcase">CH 05 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">兩科各比平均數高 5 分,為什麼其中一科的 z 分數可能是另一科的兩倍?</div><details><summary>看答案</summary><div class="team-bio">因為 z 還要除以標準差。同樣高 5 分,標準差 10 的科目只有 z = 0.5,標準差 5 的科目則是 z = 1.0;分數越集中,相同差距代表的相對位置越突出。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">某分布平均數 7.28、標準差 1.33,滿分是 8。為什麼最高分的 z 只有約 0.5?這告訴你什麼?</div><details><summary>看答案</summary><div class="team-bio">因為平均數已經貼近量尺上限,滿分只比平均數多 0.72 分。這顯示分布嚴重負偏,z 分數在平均數兩側範圍不對稱,因此不能拿常態 z 表去換算百分位。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">已知常態分布 μ = 517、σ = 100,如何求 417 到 567 分之間的比例?</div><details><summary>看答案</summary><div class="team-bio">先算 z:417 為 −1.00、567 為 0.50。查表得平均數到兩個 z 的面積為 0.3413 與 0.1915;兩者分居平均數兩側,相加得 53.28%。</div></details></div></div></section>
 
 <section class="slide slide-10" data-ch="5">
   <div class="deco-dots-bottom"></div>
@@ -1334,6 +1474,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -1390,13 +1531,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {

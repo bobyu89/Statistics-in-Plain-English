@@ -1225,11 +1225,120 @@
 .slide-10 .close-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .slide-10 .close-btn.alt { background: var(--white); }
 
+/* ---- extra chapter slides ---- */
+.slide-9 .team-card .team-role { text-transform: none; }
+.slide-9 .team-bio { font-size: clamp(13px, 1.1vw, 17px); line-height: 1.5; }
+.fx-grid .fx-expr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 1.35vw, 21px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; background: var(--cream); border: 3px solid var(--black); padding: 8px 12px; }
+.slide-7 .step-title { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.3; }
+.slide-7 .step-desc { font-size: clamp(13px, 1.1vw, 16px); line-height: 1.55; }
+.slide-3 .feature-card p { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.55; }
+.slide-3 .feature-card { padding: 28px; }
+.slide-3 { padding-bottom: 100px; }
+.slide-quiz .team-name { font-size: clamp(15px, 1.3vw, 20px); line-height: 1.4; font-weight: 700; }
+.slide-quiz details { margin-top: auto; }
+.slide-quiz summary { cursor: pointer; display: inline-block; border: 3px solid var(--black); background: var(--yellow); padding: 6px 14px; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); list-style: none; }
+.slide-quiz summary::-webkit-details-marker { display: none; }
+.slide-quiz details[open] summary { margin-bottom: 10px; }
+@media (max-height: 760px) and (min-width: 1025px) {
+  .slide-3 .feature-card { padding: 20px; }
+  .slide-3 .feature-icon { width: 48px; height: 48px; margin-bottom: 14px; font-size: 22px; }
+  .slide-7 .timeline-step { padding: 20px; }
+  .slide-7 .step-num { font-size: 36px; margin-bottom: 10px; }
+}
+
+/* ================= phones and small tablets: each slide becomes a scrolling page ================= */
+@media (max-width: 820px), (max-height: 520px) {
+  html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+  .slides-container { width: 100%; height: auto; }
+  .slide { position: relative; width: 100%; height: auto; min-height: 100vh; min-height: 100dvh; padding: 76px 18px 100px; overflow: visible; }
+  .slide.active { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .nb-heading-xl { font-size: 44px; }
+  .nb-heading-lg { font-size: 30px; }
+  .nb-heading-md { font-size: 23px; }
+  .nb-body { font-size: 16px; }
+  .nb-label { font-size: 12px; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+  .slide .slide-header { margin-bottom: 20px !important; }
+  /* chrome */
+  .home-link { top: 12px; right: 12px; }
+  .ch-btn { top: 12px; right: auto; left: 12px; }
+  .ch-menu { top: 52px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 140px); }
+  .slide-counter { left: 12px; bottom: 12px; font-size: 12px; padding: 8px 12px; }
+  .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
+  .nav-btn { width: 44px; height: 44px; }
+  /* decorations that only make sense on a wide canvas */
+  .slide-1 .deco-dots, .slide-1 .deco-pink-rect, .slide-1 .deco-green-circle, .slide-5 .deco-stripes, .slide-10 .deco-dots-bottom, .slide-6 .ch-no, .slide-open .open-no, .slide-3 .card-deco, .step-connector { display: none !important; }
+  .corner-bracket { width: 16px; height: 16px; }
+  /* cover / chapter opener */
+  .slide-1 { justify-content: center !important; }
+  .slide-1 .hero-frame { padding: 28px 20px 40px; max-width: none; box-shadow: var(--shadow-sm); }
+  .slide-open .hero-title { max-width: 100%; margin-bottom: 16px; }
+  .slide-1 .hero-subtitle, .slide-open .hero-subtitle { font-size: 16px; max-width: none; }
+  .slide-1 .deco-yellow-bar { left: 20px; width: auto; padding: 0 14px; }
+  /* split (figure) slide */
+  .slide-6 { padding: 0; }
+  .slide-6 .split-visual { flex: none; padding: 70px 18px 22px; overflow: visible; }
+  .slide-6 .split-visual .visual-label { display: none; }
+  .slide-6 .visual-box.figure { max-width: none; padding: 8px; border-width: 3px; }
+  .slide-6 .fig-cap { margin-top: 14px; font-size: 14px; }
+  .slide-6 .split-content { flex: none; padding: 24px 18px 100px; border-left: none; border-top: var(--border); gap: 16px; }
+  .slide-6 .content-list li { font-size: 16px; align-items: flex-start; }
+  /* two-column slides */
+  .slide-2 { gap: 20px; }
+  .slide-2 .col-left, .slide-2 .col-right { flex: none; gap: 16px; }
+  .slide-2 .intro-card { padding: 18px; }
+  .slide-2 .intro-card h3 { font-size: 19px; }
+  .slide-2 .intro-card p, .slide-2 .warn { font-size: 15px; max-width: none; }
+  /* grids */
+  .slide-9 .team-grid, .slide-9 .team-grid.g5, .slide-8 .stats-grid, .take-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .slide-9 .team-card { padding: 16px; }
+  .slide-9 .team-name { font-size: 18px; }
+  .slide-9 .team-bio { font-size: 15px; }
+  .slide-8 .stat-card { transform: none !important; padding: 20px; }
+  .slide-3 .cards-row { flex-direction: column; gap: 14px; }
+  .slide-3 .feature-card { padding: 18px; box-shadow: var(--shadow-sm); display: flex; gap: 14px; align-items: flex-start; }
+  .slide-3 .feature-icon { width: 40px; height: 40px; font-size: 20px; margin: 0; flex: none; }
+  .slide-3 .feature-card p { font-size: 15px; }
+  .slide-7 .timeline { flex-direction: column; }
+  .slide-7 .timeline-step { margin: 0 0 -4px 0 !important; padding: 18px; }
+  .slide-7 .step-num { font-size: 30px; margin-bottom: 6px; }
+  .fx-grid .fx-expr { font-size: 16px; }
+  /* tables: one card per row */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp { border: none; box-shadow: none; background: none; }
+  .cmp thead { display: none; }
+  .cmp tr { border: var(--border); background: var(--white); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+  .cmp th, .cmp td, .cmp.dense th, .cmp.dense td, .cmp.gen th, .cmp.gen td { border: none; border-bottom: 2px solid var(--black); padding: 9px 14px; font-size: 15px; white-space: normal; }
+  .cmp tr > :last-child { border-bottom: none; }
+  .cmp tbody th { font-size: 16px; background: var(--yellow); }
+  .cmp td[data-label]::before { content: attr(data-label); display: block; font-family: 'Space Grotesk', 'Noto Sans TC', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; opacity: .6; margin-bottom: 2px; }
+  .take-row { margin-top: 6px; }
+  /* chart */
+  .slide-4 .chart-frame { max-height: none; width: 100%; padding: 16px; overflow: visible; }
+  .slide-4 .chart-header { flex-direction: column; gap: 10px; }
+  .slide-4 .chart-legend { flex-wrap: wrap; gap: 8px 12px; }
+  .slide-4 .chart-body { flex-direction: column; gap: 14px; }
+  .chart-svg { height: auto; }
+  .slide-4 .data-column { flex: none; width: 100%; flex-direction: row; gap: 8px; }
+  .slide-4 .data-box { padding: 10px 6px; }
+  .slide-4 .data-box .data-num { font-size: 20px; }
+  .slide-4 .data-box .data-label { font-size: 10px; }
+  /* quote + closing */
+  .slide-5 { justify-content: center !important; }
+  .slide-5 .quote-frame { padding: 36px 22px 26px; }
+  .slide-5 .quote-text { font-size: 26px; }
+  .slide-10 { justify-content: center !important; }
+  .slide-10 .close-frame { padding: 32px 20px; box-shadow: 8px 8px 0 var(--yellow); }
+  .slide-10 .close-title { font-size: 34px; }
+  .slide-10 .close-row { flex-direction: column; align-items: stretch; }
+  .slide-10 .close-btn { padding: 14px 20px; }
+}
+.slide-7[data-ch] .step-connector { display: none; }
+
   </style>
 </head>
 <body>
 
-  <div class="slide-counter" id="slideCounter">01 / 05</div>
+  <div class="slide-counter" id="slideCounter">01 / 11</div>
   <a class="nb-label home-link" href="../index.html">← 學習計畫</a>
   <button class="nb-label ch-btn" id="chBtn" aria-expanded="false" aria-controls="chMenu">章節 ▾</button>
   <nav class="ch-menu" id="chMenu" hidden aria-label="章節選單">
@@ -1303,9 +1412,40 @@
 <section class="slide slide-cmp" data-ch="10">
   <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 一張表看懂</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">ANOVA 把變異切成兩塊</h2></div>
   <table class="cmp gen"><thead><tr><th>來源</th><th>在量什麼</th><th>自由度</th></tr></thead><tbody>
-  <tr><th>組間</th><td>各組平均數離總平均多遠</td><td>組數 − 1</td></tr><tr><th>組內(誤差)</th><td>每個人離自己那組的平均多遠</td><td>總人數 − 組數</td></tr><tr><th>F</th><td>組間均方 ÷ 組內均方</td><td>用兩個自由度查 F 表</td></tr>
+  <tr><th>組間</th><td data-label="在量什麼">各組平均數離總平均多遠</td><td data-label="自由度">組數 − 1</td></tr><tr><th>組內(誤差)</th><td data-label="在量什麼">每個人離自己那組的平均多遠</td><td data-label="自由度">總人數 − 組數</td></tr><tr><th>F</th><td data-label="在量什麼">組間均方 ÷ 組內均方</td><td data-label="自由度">用兩個自由度查 F 表</td></tr>
   </tbody></table>
   <div class="take-row"><div class="take"><span class="list-num">01</span><span>F = 組間均方 ÷ 組內均方</span></div><div class="take"><span class="list-num">02</span><span>連做好幾次 t 檢定會讓型一錯誤膨脹,所以改用一次 ANOVA</span></div><div class="take"><span class="list-num">03</span><span>F 顯著只說「至少有一組不同」,要做事後比較才知道是哪幾組</span></div></div></section>
+
+<section class="slide slide-9 bg-blue" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 更多術語</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章還會遇到的詞</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-name">均方</div><div class="team-role keepcase">mean square</div><div class="team-bio">平方和除以自由度,把總量換成平均量後才能相除成 F。</div></div><div class="team-card"><div class="team-name">型一錯誤膨脹</div><div class="team-role keepcase">Type I error inflation</div><div class="team-bio">t 檢定做越多次,誤判為顯著的機會越高,這是改用 ANOVA 的理由。</div></div><div class="team-card"><div class="team-name">事後比較</div><div class="team-role keepcase">post hoc tests</div><div class="team-bio">F 顯著後逐對比較各組平均數,找出究竟哪幾組不同。</div></div><div class="team-card"><div class="team-name">Tukey HSD</div><div class="team-role keepcase">Tukey honestly significant difference</div><div class="team-bio">常用事後比較;兩組平均數差除以 √(MSe/ng),對照學生化全距臨界值。</div></div><div class="team-card"><div class="team-name">事前比較</div><div class="team-role keepcase">a priori contrasts</div><div class="team-bio">依假設事先計畫的特定對比,可將數組合併後再比較。</div></div><div class="team-card"><div class="team-name">η² 效應量</div><div class="team-role keepcase">eta squared</div><div class="team-bio">依變項變異中可由分組解釋的比例,性質等同決定係數。</div></div></div></section>
+
+<section class="slide slide-9 bg-offwhite" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 公式</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這一章的公式</h2></div>
+  <div class="team-grid fx-grid"><div class="team-card"><div class="team-role keepcase">F 值</div><div class="fx-expr">F = MSb / MSe</div><div class="team-bio">組間均方除以誤差均方(組內均方)</div></div><div class="team-card"><div class="team-role keepcase">誤差平方和</div><div class="fx-expr">SSe = Σ(X − X̄₁)² + Σ(X − X̄₂)² + … + Σ(X − X̄_k)²</div><div class="team-bio">各組內個別值與該組平均數的離差平方,全部加總</div></div><div class="team-card"><div class="team-role keepcase">組間平方和</div><div class="fx-expr">SSb = Σ[ n (X̄ − X̄_T)² ]</div><div class="team-bio">組平均數減總平均數,平方後乘該組人數再加總</div></div><div class="team-card"><div class="team-role keepcase">總平方和</div><div class="fx-expr">SST = Σ(X − X̄_T)² = SSb + SSe</div><div class="team-bio">ANOVA 拆解變異的核心等式</div></div><div class="team-card"><div class="team-role keepcase">均方</div><div class="fx-expr">MSb = SSb / (K − 1);MSe = SSe / (N − K)</div><div class="team-bio">平方和除以各自的自由度</div></div><div class="team-card"><div class="team-role keepcase">Tukey HSD</div><div class="fx-expr">Tukey HSD = (X̄₁ − X̄₂) / s_x̄,s_x̄ = √( MSe / ng )</div><div class="team-bio">各組人數相同時,每對比較共用同一個標準誤</div></div></div></section>
+
+<section class="slide slide-7" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 逐節重點</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">照書的順序走一遍</h2></div>
+  <div class="timeline"><div class="timeline-step"><div class="step-connector"></div><div class="step-num">01</div><div class="step-title">何時用單因子 ANOVA、為何不做多次 t 檢定</div><div class="step-desc">需要一個類別(名義)自變項把人分成至少兩個獨立組別,以及一個連續依變項,例如三種洋芋片口味的 1–7 分喜好評分。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">02</div><div class="step-title">拆解變異:平方和、均方與 F 值</div><div class="step-desc">個別分數與所屬組平均數的差距視為隨機誤差(組內);各組平均數與總平均數的差距則是組間離差,兩者相加等於個別分數到總平均數的總離差。</div></div><div class="timeline-step"><div class="step-connector"></div><div class="step-num">03</div><div class="step-title">事後比較與事前比較</div><div class="step-desc">顯著的 F 只說明至少有兩組平均數不同,沒有指出是哪幾組,必須再做事後比較逐對檢查。</div></div><div class="timeline-step"><div class="step-num">04</div><div class="step-title">效應量 η² 與 SPSS 報表</div><div class="step-desc">除了 d 之外,另一種效應量是依變項變異中被自變項解釋的比例,即 η²,概念上與決定係數 r² 相同。</div></div></div></section>
+
+<section class="slide slide-2 bg-cream" data-ch="10">
+  <div class="col-left">
+    <div><div class="nb-label nb-label-yellow keepcase">CH 10 · 書中例子</div></div>
+    <h2 class="nb-heading-md keepcase">5 歲、8 歲、12 歲孩子對泡泡糖口味冰淇淋的喜好</h2>
+    <div class="warn"><b>臨床上怎麼想</b>比較三種翻身頻率(每 2、3、4 小時)病人的壓傷風險評分時,先用單因子變異數分析看整體是否有差異,顯著後再以 Tukey 找出哪兩種頻率之間不同,而不是直接跑三次 t 檢定。</div>
+  </div>
+  <div class="col-right">
+    <div class="intro-card"><h3>這個例子在做什麼</h3><p>三組各 5 人以 1–5 分評分,平均 4.2、3.8、2.4,總平均 3.47。SSe = 10.8、SSb = 8.90,MSe = 0.90、MSb = 4.45,F = 4.94,大於臨界值 3.88。Tukey 值 0.95、4.29、3.33 中只有 5 歲對 12 歲超過 3.77,僅這一對顯著不同。</p></div>
+    <div class="intro-card"><h3>怎麼寫進論文</h3><p>以單因子變異數分析比較三個年齡組的喜好程度,組間差異達顯著,F(2, 12) = 4.94, p &lt; .05;Tukey 事後比較顯示僅 5 歲組(M = 4.20)顯著高於 12 歲組(M = 2.40)。</p></div>
+  </div></section>
+
+<section class="slide slide-3" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 常見誤解</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">這幾個地方最容易想錯</h2></div>
+  <div class="cards-row"><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>F 顯著只代表至少有兩組平均數不同,不能直接說每一組都不同,必須做事後比較。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-blue">!</div><p>三組以上不要用多次 t 檢定取代 ANOVA,型一錯誤機率會隨檢定次數累積。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-green">!</div><p>Tukey HSD 的標準誤假設各組人數相等;組別人數不等時應改用其他事後比較。</p></div><div class="feature-card"><div class="card-deco"></div><div class="feature-icon icon-pink">!</div><p>統計顯著不等於效果大,還要看 η² 解釋了多少比例的變異。</p></div></div></section>
+
+<section class="slide slide-9 slide-quiz bg-green" data-ch="10">
+  <div class="slide-header"><div class="nb-label nb-label-yellow keepcase">CH 10 · 自我檢核</div><h2 class="nb-heading-md keepcase" style="margin-top:14px;">先自己答,再點開看答案</h2></div>
+  <div class="team-grid"><div class="team-card"><div class="team-avatar">Q1</div><div class="team-name">為什麼比較三組平均數時,不建議直接做三次獨立樣本 t 檢定?</div><details><summary>看答案</summary><div class="team-bio">每做一次檢定都有機會把其實不存在的差異誤判為顯著,做三次等於讓型一錯誤的機會累積變大;ANOVA 以單一 F 檢定並把組數納入自由度來控制這個問題。</div></details></div><div class="team-card"><div class="team-avatar">Q2</div><div class="team-name">計算組間平方和時,為什麼要把每組的離差平方乘上該組人數?</div><details><summary>看答案</summary><div class="team-bio">因為組平均數與總平均數的差距是該組每一個人共同貢獻的,乘上人數才近似反映整組所有成員對組間差異的總貢獻,也才能讓 SSb 與 SSe 相加等於 SST。</div></details></div><div class="team-card"><div class="team-avatar">Q3</div><div class="team-name">某研究 F 顯著、η² = .13,而三組中有兩組平均數幾乎相同,該如何解讀?</div><details><summary>看答案</summary><div class="team-bio">F 顯著只表示至少一對組別不同,可能是其中一組特別高或低所致;需靠事後比較確認是哪一對,並說明分組約解釋依變項 13% 的變異。</div></details></div></div></section>
 
 <section class="slide slide-10" data-ch="10">
   <div class="deco-dots-bottom"></div>
@@ -1331,6 +1471,7 @@
       counter.textContent = (ch ? 'CH ' + ch.padStart(2, '0') + ' · ' : '') + String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
       document.querySelectorAll('#chMenu a').forEach(a => a.classList.toggle('on', !!ch && a.getAttribute('href') === '#ch' + ch));
       try { history.replaceState(null, '', '#' + (currentSlide + 1)); } catch (e) {}
+      window.scrollTo(0, 0);
     }
 
     function nextSlide() {
@@ -1387,13 +1528,17 @@
     // Touch / swipe support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
 
     document.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      if (Math.abs(e.changedTouches[0].screenY - touchStartY) > Math.abs(touchEndX - touchStartX)) return;
+      if (e.target.closest('#chMenu')) return;
       if (touchStartX - touchEndX > 50) {
         nextSlide();
       } else if (touchEndX - touchStartX > 50) {
