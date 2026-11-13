@@ -12,12 +12,15 @@ window.SIPE = (function () {
   ${b.analogy ? `<div class="ana"><span>比喻</span><b>${esc(b.analogy_title)}</b><p>${esc(b.analogy)}</p></div>` : ''}
   ${b.takeaways ? `<h4>三個重點</h4><ol class="take">${b.takeaways.map(t => `<li>${esc(t)}</li>`).join('')}</ol>` : ''}
   ${b.table ? `<h4>${esc(b.table.caption)}</h4>${table(b.table)}` : ''}
+  ${FIGS.svg2(c.n) ? `<figure class="figbox" style="margin-top:18px">${FIGS.svg2(c.n)}<figcaption>${esc(FIGS.caption2(c.n))}</figcaption></figure>` : ''}
+  ${(c.sections || []).length ? `<h4>這一章的路線</h4><ol class="route">${c.sections.map(x => `<li>${esc(x.heading)}</li>`).join('')}</ol>` : ''}
   ${c.formulas?.length ? `<h4>公式</h4><div class="fxg">${c.formulas.map(f => `<div class="fx"><b>${esc(f.name)}</b><code>${esc(f.expr)}</code></div>`).join('')}</div>` : ''}
+  ${c.concepts?.length ? `<h4>關鍵術語</h4><div class="tw"><table><tr><th>中文</th><th>English</th><th>白話</th></tr>${c.concepts.slice(0, 5).map(k => `<tr><td><b>${esc(k.tw)}</b></td><td>${esc(k.en)}</td><td>${esc(k.note)}</td></tr>`).join('')}</table></div>` : ''}
   ${c.pitfalls?.length ? `<h4>常見誤解</h4><ul class="warn">${c.pitfalls.map(p => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}
   ${c.clinical ? `<div class="ana clin"><span>臨床</span><p>${esc(c.clinical)}</p></div>` : ''}
   ${c.quiz?.length ? `<h4>自我檢核</h4>${c.quiz.map(z => `<details><summary>${esc(z.q)}</summary><p>${esc(z.a)}</p></details>`).join('')}` : ''}
   <h4>想看更多</h4>
-  ${c.concepts?.length ? `<details><summary>術語表(${c.concepts.length} 個)</summary><div class="tw" style="margin-top:10px"><table><tr><th>中文</th><th>English</th><th>白話</th></tr>${c.concepts.map(k => `<tr><td><b>${esc(k.tw)}</b></td><td>${esc(k.en)}</td><td>${esc(k.note)}</td></tr>`).join('')}</table></div></details>` : ''}
+  ${c.concepts?.length > 5 ? `<details><summary>其餘 ${c.concepts.length - 5} 個術語</summary><div class="tw" style="margin-top:10px"><table><tr><th>中文</th><th>English</th><th>白話</th></tr>${c.concepts.slice(5).map(k => `<tr><td><b>${esc(k.tw)}</b></td><td>${esc(k.en)}</td><td>${esc(k.note)}</td></tr>`).join('')}</table></div></details>` : ''}
   ${c.example ? `<details><summary>書中例子:${esc(c.example.title)}</summary><p>${esc(c.example.takeaway)}</p></details>` : ''}
   ${c.apa ? `<details><summary>怎麼寫進論文</summary><p>${esc(c.apa)}</p></details>` : ''}
   ${(c.sections || []).length ? `<details><summary>完整筆記(逐節)</summary>${c.sections.map(s => `<p><b>${esc(s.heading)}</b></p><ul>${s.points.map(p => `<li>${esc(p)}</li>`).join('')}</ul>`).join('')}</details>` : ''}
@@ -44,6 +47,9 @@ window.SIPE = (function () {
 .take{list-style:none;padding:0;display:grid;gap:8px;counter-reset:t}
 .take li{counter-increment:t;display:flex;gap:12px;align-items:center;background:#f6f6f4;border-radius:14px;padding:10px 14px;font-size:14.5px;line-height:1.5}
 .take li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:600}
+.route{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;counter-reset:r}
+.route li{counter-increment:r;position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px 8px 36px;font-size:13.5px;line-height:1.4;flex:1 1 200px}
+.route li::before{content:counter(r);position:absolute;left:8px;top:8px;width:20px;height:20px;border-radius:50%;background:var(--green);font-size:12px;font-weight:600;display:grid;place-items:center}
 .tw{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
 .dz table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.5}
 .dz th,.dz td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}

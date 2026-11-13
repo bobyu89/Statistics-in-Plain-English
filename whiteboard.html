@@ -99,6 +99,9 @@ a{color:inherit;text-decoration:none}
 .take{list-style:none;padding:0;display:grid;gap:8px;counter-reset:t}
 .take li{counter-increment:t;display:flex;gap:12px;align-items:center;background:#f6f6f4;border-radius:14px;padding:10px 14px;font-size:14.5px;line-height:1.5}
 .take li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:600}
+.route{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;counter-reset:r}
+.route li{counter-increment:r;position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px 8px 36px;font-size:13.5px;line-height:1.4;flex:1 1 200px}
+.route li::before{content:counter(r);position:absolute;left:8px;top:8px;width:20px;height:20px;border-radius:50%;background:var(--green);font-size:12px;font-weight:600;display:grid;place-items:center}
 .tw{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
 .dz table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.5}
 .dz th,.dz td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -309,6 +312,134 @@ const FIGS = (function () {
       ${T(140, 228, '同一因素的題目彼此相關高', { size: 12, fill: '#444' })}${T(390, 228, 'Cronbach\'s α 檢查它們是否一致', { size: 12, fill: '#444' })}`, '題目歸到因素');
   };
 
+  // ---------------------------------------------------------------- second figure per chapter
+  const G = {};
+  const box = (x, y, w, h, fill, label, o = {}) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.rx ?? 10}" fill="${fill}" stroke="${INK}" stroke-width="1.5"/>${T(x + w / 2, y + h / 2 + 5, label, { w: o.w || 700, size: o.size || 13 })}`;
+
+  G[1] = () => {
+    const st = [['名義', '只能分類', BLUE], ['次序', '可以排序', LILAC], ['等距', '間距相等', YEL], ['比率', '有絕對零點', GRN]];
+    return wrap(`${st.map((s, i) => `<rect x="${40 + i * 112}" y="${160 - i * 30}" width="112" height="${44 + i * 30}" fill="${s[2]}" stroke="${INK}" stroke-width="1.5"/>${T(96 + i * 112, 150 - i * 30, s[0], { w: 700, size: 15 })}${T(96 + i * 112, 188, s[1], { size: 12 })}`).join('')}
+      ${L(60, 34, 440, 34, { arrow: 1 })}${T(250, 24, '資訊越來越多,能做的統計越來越多', { w: 700 })}
+      ${T(260, 228, '高階尺度可以降階使用,低階尺度不能升階', { fill: '#444' })}`, '四種測量尺度的階梯');
+  };
+  G[2] = () => {
+    const v = [30, 32, 34, 35, 36, 38, 40, 42, 45, 180], sx = i => 50 + i * 44, sy = y => 190 - y * 0.85;
+    return wrap(`${L(40, 190, 500, 190)}${v.map((y, i) => `<rect x="${sx(i)}" y="${sy(y)}" width="30" height="${190 - sy(y)}" fill="${i === 9 ? PINK : BLUE}" stroke="${INK}" stroke-width="1.3"/>`).join('')}
+      ${L(40, sy(51.2), 500, sy(51.2), { dash: '6 4', c: '#d6336c', w: 2 })}${T(46, sy(51.2) - 6, '平均數 51.2(被最右邊那一位拉高)', { a: 'start', fill: '#d6336c', w: 700 })}
+      ${L(40, sy(37), 500, sy(37), { dash: '6 4', c: '#2a7be4', w: 2 })}${T(46, 208, '藍線:中位數 37', { a: 'start', fill: '#2a7be4', w: 700 })}
+      ${T(465, sy(180) - 8, '極端值', { size: 12 })}${T(260, 230, '10 個人的月薪(千元,示意數字):9 個人都低於「平均」', { fill: '#444' })}`, '極端值對平均數與中位數的影響');
+  };
+  G[3] = () => {
+    const steps = [['每個分數', '減平均數', BLUE], ['離均差', '平方', LILAC], ['平方和', '除以 n − 1', YEL], ['變異數', '開根號', GRN], ['標準差', '', PINK]];
+    return wrap(`${steps.map((s, i) => box(14 + i * 102, 70, 84, 54, s[2], s[0]) + (i < 4 ? L(100 + i * 102, 97, 114 + i * 102, 97, { arrow: 1 }) + T(107 + i * 102, 150, s[1], { size: 12 }) + L(107 + i * 102, 136, 107 + i * 102, 104, { c: GREY, w: 1 }) : '')).join('')}
+      ${T(260, 34, '標準差是怎麼算出來的', { w: 700, size: 15 })}
+      ${T(260, 196, '平方是為了讓正負離均差不會互相抵消;', { fill: '#444' })}${T(260, 216, '最後開根號,把單位換回和原始資料一樣', { fill: '#444' })}`, '標準差的計算流程');
+  };
+  G[4] = () => {
+    const sk = (ox, dir, title, sub, col) => {
+      const f = x => x * x * Math.exp(-x), pk = f(2); let p = `M${ox} 150`;
+      for (let i = 0; i <= 50; i++) { const t = 8 * i / 50, h = dir === 0 ? Math.exp(-0.5 * ((t - 4) / 1.2) ** 2) : f(dir > 0 ? t : 8 - t) / pk; p += ` L${(ox + t * 17).toFixed(1)} ${(150 - h * 90).toFixed(1)}`; }
+      return `<path d="${p} L${ox + 136} 150 Z" fill="${col}" stroke="${INK}" stroke-width="1.5"/>${T(ox + 68, 36, title, { w: 700, size: 14 })}${T(ox + 68, 176, sub, { size: 12, fill: '#444' })}`;
+    };
+    return wrap(`${sk(20, -1, '負偏', '長尾在左邊', PINK)}${sk(192, 0, '對稱(常態)', '左右一樣', YEL)}${sk(364, 1, '正偏', '長尾在右邊', BLUE)}
+      ${T(260, 208, '偏態看「尾巴」拖向哪一邊;偏得越厲害,', { fill: '#444' })}${T(260, 226, '用常態分布算出來的機率就越不準', { fill: '#444' })}`, '負偏、對稱與正偏');
+  };
+  G[5] = () => {
+    const sx = x => 260 + x * 66, base = 170;
+    return wrap(`<path d="${bell(0, 1, sx, base, 130, -3.3, 1, 1)}" fill="${GRN}"/><path d="${bell(0, 1, sx, base, 130, 1, 3.3, 1)}" fill="#eee"/>
+      <path d="${bell(0, 1, sx, base, 130, -3.3, 3.3)}" fill="none" stroke="${INK}" stroke-width="1.8"/>${L(30, base, 490, base)}${L(sx(1), base, sx(1), 34, { w: 2.2 })}
+      ${T(sx(1), 26, 'z = +1', { w: 700 })}${T(sx(-0.4), 130, '約 84%', { w: 700, size: 18 })}${T(sx(-0.4), 150, '的人低於這個分數', { size: 12 })}${T(sx(2.2), 128, '約 16%', { size: 12 })}
+      ${[-2, -1, 0, 1, 2].map(z => T(sx(z), base + 18, (z > 0 ? '+' : '') + z, { size: 12 })).join('')}
+      ${T(260, 222, 'z 分數 + 常態分布表 = 百分等級(z = +1 約是第 84 百分位)', { fill: '#444' })}`, 'z 分數對應的百分等級');
+  };
+  G[6] = () => {
+    const r = rng(9), cols = {}; let dots = '';
+    for (let i = 0; i < 46; i++) { const k = Math.max(-5, Math.min(5, Math.round(gauss(r) * 2))); cols[k] = (cols[k] || 0) + 1; dots += `<circle cx="${405 + k * 15}" cy="${176 - cols[k] * 11}" r="4.6" fill="${YEL}" stroke="${INK}" stroke-width="1"/>`; }
+    return wrap(`${box(14, 86, 96, 56, BLUE, '母體')}${L(112, 114, 150, 114, { arrow: 1 })}
+      ${[0, 1, 2].map(i => box(154, 52 + i * 46, 104, 34, '#fff', `樣本 ${i + 1} → X̄${'₁₂₃'[i]}`, { w: 500, size: 12 })).join('')}${T(206, 204, '⋮ 重複很多次', { size: 12, fill: '#444' })}
+      ${L(262, 114, 304, 114, { arrow: 1 })}${L(320, 178, 490, 178)}${dots}
+      ${T(405, 30, '樣本平均數的抽樣分布', { w: 700 })}${L(350, 196, 460, 196, { arrow2: 1 })}${T(405, 214, '它的標準差 = 標準誤', { size: 12, w: 700 })}
+      ${T(150, 30, '每抽一次樣本,就得到一個平均數', { fill: '#444', size: 12 })}`, '抽樣分布是怎麼來的');
+  };
+  G[7] = () => {
+    const cell = (x, y, fill, a, b) => `<rect x="${x}" y="${y}" width="170" height="62" fill="${fill}" stroke="${INK}" stroke-width="1.5"/>${T(x + 85, y + 28, a, { w: 700, size: 15 })}${T(x + 85, y + 48, b, { size: 12 })}`;
+    return wrap(`${T(245, 22, '真實情況(我們看不到)', { w: 700 })}${T(245, 46, '虛無假設為真', { size: 13 })}${T(415, 46, '虛無假設為假', { size: 13 })}
+      ${T(150, 92, '拒絕虛無假設', { a: 'end' })}${T(150, 154, '不拒絕', { a: 'end' })}${T(20, 124, '你的決定', { a: 'start', w: 700 })}
+      ${cell(160, 56, PINK, '型一錯誤', '誤報:機率 = α')}${cell(330, 56, GRN, '正確', '檢定力 = 1 − β')}
+      ${cell(160, 118, GRN, '正確', '')}${cell(330, 118, YEL, '型二錯誤', '漏報:機率 = β')}
+      ${T(260, 208, 'α 訂得越嚴(例如 .01),型一錯誤越少,', { fill: '#444' })}${T(260, 226, '但越容易漏掉真正存在的效果(型二錯誤)', { fill: '#444' })}`, '型一錯誤與型二錯誤');
+  };
+  G[8] = () => wrap(`<circle cx="200" cy="112" r="82" fill="${BLUE}" stroke="${INK}" stroke-width="1.6" opacity=".9"/><circle cx="320" cy="112" r="82" fill="${PINK}" stroke="${INK}" stroke-width="1.6" opacity=".75"/>
+      ${T(150, 106, '變項 X', { w: 700, size: 15 })}${T(150, 126, '的變異', { size: 12 })}${T(370, 106, '變項 Y', { w: 700, size: 15 })}${T(370, 126, '的變異', { size: 12 })}
+      ${T(260, 108, 'r²', { w: 700, size: 20 })}${T(260, 128, '共享', { size: 12 })}
+      ${T(260, 216, 'r = .50 → r² = .25:兩個變項只共享 25% 的變異,', { fill: '#444' })}${T(260, 234, '還有 75% 要靠別的因素解釋', { fill: '#444' })}`, '決定係數 r² 是共享的變異');
+  G[9] = () => {
+    const r = rng(4); let a = '', b = '';
+    for (let i = 0; i < 7; i++) { const y1 = 60 + r() * 100, y2 = 50 + r() * 100; a += `<circle cx="70" cy="${y1.toFixed(0)}" r="5" fill="${BLUE}" stroke="${INK}"/><circle cx="170" cy="${y2.toFixed(0)}" r="5" fill="${PINK}" stroke="${INK}"/>`; }
+    for (let i = 0; i < 6; i++) { const y1 = 70 + i * 17 + r() * 8, y2 = y1 - 22 - r() * 16; b += L(330, y1, 430, y2, { c: GREY, w: 1.3 }) + `<circle cx="330" cy="${y1.toFixed(0)}" r="5" fill="${BLUE}" stroke="${INK}"/><circle cx="430" cy="${y2.toFixed(0)}" r="5" fill="${PINK}" stroke="${INK}"/>`; }
+    return wrap(`<rect x="20" y="36" width="200" height="150" rx="12" fill="#fff" stroke="${INK}" stroke-width="1.4"/><rect x="280" y="36" width="200" height="150" rx="12" fill="#fff" stroke="${INK}" stroke-width="1.4"/>${a}${b}
+      ${T(120, 24, '獨立樣本', { w: 700, size: 14 })}${T(380, 24, '相依(成對)樣本', { w: 700, size: 14 })}
+      ${T(70, 204, 'A 組', { size: 12 })}${T(170, 204, 'B 組', { size: 12 })}${T(330, 204, '前測', { size: 12 })}${T(430, 204, '後測', { size: 12 })}
+      ${T(120, 228, '兩群不同的人,點與點沒有對應', { size: 12, fill: '#444' })}${T(380, 228, '同一個人連成一條線,看每條線的變化', { size: 12, fill: '#444' })}`, '獨立樣本與相依樣本');
+  };
+  G[10] = () => wrap(`${T(260, 26, '總變異 = 組間變異 + 組內變異', { w: 700, size: 15 })}
+      <rect x="40" y="44" width="440" height="40" fill="#eee" stroke="${INK}" stroke-width="1.5"/>${T(260, 69, '總變異(每個人離總平均多遠)')}
+      ${L(150, 86, 150, 106, { arrow: 1 })}${L(370, 86, 370, 106, { arrow: 1 })}
+      <rect x="40" y="110" width="250" height="40" fill="${GRN}" stroke="${INK}" stroke-width="1.5"/>${T(165, 135, '組間:組平均離總平均', { w: 700 })}
+      <rect x="290" y="110" width="190" height="40" fill="${PINK}" stroke="${INK}" stroke-width="1.5"/>${T(385, 135, '組內:誤差', { w: 700 })}
+      ${T(165, 172, '÷ (組數 − 1) = 組間均方', { size: 12 })}${T(385, 172, '÷ (總人數 − 組數) = 組內均方', { size: 12 })}
+      ${T(260, 206, '綠色那塊相對於粉紅色越大,F 越大;', { fill: '#444' })}${T(260, 226, 'F 顯著後,再用事後比較找出是哪兩組不同', { fill: '#444' })}`, 'ANOVA 的變異分割');
+  G[11] = () => {
+    const c = (x, y, fill, v, o = {}) => `<rect x="${x}" y="${y}" width="96" height="46" fill="${fill}" stroke="${INK}" stroke-width="1.5"/>${T(x + 48, y + 29, v, { w: o.w || 700, size: 16 })}`;
+    return wrap(`${T(238, 24, '因子 B', { w: 700 })}${T(190, 48, 'B1', { size: 13 })}${T(286, 48, 'B2', { size: 13 })}${T(388, 48, '列平均', { size: 12, fill: '#444' })}
+      ${T(60, 112, '因子 A', { w: 700 })}${T(134, 84, 'A1', { size: 13, a: 'end' })}${T(134, 130, 'A2', { size: 13, a: 'end' })}${T(134, 178, '行平均', { size: 12, fill: '#444', a: 'end' })}
+      ${c(142, 56, BLUE, '10')}${c(238, 56, BLUE, '12')}${c(340, 56, '#f3f3f3', '11', { w: 500 })}
+      ${c(142, 102, PINK, '14')}${c(238, 102, PINK, '24')}${c(340, 102, '#f3f3f3', '19', { w: 500 })}
+      ${c(142, 150, '#f3f3f3', '12', { w: 500 })}${c(238, 150, '#f3f3f3', '18', { w: 500 })}
+      ${T(446, 84, '← A 的', { a: 'start', size: 12 })}${T(446, 100, '主要效果', { a: 'start', size: 12 })}
+      ${T(260, 218, 'A 的效果在 B1 是 +4、在 B2 是 +12:差距不一樣,就是交互作用(示意數字)', { size: 12, fill: '#444' })}`, '2×2 設計的細格平均數');
+  };
+  G[12] = () => wrap(`${T(120, 26, '獨立組 ANOVA', { w: 700, size: 14 })}${T(390, 26, '重複測量 ANOVA', { w: 700, size: 14 })}
+      <rect x="70" y="40" width="100" height="50" fill="${GRN}" stroke="${INK}" stroke-width="1.5"/>${T(120, 70, '處理效果')}
+      <rect x="70" y="90" width="100" height="96" fill="${PINK}" stroke="${INK}" stroke-width="1.5"/>${T(120, 132, '誤差', { w: 700 })}${T(120, 150, '(含個別差異)', { size: 12 })}
+      <rect x="340" y="40" width="100" height="50" fill="${GRN}" stroke="${INK}" stroke-width="1.5"/>${T(390, 70, '時間效果')}
+      <rect x="340" y="90" width="100" height="60" fill="${BLUE}" stroke="${INK}" stroke-width="1.5"/>${T(390, 118, '個別差異', { w: 700 })}${T(390, 136, '(另外拿掉)', { size: 12 })}
+      <rect x="340" y="150" width="100" height="36" fill="${PINK}" stroke="${INK}" stroke-width="1.5"/>${T(390, 173, '誤差', { w: 700 })}
+      ${L(180, 138, 330, 168, { arrow: 1, dash: '5 4' })}${T(256, 128, '誤差變小', { w: 700 })}
+      ${T(260, 216, 'F 的分母變小了,同樣大小的效果更容易被偵測到', { fill: '#444' })}`, '重複測量把個別差異從誤差中移除');
+  G[13] = () => wrap(`${T(260, 26, '依變項 Y 的全部變異', { w: 700, size: 15 })}
+      <rect x="40" y="42" width="250" height="46" fill="${GRN}" stroke="${INK}" stroke-width="1.5"/>${T(165, 70, '模型解釋的部分 = R²', { w: 700 })}
+      <rect x="290" y="42" width="190" height="46" fill="#eee" stroke="${INK}" stroke-width="1.5"/>${T(385, 70, '殘差(沒解釋到的)')}
+      <circle cx="170" cy="158" r="50" fill="${BLUE}" stroke="${INK}" stroke-width="1.5" opacity=".85"/><circle cx="238" cy="158" r="50" fill="${PINK}" stroke="${INK}" stroke-width="1.5" opacity=".7"/>
+      ${T(140, 162, 'X₁')}${T(268, 162, 'X₂')}${T(204, 162, '重疊', { size: 11 })}
+      ${T(310, 140, '兩個預測變項彼此相關時,', { a: 'start', size: 12 })}${T(310, 158, '重疊的部分不能重複計算;', { a: 'start', size: 12 })}${T(310, 176, '重疊太多 = 多元共線性', { a: 'start', size: 12, w: 700 })}
+      ${T(260, 230, '每個迴歸係數只算該變項「獨有」的貢獻', { fill: '#444' })}`, 'R² 與預測變項的重疊');
+  G[14] = () => {
+    const sx = x => 50 + x * 30, f = x => x * Math.exp(-x / 2), pk = f(2), base = 170, crit = 5.99;
+    const seg = (a, b) => { let p = `M${sx(a)} ${base}`; for (let i = 0; i <= 40; i++) { const x = a + (b - a) * i / 40; p += ` L${sx(x).toFixed(1)} ${(base - f(x) / pk * 120).toFixed(1)}`; } return p + ` L${sx(b)} ${base} Z`; };
+    return wrap(`<path d="${seg(0, crit)}" fill="${BLUE}"/><path d="${seg(crit, 14.5)}" fill="${PINK}"/><path d="${seg(0, 14.5).replace(/ L[\d.]+ [\d.]+ Z$/, '')}" fill="none" stroke="${INK}" stroke-width="1.8"/>${L(40, base, 500, base)}
+      ${L(sx(crit), base, sx(crit), 60, { w: 2.2 })}${T(sx(crit), 50, '臨界值 5.99', { w: 700 })}${T(sx(crit), 34, 'df = 2、α = .05', { size: 12 })}
+      ${T(sx(2.6), 150, '不拒絕', { size: 13 })}${T(sx(9.5), 138, '拒絕域', { w: 700 })}${L(sx(9.5), 144, sx(7.4), 162, { c: GREY })}
+      ${[0, 2, 4, 6, 8, 10, 12, 14].map(v => T(sx(v), base + 18, v, { size: 12 })).join('')}${T(sx(14.8), base + 18, 'χ²', { size: 12, a: 'start' })}
+      ${T(260, 224, '卡方分布只有右尾:算出的 χ² 超過臨界值,就說兩個變項有關聯', { fill: '#444' })}`, '卡方分布與拒絕域');
+  };
+  G[15] = () => {
+    const ev = [3.4, 2.1, 0.8, 0.6, 0.45, 0.35, 0.3], sx = i => 90 + i * 60, sy = v => 180 - v * 40;
+    return wrap(`${L(60, 180, 490, 180)}${L(60, 180, 60, 26)}${L(60, sy(1), 490, sy(1), { dash: '6 4', c: '#d6336c', w: 1.8 })}${T(486, sy(1) - 6, '特徵值 = 1', { a: 'end', fill: '#d6336c', w: 700 })}
+      <polyline points="${ev.map((v, i) => sx(i) + ',' + sy(v)).join(' ')}" fill="none" stroke="${INK}" stroke-width="2.2"/>
+      ${ev.map((v, i) => `<circle cx="${sx(i)}" cy="${sy(v)}" r="6" fill="${v > 1 ? GRN : '#fff'}" stroke="${INK}" stroke-width="1.6"/>` + T(sx(i), 198, i + 1, { size: 12 })).join('')}
+      ${T(30, 100, '特徵值', { size: 12 })}${T(275, 216, '因素編號', { size: 12 })}
+      ${T(sx(0) + 14, sy(3.4) + 4, '保留', { a: 'start', w: 700 })}${T(sx(4.5), 118, '陡坡之後變平:不保留', { size: 12 })}
+      ${T(275, 236, '陡坡圖(示意數字):線以上的 2 個因素值得留下', { size: 12, fill: '#444' })}`, '陡坡圖');
+  };
+  const captions2 = {
+    1: '尺度越高階,資料帶的資訊越多。', 2: '一個極端值就能把平均數拉離大多數人,中位數幾乎不動。', 3: '從每個分數出發,四步算出標準差。',
+    4: '偏態的方向看長尾在哪一邊。', 5: '把 z 分數對到常態曲線,就知道贏過多少人。', 6: '反覆抽樣得到的一堆樣本平均數,本身也形成一個分布。',
+    7: '任何檢定決定都可能犯兩種錯,兩者此消彼長。', 8: '相關係數平方之後,才是「解釋了多少」。', 9: '資料怎麼收集,決定用哪一種 t 檢定。',
+    10: 'ANOVA 就是把總變異切成兩塊再相比。', 11: '看細格平均數,主要效果與交互作用一目了然。', 12: '同樣的資料,重複測量設計的誤差項比較小。',
+    13: 'R² 是整體解釋力;個別係數只算各自獨有的部分。', 14: '算出的卡方值落在右尾拒絕域才算顯著。', 15: '用陡坡圖和特徵值決定要保留幾個因素。',
+  };
+
   const captions = {
     1: '從母體隨機抽出樣本,再用樣本的統計量推論母體的母數。', 2: '分布偏斜時,三個「中心」會分開,平均數最容易被極端值拉走。',
     3: '平均數一樣,資料的分散程度可以差很多。', 4: '常態分布下,離平均數幾個標準差就對應固定的機率。',
@@ -319,7 +450,7 @@ const FIGS = (function () {
     13: '迴歸線讓所有點到線的垂直距離(殘差)平方和最小。', 14: '卡方把每一格「觀察 − 期望」的落差加總。',
     15: '因素分析把相關高的題目歸成同一個因素,信度分析再檢查這組題目是否一致。',
   };
-  return { svg: n => (F[n] ? F[n]() : ''), caption: n => captions[n] || '' };
+  return { svg: n => (F[n] ? F[n]() : ''), caption: n => captions[n] || '', svg2: n => (G[n] ? G[n]() : ''), caption2: n => captions2[n] || '' };
 })();
 if (typeof window !== 'undefined') window.FIGS = FIGS;
 
@@ -337,12 +468,15 @@ window.SIPE = (function () {
   ${b.analogy ? `<div class="ana"><span>比喻</span><b>${esc(b.analogy_title)}</b><p>${esc(b.analogy)}</p></div>` : ''}
   ${b.takeaways ? `<h4>三個重點</h4><ol class="take">${b.takeaways.map(t => `<li>${esc(t)}</li>`).join('')}</ol>` : ''}
   ${b.table ? `<h4>${esc(b.table.caption)}</h4>${table(b.table)}` : ''}
+  ${FIGS.svg2(c.n) ? `<figure class="figbox" style="margin-top:18px">${FIGS.svg2(c.n)}<figcaption>${esc(FIGS.caption2(c.n))}</figcaption></figure>` : ''}
+  ${(c.sections || []).length ? `<h4>這一章的路線</h4><ol class="route">${c.sections.map(x => `<li>${esc(x.heading)}</li>`).join('')}</ol>` : ''}
   ${c.formulas?.length ? `<h4>公式</h4><div class="fxg">${c.formulas.map(f => `<div class="fx"><b>${esc(f.name)}</b><code>${esc(f.expr)}</code></div>`).join('')}</div>` : ''}
+  ${c.concepts?.length ? `<h4>關鍵術語</h4><div class="tw"><table><tr><th>中文</th><th>English</th><th>白話</th></tr>${c.concepts.slice(0, 5).map(k => `<tr><td><b>${esc(k.tw)}</b></td><td>${esc(k.en)}</td><td>${esc(k.note)}</td></tr>`).join('')}</table></div>` : ''}
   ${c.pitfalls?.length ? `<h4>常見誤解</h4><ul class="warn">${c.pitfalls.map(p => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}
   ${c.clinical ? `<div class="ana clin"><span>臨床</span><p>${esc(c.clinical)}</p></div>` : ''}
   ${c.quiz?.length ? `<h4>自我檢核</h4>${c.quiz.map(z => `<details><summary>${esc(z.q)}</summary><p>${esc(z.a)}</p></details>`).join('')}` : ''}
   <h4>想看更多</h4>
-  ${c.concepts?.length ? `<details><summary>術語表(${c.concepts.length} 個)</summary><div class="tw" style="margin-top:10px"><table><tr><th>中文</th><th>English</th><th>白話</th></tr>${c.concepts.map(k => `<tr><td><b>${esc(k.tw)}</b></td><td>${esc(k.en)}</td><td>${esc(k.note)}</td></tr>`).join('')}</table></div></details>` : ''}
+  ${c.concepts?.length > 5 ? `<details><summary>其餘 ${c.concepts.length - 5} 個術語</summary><div class="tw" style="margin-top:10px"><table><tr><th>中文</th><th>English</th><th>白話</th></tr>${c.concepts.slice(5).map(k => `<tr><td><b>${esc(k.tw)}</b></td><td>${esc(k.en)}</td><td>${esc(k.note)}</td></tr>`).join('')}</table></div></details>` : ''}
   ${c.example ? `<details><summary>書中例子:${esc(c.example.title)}</summary><p>${esc(c.example.takeaway)}</p></details>` : ''}
   ${c.apa ? `<details><summary>怎麼寫進論文</summary><p>${esc(c.apa)}</p></details>` : ''}
   ${(c.sections || []).length ? `<details><summary>完整筆記(逐節)</summary>${c.sections.map(s => `<p><b>${esc(s.heading)}</b></p><ul>${s.points.map(p => `<li>${esc(p)}</li>`).join('')}</ul>`).join('')}</details>` : ''}
@@ -369,6 +503,9 @@ window.SIPE = (function () {
 .take{list-style:none;padding:0;display:grid;gap:8px;counter-reset:t}
 .take li{counter-increment:t;display:flex;gap:12px;align-items:center;background:#f6f6f4;border-radius:14px;padding:10px 14px;font-size:14.5px;line-height:1.5}
 .take li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:600}
+.route{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;counter-reset:r}
+.route li{counter-increment:r;position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px 8px 36px;font-size:13.5px;line-height:1.4;flex:1 1 200px}
+.route li::before{content:counter(r);position:absolute;left:8px;top:8px;width:20px;height:20px;border-radius:50%;background:var(--green);font-size:12px;font-weight:600;display:grid;place-items:center}
 .tw{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
 .dz table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.5}
 .dz th,.dz td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
